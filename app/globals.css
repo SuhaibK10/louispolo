@@ -1,0 +1,297 @@
+@import "tailwindcss";
+@source "../components/**/*.{ts,tsx}";
+@source "../app/**/*.{ts,tsx}";
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
+@theme {
+  /* Fonts */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body:    var(--font-hanken), system-ui, sans-serif;
+
+  /* Palette — Louis Polo SEAT 1A */
+  --color-lp-porcelain:    #F5F3ED;   /* page background — warm off-white    */
+  --color-lp-cream:        #EDE9E1;   /* surface — cards, inputs              */
+  --color-lp-gold:         #C9A96E;   /* brand accent                         */
+  --color-lp-gold-light:   #D4B87E;   /* gold on hover                        */
+  --color-lp-ink:          #1A1714;   /* primary text                         */
+  --color-lp-muted:        #7A756E;   /* secondary text                       */
+  --color-lp-faint:        #AEA9A2;   /* placeholder, disabled                */
+  --color-lp-border:       #DDD9D1;   /* dividers, borders                    */
+  --color-lp-border-strong:#C4BFB6;   /* stronger borders                     */
+  --color-lp-success:      #2D7A4F;
+  --color-lp-error:        #D94F3D;
+
+  /* Easing */
+  --ease-lp:       cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Shadows */
+  --shadow-card:       0 1px 3px rgba(26,23,20,0.06), 0 4px 16px rgba(26,23,20,0.04);
+  --shadow-card-hover: 0 4px 12px rgba(26,23,20,0.08), 0 16px 40px rgba(26,23,20,0.06);
+  --shadow-gold:       0 8px 32px rgba(201,169,110,0.25);
+
+  /* Transitions */
+  --transition-base: 0.25s var(--ease-lp);
+  --transition-slow: 0.5s var(--ease-lp);
+}
+
+/* ─── Base Reset ──────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: auto;         /* Lenis handles smooth scroll */
+    scrollbar-gutter: stable;
+  }
+
+  /* Lenis smooth scroll */
+  html.lenis { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  body {
+    background-color: var(--color-lp-porcelain);
+    color: var(--color-lp-ink);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;             /* Fraunces looks best at regular weight */
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  p    { line-height: 1.7; }
+  a    { color: inherit; text-decoration: none; }
+  img  { display: block; max-width: 100%; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+  ul, ol { list-style: none; }
+
+  ::selection {
+    background-color: var(--color-lp-gold);
+    color: var(--color-lp-porcelain);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lp-gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar        { width: 5px; }
+  ::-webkit-scrollbar-track  { background: var(--color-lp-cream); }
+  ::-webkit-scrollbar-thumb  { background: var(--color-lp-gold); border-radius: 3px; }
+}
+
+/* ─── Layout utilities ────────────────────────────────────────────────────── */
+
+/* Consistent page container */
+.container-lp {
+  width: 100%;
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+@media (min-width: 768px)  { .container-lp { padding: 0 2.5rem; } }
+@media (min-width: 1280px) { .container-lp { padding: 0 4rem;   } }
+
+/* Section vertical rhythm */
+.section-pad {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px)  { .section-pad { padding-top: 7rem;  padding-bottom: 7rem;  } }
+@media (min-width: 1280px) { .section-pad { padding-top: 9rem;  padding-bottom: 9rem;  } }
+
+/* ─── Component classes ───────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Eyebrow label ── */
+  .lp-eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;           /* 11px */
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-lp-gold);
+    margin-bottom: 1rem;
+  }
+
+  /* ── Section headings ── */
+  .lp-heading-xl {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--color-lp-ink);
+  }
+
+  .lp-heading-lg {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-lp-ink);
+  }
+
+  .lp-heading-md {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-lp-ink);
+  }
+
+  /* ── Buttons ── */
+
+  /* Primary — gold fill */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 48px;
+    padding: 0 1.75rem;
+    background-color: var(--color-lp-ink);
+    color: var(--color-lp-porcelain);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--color-lp-ink);
+    transition: background-color var(--transition-base),
+                color var(--transition-base),
+                transform 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-lp-gold);
+    border-color: var(--color-lp-gold);
+    color: var(--color-lp-ink);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active { transform: scale(0.97); }
+
+  /* Gold — gold fill */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 48px;
+    padding: 0 1.75rem;
+    background-color: var(--color-lp-gold);
+    color: var(--color-lp-ink);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--color-lp-gold);
+    transition: all var(--transition-base);
+    white-space: nowrap;
+  }
+  .btn-gold:hover {
+    background-color: var(--color-lp-gold-light);
+    border-color: var(--color-lp-gold-light);
+    transform: translateY(-1px);
+  }
+  .btn-gold:active { transform: scale(0.97); }
+
+  /* Outline */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 48px;
+    padding: 0 1.75rem;
+    background-color: transparent;
+    color: var(--color-lp-ink);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--color-lp-border-strong);
+    transition: all var(--transition-base);
+    white-space: nowrap;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-lp-ink);
+    background-color: var(--color-lp-ink);
+    color: var(--color-lp-porcelain);
+  }
+
+  /* ── Cards ── */
+  .lp-card {
+    background: var(--color-lp-cream);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+  .lp-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* ── Gold divider line ── */
+  .lp-divider-gold {
+    display: block;
+    width: 2.5rem;
+    height: 1.5px;
+    background-color: var(--color-lp-gold);
+    margin: 1.25rem 0;
+  }
+
+  /* ── Horizontal rule ── */
+  .lp-hr {
+    border: none;
+    border-top: 1px solid var(--color-lp-border);
+  }
+
+  /* ── Tag badge ── */
+  .lp-tag {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    background-color: var(--color-lp-gold);
+    color: var(--color-lp-ink);
+  }
+
+  /* ── Scrollbar hide ── */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+/* ─── Marquee animation ───────────────────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+  display: flex;
+  white-space: nowrap;
+}
