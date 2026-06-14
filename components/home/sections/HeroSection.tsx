@@ -107,15 +107,7 @@ export function HeroSection() {
       <div className="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-24">
         <div className="container-lp">
 
-          {/* Eyebrow */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0  }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lp-eyebrow text-[var(--color-lp-gold)] mb-4"
-          >
-            Louis Polo — Trendsetters in Luggage
-          </motion.p>
+          
 
           {/* FlapText headline — re-mounts on each slide change */}
           <h1 className="lp-heading-xl text-[var(--color-lp-porcelain)] mb-3 max-w-[14ch]">
@@ -148,10 +140,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap gap-3"
           >
-            <Link href={ROUTES.shop} className="btn-gold">
-              Shop Collection
-              <ArrowRight size={15} strokeWidth={1.5} />
-            </Link>
+            
             
           </motion.div>
         </div>

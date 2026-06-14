@@ -6,6 +6,7 @@
 import { Navbar }    from '@/components/layout/Navbar'
 import { Footer }    from '@/components/layout/Footer'
 import { MobileNav } from '@/components/layout/MobileNav'
+import { WhatsAppButton }  from '@/components/ui/WhatsappButton'
 
 export default function StoreLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,6 +17,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
       {/* Mobile bottom nav — hidden on md+ via CSS */}
       <MobileNav />
       {/* Spacer so content isn't hidden behind mobile nav */}
+      <WhatsAppButton />
       <div className="h-[64px] md:hidden" aria-hidden="true" />
     </>
   )

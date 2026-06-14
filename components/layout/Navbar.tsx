@@ -130,29 +130,21 @@ export function Navbar() {
               className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group"
               aria-label="Louis Polo — Home"
             >
-              {/* Text logo — elegant, editorial */}
-              <span className="font-display text-[1.35rem] tracking-[0.06em] text-[var(--color-lp-ink)] select-none leading-none">
-                Louis Poloo
-              </span>
+              
+              <Image
+                    src="/logo.svg"
+                    alt="Louis Polo"
+                    width={100}
+                    height={97}
+                    className="h-12 w-auto object-contain"
+                    priority
+                  />
             </Link>
 
             {/* ── Right: WhatsApp + Cart ──────────────────────────────────── */}
             <div className="flex items-center gap-4 flex-1 justify-end">
 
-              {/* WhatsApp — desktop only */}
-              <a
-                href={BRAND.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:flex items-center gap-1.5 text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
-                aria-label="Chat on WhatsApp"
-              >
-                <MessageCircle size={18} strokeWidth={1.5} />
-                <span className="font-body text-[0.7rem] tracking-[0.1em] uppercase">
-                  Chat
-                </span>
-              </a>
-
+              
               {/* Cart */}
               <Link
                 href={ROUTES.cart}
