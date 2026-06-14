@@ -7,18 +7,35 @@
 const CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dpepctqdj'
 const BASE   = `https://res.cloudinary.com/${CLOUD}/image/upload`
 
-// Build a Cloudinary URL from a public_id + transform string
+// Build a Cloudinary URL from a public_id + transform string.
+// Also handles full Cloudinary URLs by injecting transforms after /upload/.
 export function cld(publicId: string, transforms = 'f_auto,q_auto'): string {
-  // If it's already a full URL (for placeholder/external images), return as-is
-  if (publicId.startsWith('http')) return publicId
-  return `${BASE}/${transforms}/${publicId}`
+  if (!publicId.startsWith('http')) {
+    return `${BASE}/${transforms}/${publicId}`
+  }
+  // Inject transforms into an existing Cloudinary URL (e.g. when HERO_SLIDES
+  // stores a versioned full URL instead of a bare public_id).
+  const marker = '/upload/'
+  const idx = publicId.indexOf(marker)
+  if (idx !== -1 && publicId.includes('res.cloudinary.com')) {
+    return (
+      publicId.slice(0, idx + marker.length) +
+      transforms + '/' +
+      publicId.slice(idx + marker.length)
+    )
+  }
+  return publicId
 }
 
 // ─── Preset transforms ────────────────────────────────────────────────────────
 
-// Hero slide — full viewport, high quality
+// Hero slide — desktop, 16:9 landscape
 export const heroUrl = (id: string) =>
-  cld(id, 'f_auto,q_90,w_1600,h_900,c_fill,g_center')
+  cld(id, 'f_auto,q_90,w_1600,ar_16:9,c_fill,g_center')
+
+// Hero slide — mobile, 9:16 portrait (preserves full portrait composition)
+export const heroUrlMobile = (id: string) =>
+  cld(id, 'f_auto,q_90,w_900,ar_9:16,c_fill,g_center')
 
 // Product card thumbnail — 3:4 portrait
 export const cardUrl = (id: string) =>

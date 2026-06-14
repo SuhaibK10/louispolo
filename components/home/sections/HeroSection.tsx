@@ -12,7 +12,7 @@ import Link                                  from 'next/link'
 import { motion, AnimatePresence }           from 'framer-motion'
 import { ArrowRight, ChevronDown }           from 'lucide-react'
 import { HERO_SLIDES }                       from '@/config/products'
-import { heroUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
+import { heroUrl, heroUrlMobile, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { ROUTES }                            from '@/lib/constants'
 
 const SLIDE_DURATION = 4500  // ms between auto-advances
@@ -66,7 +66,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative h-screen min-h-[600px] max-h-[960px] overflow-hidden"
+      className="relative h-[85svh] min-h-145 md:h-screen md:min-h-150 md:max-h-240 overflow-hidden"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}
     >
@@ -80,12 +80,22 @@ export function HeroSection() {
           transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
           className="absolute inset-0"
         >
+          {/* Mobile: portrait crop, hidden on md+ */}
+          <Image
+            src={heroUrlMobile(slide.image) || PLACEHOLDER_URL}
+            alt={slide.headline ?? 'Louis Polo luggage'}
+            fill
+            priority={current === 0}
+            className="object-cover object-center block md:hidden"
+            sizes="100vw"
+          />
+          {/* Desktop: landscape crop, hidden below md */}
           <Image
             src={heroUrl(slide.image) || PLACEHOLDER_URL}
             alt={slide.headline ?? 'Louis Polo luggage'}
             fill
             priority={current === 0}
-            className="object-cover object-center"
+            className="object-cover object-center hidden md:block"
             sizes="100vw"
           />
           {/* Gradient overlay — bottom heavy so text reads cleanly */}
