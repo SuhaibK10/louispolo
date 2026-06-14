@@ -8,9 +8,11 @@ import { Footer }    from '@/components/layout/Footer'
 import { MobileNav } from '@/components/layout/MobileNav'
 import { WhatsAppButton }  from '@/components/ui/WhatsappButton'
 
+
 export default function StoreLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      
       <Navbar />
       {children}
       <Footer />
