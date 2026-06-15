@@ -25,17 +25,17 @@ export const HERO_SLIDES: HeroSlide[] = [
     
   },
   {
-    image: 'Generated_Image_June_14_2026_-_11_18PM_hwrn6y.jpg',
+    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781515909/Generated_Image_June_15_2026_-_2_56PM_fopldm.jpg',
     
     
   },
   {
-    image: '',
+    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781517115/Generated_Image_June_15_2026_-_3_19PM_xggl1g.jpg',
     
     
   },
   {
-    image: 'hero4_mpolms.jpg',
+    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781517318/Generated_Image_June_15_2026_-_3_24PM_ixhfbq.jpg',
     
     
   },

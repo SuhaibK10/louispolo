@@ -33,9 +33,9 @@ export function cld(publicId: string, transforms = 'f_auto,q_auto'): string {
 export const heroUrl = (id: string) =>
   cld(id, 'f_auto,q_90,w_1600,ar_16:9,c_fill,g_center')
 
-// Hero slide — mobile, 9:16 portrait (preserves full portrait composition)
+// Hero slide — mobile, full natural portrait (no forced crop — CSS handles fit)
 export const heroUrlMobile = (id: string) =>
-  cld(id, 'f_auto,q_90,w_900,ar_9:16,c_fill,g_center')
+  cld(id, 'f_auto,q_auto,w_900,c_limit')
 
 // Product card thumbnail — 3:4 portrait
 export const cardUrl = (id: string) =>

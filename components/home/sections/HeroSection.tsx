@@ -66,7 +66,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative h-[85svh] min-h-145 md:h-screen md:min-h-150 md:max-h-240 overflow-hidden"
+      className="relative h-[85svh] md:h-screen md:min-h-150 md:max-h-240 overflow-hidden"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}
     >
@@ -80,26 +80,26 @@ export function HeroSection() {
           transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
           className="absolute inset-0"
         >
-          {/* Mobile: portrait crop, hidden on md+ */}
+          {/* Mobile: full natural portrait, no pre-crop — hidden on md+ */}
           <Image
             src={heroUrlMobile(slide.image) || PLACEHOLDER_URL}
             alt={slide.headline ?? 'Louis Polo luggage'}
             fill
             priority={current === 0}
             className="object-cover object-center block md:hidden"
-            sizes="100vw"
+            sizes="(max-width: 767px) 100vw, 1px"
           />
-          {/* Desktop: landscape crop, hidden below md */}
+          {/* Desktop: 16:9 landscape crop — hidden below md */}
           <Image
             src={heroUrl(slide.image) || PLACEHOLDER_URL}
             alt={slide.headline ?? 'Louis Polo luggage'}
             fill
             priority={current === 0}
             className="object-cover object-center hidden md:block"
-            sizes="100vw"
+            sizes="(min-width: 768px) 100vw, 1px"
           />
           {/* Gradient overlay — bottom heavy so text reads cleanly */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1714]/80 via-[#1A1714]/20 to-transparent" />
+         <div className="absolute inset-0 bg-gradient-to-t from-[#1A1714]/40 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
 

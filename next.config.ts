@@ -1,16 +1,23 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  allowedDevOrigins: ['192.168.1.10'],
   images: {
     remotePatterns: [
-  {
-    protocol: 'https',
-    hostname: 'res.cloudinary.com',
-    port: '',
-    pathname: '/**',
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.zyrosite.com',
+        pathname: '/**',
+      },
+    ],
+    formats: ['image/avif', 'image/webp'],
   },
-],
-  },
+  compress: true,
+  poweredByHeader: false,
 }
 
 export default nextConfig
