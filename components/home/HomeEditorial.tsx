@@ -14,6 +14,7 @@ export function HomeEditorial() {
   return (
     <main>
       <HeroSection />
+      <CategoryGrid />
       <BestSellersCarousel />
       <CategoryGrid />
       <ReviewsSection />

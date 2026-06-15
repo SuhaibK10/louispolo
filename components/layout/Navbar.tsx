@@ -43,22 +43,27 @@ function useCartCount() {
 export function Navbar() {
   const pathname  = usePathname()
   const cartCount = useCartCount()
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
   // Scroll progress bar
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll({
+    offset: ['start start', 'end end'],
+  })
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping:   30,
     restDelta: 0.001,
   })
 
-  // Detect scroll for nav style change
+  // Fix Android Chrome dynamic toolbar
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const metaViewport = document.querySelector('meta[name=viewport]')
+    if (metaViewport) {
+      metaViewport.setAttribute(
+        'content',
+        'width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content'
+      )
+    }
   }, [])
 
   // Close menu on route change
@@ -70,22 +75,22 @@ export function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const isHero = pathname === '/'
-
   return (
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 will-change-transform',
-          scrolled || menuOpen || !isHero
-            ? 'bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-b border-[var(--color-lp-border)]'
-            : 'bg-transparent'
+          'navbar-fixed z-50 transition-all duration-500',
+          'bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-b border-[var(--color-lp-border)]'
         )}
+        style={{ isolation: 'isolate', overflowX: 'hidden' }}
       >
         {/* ── Scroll progress bar ────────────────────────────────────────── */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-[var(--color-lp-gold)]"
+          className="hidden md:block absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-[var(--color-lp-gold)]"
           style={{ scaleX }}
+          transformTemplate={({ scaleX }) =>
+            `scaleX(${scaleX ?? 1})`
+          }
         />
 
         <div className="container-lp">

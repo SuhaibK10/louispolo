@@ -1,16 +1,17 @@
 'use client'
 
-// ─────────────────────────────────────────────────────────────────────────────
-// components/providers/SmoothScrollProvider.tsx
-// Lenis smooth scroll — gives the site that premium scroll feel.
-// The exponential easing (Math.pow(2, -10 * t)) is what makes it feel luxury.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { useEffect } from 'react'
 import Lenis         from 'lenis'
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches
+
+    if (isTouch) return
+
     const lenis = new Lenis({
       duration:    1.2,
       easing:      (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

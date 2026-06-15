@@ -2,6 +2,7 @@
 @source "../components/**/*.{ts,tsx}";
 @source "../app/**/*.{ts,tsx}";
 
+
 /* ─── Design Tokens ──────────────────────────────────────────────────────── */
 @theme {
   /* Fonts */
@@ -294,4 +295,31 @@
   animation: marquee 28s linear infinite;
   display: flex;
   white-space: nowrap;
+}
+
+/* ─── Android Chrome: promote navbar to its own compositor layer ─────────── */
+/* Prevents the header clipping when the address bar shrinks on scroll.       */
+header {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ─── Mobile bottom nav: explicit dimensions for reliable initial paint ───── */
+.mobile-nav-bar {
+  height: 56px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Android Chrome dynamic toolbar fix */
+@supports (height: 100dvh) {
+  .navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+  }
 }

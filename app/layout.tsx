@@ -3,7 +3,7 @@
 // Root layout — fonts, metadata, smooth scroll. Light-only.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Fraunces, Hanken_Grotesk } from 'next/font/google'
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
 import { SEO } from '@/lib/constants'
@@ -26,6 +26,15 @@ const hanken = Hanken_Grotesk({
   variable: '--font-hanken',
   display:  'swap',
 })
+
+// ─── Viewport ─────────────────────────────────────────────────────────────────
+
+export const viewport: Viewport = {
+  width:             'device-width',
+  initialScale:      1,
+  viewportFit:       'cover',
+  interactiveWidget: 'resizes-content',
+}
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
