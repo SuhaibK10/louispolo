@@ -87,6 +87,7 @@ export interface HeroSlide {
   // Optional overlay headline
   headline?: string
   subline?: string
+  isVideo?: boolean
 }
 
 // ─── API ──────────────────────────────────────────────────────────────────────

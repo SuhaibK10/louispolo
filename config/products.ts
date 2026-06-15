@@ -31,8 +31,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     image: 'https://res.cloudinary.com/dpepctqdj/video/upload/v1781555131/Ultra_realistic_luxury_product_dknwps.mp4',
-    
-    
+    isVideo: true,
+
   },
   {
     image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781517318/Generated_Image_June_15_2026_-_3_24PM_ixhfbq.jpg',
@@ -49,7 +49,6 @@ export const PRODUCTS: Product[] = [
     name: 'AeroSmart 3-in-1',
     slug: 'aerosmart-3in1',
     category: 'trolley',
-    tag: 'Best Seller',
     isFeatured: true,
     description:
       'Our most innovative design — front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
@@ -107,14 +106,13 @@ export const PRODUCTS: Product[] = [
     name: 'SkyTrail',
     slug: 'skytrail',
     category: 'trolley',
-    tag: 'New Arrival',
     isFeatured: true,
     description:
       'Built for the frequent flyer. SkyTrail combines a sleek hard shell ABS body with 360° spinner wheels and combination lock — smooth, secure, and ready for boarding.',
     images: [
-      'louispolo/products/skytrail/skytrail-blue-1',
-      'louispolo/products/skytrail/skytrail-blue-2',
-      'louispolo/products/skytrail/skytrail-grey-1',
+      'IMG_2853_Background_Removed_bezyzs',
+      'IMG_2853_Background_Removed_bezyzs',
+      'IMG_2853_Background_Removed_bezyzs',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -150,14 +148,13 @@ export const PRODUCTS: Product[] = [
     name: 'VeeZoom',
     slug: 'veezoom',
     category: 'trolley',
-    tag: 'New Arrival',
     isFeatured: true,
     description:
       'Bold V-pattern design that stands out on every conveyor belt. Hard shell ABS with ultra-smooth spinner wheels — because your luggage should be as ambitious as you are.',
     images: [
-      'louispolo/products/veezoom/veezoom-yellow-1',
-      'louispolo/products/veezoom/veezoom-yellow-2',
-      'louispolo/products/veezoom/veezoom-black-1',
+      'VeeZoom__Yellow_lpokls',
+      'VeeZoom__Yellow_lpokls',
+      'VeeZoom__Yellow_lpokls',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -193,12 +190,11 @@ export const PRODUCTS: Product[] = [
     name: 'SoftSquare',
     slug: 'softsquare',
     category: 'trolley',
-    tag: 'Best Seller',
     isFeatured: false,
     description:
       'Clean geometric lines meet premium ABS protection. SoftSquare is the one for people who travel often and want luggage that looks good on day 50 as it did on day 1.',
     images: [
-      'louispolo/products/softsquare/softsquare-rosegold-1',
+      '1-8_Large_Background_Removed_zodwmf',
       'louispolo/products/softsquare/softsquare-blue-1',
       'louispolo/products/softsquare/softsquare-black-1',
     ],
@@ -245,13 +241,12 @@ export const PRODUCTS: Product[] = [
     name: 'ProStripe',
     slug: 'prostripe',
     category: 'trolley',
-    tag: 'Exclusive',
     isFeatured: false,
     description:
       'Front-open design for the business traveller who moves fast. Instant access to your laptop, documents, and essentials without opening the main compartment.',
     images: [
-      'louispolo/products/prostripe/prostripe-grey-1',
-      'louispolo/products/prostripe/prostripe-black-1',
+      '2-5_2_Background_Removed_o4wue3',
+      '9_Background_Removed_2_rlmt2x',
     ],
     features: [
       { label: 'Front open design' },
@@ -283,7 +278,6 @@ export const PRODUCTS: Product[] = [
     name: 'MotoStripe',
     slug: 'motostripe',
     category: 'trolley',
-    tag: 'New Arrival',
     isFeatured: false,
     description:
       'Racing-inspired stripe design on a polycarbonate shell. Lightweight, impact-resistant, and fast through the terminal. MotoStripe is for people who move.',
@@ -323,7 +317,6 @@ export const PRODUCTS: Product[] = [
     name: 'Phantom Pro',
     slug: 'phantom-pro',
     category: 'trolley',
-    tag: 'Exclusive',
     isFeatured: true,
     description:
       'Our most premium trolley. 100% polycarbonate shell, 8 ultra-smooth spinner wheels, gun metal finish. For the traveller who refuses to compromise on any detail.',
@@ -383,13 +376,12 @@ export const PRODUCTS: Product[] = [
     name: 'ArmorPack',
     slug: 'armorpack',
     category: 'backpack',
-    tag: 'New Arrival',
     isFeatured: true,
     description:
       'Hard shell protection in a backpack form. ArmorPack keeps your laptop, camera, and essentials safe without adding bulk. Adjustable straps, rigid outer shell, secure zip.',
     images: [
-      'louispolo/products/armorpack/armorpack-carbon-1',
-      'louispolo/products/armorpack/armorpack-silver-1',
+      '1-2_Large_Background_Removed_xialtl',
+      '1-2_Large_Background_Removed_xialtl',
     ],
     features: [
       { label: 'Hard shell protection' },
@@ -425,8 +417,8 @@ export const PRODUCTS: Product[] = [
     description:
       'Rigid hard shell office bag built for daily professional use. Documents stay flat, tech stays safe, and you arrive looking sharp. The briefcase for people who hate briefcases.',
     images: [
-      'louispolo/products/hexcore/hexcore-carbon-1',
-      'louispolo/products/hexcore/hexcore-silver-1',
+      'hexcore_vhfwcc.png',
+      'hexcore_vhfwcc.png',
     ],
     features: [
       { label: 'Hard shell protection' },

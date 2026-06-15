@@ -15,7 +15,7 @@ import { HERO_SLIDES }                       from '@/config/products'
 import { heroUrl, heroUrlMobile, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { ROUTES }                            from '@/lib/constants'
 
-const SLIDE_DURATION = 3500  // ms between auto-advances
+const SLIDE_DURATION = 8000  // ms between auto-advances
 
 // ─── FlapText: splits each word into characters that flip like departure boards
 function FlapText({ text }: { text: string }) {
@@ -100,25 +100,38 @@ export function HeroSection() {
           transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
           className="absolute inset-0"
         >
-          {/* Mobile: full natural portrait, no pre-crop — hidden on md+ */}
-          <Image
-            src={heroUrlMobile(slide.image) || PLACEHOLDER_URL}
-            alt={slide.headline ?? 'Louis Polo luggage'}
-            fill
-            priority={current === 0}
-            className="object-cover object-center block md:hidden"
-            sizes="(max-width: 767px) 100vw, 1px"
-          />
-          {/* Desktop: 16:9 landscape crop — hidden below md */}
-          <Image
-              src={heroUrl(slide.image) || PLACEHOLDER_URL}
-              alt={slide.headline ?? 'Louis Polo luggage'}
-              fill
-              priority={current === 0}
-              loading="eager"
-              className="object-cover object-center hidden md:block"
-              sizes="100vw"
+          {slide.isVideo ? (
+            <video
+              src={slide.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover object-center"
             />
+          ) : (
+            <>
+              {/* Mobile: full natural portrait, no pre-crop — hidden on md+ */}
+              <Image
+                src={heroUrlMobile(slide.image) || PLACEHOLDER_URL}
+                alt={slide.headline ?? 'Louis Polo luggage'}
+                fill
+                priority={current === 0}
+                className="object-cover object-center block md:hidden"
+                sizes="(max-width: 767px) 100vw, 1px"
+              />
+              {/* Desktop: 16:9 landscape crop — hidden below md */}
+              <Image
+                src={heroUrl(slide.image) || PLACEHOLDER_URL}
+                alt={slide.headline ?? 'Louis Polo luggage'}
+                fill
+                priority={current === 0}
+                loading="eager"
+                className="object-cover object-center hidden md:block"
+                sizes="100vw"
+              />
+            </>
+          )}
 
           
         </motion.div>

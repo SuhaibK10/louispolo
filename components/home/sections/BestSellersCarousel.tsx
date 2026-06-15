@@ -6,7 +6,7 @@
 // Pattern adapted from B&B Appliances ProductCarousel.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useRef }                            from 'react'
+import { useRef, useState, useEffect }       from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
@@ -88,7 +88,20 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function BestSellersCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null)
+  const trackRef     = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [dragWidth, setDragWidth] = useState(0)
+
+  useEffect(() => {
+    const calculate = () => {
+      if (trackRef.current && containerRef.current) {
+        setDragWidth(trackRef.current.scrollWidth - containerRef.current.offsetWidth)
+      }
+    }
+    calculate()
+    window.addEventListener('resize', calculate)
+    return () => window.removeEventListener('resize', calculate)
+  }, [])
 
   return (
     <section className="section-pad overflow-hidden">
@@ -117,19 +130,22 @@ export function BestSellersCarousel() {
       </div>
 
       {/* Drag-to-scroll track */}
-      <motion.div
-        ref={trackRef}
-        drag="x"
-        dragConstraints={trackRef}
-        dragElastic={0.08}
-        className="flex gap-4 md:gap-6 pl-[max(1.25rem,calc((100vw-88rem)/2+4rem))] pr-6 cursor-grab active:cursor-grabbing select-none"
-        style={{ WebkitUserSelect: 'none' }}
-        whileTap={{ cursor: 'grabbing' }}
-      >
-        {FEATURED_PRODUCTS.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </motion.div>
+      <div ref={containerRef} className="overflow-hidden w-full">
+        <motion.div
+          ref={trackRef}
+          drag="x"
+          dragConstraints={{ left: -dragWidth, right: 0 }}
+          dragElastic={0.05}
+          dragMomentum={true}
+          className="flex gap-4 md:gap-6 pl-[max(1.25rem,calc((100vw-88rem)/2+4rem))] pr-6 cursor-grab active:cursor-grabbing select-none"
+          style={{ WebkitUserSelect: 'none' }}
+          whileTap={{ cursor: 'grabbing' }}
+        >
+          {FEATURED_PRODUCTS.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </motion.div>
+      </div>
 
       <div className="container-lp mt-6 md:hidden">
         <Link href={ROUTES.shop} className="btn-outline w-full justify-center">

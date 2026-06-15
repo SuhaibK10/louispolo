@@ -39,7 +39,7 @@ export const heroUrlMobile = (id: string) =>
 
 // Product card thumbnail — 3:4 portrait
 export const cardUrl = (id: string) =>
-  cld(id, 'f_auto,q_80,w_600,h_800,c_fill,g_auto')
+  cld(id, 'f_auto,q_80,w_600,h_800,c_pad,b_rgb:F5F3ED')
 
 // Product detail hero — large, high quality
 export const pdpUrl = (id: string) =>
