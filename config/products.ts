@@ -54,9 +54,9 @@ export const PRODUCTS: Product[] = [
     description:
       'Our most innovative design — front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     images: [
-      'hero4_mpolms.jpg',
-      'louispolo/products/aerosmart/aerosmart-red-2',
-      'louispolo/products/aerosmart/aerosmart-teal-1',
+      '1C6A9437_Large_Background_Removed_l7k4xk',
+      '1C6A9495_Background_Removed_czmfug',
+      '1C6A9455_Large_Background_Removed_xydl9r',
     ],
     features: [
       { label: '3-in-1 compartments' },
