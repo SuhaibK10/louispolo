@@ -70,7 +70,7 @@ export function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const isHero = pathname === '/'
+  const isHero = pathname === '/store'
 
   return (
     <>

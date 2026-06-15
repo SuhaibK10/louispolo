@@ -5,7 +5,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { HeroSection }         from './sections/HeroSection'
-import { TrustBar }            from './sections/TrustBar'
 import { BestSellersCarousel } from './sections/BestSellersCarousel'
 import { CategoryGrid }        from './sections/CategoryGrid'
 import { ReviewsSection }      from './sections/ReviewsSection'
@@ -15,7 +14,6 @@ export function HomeEditorial() {
   return (
     <main>
       <HeroSection />
-      <TrustBar />
       <BestSellersCarousel />
       <CategoryGrid />
       <ReviewsSection />
