@@ -18,7 +18,7 @@ import { ROUTES }                            from '@/lib/constants'
 const SLIDE_DURATION = 4500  // ms between auto-advances
 
 // ─── FlapText: splits each word into characters that flip like departure boards
-function FlapText({ text, key: _key }: { text: string; key: string }) {
+function FlapText({ text }: { text: string }) {
   return (
     <span className="inline-flex flex-wrap gap-x-[0.25em]">
       {text.split(' ').map((word, wi) => (
@@ -91,13 +91,15 @@ export function HeroSection() {
           />
           {/* Desktop: 16:9 landscape crop — hidden below md */}
           <Image
-            src={heroUrl(slide.image) || PLACEHOLDER_URL}
-            alt={slide.headline ?? 'Louis Polo luggage'}
-            fill
-            priority={current === 0}
-            className="object-cover object-center hidden md:block"
-            sizes="(min-width: 768px) 100vw, 1px"
-          />
+              src={heroUrl(slide.image) || PLACEHOLDER_URL}
+              alt={slide.headline ?? 'Louis Polo luggage'}
+              fill
+              priority={current === 0}
+              loading="eager"
+              className="object-cover object-center hidden md:block"
+              sizes="100vw"
+            />
+
           {/* Gradient overlay — bottom heavy so text reads cleanly */}
          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1714]/40 via-transparent to-transparent" />
         </motion.div>

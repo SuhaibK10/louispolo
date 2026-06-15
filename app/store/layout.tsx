@@ -20,7 +20,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
       <MobileNav />
       {/* Spacer so content isn't hidden behind mobile nav */}
       <WhatsAppButton />
-      <div className="h-[64px] md:hidden" aria-hidden="true" />
+      <div className="h-[56px] md:hidden" aria-hidden="true" />
     </>
   )
 }
