@@ -30,7 +30,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     
   },
   {
-    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781517115/Generated_Image_June_15_2026_-_3_19PM_xggl1g.jpg',
+    image: 'https://res.cloudinary.com/dpepctqdj/video/upload/v1781555131/Ultra_realistic_luxury_product_dknwps.mp4',
     
     
   },

@@ -6,7 +6,7 @@
 // FlapText cycles destination headlines. Scroll indicator bounces below.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion, AnimatePresence }           from 'framer-motion'
@@ -15,7 +15,7 @@ import { HERO_SLIDES }                       from '@/config/products'
 import { heroUrl, heroUrlMobile, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { ROUTES }                            from '@/lib/constants'
 
-const SLIDE_DURATION = 4500  // ms between auto-advances
+const SLIDE_DURATION = 3500  // ms between auto-advances
 
 // ─── FlapText: splits each word into characters that flip like departure boards
 function FlapText({ text }: { text: string }) {
@@ -50,10 +50,28 @@ function FlapText({ text }: { text: string }) {
 export function HeroSection() {
   const [current, setCurrent] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
+  const touchStartX = useRef<number>(0)
+  const touchEndX = useRef<number>(0)
 
   const next = useCallback(() => {
     setCurrent((c) => (c + 1) % HERO_SLIDES.length)
   }, [])
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX
+    const delta = touchStartX.current - touchEndX.current
+    if (Math.abs(delta) < 40) return
+    if (delta > 0) {
+      setCurrent(c => (c + 1) % HERO_SLIDES.length)
+    } else {
+      setCurrent(c => (c - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)
+    }
+    setIsPlaying(false)
+    setTimeout(() => setIsPlaying(true), SLIDE_DURATION)
+  }
 
   // Auto-advance
   useEffect(() => {
@@ -69,6 +87,8 @@ export function HeroSection() {
       className="relative h-[85svh] md:h-screen md:min-h-150 md:max-h-240 overflow-hidden"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* ── Slides ───────────────────────────────────────────────────────── */}
       <AnimatePresence mode="sync">
@@ -100,8 +120,7 @@ export function HeroSection() {
               sizes="100vw"
             />
 
-          {/* Gradient overlay — bottom heavy so text reads cleanly */}
-         <div className="absolute inset-0 bg-gradient-to-t from-[#1A1714]/40 via-transparent to-transparent" />
+          
         </motion.div>
       </AnimatePresence>
 
@@ -152,7 +171,11 @@ export function HeroSection() {
           {HERO_SLIDES.map((_, i) => (
             <button
               key={i}
-              onClick={() => { setCurrent(i); setIsPlaying(false) }}
+              onClick={() => {
+                setCurrent(i)
+                setIsPlaying(false)
+                setTimeout(() => setIsPlaying(true), SLIDE_DURATION)
+              }}
               className="relative h-[2px] overflow-hidden transition-all duration-300"
               style={{ width: i === current ? '2rem' : '0.75rem' }}
               aria-label={`Slide ${i + 1}`}
