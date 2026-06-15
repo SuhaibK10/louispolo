@@ -103,7 +103,7 @@ export function BestSellersCarousel() {
             Curated for you
           </motion.span>
           <motion.h2 variants={fadeUp} className="lp-heading-lg">
-            Best Sellers
+            Our Best Sellers
           </motion.h2>
         </motion.div>
 

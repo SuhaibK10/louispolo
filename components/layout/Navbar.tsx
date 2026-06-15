@@ -79,9 +79,9 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'navbar-fixed z-50 transition-all duration-500',
-          'bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-b border-[var(--color-lp-border)]'
-        )}
+            'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+            'bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-b border-[var(--color-lp-border)]'
+          )}
         style={{ isolation: 'isolate', overflowX: 'hidden' }}
       >
         {/* ── Scroll progress bar ────────────────────────────────────────── */}

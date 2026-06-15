@@ -14,6 +14,9 @@ import { ROUTES }                            from '@/lib/constants'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
 import { staggerChildren, scaleUp, VIEWPORT } from '@/lib/animations'
 
+
+
+
 // Category card data — images are Cloudinary public_ids
 // Replace with real product images once uploaded
 const CATEGORY_CARDS = [
@@ -55,6 +58,29 @@ export function CategoryGrid() {
   return (
     <section className="section-pad bg-[var(--color-lp-cream)]">
       <div className="container-lp">
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center gap-2 mb-4 -mt-19"
+        >
+          <div
+            className="w-5 h-8 rounded-full flex items-start justify-center pt-1.5"
+            style={{ border: '1.5px solid var(--color-lp-border)' }}
+          >
+            <motion.div
+              animate={{ y: [0, 14, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-1 h-1.5 rounded-full bg-[var(--color-lp-gold)] shadow-[0_0_24px_rgba(212,175,55,0.)]"
+            />
+          </div>
+          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-faint)]">
+            Swipe down to Begin the Journey
+          </span>
+        </motion.div>
 
         {/* Header */}
         <motion.div
