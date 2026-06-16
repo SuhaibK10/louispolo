@@ -23,9 +23,9 @@ const REVIEWS = [
     name:    'Arjun Mehta',
     city:    'Bengaluru',
     trip:    'Bangalore → Dubai',
-    product: 'SkyTrail 28"',
+    product: 'SkyTrail Large',
     rating:  5,
-    text:    'The wheels on this thing are insane. Walked through three terminals in Dubai and it glided the whole time. Two weeks of stuff fit in the 28" easily. I get compliments on it every trip.',
+    text:    'The wheels on this thing are insane. Walked through three terminals in Dubai and it glided the whole time. Two weeks of stuff fit in the Large easily. I get compliments on it every trip.',
   },
   {
     name:    'Kavya Reddy',

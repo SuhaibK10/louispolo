@@ -12,7 +12,7 @@ export type ProductCategory =
   | 'kids'
   | 'duffle'
 
-export type ProductSize = '20"' | '24"' | '28"' | 'Set of 3' | 'One Size'
+export type ProductSize = 'Cabin' | 'Medium' | 'Large' | 'Set of 3' | 'One Size'
 
 export type ProductTag =
   | 'Best Seller'

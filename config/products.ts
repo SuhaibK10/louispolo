@@ -68,33 +68,33 @@ export const PRODUCTS: Product[] = [
         color: 'Red',
         colorHex: '#C0392B',
         sizes: [
-          { size: '20"', price: 8500, stock: 40, sku: '8906206840001-R-20' },
-          { size: '24"', price: 9500, stock: 30, sku: '8906206840001-R-24' },
-          { size: '28"', price: 10500, stock: 20, sku: '8906206840001-R-28' },
+          { size: 'Cabin', price: 8500, stock: 40, sku: '8906206840001-R-20' },
+          { size: 'Medium', price: 9500, stock: 30, sku: '8906206840001-R-24' },
+          { size: 'Large', price: 10500, stock: 20, sku: '8906206840001-R-28' },
         ],
       },
       {
         color: 'Teal',
         colorHex: '#2C9E8F',
         sizes: [
-          { size: '20"', price: 8500, stock: 35, sku: '8906206840001-T-20' },
-          { size: '24"', price: 9500, stock: 25, sku: '8906206840001-T-24' },
-          { size: '28"', price: 10500, stock: 15, sku: '8906206840001-T-28' },
+          { size: 'Cabin', price: 8500, stock: 35, sku: '8906206840001-T-20' },
+          { size: 'Medium', price: 9500, stock: 25, sku: '8906206840001-T-24' },
+          { size: 'Large', price: 10500, stock: 15, sku: '8906206840001-T-28' },
         ],
       },
       {
         color: 'Brown',
         colorHex: '#7D5A3C',
         sizes: [
-          { size: '20"', price: 8500, stock: 30, sku: '8906206840001-B-20' },
-          { size: '24"', price: 9500, stock: 20, sku: '8906206840001-B-24' },
+          { size: 'Cabin', price: 8500, stock: 30, sku: '8906206840001-B-20' },
+          { size: 'Medium', price: 9500, stock: 20, sku: '8906206840001-B-24' },
         ],
       },
       {
         color: 'Yellow',
         colorHex: '#F4C430',
         sizes: [
-          { size: '20"', price: 8500, stock: 25, sku: '8906206840001-Y-20' },
+          { size: 'Cabin', price: 8500, stock: 25, sku: '8906206840001-Y-20' },
         ],
       },
     ],
@@ -125,18 +125,18 @@ export const PRODUCTS: Product[] = [
         color: 'Blue',
         colorHex: '#1E88E5',
         sizes: [
-          { size: '20"', price: 9099, stock: 50, sku: '8906206840292' },
-          { size: '24"', price: 10649, stock: 40, sku: '8906206840308' },
-          { size: '28"', price: 12550, stock: 30, sku: '8906206840315' },
+          { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840292' },
+          { size: 'Medium', price: 10649, stock: 40, sku: '8906206840308' },
+          { size: 'Large', price: 12550, stock: 30, sku: '8906206840315' },
         ],
       },
       {
         color: 'Grey',
         colorHex: '#9E9E9E',
         sizes: [
-          { size: '20"', price: 9099, stock: 50, sku: '8906206840346' },
-          { size: '24"', price: 10649, stock: 40, sku: '8906206840339' },
-          { size: '28"', price: 12550, stock: 30, sku: '8906206840322' },
+          { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840346' },
+          { size: 'Medium', price: 10649, stock: 40, sku: '8906206840339' },
+          { size: 'Large', price: 12550, stock: 30, sku: '8906206840322' },
         ],
       },
     ],
@@ -167,18 +167,18 @@ export const PRODUCTS: Product[] = [
         color: 'Yellow',
         colorHex: '#FDD835',
         sizes: [
-          { size: '20"', price: 9099, stock: 50, sku: '8906206840230' },
-          { size: '24"', price: 10649, stock: 40, sku: '8906206840247' },
-          { size: '28"', price: 12550, stock: 30, sku: '8906206840254' },
+          { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840230' },
+          { size: 'Medium', price: 10649, stock: 40, sku: '8906206840247' },
+          { size: 'Large', price: 12550, stock: 30, sku: '8906206840254' },
         ],
       },
       {
         color: 'Black',
         colorHex: '#212121',
         sizes: [
-          { size: '20"', price: 9099, stock: 50, sku: '8906206840285' },
-          { size: '24"', price: 10649, stock: 40, sku: '8906206840278' },
-          { size: '28"', price: 12550, stock: 30, sku: '8906206840261' },
+          { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840285' },
+          { size: 'Medium', price: 10649, stock: 40, sku: '8906206840278' },
+          { size: 'Large', price: 12550, stock: 30, sku: '8906206840261' },
         ],
       },
     ],
@@ -190,7 +190,7 @@ export const PRODUCTS: Product[] = [
     name: 'SoftSquare',
     slug: 'softsquare',
     category: 'trolley',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'Clean geometric lines meet premium ABS protection. SoftSquare is the one for people who travel often and want luggage that looks good on day 50 as it did on day 1.',
     images: [
@@ -209,27 +209,27 @@ export const PRODUCTS: Product[] = [
         color: 'Rosegold',
         colorHex: '#B76E79',
         sizes: [
-          { size: '20"', price: 9490, stock: 40, sku: '8906206840353' },
-          { size: '24"', price: 10990, stock: 30, sku: '8906206840360' },
-          { size: '28"', price: 12490, stock: 25, sku: '8906206840377' },
+          { size: 'Cabin', price: 9490, stock: 40, sku: '8906206840353' },
+          { size: 'Medium', price: 10990, stock: 30, sku: '8906206840360' },
+          { size: 'Large', price: 12490, stock: 25, sku: '8906206840377' },
         ],
       },
       {
         color: 'Blue',
         colorHex: '#1E88E5',
         sizes: [
-          { size: '20"', price: 9490, stock: 40, sku: '8906206840407' },
-          { size: '24"', price: 10990, stock: 30, sku: '8906206840384' },
-          { size: '28"', price: 12490, stock: 25, sku: '8906206840391' },
+          { size: 'Cabin', price: 9490, stock: 40, sku: '8906206840407' },
+          { size: 'Medium', price: 10990, stock: 30, sku: '8906206840384' },
+          { size: 'Large', price: 12490, stock: 25, sku: '8906206840391' },
         ],
       },
       {
         color: 'Black',
         colorHex: '#212121',
         sizes: [
-          { size: '20"', price: 9490, stock: 40, sku: '8906206840414' },
-          { size: '24"', price: 10990, stock: 30, sku: '8906206840438' },
-          { size: '28"', price: 12490, stock: 25, sku: '8906206840421' },
+          { size: 'Cabin', price: 9490, stock: 40, sku: '8906206840414' },
+          { size: 'Medium', price: 10990, stock: 30, sku: '8906206840438' },
+          { size: 'Large', price: 12490, stock: 25, sku: '8906206840421' },
         ],
       },
     ],
@@ -259,14 +259,14 @@ export const PRODUCTS: Product[] = [
         color: 'Grey',
         colorHex: '#9E9E9E',
         sizes: [
-          { size: '20"', price: 13259, stock: 20, sku: '8906206840056' },
+          { size: 'Cabin', price: 13259, stock: 20, sku: '8906206840056' },
         ],
       },
       {
         color: 'Black',
         colorHex: '#212121',
         sizes: [
-          { size: '20"', price: 13259, stock: 20, sku: '8906206840117' },
+          { size: 'Cabin', price: 13259, stock: 20, sku: '8906206840117' },
         ],
       },
     ],
@@ -278,13 +278,13 @@ export const PRODUCTS: Product[] = [
     name: 'MotoStripe',
     slug: 'motostripe',
     category: 'trolley',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'Racing-inspired stripe design on a polycarbonate shell. Lightweight, impact-resistant, and fast through the terminal. MotoStripe is for people who move.',
     images: [
-      'louispolo/products/motostripe/motostripe-grey-1',
-      'louispolo/products/motostripe/motostripe-green-1',
-      'louispolo/products/motostripe/motostripe-blue-1',
+      'IMG_2892_Background_Removed_dnutdx',
+      '1-13_Background_Removed_c0oxox',
+      '1-13_Background_Removed_c0oxox',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -296,79 +296,24 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Grey',
         colorHex: '#9E9E9E',
-        sizes: [{ size: '20"', price: 8899, stock: 30, sku: '8906206840186' }],
+        sizes: [{ size: 'Cabin', price: 8899, stock: 30, sku: '8906206840186' }],
       },
       {
         color: 'Green',
         colorHex: '#43A047',
-        sizes: [{ size: '20"', price: 8899, stock: 30, sku: '8906206840162' }],
+        sizes: [{ size: 'Cabin', price: 8899, stock: 30, sku: '8906206840162' }],
       },
       {
         color: 'Blue',
         colorHex: '#1E88E5',
-        sizes: [{ size: '20"', price: 8899, stock: 30, sku: '8906206840179' }],
+        sizes: [{ size: 'Cabin', price: 8899, stock: 30, sku: '8906206840179' }],
       },
     ],
   },
 
-  // ── Phantom Pro ─────────────────────────────────────────────────────────
-  {
-    id: 'phantom-pro',
-    name: 'Phantom Pro',
-    slug: 'phantom-pro',
-    category: 'trolley',
-    isFeatured: true,
-    description:
-      'Our most premium trolley. 100% polycarbonate shell, 8 ultra-smooth spinner wheels, gun metal finish. For the traveller who refuses to compromise on any detail.',
-    images: [
-      'louispolo/products/phantom-pro/phantom-pro-gunmetal-1',
-      'louispolo/products/phantom-pro/phantom-pro-gunmetal-2',
-    ],
-    features: [
-      { label: '8 ultra-smooth spinner wheels' },
-      { label: '100% polycarbonate' },
-      { label: 'Telescopic handle' },
-      { label: 'Premium gun metal finish' },
-    ],
-    variants: [
-      {
-        color: 'Gun Metal',
-        colorHex: '#4A4A4A',
-        sizes: [
-          { size: '20"', price: 12490, stock: 20, sku: '8906206840025' },
-        ],
-      },
-    ],
-  },
+  
 
-  // ── Magnus ──────────────────────────────────────────────────────────────
-  {
-    id: 'magnus',
-    name: 'Magnus',
-    slug: 'magnus',
-    category: 'trolley',
-    isFeatured: false,
-    description:
-      '100% polypropylene shell with 8 spinner wheels. Lightweight without sacrificing structure. Magnus is the everyday workhorse that looks good doing it.',
-    images: [
-      'louispolo/products/magnus/magnus-gunmetal-1',
-    ],
-    features: [
-      { label: '8 spinner wheels' },
-      { label: '100% polypropylene' },
-      { label: 'Telescopic handle' },
-      { label: 'Lightweight build' },
-    ],
-    variants: [
-      {
-        color: 'Gun Metal',
-        colorHex: '#4A4A4A',
-        sizes: [
-          { size: 'One Size', price: 8990, stock: 20, sku: '8906206840018' },
-        ],
-      },
-    ],
-  },
+  
 
   // ── ArmorPack (Backpack) ─────────────────────────────────────────────────
   {

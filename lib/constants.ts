@@ -44,4 +44,4 @@ export const SEO = {
 } as const
 
 // Size display order
-export const SIZE_ORDER = ['20"', '24"', '28"', 'Set of 3', 'One Size'] as const
+export const SIZE_ORDER = ['Cabin', 'Medium', 'Large', 'Set of 3', 'One Size'] as const
