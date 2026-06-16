@@ -24,7 +24,7 @@ const CATEGORY_CARDS = [
     label:    'Trolley Bags',
     value:    'trolley',
     mood:     'For every journey',
-    image:    'louispolo/categories/cat-trolley',
+    image:    'https://res.cloudinary.com/dpepctqdj/image/upload/v1781608966/Generated_Image_June_16_2026_-_4_51PM_lignd0.jpg',
     span:     'md:col-span-2 md:row-span-2',  // large card
     textPos:  'bottom',
   },
@@ -32,7 +32,7 @@ const CATEGORY_CARDS = [
     label:    'Sets',
     value:    'set',
     mood:     'The complete setup',
-    image:    'louispolo/categories/cat-sets',
+    image:    '1_Background_Removed_aukpfh',
     span:     '',
     textPos:  'bottom',
   },

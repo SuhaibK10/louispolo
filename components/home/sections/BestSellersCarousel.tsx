@@ -10,26 +10,65 @@ import { useRef, useState, useEffect }       from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
-import { ArrowRight }                        from 'lucide-react'
+import { ArrowRight, ShoppingBag, Check }    from 'lucide-react'
+import type { ProductSize }                  from '@/types'
 import { FEATURED_PRODUCTS }                 from '@/config/products'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
 import { formatPrice }                       from '@/lib/utils'
 import { ROUTES }                            from '@/lib/constants'
+import { useCartStore }                      from '@/store/cartStore'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 
 // ─── Single product card ──────────────────────────────────────────────────────
 function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
-  const firstVariant   = product.variants[0]
-  const lowestPrice    = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
+  const addItem = useCartStore((s) => s.addItem)
+
+  const [activeVariant, setActiveVariant] = useState(0)
+  const [activeSize,    setActiveSize]    = useState<ProductSize | null>(null)
+  const [addedToCart,   setAddedToCart]   = useState(false)
+
+  const variant     = product.variants[activeVariant]
+  const lowestPrice = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
+  const sizeObj     = variant.sizes.find(s => s.size === activeSize)
+  const price       = sizeObj?.price ?? lowestPrice
+  const inStock     = sizeObj ? sizeObj.stock > 0 : true
+  const canAdd      = activeSize !== null && inStock
+
+  function handleColorChange(e: React.MouseEvent, i: number) {
+    e.stopPropagation()
+    setActiveVariant(i)
+    setActiveSize(null)  // reset size when colour changes
+  }
+
+  function handleAddToCart(e: React.MouseEvent) {
+    e.stopPropagation()
+    if (!canAdd || !sizeObj || !activeSize) return
+
+    addItem({
+      variantKey:  `${product.id}-${variant.color}-${activeSize}`,
+      productId:   product.id,
+      productName: product.name,
+      productSlug: product.slug,
+      image:       product.images[0],
+      color:       variant.color,
+      colorHex:    variant.colorHex,
+      size:        activeSize,
+      price:       sizeObj.price,
+      quantity:    1,
+    })
+
+    setAddedToCart(true)
+    setTimeout(() => setAddedToCart(false), 2000)
+  }
 
   return (
-    <Link
-      href={`${ROUTES.shop}/${product.slug}`}
-      className="group flex-shrink-0 w-[72vw] sm:w-[40vw] md:w-[30vw] lg:w-[22rem]"
-      draggable="false"
-    >
+    <div className="group flex-shrink-0 w-[72vw] sm:w-[40vw] md:w-[30vw] lg:w-[22rem]">
       {/* Image */}
-      <div className="relative aspect-[3/4] bg-[var(--color-lp-cream)] overflow-hidden mb-3">
+      <Link
+        href={`${ROUTES.shop}/${product.slug}`}
+        className="relative block aspect-[3/4] bg-[var(--color-lp-cream)] overflow-hidden mb-3"
+        draggable="false"
+      >
         <Image
           src={cardUrl(product.images[0]) || PLACEHOLDER_URL}
           alt={product.name}
@@ -51,24 +90,36 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
           </span>
           <ArrowRight size={13} strokeWidth={1.5} className="text-[var(--color-lp-gold)]" />
         </div>
-      </div>
+      </Link>
 
       {/* Info */}
-      <div className="space-y-1">
+      <div className="space-y-1.5">
         <p className="font-body text-[0.65rem] tracking-[0.12em] uppercase text-[var(--color-lp-muted)]">
           {product.category === 'trolley' ? 'Trolley Bag' : product.category}
         </p>
-        <p className="font-display text-[1.1rem] text-[var(--color-lp-ink)] leading-tight group-hover:text-[var(--color-lp-gold)] transition-colors duration-200">
-          {product.name}
-        </p>
+        <Link href={`${ROUTES.shop}/${product.slug}`}>
+          <p className="font-display text-[1.1rem] text-[var(--color-lp-ink)] leading-tight hover:text-[var(--color-lp-gold)] transition-colors duration-200">
+            {product.name}
+          </p>
+        </Link>
+
         {/* Color dots */}
         <div className="flex gap-1.5 pt-0.5">
-          {product.variants.slice(0, 5).map((v) => (
-            <span
+          {product.variants.slice(0, 5).map((v, i) => (
+            <button
               key={v.color}
+              type="button"
+              onClick={(e) => handleColorChange(e, i)}
               title={v.color}
-              className="w-3 h-3 rounded-full border border-[var(--color-lp-border)] flex-shrink-0"
-              style={{ backgroundColor: v.colorHex }}
+              className="w-3 h-3 rounded-full transition-all duration-200 flex-shrink-0"
+              style={{
+                backgroundColor: v.colorHex,
+                boxShadow: i === activeVariant
+                  ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
+                  : '0 0 0 1px var(--color-lp-border)',
+              }}
+              aria-label={v.color}
+              aria-pressed={i === activeVariant}
             />
           ))}
           {product.variants.length > 5 && (
@@ -77,11 +128,70 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
             </span>
           )}
         </div>
+
+        {/* Size chips */}
+        <div className="flex flex-wrap gap-1 pt-0.5">
+          {variant.sizes.map(({ size, stock }) => {
+            const outOfStock = stock === 0
+            const isSelected = activeSize === size
+            return (
+              <button
+                key={size}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  if (!outOfStock) setActiveSize(size)
+                }}
+                disabled={outOfStock}
+                className={
+                  outOfStock
+                    ? 'relative font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-faint)] opacity-50 cursor-not-allowed line-through'
+                    : isSelected
+                    ? 'font-body text-[0.6rem] px-2 py-0.5 border bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] border-[var(--color-lp-ink)]'
+                    : 'font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
+                }
+                aria-pressed={isSelected}
+                aria-label={outOfStock ? `${size} — out of stock` : size}
+              >
+                {size}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Price */}
         <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)] pt-0.5">
-          From {formatPrice(lowestPrice)}
+          {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
         </p>
+
+        {/* Add to cart */}
+        <motion.button
+          type="button"
+          onClick={handleAddToCart}
+          disabled={!canAdd}
+          className={
+            canAdd
+              ? addedToCart
+                ? 'btn-gold w-full justify-center mt-2'
+                : 'btn-primary w-full justify-center mt-2'
+              : 'btn-primary w-full justify-center opacity-40 cursor-not-allowed mt-2'
+          }
+          whileTap={canAdd ? { scale: 0.97 } : {}}
+        >
+          {addedToCart ? (
+            <>
+              <Check size={16} strokeWidth={2} />
+              Added
+            </>
+          ) : (
+            <>
+              <ShoppingBag size={16} strokeWidth={1.5} />
+              {!activeSize ? 'Select Color & Size' : 'Add to cart'}
+            </>
+          )}
+        </motion.button>
       </div>
-    </Link>
+    </div>
   )
 }
 

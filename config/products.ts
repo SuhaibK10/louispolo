@@ -20,22 +20,22 @@ import type { Product, HeroSlide } from '@/types'
 // Replace public_ids with your Cloudinary uploads.
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781504029/ChatGPT_Image_Jun_15_2026_at_11_43_24_AM_upwxum.png',
+    image: 'ChatGPT_Image_Jun_15_2026_at_11_43_24_AM_upwxum.png',
     
     
   },
   {
-    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781515909/Generated_Image_June_15_2026_-_2_56PM_fopldm.jpg',
+    image: 'Generated_Image_June_15_2026_-_2_56PM_fopldm.jpg',
     
     
   },
   {
-    image: 'https://res.cloudinary.com/dpepctqdj/video/upload/v1781555131/Ultra_realistic_luxury_product_dknwps.mp4',
+    image: 'Ultra_realistic_luxury_product_dknwps.mp4',
     isVideo: true,
 
   },
   {
-    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781517318/Generated_Image_June_15_2026_-_3_24PM_ixhfbq.jpg',
+    image: 'Generated_Image_June_15_2026_-_3_24PM_ixhfbq.jpg',
     
     
   },

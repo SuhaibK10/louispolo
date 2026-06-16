@@ -10,22 +10,58 @@ import { useState }                 from 'react'
 import Image                        from 'next/image'
 import Link                         from 'next/link'
 import { motion }                   from 'framer-motion'
-import { ArrowRight }               from 'lucide-react'
-import type { Product }             from '@/types'
+import { ArrowRight, ShoppingBag, Check } from 'lucide-react'
+import type { Product, ProductSize } from '@/types'
 import { cardUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { formatPrice }              from '@/lib/utils'
 import { ROUTES }                   from '@/lib/constants'
+import { useCartStore }             from '@/store/cartStore'
 
 interface ProductCardProps {
   product: Product
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const addItem = useCartStore((s) => s.addItem)
+
   const [activeVariant, setActiveVariant] = useState(0)
+  const [activeSize,    setActiveSize]    = useState<ProductSize | null>(null)
+  const [addedToCart,   setAddedToCart]   = useState(false)
 
   const variant      = product.variants[activeVariant]
   const lowestPrice  = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
   const displayImage = product.images[activeVariant] ?? product.images[0]
+  const sizeObj       = variant.sizes.find(s => s.size === activeSize)
+  const price         = sizeObj?.price ?? lowestPrice
+  const inStock       = sizeObj ? sizeObj.stock > 0 : true
+  const canAdd        = activeSize !== null && inStock
+
+  function handleColorChange(e: React.MouseEvent, i: number) {
+    e.stopPropagation()
+    setActiveVariant(i)
+    setActiveSize(null)  // reset size when colour changes
+  }
+
+  function handleAddToCart(e: React.MouseEvent) {
+    e.stopPropagation()
+    if (!canAdd || !sizeObj || !activeSize) return
+
+    addItem({
+      variantKey:  `${product.id}-${variant.color}-${activeSize}`,
+      productId:   product.id,
+      productName: product.name,
+      productSlug: product.slug,
+      image:       displayImage,
+      color:       variant.color,
+      colorHex:    variant.colorHex,
+      size:        activeSize,
+      price:       sizeObj.price,
+      quantity:    1,
+    })
+
+    setAddedToCart(true)
+    setTimeout(() => setAddedToCart(false), 2000)
+  }
 
   return (
     <motion.div
@@ -76,14 +112,32 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Size chips */}
         <div className="flex flex-wrap gap-1 pt-0.5">
-          {product.variants[activeVariant].sizes.map(({ size }) => (
-            <span
-              key={size}
-              className="font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)]"
-            >
-              {size}
-            </span>
-          ))}
+          {variant.sizes.map(({ size, stock }) => {
+            const outOfStock = stock === 0
+            const isSelected = activeSize === size
+            return (
+              <button
+                key={size}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  if (!outOfStock) setActiveSize(size)
+                }}
+                disabled={outOfStock}
+                className={
+                  outOfStock
+                    ? 'relative font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-faint)] opacity-50 cursor-not-allowed line-through'
+                    : isSelected
+                    ? 'font-body text-[0.6rem] px-2 py-0.5 border bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] border-[var(--color-lp-ink)]'
+                    : 'font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
+                }
+                aria-pressed={isSelected}
+                aria-label={outOfStock ? `${size} — out of stock` : size}
+              >
+                {size}
+              </button>
+            )
+          })}
         </div>
 
         {/* Color swatches */}
@@ -91,7 +145,8 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.variants.map((v, i) => (
             <button
               key={v.color}
-              onClick={() => setActiveVariant(i)}
+              type="button"
+              onClick={(e) => handleColorChange(e, i)}
               title={v.color}
               className="w-3.5 h-3.5 rounded-full transition-all duration-200 flex-shrink-0"
               style={{
@@ -108,8 +163,35 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Price */}
         <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
-          From {formatPrice(lowestPrice)}
+          {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
         </p>
+
+        {/* Add to cart */}
+        <motion.button
+          type="button"
+          onClick={handleAddToCart}
+          disabled={!canAdd}
+          className={
+            canAdd
+              ? addedToCart
+                ? 'btn-gold w-full justify-center mt-2'
+                : 'btn-primary w-full justify-center mt-2'
+              : 'btn-primary w-full justify-center opacity-40 cursor-not-allowed mt-2'
+          }
+          whileTap={canAdd ? { scale: 0.97 } : {}}
+        >
+          {addedToCart ? (
+            <>
+              <Check size={16} strokeWidth={2} />
+              Added
+            </>
+          ) : (
+            <>
+              <ShoppingBag size={16} strokeWidth={1.5} />
+              {!activeSize ? 'Select Color & Size' : 'Add to cart'}
+            </>
+          )}
+        </motion.button>
       </div>
     </motion.div>
   )

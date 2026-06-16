@@ -182,7 +182,7 @@ export function ProductInfo({ product, defaultColor }: Props) {
         ) : (
           <>
             <ShoppingBag size={16} strokeWidth={1.5} />
-            {!selectedSize ? 'Select a size' : 'Add to cart'}
+            {!selectedSize ? 'Select Color & Size' : 'Add to cart'}
           </>
         )}
       </motion.button>
