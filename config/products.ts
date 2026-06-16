@@ -30,12 +30,12 @@ export const HERO_SLIDES: HeroSlide[] = [
     
   },
   {
-    image: 'Ultra_realistic_luxury_product_dknwps.mp4',
-    isVideo: true,
+    image: 'duffle_kgw8qx.jpg',
+    isVideo: false,
 
   },
   {
-    image: 'Generated_Image_June_15_2026_-_3_24PM_ixhfbq.jpg',
+    image: 'Gemini_Generated_Image_fgxpcifgxpcifgxp_soszbn',
     
     
   },

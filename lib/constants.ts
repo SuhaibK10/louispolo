@@ -28,10 +28,14 @@ export const NAV_ITEMS = [
 ] as const
 
 // Cart config
+// Shipping is free on all orders — no threshold, no flat fee. If this ever
+// changes, also update the cart page's summary display (app/store/cart/page.tsx),
+// which previously had a conditional "Free shipping above ₹X" message tied
+// to freeShippingThreshold. That message is now removed entirely since
+// there's nothing left to condition on.
 export const CART_CONFIG = {
-  freeShippingThreshold: 5000,
-  shippingCost:          199,
-  maxQtyPerItem:         10,
+  freeShipping:   true,
+  maxQtyPerItem:  10,
 } as const
 
 // SEO defaults

@@ -3,18 +3,20 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // app/store/cart/page.tsx
 // Cart page — reads from Zustand, shows items, totals, and checkout CTA.
-// Razorpay integration wired via /api/checkout route (stub ready in lib/).
+// Shipping is free on all orders (see CART_CONFIG in lib/constants.ts).
+// Checkout button now opens the real flow at /store/checkout.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useEffect, useState }    from 'react'
 import Image                      from 'next/image'
 import Link                       from 'next/link'
+import { useRouter }              from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react'
 import { useCartStore }           from '@/store/cartStore'
 import { thumbUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { formatPrice }            from '@/lib/utils'
-import { ROUTES, CART_CONFIG }    from '@/lib/constants'
+import { ROUTES }                 from '@/lib/constants'
 import type { CartItem }          from '@/types'
 
 // ─── Cart item row ────────────────────────────────────────────────────────────
@@ -108,6 +110,7 @@ function CartRow({ item }: { item: CartItem }) {
 export default function CartPage() {
   const items     = useCartStore(s => s.items)
   const clearCart = useCartStore(s => s.clearCart)
+  const router    = useRouter()
   const [mounted, setMounted] = useState(false)
 
   // Prevent SSR mismatch with Zustand localStorage
@@ -115,9 +118,10 @@ export default function CartPage() {
 
   if (!mounted) return null
 
-  const subtotal  = items.reduce((s, i) => s + i.price * i.quantity, 0)
-  const shipping  = subtotal >= CART_CONFIG.freeShippingThreshold ? 0 : CART_CONFIG.shippingCost
-  const total     = subtotal + shipping
+  const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0)
+  // Shipping is always free — see CART_CONFIG in lib/constants.ts. No
+  // threshold check needed since there's no longer a paid tier.
+  const total    = subtotal
 
   if (items.length === 0) {
     return (
@@ -170,17 +174,8 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between">
                 <span className="font-body text-[0.85rem] text-[var(--color-lp-muted)]">Shipping</span>
-                <span className="font-body text-[0.85rem] text-[var(--color-lp-ink)] font-medium">
-                  {shipping === 0 ? (
-                    <span className="text-[var(--color-lp-success)]">Free</span>
-                  ) : formatPrice(shipping)}
-                </span>
+                <span className="font-body text-[0.85rem] text-[var(--color-lp-success)]">Free</span>
               </div>
-              {shipping > 0 && (
-                <p className="font-body text-[0.72rem] text-[var(--color-lp-faint)]">
-                  Free shipping on orders above {formatPrice(CART_CONFIG.freeShippingThreshold)}
-                </p>
-              )}
             </div>
 
             <div className="lp-hr mb-4" />
@@ -190,8 +185,11 @@ export default function CartPage() {
               <span className="font-display text-[1.25rem]">{formatPrice(total)}</span>
             </div>
 
-            {/* Checkout — Razorpay wired here */}
-            <button className="btn-gold w-full justify-center">
+            {/* Checkout — navigates to the multi-step checkout flow */}
+            <button
+              onClick={() => router.push('/store/checkout')}
+              className="btn-gold w-full justify-center"
+            >
               Proceed to Checkout
               <ArrowRight size={15} strokeWidth={1.5} />
             </button>
