@@ -33,7 +33,7 @@ export function categoryLabel(cat: string): string {
     'office-bag':'Office Bags',
     vanity:      'Vanity Cases',
     kids:        'Kids',
-    duffle:      'Duffles',
+    duffle:      'Duffle Bags',
     all:         'All Products',
   }
   return map[cat] ?? titleCase(cat)

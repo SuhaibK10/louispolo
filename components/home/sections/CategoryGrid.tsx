@@ -24,8 +24,8 @@ const CATEGORY_CARDS = [
     label:    'Trolley Bags',
     value:    'trolley',
     mood:     'For every journey',
-    image:    'https://res.cloudinary.com/dpepctqdj/image/upload/v1781608966/Generated_Image_June_16_2026_-_4_51PM_lignd0.jpg',
-    span:     'md:col-span-2 md:row-span-2',  // large card
+    image:    'Gemini_Generated_Image_xjil8wxjil8wxjil_mz2p8v',
+    span:     'md:col-span-2',
     textPos:  'bottom',
   },
   {
@@ -33,7 +33,7 @@ const CATEGORY_CARDS = [
     value:    'set',
     mood:     'The complete setup',
     image:    '1_Background_Removed_aukpfh',
-    span:     '',
+    span:     'md:col-span-2',
     textPos:  'bottom',
   },
   {
@@ -49,6 +49,22 @@ const CATEGORY_CARDS = [
     value:    'office-bag',
     mood:     'Sharp every day',
     image:    'louispolo/categories/cat-office',
+    span:     '',
+    textPos:  'bottom',
+  },
+  {
+    label:    'Duffle Bags',
+    value:    'duffle',
+    mood:     'Light, fast, flexible',
+    image:    'louispolo/categories/cat-duffle',
+    span:     '',
+    textPos:  'bottom',
+  },
+  {
+    label:    'Vanity Cases',
+    value:    'vanity',
+    mood:     'Small bag, big difference',
+    image:    'louispolo/categories/cat-vanity',
     span:     '',
     textPos:  'bottom',
   },
@@ -74,7 +90,7 @@ export function CategoryGrid() {
             <motion.div
               animate={{ y: [0, 14, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-1 h-1.5 rounded-full bg-[var(--color-lp-gold)] shadow-[0_0_24px_rgba(212,175,55,0.)]"
+              className="w-1 h-1.5 rounded-full bg-[var(--color-lp-ink)]"
             />
           </div>
           <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-faint)]">

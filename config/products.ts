@@ -506,6 +506,144 @@ export const PRODUCTS: Product[] = [
       },
     ],
   },
+
+  // ── Gemtote Duffle Bag ──────────────────────────────────────────────────
+  {
+    id: 'gemtote-duffle-bag',
+    name: 'Gemtote Duffle Bag',
+    slug: 'gemtote-duffle-bag',
+    category: 'duffle',
+    isFeatured: false,
+    description:
+      'A hard-shell duffle built for short trips and quick getaways — structured enough to hold its shape, light enough to grab and go. Available in five colors.',
+    images: [
+      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-yellow-1',
+      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-grey-1',
+      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-pink-1',
+      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-green-1',
+      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-white-1',
+    ],
+    features: [
+      { label: 'Hard shell protection' },
+      { label: 'Adjustable shoulder strap' },
+      { label: 'Spacious main compartment' },
+      { label: 'Lightweight build' },
+    ],
+    variants: [
+      {
+        color: 'Yellow',
+        colorHex: '#FDD835',
+        sizes: [
+          { size: 'One Size', price: 4699, stock: 30 },
+        ],
+      },
+      {
+        color: 'Grey',
+        colorHex: '#9E9E9E',
+        sizes: [
+          { size: 'One Size', price: 4699, stock: 30 },
+        ],
+      },
+      {
+        color: 'Pink',
+        colorHex: '#EC407A',
+        sizes: [
+          { size: 'One Size', price: 4699, stock: 30 },
+        ],
+      },
+      {
+        color: 'Green',
+        colorHex: '#43A047',
+        sizes: [
+          { size: 'One Size', price: 4699, stock: 30 },
+        ],
+      },
+      {
+        color: 'White',
+        colorHex: '#FAFAFA',
+        sizes: [
+          { size: 'One Size', price: 4699, stock: 30 },
+        ],
+      },
+    ],
+  },
+
+  // ── Vanity Case ─────────────────────────────────────────────────────────
+  {
+    id: 'vanity-case',
+    name: 'Vanity Case',
+    slug: 'vanity-case',
+    category: 'vanity',
+    isFeatured: false,
+    description:
+      'A compact hard-shell case for the essentials you don\'t want loose in your bag — toiletries, electronics, small accessories. Available in seven colors and finishes.',
+    images: [
+      'louispolo/products/vanity-case/vanity-case-black-1',
+      'louispolo/products/vanity-case/vanity-case-brown-1',
+      'louispolo/products/vanity-case/vanity-case-white-lp-logo-1',
+      'louispolo/products/vanity-case/vanity-case-white-floral-1',
+      'louispolo/products/vanity-case/vanity-case-orange-1',
+      'louispolo/products/vanity-case/vanity-case-green-1',
+      'louispolo/products/vanity-case/vanity-case-floral-1',
+    ],
+    features: [
+      { label: 'Hard shell protection' },
+      { label: 'Compact, travel-friendly size' },
+      { label: 'Secure zip closure' },
+      { label: 'Multiple compartments' },
+    ],
+    variants: [
+      {
+        color: 'Black',
+        colorHex: '#212121',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+      {
+        color: 'Brown',
+        colorHex: '#7D5A3C',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+      {
+        color: 'White LP Logo',
+        colorHex: '#FFFFFF',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+      {
+        color: 'White Floral',
+        colorHex: '#F8F1E7',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+      {
+        color: 'Orange',
+        colorHex: '#FB8C00',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+      {
+        color: 'Green',
+        colorHex: '#43A047',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+      {
+        color: 'Floral',
+        colorHex: '#D8A7B1',
+        sizes: [
+          { size: 'One Size', price: 5799, stock: 30 },
+        ],
+      },
+    ],
+  },
 ]
 
 // ─── Helper: get all featured products ───────────────────────────────────────
@@ -536,4 +674,6 @@ export const CATEGORIES = [
   { label: 'Sets',        value: 'set',        count: PRODUCTS.filter(p => p.category === 'set').length },
   { label: 'Backpacks',   value: 'backpack',   count: PRODUCTS.filter(p => p.category === 'backpack').length },
   { label: 'Office Bags', value: 'office-bag', count: PRODUCTS.filter(p => p.category === 'office-bag').length },
+  { label: 'Duffle Bags', value: 'duffle',     count: PRODUCTS.filter(p => p.category === 'duffle').length },
+  { label: 'Vanity Cases',value: 'vanity',     count: PRODUCTS.filter(p => p.category === 'vanity').length },
 ] as const

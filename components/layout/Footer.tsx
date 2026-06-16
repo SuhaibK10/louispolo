@@ -13,6 +13,8 @@ const SHOP_LINKS = [
   { label: 'Sets',            href: `${ROUTES.shop}?category=set` },
   { label: 'Backpacks',      href: `${ROUTES.shop}?category=backpack` },
   { label: 'Office Bags',    href: `${ROUTES.shop}?category=office-bag` },
+  { label: 'Duffle Bags',    href: `${ROUTES.shop}?category=duffle` },
+  { label: 'Vanity Cases',   href: `${ROUTES.shop}?category=vanity` },
 ]
 
 const COMPANY_LINKS = [
