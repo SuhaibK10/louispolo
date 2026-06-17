@@ -51,6 +51,7 @@
     text-rendering: optimizeLegibility;
     scroll-behavior: auto;         /* Lenis handles smooth scroll */
     scrollbar-gutter: stable;
+    overflow-x: hidden;
   }
 
   /* Lenis smooth scroll */

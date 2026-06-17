@@ -208,9 +208,10 @@ export function BestSellersCarousel() {
         setDragWidth(trackRef.current.scrollWidth - containerRef.current.offsetWidth)
       }
     }
-    calculate()
-    window.addEventListener('resize', calculate)
-    return () => window.removeEventListener('resize', calculate)
+    if (!trackRef.current) return
+    const ro = new ResizeObserver(calculate)
+    ro.observe(trackRef.current)
+    return () => ro.disconnect()
   }, [])
 
   return (
