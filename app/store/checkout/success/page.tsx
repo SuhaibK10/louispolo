@@ -9,7 +9,7 @@
 // and is marked paid, not just a UI assumption.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams }     from 'next/navigation'
 import Link                    from 'next/link'
 import { motion }              from 'framer-motion'
@@ -25,7 +25,7 @@ interface OrderSummary {
   created_at: string
 }
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId')
 
@@ -122,5 +122,19 @@ export default function CheckoutSuccessPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="pt-16 md:pt-[4.5rem] min-h-[80vh] flex items-center justify-center px-6">
+        <div className="text-center max-w-[28rem]">
+          <p className="font-body text-[var(--color-lp-muted)]">Loading order details...</p>
+        </div>
+      </div>
+    }>
+      <CheckoutSuccessContent />
+    </Suspense>
   )
 }
