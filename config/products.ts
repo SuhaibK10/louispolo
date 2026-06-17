@@ -51,7 +51,7 @@ export const PRODUCTS: Product[] = [
     category: 'trolley',
     isFeatured: true,
     description:
-      'Our most innovative design — front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
+      'Our most innovative design, front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     images: [
       '1C6A9437_Large_Background_Removed_l7k4xk',
       '1C6A9495_Background_Removed_czmfug',

@@ -6,6 +6,10 @@
 // generates using your key secret. We recompute that signature here,
 // server-side, and only mark the order 'paid' if it matches exactly.
 //
+// Works for both logged-in and guest orders. The signature check is
+// identical either way — it doesn't care who's buying, only whether the
+// payment claim is cryptographically real.
+//
 // This route uses the service-role Supabase client deliberately — marking
 // an order 'paid' is something only verified server logic should be able to
 // do, which is why there's no RLS update policy for regular users on the
@@ -18,21 +22,18 @@ import { createServiceRoleClient } from '@/lib/supabase/server'
 import { createClient } from '@/lib/supabase/server'
 
 interface VerifyRequestBody {
-  orderId:           string  // our internal order UUID
+  orderId:             string  // our internal order UUID
   razorpay_order_id:   string
   razorpay_payment_id: string
   razorpay_signature:  string
 }
 
 export async function POST(request: NextRequest) {
-  // Confirm there's still a logged-in session making this call — this
-  // doesn't replace signature verification, it's a separate, additional
-  // check that the request is coming from an authenticated context at all.
+  // No longer a hard auth gate — a guest has no session at all, and that's
+  // expected. We just check IF a session exists, for the optional
+  // belt-and-suspenders ownership check further down.
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) {
-    return NextResponse.json({ error: 'Not authenticated.' }, { status: 401 })
-  }
 
   const body: VerifyRequestBody = await request.json()
   const { orderId, razorpay_order_id, razorpay_payment_id, razorpay_signature } = body
@@ -45,16 +46,14 @@ export async function POST(request: NextRequest) {
   // Razorpay's documented formula: HMAC-SHA256 of "{order_id}|{payment_id}",
   // signed with your key secret. If this doesn't match exactly, the payment
   // claim is not trustworthy — could be a replay, a tampered request, or
-  // a payment that never actually completed on Razorpay's end.
+  // a payment that never actually completed on Razorpay's end. This check
+  // is the ENTIRE security model here — it does not depend on auth state.
   const expectedSignature = crypto
     .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET!)
     .update(`${razorpay_order_id}|${razorpay_payment_id}`)
     .digest('hex')
 
   if (expectedSignature !== razorpay_signature) {
-    // Mark the order failed — don't leave it sitting as 'pending' forever,
-    // since that would make it indistinguishable from "user just hasn't
-    // finished checkout yet" in any admin view we build later.
     const serviceClient = createServiceRoleClient()
     await serviceClient
       .from('orders')
@@ -69,7 +68,12 @@ export async function POST(request: NextRequest) {
 
   // ── Signature is valid — mark the order paid ────────────────────────────
   const serviceClient = createServiceRoleClient()
-  const { data: order, error: updateError } = await serviceClient
+
+  // If a session exists, scope the update to that user's own order as an
+  // extra check (belt-and-suspenders, same as before). If there's no
+  // session (guest checkout), we can't scope by user_id since there isn't
+  // one — the signature check above is what actually secures this either way.
+  let query = serviceClient
     .from('orders')
     .update({
       status:              'paid',
@@ -77,9 +81,12 @@ export async function POST(request: NextRequest) {
       updated_at:          new Date().toISOString(),
     })
     .eq('id', orderId)
-    .eq('user_id', user.id)  // belt-and-suspenders: only update if it's this user's order
-    .select()
-    .single()
+
+  if (user) {
+    query = query.eq('user_id', user.id)
+  }
+
+  const { data: order, error: updateError } = await query.select().single()
 
   if (updateError || !order) {
     console.error('Failed to mark order as paid:', updateError)

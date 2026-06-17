@@ -8,7 +8,7 @@ import { ProductGrid }    from '@/components/shop/ProductGrid'
 
 export const metadata: Metadata = {
   title:       'Shop',
-  description: 'Browse the complete Louis Polo collection — trolley bags, sets, backpacks and more.',
+  description: 'Browse the complete Louis Polo collection - trolley bags, sets, backpacks and more.',
 }
 
 export default function ShopPage() {

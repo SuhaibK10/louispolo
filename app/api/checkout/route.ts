@@ -2,9 +2,15 @@
 // app/api/checkout/route.ts
 // Creates a Razorpay order + a 'pending' row in our own orders table.
 //
-// CRITICAL: prices are NEVER trusted from the client. The client sends
-// product id / color / size / quantity — this route looks up the real price
-// from config/products.ts itself. If we trusted client-sent prices, anyone
+// Supports BOTH logged-in users and guest checkout. If a session exists,
+// the order is attached to user_id. If not, the request must include
+// guest contact info instead — enforced by the DB check constraint added
+// in 002_guest_checkout.sql, not just by this route's own validation.
+//
+// CRITICAL: prices are NEVER trusted from the client, regardless of which
+// path (auth or guest) is taken. The client sends product id / color /
+// size / quantity — this route looks up the real price from
+// config/products.ts itself. If we trusted client-sent prices, anyone
 // could edit the request in devtools and pay whatever they want.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -37,27 +43,41 @@ interface CheckoutRequestBody {
     state:        string
     pincode:      string
   }
+  // Only required if there is no logged-in session. Ignored entirely if
+  // the user is authenticated — a logged-in user's email/phone come from
+  // their account, not from a guest field the client could otherwise spoof.
+  guestContact?: {
+    email: string
+    phone: string
+  }
 }
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient()
 
-  // ── Auth check ──────────────────────────────────────────────────────────
-  // Checkout requires a logged-in user since orders are tied to user_id
-  // (no guest checkout — see orders table schema, user_id is not nullable).
-  const { data: { user }, error: authError } = await supabase.auth.getUser()
-  if (authError || !user) {
-    return NextResponse.json(
-      { error: 'You must be signed in to checkout.' },
-      { status: 401 }
-    )
-  }
+  // ── Auth check — now informational, not a hard gate ─────────────────────
+  // We still call getUser() to see if a session exists, but a missing
+  // session no longer rejects the request outright. It instead routes
+  // into the guest path below.
+  const { data: { user } } = await supabase.auth.getUser()
 
   const body: CheckoutRequestBody = await request.json()
-  const { items, shipping } = body
+  const { items, shipping, guestContact } = body
 
   if (!items || items.length === 0) {
     return NextResponse.json({ error: 'Cart is empty.' }, { status: 400 })
+  }
+
+  // ── Guest path requires contact info; logged-in path does not ──────────
+  // This is enforced here AND at the DB level via the
+  // orders_user_or_guest_check constraint — defense in depth, since this
+  // route's own validation could theoretically have a bug, but the DB
+  // constraint cannot be bypassed by any code path.
+  if (!user && (!guestContact?.email || !guestContact?.phone)) {
+    return NextResponse.json(
+      { error: 'Email and phone are required for guest checkout.' },
+      { status: 400 }
+    )
   }
 
   // ── Validate shipping fields are present ────────────────────────────────
@@ -76,6 +96,8 @@ export async function POST(request: NextRequest) {
   // ── Recalculate every line item server-side ─────────────────────────────
   // This is the part that actually matters for security. We rebuild the
   // order from our own product data, not from whatever the client sent.
+  // Identical for both auth and guest paths — pricing logic doesn't care
+  // who's buying.
   const orderItems: {
     product_id:   string
     product_name: string
@@ -124,10 +146,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Stock check kept loose intentionally — stock numbers in config/products.ts
-    // are placeholder data right now (confirmed: stock tracking is not a
-    // current priority). We still block a hard zero, since "0 in stock" was
-    // explicitly set on a few SKUs and shouldn't be purchasable regardless.
     if (sizeOption.stock === 0) {
       return NextResponse.json(
         { error: `${product.name} (${line.color}, ${line.size}) is currently out of stock` },
@@ -151,33 +169,35 @@ export async function POST(request: NextRequest) {
     })
   }
 
-  // Shipping is free on all orders right now — see CART_CONFIG. If this
-  // changes later, the shipping calculation goes here, server-side, for
-  // the same reason prices are recalculated here: never trust the client
-  // for anything that affects the amount charged.
+  // Shipping is free on all orders right now — see CART_CONFIG.
   const shippingCost = 0
   const total = subtotal + shippingCost
 
-  // ── Create the order row first (status: pending) ────────────────────────
-  // We create our own order record BEFORE calling Razorpay, so that even if
-  // the Razorpay API call fails, we have a record of the attempt with a
-  // real UUID we can reference. The razorpay_order_id gets attached right after.
+  // ── Create the order row ─────────────────────────────────────────────────
+  // Branches on whether a session exists. The DB check constraint
+  // (orders_user_or_guest_check) is the real enforcement — this is just
+  // building the right insert payload for whichever path applies.
+  const orderPayload = {
+    user_id:       user?.id ?? null,
+    guest_email:   user ? null : guestContact!.email,
+    guest_phone:   user ? null : guestContact!.phone,
+    full_name:     shipping.fullName,
+    phone:         shipping.phone,
+    address_line1: shipping.addressLine1,
+    address_line2: shipping.addressLine2 ?? null,
+    city:          shipping.city,
+    state:         shipping.state,
+    pincode:       shipping.pincode,
+    subtotal,
+    shipping:      shippingCost,
+    total,
+    status:        'pending' as const,
+  }
+
+  console.log('ORDER PAYLOAD:', JSON.stringify(orderPayload, null, 2))
   const { data: orderRow, error: insertError } = await supabase
     .from('orders')
-    .insert({
-      user_id:       user.id,
-      full_name:     shipping.fullName,
-      phone:         shipping.phone,
-      address_line1: shipping.addressLine1,
-      address_line2: shipping.addressLine2 ?? null,
-      city:          shipping.city,
-      state:         shipping.state,
-      pincode:       shipping.pincode,
-      subtotal,
-      shipping:      shippingCost,
-      total,
-      status:        'pending',
-    })
+    .insert(orderPayload)
     .select()
     .single()
 
@@ -196,9 +216,6 @@ export async function POST(request: NextRequest) {
 
   if (itemsError) {
     console.error('Failed to insert order items:', itemsError)
-    // Order row exists but items failed — mark it failed rather than leaving
-    // a pending order with no line items, which would be confusing to debug
-    // later and impossible to fulfil correctly.
     await supabase.from('orders').update({ status: 'failed' }).eq('id', orderRow.id)
     return NextResponse.json(
       { error: 'Could not create order. Please try again.' },
@@ -207,9 +224,6 @@ export async function POST(request: NextRequest) {
   }
 
   // ── Create the Razorpay order ────────────────────────────────────────────
-  // Razorpay amounts are in paise. Everything else in this app (DB, UI,
-  // config/products.ts) works in plain rupees — this is the ONLY place
-  // that conversion happens, deliberately isolated to this one boundary.
   try {
     const razorpayOrder = await razorpay.orders.create({
       amount:   total * 100,
@@ -217,7 +231,7 @@ export async function POST(request: NextRequest) {
       receipt:  orderRow.id,
       notes: {
         order_id: orderRow.id,
-        user_id:  user.id,
+        user_id:  user?.id ?? 'guest',
       },
     })
 
