@@ -311,9 +311,89 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  
+  // ── Champ ────────────────────────────────────────────────────────────────
+  {
+    id: 'champ',
+    name: 'Champ',
+    slug: 'champ',
+    category: 'trolley',
+    isFeatured: false,
+    description: '[PLACEHOLDER COPY] Lightweight Hard Shell Carry-On',
+    images: ['louis-polo-champ-08-1781602537072-1781602537072_Background_Removed_ywa111','louis-polo-champ-black-08-1781603000214-1781603000214_Background_Removed_dg0xa2'],
+    features: [
+      { label: 'Hard shell construction' },
+    ],
+    variants: [
+      {
+        color: 'Turquoise',
+        colorHex: '#40E0D0',
+        sizes: [
+          { size: 'Cabin', price: 7999, stock: 1000, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+      {
+        color: 'Black',
+        colorHex: '#1A1714',
+        sizes: [
+          { size: 'Cabin', price: 7999, stock: 1000, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+    ],
+  },
 
-  
+  // ── Magma ────────────────────────────────────────────────────────────────
+  {
+    id: 'magma',
+    name: 'Magma',
+    slug: 'magma',
+    category: 'trolley',
+    isFeatured: false,
+    description: '[PLACEHOLDER COPY] Secure Lock Hard Shell Carry-On Suitcase',
+    images: ['louis-polo-magma-blue-08-1781604249533-1781604249533_Background_Removed_i6ef93','louis-polo-magma-black-08-1781604029524-1781604029524_Background_Removed_gn6fjh'],
+    features: [
+      { label: 'Secure combination lock' },
+      { label: 'Hard shell construction' },
+    ],
+    variants: [
+      {
+        color: 'Turquoise',
+        colorHex: '#40E0D0',
+        sizes: [
+          { size: 'Cabin', price: 7999, stock: 10000, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+      {
+        color: 'Grey',
+        colorHex: '#808080',
+        sizes: [
+          { size: 'Cabin', price: 7999, stock: 10000, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+    ],
+  },
+
+  // ── Alpha ────────────────────────────────────────────────────────────────
+  {
+    id: 'alpha',
+    name: 'Alpha',
+    slug: 'alpha',
+    category: 'trolley',
+    isFeatured: false,
+    description: '[PLACEHOLDER COPY] Lightweight Carry-On Suitcase',
+    images: ['PLACEHOLDER_IMAGE_alpha'],
+    features: [
+      { label: 'Lightweight build' },
+    ],
+    variants: [
+      {
+        color: 'Grey',
+        colorHex: '#808080',
+        sizes: [
+          { size: 'Cabin', price: 7999, stock: 10000, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+    ],
+  },
 
   // ── ArmorPack (Backpack) ─────────────────────────────────────────────────
   {
@@ -399,8 +479,8 @@ export const PRODUCTS: Product[] = [
     description:
       '20", 24", and 28" SkyTrail bags in a nesting set — one fits inside another for compact storage at home. The complete setup for every kind of trip.',
     images: [
-      'louispolo/products/skytrail-set/skytrail-set-blue-1',
-      'louispolo/products/skytrail-set/skytrail-set-grey-1',
+      '02-3_Background_Removed_cucfkt',
+      '01-2_Background_Removed_2_blmmcl',
     ],
     features: [
       { label: '20", 24" & 28" included' },
@@ -580,7 +660,7 @@ export const PRODUCTS: Product[] = [
     description:
       'A compact hard-shell case for the essentials you don\'t want loose in your bag — toiletries, electronics, small accessories. Available in seven colors and finishes.',
     images: [
-      'louispolo/products/vanity-case/vanity-case-black-1',
+      'https://res.cloudinary.com/dpepctqdj/image/upload/v1781777700/Screenshot_2026-06-18_at_2.59_Background_Removed.59_AM_qafnke.png',
       'louispolo/products/vanity-case/vanity-case-brown-1',
       'louispolo/products/vanity-case/vanity-case-white-lp-logo-1',
       'louispolo/products/vanity-case/vanity-case-white-floral-1',

@@ -81,11 +81,11 @@ export function CategoryGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-2 mb-4 -mt-19"
+          className="flex flex-col items-center gap-1 mb-4 -mt-19"
         >
           <div
             className="w-5 h-8 rounded-full flex items-start justify-center pt-1.5"
-            style={{ border: '1.5px solid var(--color-lp-border)' }}
+            style={{ border: '1.5px solid var(--color-lp-ink)' }}
           >
             <motion.div
               animate={{ y: [0, 14, 0] }}
@@ -93,7 +93,7 @@ export function CategoryGrid() {
               className="w-1 h-1.5 rounded-full bg-[var(--color-lp-ink)]"
             />
           </div>
-          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-faint)]">
+          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-ink)]">
             Swipe down to Begin the Journey
           </span>
         </motion.div>
