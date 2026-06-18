@@ -39,6 +39,33 @@ export function MobileNav() {
   const pathname  = usePathname()
   const cartCount = useCartCount()
 
+  const [heroFound,     setHeroFound]     = useState(false)
+  const [pastThreshold, setPastThreshold] = useState(false)
+
+  useEffect(() => {
+    const hero = document.getElementById('hero-section')
+    if (!hero) {
+      setHeroFound(false)
+      return
+    }
+    setHeroFound(true)
+
+    const handleScroll = () => {
+      const { top } = hero.getBoundingClientRect()
+      const pct     = (-top / hero.offsetHeight) * 100
+      const isPast  = pct >= 20
+      setPastThreshold(prev => prev !== isPast ? isPast : prev)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [pathname])
+
+  const inactiveClasses = heroFound && !pastThreshold
+    ? 'text-[var(--color-lp-muted)] hover:text-[var(--color-lp-ink)]'
+    : 'text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)]'
+
   return (
    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-t border-[var(--color-lp-border)]" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) * 0.1)' }}>
       <div className="flex items-center h-[56px]">
@@ -56,7 +83,7 @@ export function MobileNav() {
                 'relative flex-1 flex flex-col items-center justify-center gap-1 py-3 transition-colors duration-200',
                 isActive
                   ? 'text-[var(--color-lp-gold)]'
-                  : 'text-[var(--color-lp-faint)] hover:text-[var(--color-lp-muted)]'
+                  : inactiveClasses
               )}
               aria-label={label}
               aria-current={isActive ? 'page' : undefined}
