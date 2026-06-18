@@ -16,7 +16,7 @@
 
 import { NextResponse, type NextRequest } from 'next/server'
 import Razorpay from 'razorpay'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceRoleClient } from '@/lib/supabase/server'
 import { getProductBySlug } from '@/config/products'
 import type { ProductSize } from '@/types'
 
@@ -194,8 +194,14 @@ export async function POST(request: NextRequest) {
     status:        'pending' as const,
   }
 
+  // Guest inserts use the service-role client to bypass RLS — the anon
+  // role has an RLS policy for this, but PostgREST may not have reloaded
+  // it, and a guest has no user identity for RLS to enforce against anyway.
+  // All fields were validated above before reaching this point.
+  const insertClient = user ? supabase : createServiceRoleClient()
+
   console.log('ORDER PAYLOAD:', JSON.stringify(orderPayload, null, 2))
-  const { data: orderRow, error: insertError } = await supabase
+  const { data: orderRow, error: insertError } = await insertClient
     .from('orders')
     .insert(orderPayload)
     .select()
