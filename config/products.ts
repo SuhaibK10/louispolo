@@ -436,7 +436,7 @@ export const PRODUCTS: Product[] = [
     description:
       'The full VeeZoom family — 20", 24", and 28" in matching bold design. Nesting format for home storage. Everything you need for a week, a month, or forever.',
     images: [
-      'louispolo/products/veezoom-set/veezoom-set-yellow-1',
+      '01-2_Background_Removed_o0b5il.png',
       'louispolo/products/veezoom-set/veezoom-set-black-1',
     ],
     features: [
@@ -517,11 +517,11 @@ export const PRODUCTS: Product[] = [
     description:
       'A hard-shell duffle built for short trips and quick getaways — structured enough to hold its shape, light enough to grab and go. Available in five colors.',
     images: [
-      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-yellow-1',
+      'Generated_Image_June_18_2026_-_1_53AM_Background_Removed_cblbni.png',
       'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-grey-1',
-      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-pink-1',
+      '1C6A9677_Large_Background_Removed_w6duba.png',
       'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-green-1',
-      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-white-1',
+      'https://res.cloudinary.com/dpepctqdj/image/upload/v1781733655/1C6A9716_Background_Removed_r9rkn4.png',
     ],
     features: [
       { label: 'Hard shell protection' },
@@ -530,6 +530,14 @@ export const PRODUCTS: Product[] = [
       { label: 'Lightweight build' },
     ],
     variants: [
+      {
+        color: 'White',
+        colorHex: '#FAFAFA',
+        sizes: [
+          { size: 'One Size', price: 4699, stock: 30 },
+        ],
+      },
+      
       {
         color: 'Yellow',
         colorHex: '#FDD835',
@@ -558,13 +566,7 @@ export const PRODUCTS: Product[] = [
           { size: 'One Size', price: 4699, stock: 30 },
         ],
       },
-      {
-        color: 'White',
-        colorHex: '#FAFAFA',
-        sizes: [
-          { size: 'One Size', price: 4699, stock: 30 },
-        ],
-      },
+      
     ],
   },
 

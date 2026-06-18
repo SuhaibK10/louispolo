@@ -84,6 +84,7 @@ export function HeroSection() {
 
   return (
     <section
+      id="hero-section"
       className="relative h-[85svh] md:h-screen md:min-h-150 md:max-h-240 overflow-hidden"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}

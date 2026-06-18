@@ -86,7 +86,7 @@ export function Navbar() {
       >
         {/* ── Scroll progress bar ────────────────────────────────────────── */}
         <motion.div
-          className="hidden md:block absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-[var(--color-lp-gold)]"
+          className="absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-[var(--color-lp-gold)]"
           style={{ scaleX }}
           transformTemplate={({ scaleX }) =>
             `scaleX(${scaleX ?? 1})`

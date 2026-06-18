@@ -43,11 +43,11 @@ export const cardUrl = (id: string) =>
 
 // Product detail hero — large, high quality
 export const pdpUrl = (id: string) =>
-  cld(id, 'f_auto,q_90,w_900,h_1200,c_fill,g_auto')
+  cld(id, 'f_auto,q_90,w_900,h_1200,c_pad,b_rgb:F5F3ED')
 
 // Cart / order thumbnail — square
 export const thumbUrl = (id: string) =>
-  cld(id, 'f_auto,q_75,w_200,h_200,c_fill,g_auto')
+  cld(id, 'f_auto,q_75,w_200,h_200,c_pad,b_rgb:F5F3ED')
 
 // Mobile optimised card
 export const mobileCardUrl = (id: string) =>
