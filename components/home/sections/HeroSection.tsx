@@ -15,7 +15,7 @@ import { HERO_SLIDES }                       from '@/config/products'
 import { heroUrl, heroUrlMobile, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { ROUTES }                            from '@/lib/constants'
 
-const SLIDE_DURATION = 8000  // ms between auto-advances
+const SLIDE_DURATION = 3000  // ms between auto-advances
 
 // ─── FlapText: splits each word into characters that flip like departure boards
 function FlapText({ text }: { text: string }) {

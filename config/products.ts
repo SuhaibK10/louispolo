@@ -35,6 +35,26 @@ export const HERO_SLIDES: HeroSlide[] = [
 
   },
   {
+    image: 'doit_ufr8ba.jpg',
+    
+    
+  },
+  {
+    image: 'doit2_c1itmp.jpg',
+    
+    
+  },
+  {
+    image: 'Gemini_Generated_Image_fgxpcifgxpcifgxp_soszbn',
+    
+    
+  },
+  {
+    image: 'Generated_Image_June_15_2026_-_3_24PM_ixhfbq',
+    
+    
+  },
+  {
     image: 'Gemini_Generated_Image_fgxpcifgxpcifgxp_soszbn',
     
     
