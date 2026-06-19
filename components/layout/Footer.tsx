@@ -44,7 +44,7 @@ export function Footer() {
             </span>
             <p className="font-body text-[0.8rem] text-white/45 leading-relaxed mb-6">
               Premium hard luggage, designed for every journey.<br />
-              9 years of manufacturing excellence.
+              10+ years of manufacturing excellence.
             </p>
 
             {/* Social */}

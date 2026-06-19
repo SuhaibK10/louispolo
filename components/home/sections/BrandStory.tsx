@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/home/sections/BrandStory.tsx
 // Manufacturing trust signal — consumer voice, not B2B voice.
-// "9 years building luggage for the world's biggest brands. Now we build it for you."
+// "10+ years building luggage for the world's biggest brands. Now we build it for you."
 // ─────────────────────────────────────────────────────────────────────────────
 
 import Link                                  from 'next/link'
@@ -16,7 +16,7 @@ const PILLARS = [
   {
     number: '01',
     label:  'Manufacturing',
-    copy:   'Our Bhiwandi factory has produced luggage for global brands for 9 years. The same machines, the same QC, now working for you.',
+    copy:   'Our Bhiwandi factory has produced luggage for global brands for 10+ years. The same machines, the same QC, now working for you.',
   },
   {
     number: '02',
@@ -45,7 +45,7 @@ export function BrandStory() {
           >
             <span className="lp-eyebrow text-[var(--color-lp-gold)]">Our story</span>
             <h2 className="lp-heading-lg text-[var(--color-lp-porcelain)] mb-6">
-              9 years building for the world's biggest brands.
+              10+ years building for the world's biggest brands.
               <span className="text-[var(--color-lp-gold)] italic"> Now we build it for you.</span>
             </h2>
             <p className="font-body text-[var(--color-lp-porcelain)]/60 text-base leading-relaxed mb-8">

@@ -8,7 +8,7 @@ import { ExhibitionGallery }   from '@/components/home/sections/ExhibitionGaller
 
 export const metadata: Metadata = {
   title:       'About Us',
-  description: '9 years of OEM manufacturing excellence. Louis Polo — premium hard luggage, now direct to you.',
+  description: '10+ years of OEM manufacturing excellence. Louis Polo — premium hard luggage, now direct to you.',
 }
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
         <div className="container-lp">
           <span className="lp-eyebrow">Our Story</span>
           <h1 className="lp-heading-lg mb-2">
-            9 years building for the world&apos;s biggest brands.
+            10+ years building for the world&apos;s biggest brands.
           </h1>
         </div>
       </div>

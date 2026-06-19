@@ -42,7 +42,7 @@ export const CART_CONFIG = {
 // SEO defaults
 export const SEO = {
   title:       'Louis Polo — Trendsetters in Luggage',
-  description: 'Premium hard luggage designed for every journey. Shop AeroSmart, SkyTrail, VeeZoom and more. 9 years of manufacturing excellence. Made in India.',
+  description: 'Premium hard luggage designed for every journey. Shop AeroSmart, SkyTrail, VeeZoom and more. 10+ years of manufacturing excellence. Made in India.',
   keywords:    'louis polo, luggage, trolley bags, hard shell suitcase, travel bags, india',
   ogImage:     '/og-image.jpg',
   url:         'https://louispolo.in',
