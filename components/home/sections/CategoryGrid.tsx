@@ -64,7 +64,7 @@ const CATEGORY_CARDS = [
     label:    'Vanity Cases',
     value:    'vanity',
     mood:     'Small bag, big difference',
-    image:    'https://res.cloudinary.com/dpepctqdj/image/upload/v1781733926/Screenshot_2026-06-18_at_3.35.17_AM_cu1ffy.png',
+    image:    'https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_1100,h_1100,g_auto/v1781733926/Screenshot_2026-06-18_at_3.35.17_AM_cu1ffy.png',
     span:     '',
     textPos:  'bottom',
   },
@@ -106,7 +106,7 @@ export function CategoryGrid() {
           transition={{ duration: 0.6 }}
           className="mb-8 md:mb-10"
         >
-          <span className="lp-eyebrow">Explore</span>
+          <span className="lp-eyebrow">Find your bag</span>
           <h2 className="lp-heading-lg">Shop by Category</h2>
         </motion.div>
 

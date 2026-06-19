@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: 'Sign In',
 }
 
-export default function LoginPage() {
-  return <AuthForm mode="login" />
+interface Props {
+  searchParams: Promise<{ redirect?: string }>
+}
+
+export default async function LoginPage({ searchParams }: Props) {
+  const { redirect } = await searchParams
+  return <AuthForm mode="login" redirectTo={redirect ?? '/'} />
 }

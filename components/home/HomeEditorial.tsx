@@ -9,6 +9,7 @@ import { BestSellersCarousel } from './sections/BestSellersCarousel'
 import { CategoryGrid }        from './sections/CategoryGrid'
 import { ReviewsSection }      from './sections/ReviewsSection'
 import { BrandStory }          from './sections/BrandStory'
+import { ExhibitionGallery }   from './sections/ExhibitionGallery'
 
 export function HomeEditorial() {
   return (
@@ -16,6 +17,7 @@ export function HomeEditorial() {
       <HeroSection />
       <CategoryGrid />
       <BestSellersCarousel />
+      <ExhibitionGallery />
       <ReviewsSection />
       <BrandStory />
     </main>

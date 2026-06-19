@@ -6,10 +6,18 @@
 // completing one task, not browsing.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { Navbar }    from '@/components/layout/Navbar'
+import { MobileNav } from '@/components/layout/MobileNav'
+
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[var(--color-lp-porcelain)] flex items-center justify-center px-6 py-16">
-      {children}
-    </div>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-lp-porcelain flex items-center justify-center px-6 pt-28 pb-24 md:py-16">
+        {children}
+      </div>
+      <MobileNav />
+      <div className="h-14 md:hidden" aria-hidden="true" />
+    </>
   )
 }

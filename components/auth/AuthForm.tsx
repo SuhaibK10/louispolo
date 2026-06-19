@@ -19,6 +19,7 @@ type Mode = 'login' | 'signup'
 
 interface Props {
   mode: Mode
+  redirectTo?: string
 }
 
 // ─── Field wrapper — consistent icon + input styling, staggers in ───────────
@@ -60,7 +61,7 @@ function Field({
   )
 }
 
-export function AuthForm({ mode }: Props) {
+export function AuthForm({ mode, redirectTo }: Props) {
   const [isPending, startTransition] = useTransition()
   const [result, setResult] = useState<AuthResult | null>(null)
 
@@ -118,6 +119,7 @@ export function AuthForm({ mode }: Props) {
       </AnimatePresence>
 
       <form action={handleSubmit} className="space-y-4">
+        <input type="hidden" name="redirectTo" value={redirectTo ?? '/'} />
         <AnimatePresence mode="popLayout">
           {mode === 'signup' && (
             <Field key="fullName" icon={User} type="text" name="fullName" placeholder="Full name" autoComplete="name" />

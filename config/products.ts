@@ -59,6 +59,11 @@ export const HERO_SLIDES: HeroSlide[] = [
     
     
   },
+  {
+    image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781816847/Generated_Image_June_19_2026_-_2_36AM_r9titc.jpg',
+    
+    
+  },
 ]
 
 // ─── Products ─────────────────────────────────────────────────────────────────
@@ -73,9 +78,10 @@ export const PRODUCTS: Product[] = [
     description:
       'Our most innovative design, front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     images: [
-      '1C6A9437_Large_Background_Removed_l7k4xk',
       '1C6A9495_Background_Removed_czmfug',
+      'IMG_2420_Large_Background_Removed_ed2pt3',
       '1C6A9455_Large_Background_Removed_xydl9r',
+      '1C6A9455_Large_Background_Removed_xydl9r'
     ],
     features: [
       { label: '3-in-1 compartments' },
@@ -261,7 +267,7 @@ export const PRODUCTS: Product[] = [
     name: 'ProStripe',
     slug: 'prostripe',
     category: 'trolley',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'Front-open design for the business traveller who moves fast. Instant access to your laptop, documents, and essentials without opening the main compartment.',
     images: [
@@ -337,9 +343,9 @@ export const PRODUCTS: Product[] = [
     name: 'Champ',
     slug: 'champ',
     category: 'trolley',
-    isFeatured: false,
-    description: '[PLACEHOLDER COPY] Lightweight Hard Shell Carry-On',
-    images: ['louis-polo-champ-08-1781602537072-1781602537072_Background_Removed_ywa111','louis-polo-champ-black-08-1781603000214-1781603000214_Background_Removed_dg0xa2'],
+    isFeatured: true,
+    description: ' Lightweight Hard Shell Carry-On',
+    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_580,h_580,g_auto/louis-polo-champ-08-1781602537072-1781602537072_Background_Removed_ywa111.png','louis-polo-champ-black-08-1781603000214-1781603000214_Background_Removed_dg0xa2'],
     features: [
       { label: 'Hard shell construction' },
     ],
@@ -367,9 +373,9 @@ export const PRODUCTS: Product[] = [
     name: 'Magma',
     slug: 'magma',
     category: 'trolley',
-    isFeatured: false,
+    isFeatured: true,
     description: '[PLACEHOLDER COPY] Secure Lock Hard Shell Carry-On Suitcase',
-    images: ['louis-polo-magma-blue-08-1781604249533-1781604249533_Background_Removed_i6ef93','louis-polo-magma-black-08-1781604029524-1781604029524_Background_Removed_gn6fjh'],
+    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-magma-blue-08-1781604249533-1781604249533_Background_Removed_i6ef93','louis-polo-magma-black-08-1781604029524-1781604029524_Background_Removed_gn6fjh'],
     features: [
       { label: 'Secure combination lock' },
       { label: 'Hard shell construction' },
@@ -398,7 +404,7 @@ export const PRODUCTS: Product[] = [
     name: 'Alpha',
     slug: 'alpha',
     category: 'trolley',
-    isFeatured: false,
+    isFeatured: true,
     description: '[PLACEHOLDER COPY] Lightweight Carry-On Suitcase',
     images: ['PLACEHOLDER_IMAGE_alpha'],
     features: [
@@ -411,6 +417,183 @@ export const PRODUCTS: Product[] = [
         sizes: [
           { size: 'Cabin', price: 7999, stock: 10000, sku: 'PLACEHOLDER_SKU' },
         ],
+      },
+    ],
+  },
+
+  // ── Stride ──────────────────────────────────────────────────────────────
+  {
+    id: 'stride',
+    name: 'Stride',
+    slug: 'stride',
+    category: 'trolley',
+    isFeatured: true,
+    description:
+      'Hard shell suitcase built for every kind of trip. Stride comes in seven vibrant colours with ultra-smooth wheels and a telescopic handle that makes getting through the terminal effortless.',
+    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_700,h_600,g_auto/8886cbe8-15c3-4455-9d82-11b601def475.png_aga8tj','3710f235-ae96-4ba8-98fc-92d47ff491f1.png-2_xtqr1w','21afa68a-2d90-423e-85ca-dd42ded030f7.png_j9x8ix','f13453a7-d9b1-4195-a179-d157c5dc49e0.png_jzedxx','372d8a5f-648c-49c9-803e-61ea274792ba.png_v3e5ek','2b469613-2f0d-42ca-ac52-4e59846fe942.png_q7xvb8.avif','0328f215-3cbb-425c-972b-c9f6b73e37e1.png_wrtpnk.avif'],
+    features: [
+      { label: 'Hard shell construction' },
+      { label: '360° spinner wheels' },
+      { label: 'Telescopic handle' },
+      { label: '7 colour options' },
+    ],
+    variants: [
+      { color: 'Red',    colorHex: '#C0392B', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+      { color: 'Black',  colorHex: '#212121', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+      { color: 'Orange', colorHex: '#E65100', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+      { color: 'Green',  colorHex: '#43A047', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+      { color: 'Blue',   colorHex: '#1E88E5', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+      { color: 'Pink',   colorHex: '#EC407A', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+      { color: 'White',  colorHex: '#FAFAFA', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
+    ],
+  },
+
+  
+
+  // ── FloraLux ────────────────────────────────────────────────────────────
+  {
+    id: 'floralux',
+    name: 'FloraLux',
+    slug: 'floralux',
+    category: 'trolley',
+    isFeatured: true,
+    description:
+      'A bold floral-print hard shell suitcase for travellers who want to stand out. Elegant nature-inspired designs on a durable ABS body with 360° smooth-glide wheels.',
+    images: ['PLACEHOLDER_IMAGE_floralux'],
+    features: [
+      { label: 'Floral print design' },
+      { label: '360° spinner wheels' },
+      { label: 'Telescopic handle' },
+      { label: 'Hard shell ABS' },
+    ],
+    variants: [
+      {
+        color: 'White Floral',
+        colorHex: '#F8F1E7',
+        sizes: [
+          { size: 'Cabin',  price: 8990, stock: 30, sku: 'PLACEHOLDER_SKU' },
+          { size: 'Medium', price: 9999, stock: 20, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+      {
+        color: 'Pink Floral',
+        colorHex: '#F48FB1',
+        sizes: [
+          { size: 'Cabin',  price: 8990, stock: 30, sku: 'PLACEHOLDER_SKU' },
+          { size: 'Medium', price: 9999, stock: 20, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+      {
+        color: 'Green Floral',
+        colorHex: '#81C784',
+        sizes: [
+          { size: 'Cabin', price: 8990, stock: 30, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+    ],
+  },
+
+  // ── Luna Blue ───────────────────────────────────────────────────────────
+  {
+    id: 'luna-blue',
+    name: 'Luna Blue',
+    slug: 'luna-blue',
+    category: 'trolley',
+    isFeatured: true,
+    description:
+      'A cheerful character-print carry-on featuring a quirky blue illustrated character with curly hair and an adorable companion. Light, durable, and impossible to miss on the luggage carousel.',
+    images: ['ced09a26-95e8-4385-bf21-973db653ca5b.png_y0ocex'],
+    features: [
+      { label: 'Character print design' },
+      { label: 'Hard shell body' },
+      { label: 'Smooth rolling wheels' },
+      { label: 'Lightweight build' },
+    ],
+    variants: [
+      {
+        color: 'Blue',
+        colorHex: '#1E88E5',
+        sizes: [{ size: 'Cabin', price: 6500, stock: 30, sku: 'PLACEHOLDER_SKU' }],
+      },
+    ],
+  },
+
+  // ── CharacterPop ─────────────────────────────────────────────────────────
+  {
+    id: 'character-pop',
+    name: 'CharacterPop',
+    slug: 'character-pop',
+    category: 'trolley',
+    isFeatured: true,
+    description:
+      'A vibrant two-tone suitcase with a bold animated character design on a yellow and red background. Eye-catching on every conveyor belt — for those who travel with personality front and centre.',
+    images: ['8466e6e9-f2b8-428e-a144-3fade53f6576.png_y7byfd'],
+    features: [
+      { label: 'Character print design' },
+      { label: '360° spinner wheels' },
+      { label: 'Telescopic handle' },
+      { label: 'Hard shell body' },
+    ],
+    variants: [
+      {
+        color: 'Yellow-Red',
+        colorHex: '#FDD835',
+        sizes: [
+          { size: 'Cabin',  price: 7999, stock: 30, sku: 'PLACEHOLDER_SKU' },
+          { size: 'Medium', price: 8999, stock: 20, sku: 'PLACEHOLDER_SKU' },
+        ],
+      },
+    ],
+  },
+
+  // ── RetroTech ─────────────────────────────────────────────────────────────
+  {
+    id: 'retrotech',
+    name: 'RetroTech',
+    slug: 'retrotech',
+    category: 'trolley',
+    isFeatured: true,
+    description:
+      'Vintage electronics and dynamic abstract patterns printed on a hard shell carry-on. RetroTech is for travellers who want their luggage to be a conversation starter at every airport.',
+    images: ['d96f8eb1-6b93-4016-be59-01945e579924.png_kskcae'],
+    features: [
+      { label: 'Retro print design' },
+      { label: 'Hard shell body' },
+      { label: 'Smooth rolling wheels' },
+      { label: 'Ergonomic handle' },
+    ],
+    variants: [
+      {
+        color: 'Multicolor',
+        colorHex: '#5C6BC0',
+        sizes: [{ size: 'Cabin', price: 7499, stock: 30, sku: 'PLACEHOLDER_SKU' }],
+      },
+    ],
+  },
+
+  
+
+  // ── ModernRoller ──────────────────────────────────────────────────────
+  {
+    id: 'modernroller',
+    name: 'ModernRoller',
+    slug: 'modernroller',
+    category: 'trolley',
+    isFeatured: true,
+    description:
+      'A chic two-tone suitcase with a white frame and elegant textured brown front panel. Contemporary aesthetics meet smooth-gliding wheels for a bag that looks as good as it travels.',
+    images: ['PLACEHOLDER_IMAGE_modernroller'],
+    features: [
+      { label: 'Two-tone design' },
+      { label: 'Smooth-gliding wheels' },
+      { label: 'Secure zipper closure' },
+      { label: 'Spacious interior' },
+    ],
+    variants: [
+      {
+        color: 'White/Brown',
+        colorHex: '#D7CCC8',
+        sizes: [{ size: 'Cabin', price: 11490, stock: 20, sku: 'PLACEHOLDER_SKU' }],
       },
     ],
   },
@@ -458,7 +641,7 @@ export const PRODUCTS: Product[] = [
     name: 'HexCore',
     slug: 'hexcore',
     category: 'office-bag',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'Rigid hard shell office bag built for daily professional use. Documents stay flat, tech stays safe, and you arrive looking sharp. The briefcase for people who hate briefcases.',
     images: [
@@ -495,7 +678,7 @@ export const PRODUCTS: Product[] = [
     name: 'SkyTrail — Set of 3',
     slug: 'skytrail-set',
     category: 'set',
-    isFeatured: false,
+    isFeatured: true,
     description:
       '20", 24", and 28" SkyTrail bags in a nesting set — one fits inside another for compact storage at home. The complete setup for every kind of trip.',
     images: [
@@ -532,7 +715,7 @@ export const PRODUCTS: Product[] = [
     name: 'VeeZoom — Set of 3',
     slug: 'veezoom-set',
     category: 'set',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'The full VeeZoom family — 20", 24", and 28" in matching bold design. Nesting format for home storage. Everything you need for a week, a month, or forever.',
     images: [
@@ -569,7 +752,7 @@ export const PRODUCTS: Product[] = [
     name: 'SoftSquare — Set of 3',
     slug: 'softsquare-set',
     category: 'set',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'Three SoftSquare bags in a matching set. Clean, geometric, and built to last. The smart choice for families and frequent travellers who want everything to match.',
     images: [
@@ -613,7 +796,7 @@ export const PRODUCTS: Product[] = [
     name: 'Gemtote Duffle Bag',
     slug: 'gemtote-duffle-bag',
     category: 'duffle',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'A hard-shell duffle built for short trips and quick getaways — structured enough to hold its shape, light enough to grab and go. Available in five colors.',
     images: [
@@ -676,7 +859,7 @@ export const PRODUCTS: Product[] = [
     name: 'Vanity Case',
     slug: 'vanity-case',
     category: 'vanity',
-    isFeatured: false,
+    isFeatured: true,
     description:
       'A compact hard-shell case for the essentials you don\'t want loose in your bag — toiletries, electronics, small accessories. Available in seven colors and finishes.',
     images: [

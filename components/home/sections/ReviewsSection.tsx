@@ -66,7 +66,7 @@ export function ReviewsSection() {
           className="mb-10 md:mb-12"
         >
           <motion.span variants={fadeUp} className="lp-eyebrow">
-            Travellers who trust us
+            4.8 ★ · 1,000+ verified buyers
           </motion.span>
           <motion.h2 variants={fadeUp} className="lp-heading-lg">
             Real trips. Real reviews.

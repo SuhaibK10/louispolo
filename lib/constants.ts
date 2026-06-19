@@ -7,6 +7,7 @@ export const BRAND = {
   name:      'Louis Polo',
   tagline:   'Trendsetters in Luggage',
   email:     'support@louispolo.in',
+  teamEmail: 'suhaib@louispolo.in',  // receives internal order notifications
   phone:     '+91-89287 89287',
   whatsapp:  'https://wa.me/918928789287',
   instagram: 'https://instagram.com/louispololuggage',

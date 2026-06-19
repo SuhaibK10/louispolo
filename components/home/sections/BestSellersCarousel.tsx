@@ -62,7 +62,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
   }
 
   return (
-    <div className="group flex-shrink-0 w-[72vw] sm:w-[40vw] md:w-[30vw] lg:w-[22rem]">
+    <div className="group flex-shrink-0 w-[68vw] sm:w-[40vw] md:w-[30vw] lg:w-[22rem]">
       {/* Image */}
       <Link
         href={`${ROUTES.shop}/${product.slug}`}
@@ -215,7 +215,7 @@ export function BestSellersCarousel() {
   }, [])
 
   return (
-    <section className="section-pad overflow-hidden">
+    <section className="pt-8 md:pt-12 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
       <div className="container-lp mb-8 md:mb-10 flex items-end justify-between">
         <motion.div
           variants={staggerChildren}
@@ -224,7 +224,7 @@ export function BestSellersCarousel() {
           viewport={VIEWPORT}
         >
           <motion.span variants={fadeUp} className="lp-eyebrow">
-            Curated for you
+            What India is carrying
           </motion.span>
           <motion.h2 variants={fadeUp} className="lp-heading-lg">
             Our Best Sellers

@@ -20,11 +20,19 @@ export interface AuthResult {
   needsEmailConfirmation?: boolean
 }
 
+function safeRedirectTarget(redirectTo: FormDataEntryValue | null): string {
+  if (typeof redirectTo === 'string' && redirectTo.startsWith('/') && !redirectTo.includes('://')) {
+    return redirectTo
+  }
+  return '/'
+}
+
 export async function login(formData: FormData): Promise<AuthResult> {
   const supabase = await createClient()
 
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
+  const email      = formData.get('email') as string
+  const password   = formData.get('password') as string
+  const redirectTo = safeRedirectTarget(formData.get('redirectTo'))
 
   const { error } = await supabase.auth.signInWithPassword({ email, password })
 
@@ -35,16 +43,17 @@ export async function login(formData: FormData): Promise<AuthResult> {
     return { error: error.message }
   }
 
-  redirect('/account')
+  redirect(redirectTo)
 }
 
 export async function signup(formData: FormData): Promise<AuthResult> {
   const supabase = await createClient()
 
-  const email     = formData.get('email') as string
-  const password  = formData.get('password') as string
-  const fullName  = formData.get('fullName') as string
-  const phone     = formData.get('phone') as string
+  const email      = formData.get('email') as string
+  const password   = formData.get('password') as string
+  const fullName   = formData.get('fullName') as string
+  const phone      = formData.get('phone') as string
+  const redirectTo = safeRedirectTarget(formData.get('redirectTo'))
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -78,7 +87,7 @@ export async function signup(formData: FormData): Promise<AuthResult> {
     return { needsEmailConfirmation: true }
   }
 
-  redirect('/account')
+  redirect(redirectTo)
 }
 
 export async function logout() {

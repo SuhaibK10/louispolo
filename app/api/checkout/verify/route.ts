@@ -20,6 +20,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import crypto from 'crypto'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 import { createClient } from '@/lib/supabase/server'
+import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from '@/lib/resend'
 
 interface VerifyRequestBody {
   orderId:             string  // our internal order UUID
@@ -94,6 +95,43 @@ export async function POST(request: NextRequest) {
       { error: 'Payment succeeded but order update failed. Contact support.' },
       { status: 500 }
     )
+  }
+
+  // ── Send order emails ────────────────────────────────────────────────────
+  // Best-effort and awaited (so they actually complete before this
+  // serverless function exits), but a failure here never blocks the success
+  // response — the payment is already verified and saved either way.
+  const recipientEmail = user?.email ?? order.guest_email
+  if (recipientEmail) {
+    const { data: orderItems } = await serviceClient
+      .from('order_items')
+      .select('product_name, color, size, price, quantity')
+      .eq('order_id', orderId)
+
+    await Promise.all([
+      sendOrderConfirmationEmail({
+        to: recipientEmail,
+        orderId: order.id,
+        total: order.total,
+        items: orderItems ?? [],
+      }).catch((err) => console.error('Order confirmation email failed:', err)),
+
+      sendOrderNotificationEmail({
+        orderId: order.id,
+        total: order.total,
+        items: orderItems ?? [],
+        customerEmail: recipientEmail,
+        shipping: {
+          fullName:     order.full_name,
+          phone:        order.phone,
+          addressLine1: order.address_line1,
+          addressLine2: order.address_line2,
+          city:         order.city,
+          state:        order.state,
+          pincode:      order.pincode,
+        },
+      }).catch((err) => console.error('Order notification email failed:', err)),
+    ])
   }
 
   return NextResponse.json({ success: true, orderId: order.id })

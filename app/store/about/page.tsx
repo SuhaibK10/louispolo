@@ -2,8 +2,9 @@
 // app/store/about/page.tsx
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { Metadata }  from 'next'
-import { BrandStory }     from '@/components/home/sections/BrandStory'
+import type { Metadata }       from 'next'
+import { BrandStory }          from '@/components/home/sections/BrandStory'
+import { ExhibitionGallery }   from '@/components/home/sections/ExhibitionGallery'
 
 export const metadata: Metadata = {
   title:       'About Us',
@@ -23,6 +24,7 @@ export default function AboutPage() {
       </div>
 
       <BrandStory />
+      <ExhibitionGallery />
     </div>
   )
 }
