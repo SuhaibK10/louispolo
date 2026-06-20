@@ -150,7 +150,7 @@ export function HeroSection() {
 
           {/* FlapText headline — re-mounts on each slide change */}
           <h1
-            className="lp-heading-xl mb-3"
+            className={`${slide.textSize === 'md' ? 'lp-heading-md' : slide.textSize === 'lg' ? 'lp-heading-lg' : 'lp-heading-xl'} mb-3`}
             style={{
               width: '100%',
               textAlign: 'center',

@@ -88,8 +88,9 @@ export interface HeroSlide {
   isVideo?: boolean
   showCta?: boolean
   textStyle?:    'light' | 'dark' | 'shadow' | 'pill' | 'gold' | 'teal'
+  textSize?:     'xl' | 'lg' | 'md'
   textPosition?: 'top' | 'center' | 'bottom'
-  textOffset?:   number   // rem — overrides default padding for the text position
+  textOffset?:   number
 }
 
 // ─── API ──────────────────────────────────────────────────────────────────────
