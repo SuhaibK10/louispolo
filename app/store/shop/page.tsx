@@ -19,7 +19,7 @@ export default function ShopPage() {
         <div className="container-lp">
           <span className="lp-eyebrow">Our collection</span>
           <h1 className="lp-heading-lg mb-2">All Products</h1>
-          <p className="font-body text-[var(--color-lp-muted)] text-base mb-5">
+          <p className="font-body text-[var(--color-lp-muted)] text-base mb-0">
             Hard-shell luggage built to outlast your most ambitious trips.
           </p>
         </div>

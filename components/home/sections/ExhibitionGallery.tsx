@@ -10,9 +10,9 @@
 import { useRef, useState, useEffect } from 'react'
 import Image                           from 'next/image'
 import { motion }                      from 'framer-motion'
-import { MapPin }                      from 'lucide-react'
+import { MapPin, ArrowLeft }            from 'lucide-react'
 import { EXHIBITIONS }                 from '@/config/exhibitions'
-import { expoUrl, PLACEHOLDER_URL }    from '@/lib/cloudinary'
+import { expoUrl, cld, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { cn }                          from '@/lib/utils'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 
@@ -52,8 +52,8 @@ export function ExhibitionGallery() {
           </motion.span>
           <motion.h2
             variants={fadeUp}
-            className="lp-heading-lg mb-6"
-            style={{ color: 'var(--color-lp-porcelain)' }}
+            className="mb-6"
+            style={{ color: 'var(--color-lp-porcelain)', fontSize: 'clamp(1.75rem, 3.2vw, 2.75rem)' }}
           >
             We Exhibit. <br/> The World sees it.
           </motion.h2>
@@ -94,14 +94,18 @@ export function ExhibitionGallery() {
           {active.photos.map((photo, i) => (
             <div
               key={`${photo.publicId}-${i}`}
-              className="relative flex-shrink-0 w-[92vw] sm:w-[70vw] md:w-[34vw] lg:w-[34rem] aspect-[3/4] bg-[var(--color-lp-cream)] overflow-hidden"
+              className="relative flex-shrink-0 w-[84vw] sm:w-[68vw] md:w-[34vw] lg:w-[34rem] aspect-[3/4] bg-[var(--color-lp-cream)] overflow-hidden"
             >
               <Image
-                src={expoUrl(photo.publicId) || PLACEHOLDER_URL}
+                src={
+                  photo.fit === 'pad'
+                    ? cld(photo.publicId, 'f_auto,q_auto,w_1050,h_1400,c_pad,b_rgb:1A1714')
+                    : expoUrl(photo.publicId) || PLACEHOLDER_URL
+                }
                 alt={photo.alt}
                 fill
                 draggable="false"
-                className="object-cover object-center"
+                className={photo.fit === 'pad' ? 'object-contain' : 'object-cover object-center'}
                 sizes="(max-width:768px) 92vw, (max-width:1024px) 46vw, 34rem"
               />
               <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#1A1714]/80 via-[#1A1714]/20 to-transparent">
@@ -119,6 +123,27 @@ export function ExhibitionGallery() {
           ))}
         </motion.div>
       </div>
+
+      {/* Swipe hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="container-lp flex items-center justify-center gap-2"
+        style={{ marginTop: '0.5rem' }}
+      >
+        <motion.div
+          animate={{ x: [0, -6, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <ArrowLeft size={13} strokeWidth={1.5} className="text-[var(--color-lp-porcelain)]/40" />
+        </motion.div>
+        <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-porcelain)]/40">
+          Swipe to explore
+        </span>
+      </motion.div>
+
     </section>
   )
 }

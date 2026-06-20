@@ -49,9 +49,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'heroLast_dkzwim.jpg',
     headline:  'Stop Scrolling. Start Buying.',
-    textStyle: 'dark',
+    textStyle: 'light',
     textSize:  'lg',
-    showCta:   true,
   },
 ]
 

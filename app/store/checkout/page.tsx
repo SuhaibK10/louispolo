@@ -229,7 +229,7 @@ export default function CheckoutPage() {
             }
 
             clearCart()
-            router.push(`/store/checkout/success?orderId=${orderId}`)
+            router.push(`/store/checkout/success?orderId=${orderId}&total=${verifyData.total ?? ''}`)
           } catch {
             setPaymentError('Payment verification failed. If money was deducted, contact support with your order details.')
             setIsProcessing(false)

@@ -3,14 +3,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/home/sections/BrandStory.tsx
 // Manufacturing trust signal — consumer voice, not B2B voice.
-// "10+ years building luggage for the world's biggest brands. Now we build it for you."
 // ─────────────────────────────────────────────────────────────────────────────
 
-import Link                                  from 'next/link'
-import { motion }                            from 'framer-motion'
-import { ArrowRight }                        from 'lucide-react'
-import { ROUTES }                            from '@/lib/constants'
-import { slideFromLeft, slideFromRight, VIEWPORT } from '@/lib/animations'
+import Link                                      from 'next/link'
+import { motion }                                from 'framer-motion'
+import { ArrowRight }                            from 'lucide-react'
+import { ROUTES }                                from '@/lib/constants'
+import { slideFromLeft, slideFromRight, staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 
 const PILLARS = [
   {
@@ -30,13 +29,28 @@ const PILLARS = [
   },
 ]
 
+const STATS = [
+  { value: '10+',   label: 'Years manufacturing' },
+  { value: '500K+', label: 'Bags produced'       },
+  { value: '500+',  label: 'Trip-rated wheels'   },
+  { value: '3',     label: 'Global offices'      },
+]
+
+const CITIES = [
+  { city: 'Mumbai',    flag: '🇮🇳' },
+  { city: 'London',    flag: '🇬🇧' },
+  { city: 'Hong Kong', flag: '🇭🇰' },
+]
+
 export function BrandStory() {
   return (
     <section className="section-pad bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)]" style={{ paddingTop: '2.5rem' }}>
       <div className="container-lp">
+
+        {/* ── Main grid: headline left / pillars right ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
 
-          {/* Left — hero copy */}
+          {/* Left — hero copy + image */}
           <motion.div
             variants={slideFromLeft}
             initial="hidden"
@@ -46,7 +60,7 @@ export function BrandStory() {
             <span className="lp-eyebrow text-[var(--color-lp-gold)]">Our story</span>
             <h2 className="lp-heading-lg text-[var(--color-lp-porcelain)] mb-6">
               10+ years building for the world's biggest brands.
-              <span className="text-[var(--color-lp-gold)] "> Now we build it for you.</span>
+              <span className="text-[var(--color-lp-gold)]"> Now we build it for you.</span>
             </h2>
             <p className="font-body text-[var(--color-lp-porcelain)]/60 text-base leading-relaxed mb-8">
               Louis Polo started as an OEM manufacturer, making luggage for brands you have carried through airports all over the world. In 2025, we decided to put our name on it. Same factory, same materials, same quality control. Your price just removed the middleman.
@@ -55,6 +69,7 @@ export function BrandStory() {
               Read our story
               <ArrowRight size={15} strokeWidth={1.5} />
             </Link>
+
           </motion.div>
 
           {/* Right — pillars */}
@@ -63,7 +78,7 @@ export function BrandStory() {
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT}
-            className="space-y-0 divide-y divide-white/10"
+            className="divide-y divide-white/10"
           >
             {PILLARS.map(({ number, label, copy }) => (
               <div key={number} className="py-6 first:pt-0 last:pb-0 flex gap-5">
@@ -83,21 +98,46 @@ export function BrandStory() {
           </motion.div>
         </div>
 
-        {/* Office cities strip */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex justify-between items-end">
-
-          {[
-            { city: 'Mumbai',    flag: '🇮🇳' },
-            { city: 'London',    flag: '🇬🇧' },
-            { city: 'Hong Kong', flag: '🇭🇰' },
-          ].map(({ city, flag }) => (
-            <div key={city} className="flex flex-col items-center gap-1">
-              <span className="text-2xl">{flag}</span>
-              <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-lp-porcelain/70">{city}</p>
-            </div>
+        {/* ── Stat bar ── */}
+        <motion.div
+          variants={staggerChildren}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+          className="mt-14 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8"
+        >
+          {STATS.map(({ value, label }) => (
+            <motion.div key={label} variants={fadeUp} className="flex flex-col gap-1">
+              <p className="font-display leading-none" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-lp-gold)' }}>
+                {value}
+              </p>
+              <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/45">
+                {label}
+              </p>
+            </motion.div>
           ))}
+        </motion.div>
 
+        {/* ── City strip ── */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <p className="font-body text-[0.6rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/30 text-center mb-6">
+            Offices &amp; Partners
+          </p>
+          <div className="flex items-center justify-between">
+            {CITIES.map(({ city, flag }, i) => (
+              <>
+                <div key={city} className="flex flex-col items-center gap-1.5">
+                  <span className="text-2xl">{flag}</span>
+                  <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/70">{city}</p>
+                </div>
+                {i < CITIES.length - 1 && (
+                  <div className="flex-1 h-px mx-6 bg-white/10" />
+                )}
+              </>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   )

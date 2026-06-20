@@ -111,7 +111,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
               type="button"
               onClick={(e) => handleColorChange(e, i)}
               title={v.color}
-              className="w-3 h-3 rounded-full transition-all duration-200 flex-shrink-0"
+              className="w-4 h-4 rounded-full transition-all duration-200 flex-shrink-0"
               style={{
                 backgroundColor: v.colorHex,
                 boxShadow: i === activeVariant
@@ -145,10 +145,10 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
                 disabled={outOfStock}
                 className={
                   outOfStock
-                    ? 'relative font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-faint)] opacity-50 cursor-not-allowed line-through'
+                    ? 'relative font-body text-[0.68rem] px-2.5 py-1 border border-[var(--color-lp-border)] text-[var(--color-lp-faint)] opacity-50 cursor-not-allowed line-through'
                     : isSelected
-                    ? 'font-body text-[0.6rem] px-2 py-0.5 border bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] border-[var(--color-lp-ink)]'
-                    : 'font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
+                    ? 'font-body text-[0.68rem] px-2.5 py-1 border bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] border-[var(--color-lp-ink)]'
+                    : 'font-body text-[0.68rem] px-2.5 py-1 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
                 }
                 aria-pressed={isSelected}
                 aria-label={outOfStock ? `${size} — out of stock` : size}
@@ -172,9 +172,9 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
           className={
             canAdd
               ? addedToCart
-                ? 'btn-gold w-full justify-center mt-2'
-                : 'btn-ghost w-full justify-center mt-2'
-              : 'btn-ghost w-full justify-center opacity-40 cursor-not-allowed mt-2'
+                ? 'btn-gold w-3/4 justify-center mt-2'
+                : 'btn-ghost w-3/4 justify-center mt-2'
+              : 'btn-ghost w-3/4 justify-center opacity-40 cursor-not-allowed mt-2'
           }
           style={{ height: '36px' }}
           whileTap={canAdd ? { scale: 0.97 } : {}}
@@ -216,8 +216,35 @@ export function BestSellersCarousel() {
   }, [])
 
   return (
-    <section className="pt-8 md:pt-12 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
+    <section className="pt-0.5 md:pt-4 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
+
+      {/* Scroll indicator */}
+      <div className="container-lp flex flex-col items-center gap-1" style={{ marginBottom: '4.5rem' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center gap-1"
+        >
+          <div
+            className="w-5 h-8 rounded-full flex items-start justify-center pt-1.5"
+            style={{ border: '1.5px solid var(--color-lp-ink)' }}
+          >
+            <motion.div
+              animate={{ y: [0, 14, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-1 h-1.5 rounded-full bg-[var(--color-lp-ink)]"
+            />
+          </div>
+          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-ink)]">
+            Swipe down to Begin the Journey
+          </span>
+        </motion.div>
+      </div>
+
       <div className="container-lp flex items-end justify-between" style={{ marginBottom: '2.5rem' }}>
+        
         <motion.div
           variants={staggerChildren}
           initial="hidden"
@@ -259,7 +286,7 @@ export function BestSellersCarousel() {
         </motion.div>
       </div>
 
-      <div className="md:hidden" style={{ marginTop: '1.5rem' }}>
+      <div className="md:hidden" style={{ marginTop: '3rem' }}>
         <div className="container-lp">
           <Link href={ROUTES.shop} className="btn-outline w-full justify-center">
             View all products
