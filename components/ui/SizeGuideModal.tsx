@@ -163,7 +163,6 @@ export function SizeGuideModal({ open, onClose }: Props) {
                       {[
                         { name: 'IndiGo',    ok: true,  limit: '7 kg' },
                         { name: 'Air India', ok: true,  limit: '8 kg' },
-                        { name: 'Vistara',   ok: true,  limit: '7 kg' },
                         { name: 'SpiceJet',  ok: true,  limit: '7 kg' },
                         { name: 'Emirates',  ok: true,  limit: '7 kg' },
                         { name: 'Air Arabia',ok: false, limit: '—'    },

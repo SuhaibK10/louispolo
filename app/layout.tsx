@@ -6,6 +6,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Fraunces, Hanken_Grotesk } from 'next/font/google'
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+import { DesktopGate }         from '@/components/layout/DesktopGate'
 import { SEO } from '@/lib/constants'
 import './globals.css'
 
@@ -80,9 +81,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${hanken.variable}`}>
       <body className="bg-[var(--color-lp-porcelain)] text-[var(--color-lp-ink)] font-body antialiased">
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+        <DesktopGate>
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
+        </DesktopGate>
       </body>
     </html>
   )

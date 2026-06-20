@@ -24,17 +24,19 @@ const CATEGORY_CARDS = [
     label:    'Trolley Bags',
     value:    'trolley',
     mood:     'For every journey',
-    image:    'Generated_Image_June_18_2026_-_2_20AM_i1gjqa.jpg',
+    image:    'Generated_Image_June_21_2026_-_2_58AM_xtfwjz.jpg',
     span:     '',
     textPos:  'bottom',
+    imgClass: 'scale-125',
   },
   {
     label:    'Sets',
     value:    'set',
     mood:     'The complete setup',
-    image:    '1_Background_Removed_aukpfh',
+    image:    'Generated_Image_June_21_2026_-_3_01AM_no4abz.jpg',
     span:     '',
     textPos:  'bottom',
+    imgClass: 'scale-125',
   },
   {
     label:    'Backpacks',
@@ -43,6 +45,7 @@ const CATEGORY_CARDS = [
     image:    'Generated_Image_June_18_2026_-_2_00AM_jssdry.jpg',
     span:     '',
     textPos:  'bottom',
+    imgClass: '',
   },
   {
     label:    'Office Bags',
@@ -51,6 +54,7 @@ const CATEGORY_CARDS = [
     image:    'https://res.cloudinary.com/dpepctqdj/image/upload/v1781731924/Generated_Image_June_18_2026_-_2_56AM_fubmpz.jpg',
     span:     '',
     textPos:  'bottom',
+    imgClass: '',
   },
   {
     label:    'Duffle Bags',
@@ -59,6 +63,7 @@ const CATEGORY_CARDS = [
     image:    'Generated_Image_June_18_2026_-_1_53AM_jpxswo.jpg',
     span:     '',
     textPos:  'bottom',
+    imgClass: '',
   },
   {
     label:    'Vanity Cases',
@@ -67,6 +72,7 @@ const CATEGORY_CARDS = [
     image:    'https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_1100,h_1100,g_auto/v1781733926/Screenshot_2026-06-18_at_3.35.17_AM_cu1ffy.png',
     span:     '',
     textPos:  'bottom',
+    imgClass: '',
   },
 ] as const
 
@@ -96,7 +102,7 @@ export function CategoryGrid() {
           viewport={VIEWPORT}
           className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
         >
-          {CATEGORY_CARDS.map(({ label, value, mood, image, span }) => (
+          {CATEGORY_CARDS.map(({ label, value, mood, image, span, imgClass }) => (
             <motion.div
               key={value}
               variants={scaleUp}
@@ -111,7 +117,7 @@ export function CategoryGrid() {
                   src={cardUrl(image) || PLACEHOLDER_URL}
                   alt={label}
                   fill
-                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  className={`object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 ${imgClass}`}
                   sizes="(max-width:768px) 50vw, (max-width:1280px) 25vw, 22rem"
                 />
 

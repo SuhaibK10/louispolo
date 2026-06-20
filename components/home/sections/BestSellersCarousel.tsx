@@ -7,6 +7,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useRef, useState, useEffect }       from 'react'
+import { createPortal }                      from 'react-dom'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
@@ -210,7 +211,10 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         </motion.button>
       </div>
 
-      <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
+      {sizeGuideOpen && createPortal(
+        <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />,
+        document.body
+      )}
     </div>
   )
 }
