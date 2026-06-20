@@ -47,9 +47,11 @@ export const HERO_SLIDES: HeroSlide[] = [
     textPosition: 'top',
   },
   {
-    image: 'heroLast_dkzwim.jpg',
-    
-    
+    image:     'heroLast_dkzwim.jpg',
+    headline:  'Stop Scrolling. Start Buying.',
+    textStyle: 'dark',
+    textSize:  'lg',
+    showCta:   true,
   },
 ]
 
