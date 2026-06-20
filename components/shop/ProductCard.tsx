@@ -175,19 +175,20 @@ export function ProductCard({ product }: ProductCardProps) {
             canAdd
               ? addedToCart
                 ? 'btn-gold w-full justify-center mt-2'
-                : 'btn-primary w-full justify-center mt-2'
-              : 'btn-primary w-full justify-center opacity-40 cursor-not-allowed mt-2'
+                : 'btn-ghost w-full justify-center mt-2'
+              : 'btn-ghost w-full justify-center opacity-40 cursor-not-allowed mt-2'
           }
+          style={{ height: '36px' }}
           whileTap={canAdd ? { scale: 0.97 } : {}}
         >
           {addedToCart ? (
             <>
-              <Check size={16} strokeWidth={2} />
+              <Check size={22} strokeWidth={2} style={{ flexShrink: 0 }} />
               Added
             </>
           ) : (
             <>
-              <ShoppingBag size={16} strokeWidth={1.5} />
+              {activeSize && <ShoppingBag size={22} strokeWidth={1.5} style={{ flexShrink: 0 }} />}
               {!activeSize ? 'Select Color & Size' : 'Add to cart'}
             </>
           )}

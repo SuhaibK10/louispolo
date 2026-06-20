@@ -10,27 +10,27 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion, AnimatePresence }           from 'framer-motion'
-import { ArrowRight, ChevronDown }           from 'lucide-react'
+import { ArrowRight }                        from 'lucide-react'
 import { HERO_SLIDES }                       from '@/config/products'
 import { heroUrl, heroUrlMobile, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { ROUTES }                            from '@/lib/constants'
 
-const SLIDE_DURATION = 3000  // ms between auto-advances
+const SLIDE_DURATION = 30000  // ms between auto-advances
 
 // ─── FlapText: splits each word into characters that flip like departure boards
 function FlapText({ text }: { text: string }) {
   return (
-    <span className="inline-flex flex-wrap gap-x-[0.25em]">
+    <span className="flex flex-wrap justify-center gap-x-[0.25em]">
       {text.split(' ').map((word, wi) => (
-        <span key={wi} className="inline-flex overflow-hidden">
+        <span key={wi} className="inline-flex overflow-hidden pb-1">
           {word.split('').map((char, ci) => (
             <motion.span
               key={ci}
               initial={{ rotateX: -90, opacity: 0 }}
               animate={{ rotateX: 0,   opacity: 1 }}
               transition={{
-                duration: 0.35,
-                delay:    (wi * word.length + ci) * 0.028,
+                duration: 0.55,
+                delay:    (wi * word.length + ci) * 0.045,
                 ease:     [0.16, 1, 0.3, 1],
               }}
               className="inline-block"
@@ -134,50 +134,85 @@ export function HeroSection() {
             </>
           )}
 
-          
         </motion.div>
       </AnimatePresence>
 
       {/* ── Content ──────────────────────────────────────────────────────── */}
-      <div className="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-24">
+      <div
+        className="relative z-10 h-full flex flex-col"
+        style={{
+          justifyContent: slide.textPosition === 'top' ? 'flex-start' : slide.textPosition === 'center' ? 'center' : 'flex-end',
+          paddingTop:     slide.textPosition === 'top' ? `${slide.textOffset ?? 5}rem` : undefined,
+          paddingBottom:  slide.textPosition !== 'top' ? `${slide.textOffset ?? 2.5}rem` : undefined,
+        }}
+      >
         <div className="container-lp">
 
-          
-
           {/* FlapText headline — re-mounts on each slide change */}
-          <h1 className="lp-heading-xl text-[var(--color-lp-porcelain)] mb-3 max-w-[14ch]">
-            <AnimatePresence mode="wait">
-              <FlapText
-                key={`headline-${current}`}
-                text={slide.headline ?? ''}
-              />
-            </AnimatePresence>
+          <h1
+            className="lp-heading-xl mb-3"
+            style={{
+              width: '100%',
+              textAlign: 'center',
+              ...(slide.textStyle === 'dark'
+                ? { color: 'var(--color-lp-ink)' }
+                : slide.textStyle === 'shadow'
+                ? { color: 'var(--color-lp-porcelain)', textShadow: '0 2px 16px rgba(0,0,0,0.65)' }
+                : slide.textStyle === 'gold'
+                ? { color: 'var(--color-lp-gold)' }
+                : slide.textStyle === 'teal'
+                ? {
+                    background: 'linear-gradient(135deg, #237A6E 0%, #2C9E8F 40%, #38A99A 50%, #2C9E8F 60%, #237A6E 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }
+                : { color: 'var(--color-lp-porcelain)' }),
+            }}
+          >
+            {slide.textStyle === 'pill' ? (
+              <span className="inline-block bg-black/30 backdrop-blur-sm px-4 py-1 rounded-sm">
+                <AnimatePresence mode="wait">
+                  <FlapText key={`headline-${current}`} text={slide.headline ?? ''} />
+                </AnimatePresence>
+              </span>
+            ) : (
+              <AnimatePresence mode="wait">
+                <FlapText key={`headline-${current}`} text={slide.headline ?? ''} />
+              </AnimatePresence>
+            )}
           </h1>
 
           {/* Subline */}
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={`sub-${current}`}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{    opacity: 0       }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="font-body text-[var(--color-lp-porcelain)]/70 text-base md:text-lg mb-8 max-w-[36ch]"
-            >
-              {slide.subline}
-            </motion.p>
-          </AnimatePresence>
+          {slide.subline && (
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={`sub-${current}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{    opacity: 0       }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="font-body text-lp-porcelain/70 text-base md:text-lg mb-8 max-w-[36ch] w-full text-center"
+              >
+                {slide.subline}
+              </motion.p>
+            </AnimatePresence>
+          )}
 
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0  }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap gap-3"
-          >
-            
-            
-          </motion.div>
+          {/* CTAs — only shown when slide opts in */}
+          {slide.showCta && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0  }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-3 justify-center w-full"
+            >
+              <Link href={ROUTES.shop} className="btn-primary">
+                Shop the Collection
+                <ArrowRight size={16} strokeWidth={1.5} />
+              </Link>
+            </motion.div>
+          )}
         </div>
 
         {/* ── Slide indicators ─────────────────────────────────────────── */}

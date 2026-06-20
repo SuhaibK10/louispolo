@@ -82,12 +82,14 @@ export interface CategoryChip {
 }
 
 export interface HeroSlide {
-  // Cloudinary public_id
   image: string
-  // Optional overlay headline
   headline?: string
   subline?: string
   isVideo?: boolean
+  showCta?: boolean
+  textStyle?:    'light' | 'dark' | 'shadow' | 'pill' | 'gold' | 'teal'
+  textPosition?: 'top' | 'center' | 'bottom'
+  textOffset?:   number   // rem — overrides default padding for the text position
 }
 
 // ─── API ──────────────────────────────────────────────────────────────────────

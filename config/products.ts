@@ -20,45 +20,25 @@ import type { Product, HeroSlide } from '@/types'
 // Replace public_ids with your Cloudinary uploads.
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    image: 'ChatGPT_Image_Jun_15_2026_at_11_43_24_AM_upwxum.png',
-    
-    
+    image:     'hero12_h3ptde.jpg',
+    headline:  'Every Trip, Covered',
+    textStyle: 'shadow',
   },
   {
-    image: 'Generated_Image_June_15_2026_-_2_56PM_fopldm.jpg',
-    
-    
+    image:       'hero123_qezgc2.jpg',
+    headline:    'Bold in Every Color',
+    textStyle:   'teal',
+    textOffset:  1,
   },
   {
-    image: 'duffle_kgw8qx.jpg',
-    isVideo: false,
+    image:        'duffle_kgw8qx.jpg',
+    headline:     'Less Bag, More Swag',
+    textStyle:    'light',
+    textPosition: 'top',
+  },
+  
+  
 
-  },
-  {
-    image: 'doit_ufr8ba.jpg',
-    
-    
-  },
-  {
-    image: 'doit2_c1itmp.jpg',
-    
-    
-  },
-  {
-    image: 'Gemini_Generated_Image_fgxpcifgxpcifgxp_soszbn',
-    
-    
-  },
-  {
-    image: 'Generated_Image_June_15_2026_-_3_24PM_ixhfbq',
-    
-    
-  },
-  {
-    image: 'Gemini_Generated_Image_fgxpcifgxpcifgxp_soszbn',
-    
-    
-  },
   {
     image: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781816847/Generated_Image_June_19_2026_-_2_36AM_r9titc.jpg',
     
@@ -345,7 +325,7 @@ export const PRODUCTS: Product[] = [
     category: 'trolley',
     isFeatured: true,
     description: ' Lightweight Hard Shell Carry-On',
-    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_580,h_580,g_auto/louis-polo-champ-08-1781602537072-1781602537072_Background_Removed_ywa111.png','louis-polo-champ-black-08-1781603000214-1781603000214_Background_Removed_dg0xa2'],
+    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-champ-08-1781602537072-1781602537072_Background_Removed_ywa111.png','https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-champ-black-08-1781603000214-1781603000214_Background_Removed_dg0xa2'],
     features: [
       { label: 'Hard shell construction' },
     ],
@@ -374,8 +354,8 @@ export const PRODUCTS: Product[] = [
     slug: 'magma',
     category: 'trolley',
     isFeatured: true,
-    description: '[PLACEHOLDER COPY] Secure Lock Hard Shell Carry-On Suitcase',
-    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-magma-blue-08-1781604249533-1781604249533_Background_Removed_i6ef93','louis-polo-magma-black-08-1781604029524-1781604029524_Background_Removed_gn6fjh'],
+    description: ' Secure Lock Hard Shell Carry-On Suitcase',
+    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-magma-blue-08-1781604249533-1781604249533_Background_Removed_i6ef93','https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-magma-black-08-1781604029524-1781604029524_Background_Removed_gn6fjh'],
     features: [
       { label: 'Secure combination lock' },
       { label: 'Hard shell construction' },
@@ -398,100 +378,6 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  // ── Alpha ────────────────────────────────────────────────────────────────
-  {
-    id: 'alpha',
-    name: 'Alpha',
-    slug: 'alpha',
-    category: 'trolley',
-    isFeatured: true,
-    description: '[PLACEHOLDER COPY] Lightweight Carry-On Suitcase',
-    images: ['PLACEHOLDER_IMAGE_alpha'],
-    features: [
-      { label: 'Lightweight build' },
-    ],
-    variants: [
-      {
-        color: 'Grey',
-        colorHex: '#808080',
-        sizes: [
-          { size: 'Cabin', price: 7999, stock: 10000, sku: 'PLACEHOLDER_SKU' },
-        ],
-      },
-    ],
-  },
-
-  // ── Stride ──────────────────────────────────────────────────────────────
-  {
-    id: 'stride',
-    name: 'Stride',
-    slug: 'stride',
-    category: 'trolley',
-    isFeatured: true,
-    description:
-      'Hard shell suitcase built for every kind of trip. Stride comes in seven vibrant colours with ultra-smooth wheels and a telescopic handle that makes getting through the terminal effortless.',
-    images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_700,h_600,g_auto/8886cbe8-15c3-4455-9d82-11b601def475.png_aga8tj','3710f235-ae96-4ba8-98fc-92d47ff491f1.png-2_xtqr1w','21afa68a-2d90-423e-85ca-dd42ded030f7.png_j9x8ix','f13453a7-d9b1-4195-a179-d157c5dc49e0.png_jzedxx','372d8a5f-648c-49c9-803e-61ea274792ba.png_v3e5ek','2b469613-2f0d-42ca-ac52-4e59846fe942.png_q7xvb8.avif','0328f215-3cbb-425c-972b-c9f6b73e37e1.png_wrtpnk.avif'],
-    features: [
-      { label: 'Hard shell construction' },
-      { label: '360° spinner wheels' },
-      { label: 'Telescopic handle' },
-      { label: '7 colour options' },
-    ],
-    variants: [
-      { color: 'Red',    colorHex: '#C0392B', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-      { color: 'Black',  colorHex: '#212121', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-      { color: 'Orange', colorHex: '#E65100', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-      { color: 'Green',  colorHex: '#43A047', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-      { color: 'Blue',   colorHex: '#1E88E5', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-      { color: 'Pink',   colorHex: '#EC407A', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-      { color: 'White',  colorHex: '#FAFAFA', sizes: [{ size: 'Cabin', price: 9999, stock: 30, sku: 'PLACEHOLDER_SKU' }] },
-    ],
-  },
-
-  
-
-  // ── FloraLux ────────────────────────────────────────────────────────────
-  {
-    id: 'floralux',
-    name: 'FloraLux',
-    slug: 'floralux',
-    category: 'trolley',
-    isFeatured: true,
-    description:
-      'A bold floral-print hard shell suitcase for travellers who want to stand out. Elegant nature-inspired designs on a durable ABS body with 360° smooth-glide wheels.',
-    images: ['PLACEHOLDER_IMAGE_floralux'],
-    features: [
-      { label: 'Floral print design' },
-      { label: '360° spinner wheels' },
-      { label: 'Telescopic handle' },
-      { label: 'Hard shell ABS' },
-    ],
-    variants: [
-      {
-        color: 'White Floral',
-        colorHex: '#F8F1E7',
-        sizes: [
-          { size: 'Cabin',  price: 8990, stock: 30, sku: 'PLACEHOLDER_SKU' },
-          { size: 'Medium', price: 9999, stock: 20, sku: 'PLACEHOLDER_SKU' },
-        ],
-      },
-      {
-        color: 'Pink Floral',
-        colorHex: '#F48FB1',
-        sizes: [
-          { size: 'Cabin',  price: 8990, stock: 30, sku: 'PLACEHOLDER_SKU' },
-          { size: 'Medium', price: 9999, stock: 20, sku: 'PLACEHOLDER_SKU' },
-        ],
-      },
-      {
-        color: 'Green Floral',
-        colorHex: '#81C784',
-        sizes: [
-          { size: 'Cabin', price: 8990, stock: 30, sku: 'PLACEHOLDER_SKU' },
-        ],
-      },
-    ],
-  },
 
   // ── Luna Blue ───────────────────────────────────────────────────────────
   {
@@ -573,30 +459,6 @@ export const PRODUCTS: Product[] = [
 
   
 
-  // ── ModernRoller ──────────────────────────────────────────────────────
-  {
-    id: 'modernroller',
-    name: 'ModernRoller',
-    slug: 'modernroller',
-    category: 'trolley',
-    isFeatured: true,
-    description:
-      'A chic two-tone suitcase with a white frame and elegant textured brown front panel. Contemporary aesthetics meet smooth-gliding wheels for a bag that looks as good as it travels.',
-    images: ['PLACEHOLDER_IMAGE_modernroller'],
-    features: [
-      { label: 'Two-tone design' },
-      { label: 'Smooth-gliding wheels' },
-      { label: 'Secure zipper closure' },
-      { label: 'Spacious interior' },
-    ],
-    variants: [
-      {
-        color: 'White/Brown',
-        colorHex: '#D7CCC8',
-        sizes: [{ size: 'Cabin', price: 11490, stock: 20, sku: 'PLACEHOLDER_SKU' }],
-      },
-    ],
-  },
 
   // ── ArmorPack (Backpack) ─────────────────────────────────────────────────
   {
@@ -746,49 +608,6 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  // ── SoftSquare Set of 3 ──────────────────────────────────────────────────
-  {
-    id: 'softsquare-set',
-    name: 'SoftSquare — Set of 3',
-    slug: 'softsquare-set',
-    category: 'set',
-    isFeatured: true,
-    description:
-      'Three SoftSquare bags in a matching set. Clean, geometric, and built to last. The smart choice for families and frequent travellers who want everything to match.',
-    images: [
-      'louispolo/products/softsquare-set/softsquare-set-blue-1',
-      'louispolo/products/softsquare-set/softsquare-set-rosegold-1',
-    ],
-    features: [
-      { label: '20", 24" & 28" included' },
-      { label: '360° spinner wheels' },
-      { label: 'Combination lock' },
-      { label: 'Nesting storage design' },
-    ],
-    variants: [
-      {
-        color: 'Blue',
-        colorHex: '#1E88E5',
-        sizes: [
-          { size: 'Set of 3', price: 32970, stock: 15, sku: '8906206840148' },
-        ],
-      },
-      {
-        color: 'Black',
-        colorHex: '#212121',
-        sizes: [
-          { size: 'Set of 3', price: 32970, stock: 15, sku: '8906206840155' },
-        ],
-      },
-      {
-        color: 'Rosegold',
-        colorHex: '#B76E79',
-        sizes: [
-          { size: 'Set of 3', price: 32970, stock: 15, sku: '8906206840131' },
-        ],
-      },
-    ],
-  },
 
   // ── Gemtote Duffle Bag ──────────────────────────────────────────────────
   {

@@ -39,8 +39,8 @@ export function ExhibitionGallery() {
   if (!active) return null
 
   return (
-    <section className="section-pad overflow-hidden bg-lp-ink">
-      <div className="container-lp mb-8 md:mb-10">
+    <section className="section-pad overflow-hidden bg-lp-ink" style={{ paddingTop: '2.5rem' }}>
+      <div className="container-lp">
         <motion.div
           variants={staggerChildren}
           initial="hidden"
@@ -55,7 +55,7 @@ export function ExhibitionGallery() {
             className="lp-heading-lg mb-6"
             style={{ color: 'var(--color-lp-porcelain)' }}
           >
-            We exhibit. <br/> The world sees it.
+            We Exhibit. <br/> The World sees it.
           </motion.h2>
         </motion.div>
 
@@ -79,7 +79,7 @@ export function ExhibitionGallery() {
         )}
       </div>
 
-      <div ref={containerRef} className="overflow-hidden w-full">
+      <div ref={containerRef} className="overflow-hidden w-full pt-4 md:pt-14">
         <motion.div
           key={active.id}
           ref={trackRef}

@@ -114,8 +114,8 @@
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
-@media (min-width: 768px)  { .section-pad { padding-top: 7rem;  padding-bottom: 7rem;  } }
-@media (min-width: 1280px) { .section-pad { padding-top: 9rem;  padding-bottom: 9rem;  } }
+@media (min-width: 768px)  { .section-pad { padding-top: 5rem;  padding-bottom: 5rem;  } }
+@media (min-width: 1280px) { .section-pad { padding-top: 6rem;  padding-bottom: 6rem;  } }
 
 /* ─── Component classes ───────────────────────────────────────────────────── */
 @layer components {
@@ -135,7 +135,7 @@
   .lp-heading-xl {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    font-size: clamp(2.75rem, 5vw, 4.25rem);
     line-height: 1.0;
     letter-spacing: -0.025em;
     color: var(--color-lp-ink);
@@ -144,7 +144,7 @@
   .lp-heading-lg {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    font-size: clamp(2rem, 3.5vw, 3rem);
     line-height: 1.05;
     letter-spacing: -0.02em;
     color: var(--color-lp-ink);
@@ -206,6 +206,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: 1.5px solid var(--color-lp-gold);
+    border-radius: 6px;
     transition: all var(--transition-base);
     white-space: nowrap;
   }
@@ -215,6 +216,32 @@
     transform: translateY(-1px);
   }
   .btn-gold:active { transform: scale(0.97); }
+
+  /* Ghost — transparent bg, ink border, fills on hover. For product cards. */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 36px;
+    padding: 0 0.75rem;
+    background-color: transparent;
+    color: var(--color-lp-ink);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--color-lp-ink);
+    border-radius: 6px;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+  }
+  .btn-ghost:hover:not(:disabled) {
+    background-color: var(--color-lp-ink);
+    color: var(--color-lp-porcelain);
+  }
+  .btn-ghost:active { transform: scale(0.97); }
 
   /* Outline */
   .btn-outline {

@@ -21,7 +21,7 @@ const PILLARS = [
   {
     number: '02',
     label:  'Materials',
-    copy:   'ABS and polycarbonate shells selected for impact resistance. Spinner wheels rated for 50+ trips. No shortcuts.',
+    copy:   'ABS and polycarbonate shells selected for impact resistance. Spinner wheels rated for 500+ trips. No shortcuts.',
   },
   {
     number: '03',
@@ -32,7 +32,7 @@ const PILLARS = [
 
 export function BrandStory() {
   return (
-    <section className="section-pad bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)]">
+    <section className="section-pad bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)]" style={{ paddingTop: '2.5rem' }}>
       <div className="container-lp">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
 
@@ -46,10 +46,10 @@ export function BrandStory() {
             <span className="lp-eyebrow text-[var(--color-lp-gold)]">Our story</span>
             <h2 className="lp-heading-lg text-[var(--color-lp-porcelain)] mb-6">
               10+ years building for the world's biggest brands.
-              <span className="text-[var(--color-lp-gold)] italic"> Now we build it for you.</span>
+              <span className="text-[var(--color-lp-gold)] "> Now we build it for you.</span>
             </h2>
             <p className="font-body text-[var(--color-lp-porcelain)]/60 text-base leading-relaxed mb-8">
-              Louis Polo started as an OEM manufacturer — making luggage for brands you've carried through airports all over the world. In 2024, we decided to put our name on it. Same factory, same materials, same quality control. Your price just removed the middleman.
+              Louis Polo started as an OEM manufacturer, making luggage for brands you have carried through airports all over the world. In 2025, we decided to put our name on it. Same factory, same materials, same quality control. Your price just removed the middleman.
             </p>
             <Link href={ROUTES.about} className="btn-gold inline-flex">
               Read our story
@@ -84,15 +84,19 @@ export function BrandStory() {
         </div>
 
         {/* Office cities strip */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-8 gap-y-2">
-          {['Mumbai', 'Bhiwandi', 'London', 'Hong Kong'].map((city) => (
-            <p
-              key={city}
-              className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/25"
-            >
-              {city}
-            </p>
+        <div className="mt-12 pt-8 border-t border-white/10 flex justify-between items-end">
+
+          {[
+            { city: 'Mumbai',    flag: '🇮🇳' },
+            { city: 'London',    flag: '🇬🇧' },
+            { city: 'Hong Kong', flag: '🇭🇰' },
+          ].map(({ city, flag }) => (
+            <div key={city} className="flex flex-col items-center gap-1">
+              <span className="text-2xl">{flag}</span>
+              <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-lp-porcelain/70">{city}</p>
+            </div>
           ))}
+
         </div>
       </div>
     </section>

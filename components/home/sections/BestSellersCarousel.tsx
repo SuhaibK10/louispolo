@@ -173,9 +173,10 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
             canAdd
               ? addedToCart
                 ? 'btn-gold w-full justify-center mt-2'
-                : 'btn-primary w-full justify-center mt-2'
-              : 'btn-primary w-full justify-center opacity-40 cursor-not-allowed mt-2'
+                : 'btn-ghost w-full justify-center mt-2'
+              : 'btn-ghost w-full justify-center opacity-40 cursor-not-allowed mt-2'
           }
+          style={{ height: '36px' }}
           whileTap={canAdd ? { scale: 0.97 } : {}}
         >
           {addedToCart ? (
@@ -216,7 +217,7 @@ export function BestSellersCarousel() {
 
   return (
     <section className="pt-8 md:pt-12 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
-      <div className="container-lp mb-8 md:mb-10 flex items-end justify-between">
+      <div className="container-lp flex items-end justify-between" style={{ marginBottom: '2.5rem' }}>
         <motion.div
           variants={staggerChildren}
           initial="hidden"
@@ -258,10 +259,12 @@ export function BestSellersCarousel() {
         </motion.div>
       </div>
 
-      <div className="container-lp mt-6 md:hidden">
-        <Link href={ROUTES.shop} className="btn-outline w-full justify-center">
-          View all products
-        </Link>
+      <div className="md:hidden" style={{ marginTop: '1.5rem' }}>
+        <div className="container-lp">
+          <Link href={ROUTES.shop} className="btn-outline w-full justify-center">
+            View all products
+          </Link>
+        </div>
       </div>
     </section>
   )

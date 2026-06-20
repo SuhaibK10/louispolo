@@ -23,6 +23,7 @@ export const ROUTES = {
 } as const
 
 export const NAV_ITEMS = [
+  { label: 'Home',    href: ROUTES.home    },
   { label: 'Shop',    href: ROUTES.shop    },
   { label: 'About',   href: ROUTES.about   },
   { label: 'Contact', href: ROUTES.contact },

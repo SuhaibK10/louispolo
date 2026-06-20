@@ -25,7 +25,7 @@ const CATEGORY_CARDS = [
     value:    'trolley',
     mood:     'For every journey',
     image:    'Generated_Image_June_18_2026_-_2_20AM_i1gjqa.jpg',
-    span:     'md:col-span-2',
+    span:     '',
     textPos:  'bottom',
   },
   {
@@ -33,7 +33,7 @@ const CATEGORY_CARDS = [
     value:    'set',
     mood:     'The complete setup',
     image:    '1_Background_Removed_aukpfh',
-    span:     'md:col-span-2',
+    span:     '',
     textPos:  'bottom',
   },
   {
@@ -81,7 +81,7 @@ export function CategoryGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-1 mb-4 -mt-19"
+          className="flex flex-col items-center gap-1 mb-7 -mt-19"
         >
           <div
             className="w-5 h-8 rounded-full flex items-start justify-center pt-1.5"
@@ -116,7 +116,7 @@ export function CategoryGrid() {
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
-          className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
         >
           {CATEGORY_CARDS.map(({ label, value, mood, image, span }) => (
             <motion.div
@@ -126,7 +126,7 @@ export function CategoryGrid() {
             >
               <Link
                 href={`${ROUTES.shop}?category=${value}`}
-                className="group relative block aspect-[4/5] md:h-full overflow-hidden bg-[var(--color-lp-border)]"
+                className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border"
               >
                 {/* Image */}
                 <Image
@@ -138,7 +138,7 @@ export function CategoryGrid() {
                 />
 
                 {/* Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1714]/70 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-lp-ink/90 via-lp-ink/30 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Text */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">

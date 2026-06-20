@@ -26,7 +26,7 @@ export const EXHIBITIONS: Exhibition[] = [
     id: 'mumbai_exhib_26_27_28_Feb',
     city: 'Mumbai',
     venue: 'Gifts World Expo',
-    date: '26,27,28 Feb',
+    date: '26-28 Feb',
     photos: [
       { publicId: '1773867226962_loaw14.jpg', alt: 'Louis Polo ' },
       { publicId: '1773867223468_i9huwp', alt: 'Louis Polo ' },
