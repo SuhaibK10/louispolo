@@ -66,10 +66,10 @@ export const PRODUCTS: Product[] = [
     description:
       'Our most innovative design, front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     images: [
-      '1C6A9495_Background_Removed_czmfug',
-      'IMG_2420_Large_Background_Removed_ed2pt3',
       '1C6A9455_Large_Background_Removed_xydl9r',
-      '1C6A9455_Large_Background_Removed_xydl9r'
+      '1C6A9495_Background_Removed_czmfug',
+      'IMG_2420_Large_Background_Removed_ed2pt3.png',
+      '1C6A9455_Large_Background_Removed_xydl9r' 
     ],
     features: [
       { label: '3-in-1 compartments' },
@@ -79,6 +79,14 @@ export const PRODUCTS: Product[] = [
     ],
     variants: [
       {
+        color: 'Yellow',
+        colorHex: '#F4C430',
+        sizes: [
+          { size: 'Cabin', price: 8500, stock: 25, sku: '8906206840001-Y-20' },
+        ],
+      },
+      {
+        
         color: 'Red',
         colorHex: '#C0392B',
         sizes: [
@@ -104,13 +112,7 @@ export const PRODUCTS: Product[] = [
           { size: 'Medium', price: 9500, stock: 20, sku: '8906206840001-B-24' },
         ],
       },
-      {
-        color: 'Yellow',
-        colorHex: '#F4C430',
-        sizes: [
-          { size: 'Cabin', price: 8500, stock: 25, sku: '8906206840001-Y-20' },
-        ],
-      },
+      
     ],
   },
 
@@ -125,8 +127,8 @@ export const PRODUCTS: Product[] = [
       'Built for the frequent flyer. SkyTrail combines a sleek hard shell ABS body with 360° spinner wheels and combination lock — smooth, secure, and ready for boarding.',
     images: [
       'IMG_2853_Background_Removed_bezyzs',
-      'IMG_2853_Background_Removed_bezyzs',
-      'IMG_2853_Background_Removed_bezyzs',
+      '1C6A9363_Large_Background_Removed_ajflwe.png',
+      
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -136,8 +138,8 @@ export const PRODUCTS: Product[] = [
     ],
     variants: [
       {
-        color: 'Blue',
-        colorHex: '#1E88E5',
+        color: 'Charcoal',
+        colorHex: '#3D3D3D',
         sizes: [
           { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840292' },
           { size: 'Medium', price: 10649, stock: 40, sku: '8906206840308' },
@@ -209,8 +211,8 @@ export const PRODUCTS: Product[] = [
       'Clean geometric lines meet premium ABS protection. SoftSquare is the one for people who travel often and want luggage that looks good on day 50 as it did on day 1.',
     images: [
       '1-8_Large_Background_Removed_zodwmf',
-      'louispolo/products/softsquare/softsquare-blue-1',
-      'louispolo/products/softsquare/softsquare-black-1',
+      'IMG_3179_Background_Removed_Large_Background_Removed_wolj9y.png',
+      'IMG_3140_Background_Removed_Large_Background_Removed_juszdy.png',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -479,7 +481,7 @@ export const PRODUCTS: Product[] = [
       'Hard shell protection in a backpack form. ArmorPack keeps your laptop, camera, and essentials safe without adding bulk. Adjustable straps, rigid outer shell, secure zip.',
     images: [
       '1-2_Large_Background_Removed_xialtl',
-      '1-2_Large_Background_Removed_xialtl',
+      '1-2_Large_2_Background_Removed_dnpjfv.png',
     ],
     features: [
       { label: 'Hard shell protection' },
@@ -489,19 +491,20 @@ export const PRODUCTS: Product[] = [
     ],
     variants: [
       {
-        color: 'Carbon Fiber',
-        colorHex: '#2C2C2C',
-        sizes: [
-          { size: 'One Size', price: 8499, stock: 30, sku: '8906206840209' },
-        ],
-      },
-      {
         color: 'Silver Brush',
         colorHex: '#C0C0C0',
         sizes: [
           { size: 'One Size', price: 8499, stock: 30, sku: '8906206840193' },
         ],
       },
+      {
+        color: 'Carbon Fiber',
+        colorHex: '#2C2C2C',
+        sizes: [
+          { size: 'One Size', price: 8499, stock: 30, sku: '8906206840209' },
+        ],
+      },
+      
     ],
   },
 
@@ -582,7 +585,7 @@ export const PRODUCTS: Product[] = [
   // ── VeeZoom Set of 3 ─────────────────────────────────────────────────────
   {
     id: 'veezoom-set',
-    name: 'VeeZoom — Set of 3',
+    name: 'VeeZoom - Set of 3',
     slug: 'veezoom-set',
     category: 'set',
     isFeatured: true,
@@ -590,7 +593,7 @@ export const PRODUCTS: Product[] = [
       'The full VeeZoom family — 20", 24", and 28" in matching bold design. Nesting format for home storage. Everything you need for a week, a month, or forever.',
     images: [
       '01-2_Background_Removed_o0b5il.png',
-      'louispolo/products/veezoom-set/veezoom-set-black-1',
+      '01-3_Background_Removed_cut3ue.png',
     ],
     features: [
       { label: '20", 24" & 28" included' },
@@ -630,8 +633,8 @@ export const PRODUCTS: Product[] = [
       'Generated_Image_June_18_2026_-_1_53AM_Background_Removed_cblbni.png',
       'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-grey-1',
       '1C6A9677_Large_Background_Removed_w6duba.png',
-      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-green-1',
-      'https://res.cloudinary.com/dpepctqdj/image/upload/v1781733655/1C6A9716_Background_Removed_r9rkn4.png',
+      '1C6A9697_Background_Removed_Large_Background_Removed_fc0j9n.png',
+      '1C6A9716_Background_Removed_r9rkn4.png',
     ],
     features: [
       { label: 'Hard shell protection' },
