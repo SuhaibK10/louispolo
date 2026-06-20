@@ -49,7 +49,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'heroLast_dkzwim.jpg',
     headline:  'Stop Scrolling. Start Buying.',
-    textStyle: 'light',
+    textStyle: 'shadow',
     textSize:  'lg',
   },
 ]
@@ -550,7 +550,7 @@ export const PRODUCTS: Product[] = [
     category: 'set',
     isFeatured: true,
     description:
-      '20", 24", and 28" SkyTrail bags in a nesting set — one fits inside another for compact storage at home. The complete setup for every kind of trip.',
+      '20", 24", and 28" SkyTrail bags in a nesting set, one fits inside another for compact storage at home. The complete setup for every kind of trip.',
     images: [
       '02-3_Background_Removed_cucfkt',
       '01-2_Background_Removed_2_blmmcl',
@@ -680,82 +680,7 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  // ── Vanity Case ─────────────────────────────────────────────────────────
-  {
-    id: 'vanity-case',
-    name: 'Vanity Case',
-    slug: 'vanity-case',
-    category: 'vanity',
-    isFeatured: true,
-    description:
-      'A compact hard-shell case for the essentials you don\'t want loose in your bag — toiletries, electronics, small accessories. Available in seven colors and finishes.',
-    images: [
-      'https://res.cloudinary.com/dpepctqdj/image/upload/v1781777700/Screenshot_2026-06-18_at_2.59_Background_Removed.59_AM_qafnke.png',
-      'louispolo/products/vanity-case/vanity-case-brown-1',
-      'louispolo/products/vanity-case/vanity-case-white-lp-logo-1',
-      'louispolo/products/vanity-case/vanity-case-white-floral-1',
-      'louispolo/products/vanity-case/vanity-case-orange-1',
-      'louispolo/products/vanity-case/vanity-case-green-1',
-      'louispolo/products/vanity-case/vanity-case-floral-1',
-    ],
-    features: [
-      { label: 'Hard shell protection' },
-      { label: 'Compact, travel-friendly size' },
-      { label: 'Secure zip closure' },
-      { label: 'Multiple compartments' },
-    ],
-    variants: [
-      {
-        color: 'Black',
-        colorHex: '#212121',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-      {
-        color: 'Brown',
-        colorHex: '#7D5A3C',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-      {
-        color: 'White LP Logo',
-        colorHex: '#FFFFFF',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-      {
-        color: 'White Floral',
-        colorHex: '#F8F1E7',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-      {
-        color: 'Orange',
-        colorHex: '#FB8C00',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-      {
-        color: 'Green',
-        colorHex: '#43A047',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-      {
-        color: 'Floral',
-        colorHex: '#D8A7B1',
-        sizes: [
-          { size: 'One Size', price: 5799, stock: 30 },
-        ],
-      },
-    ],
-  },
+  
 ]
 
 // ─── Helper: get all featured products ───────────────────────────────────────

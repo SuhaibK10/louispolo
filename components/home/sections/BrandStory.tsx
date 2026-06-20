@@ -5,6 +5,7 @@
 // Manufacturing trust signal — consumer voice, not B2B voice.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import React                                      from 'react'
 import Link                                      from 'next/link'
 import { motion }                                from 'framer-motion'
 import { ArrowRight }                            from 'lucide-react'
@@ -125,15 +126,15 @@ export function BrandStory() {
           </p>
           <div className="flex items-center justify-between">
             {CITIES.map(({ city, flag }, i) => (
-              <>
-                <div key={city} className="flex flex-col items-center gap-1.5">
+              <React.Fragment key={city}>
+                <div className="flex flex-col items-center gap-1.5">
                   <span className="text-2xl">{flag}</span>
                   <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/70">{city}</p>
                 </div>
                 {i < CITIES.length - 1 && (
                   <div className="flex-1 h-px mx-6 bg-white/10" />
                 )}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>

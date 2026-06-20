@@ -6,15 +6,17 @@
 // The flow is strict: select color, then select size. CTA unlocks after both.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState }              from 'react'
+import { useState, useEffect }   from 'react'
 import { useRouter }             from 'next/navigation'
 import { motion }                from 'framer-motion'
-import { ShoppingBag, Check }    from 'lucide-react'
+import { ShoppingBag, Check, Heart, Ruler } from 'lucide-react'
 import type { Product, ProductSize } from '@/types'
 import { formatPrice }           from '@/lib/utils'
 import { ROUTES }                from '@/lib/constants'
 import { useCartStore }          from '@/store/cartStore'
 import { thumbUrl }              from '@/lib/cloudinary'
+import { useWishlistStore }      from '@/store/wishlistStore'
+import { SizeGuideModal }        from '@/components/ui/SizeGuideModal'
 
 interface Props {
   product: Product
@@ -28,6 +30,13 @@ export function ProductInfo({ product, defaultColor }: Props) {
   const defaultVariantIndex = defaultColor
     ? product.variants.findIndex(v => v.color.toLowerCase() === defaultColor.toLowerCase())
     : 0
+
+  const toggle   = useWishlistStore((s) => s.toggle)
+  const has      = useWishlistStore((s) => s.has)
+  const [wished,        setWished]        = useState(false)
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
+
+  useEffect(() => { setWished(has(product.id)) }, [has, product.id])
 
   const [colorIndex,    setColorIndex]    = useState(Math.max(0, defaultVariantIndex))
   const [selectedSize,  setSelectedSize]  = useState<ProductSize | null>(null)
@@ -127,14 +136,26 @@ export function ProductInfo({ product, defaultColor }: Props) {
 
       {/* ── Size selector ──────────────────────────────────────────────── */}
       <div>
-        <p className="font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] mb-3">
-          Size
-          {!selectedSize && (
-            <span className="text-[var(--color-lp-faint)] normal-case tracking-normal ml-2">
-              — please select
-            </span>
+        <div className="flex items-center justify-between mb-3">
+          <p className="font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)]">
+            Size
+            {!selectedSize && (
+              <span className="text-[var(--color-lp-faint)] normal-case tracking-normal ml-2">
+                — please select
+              </span>
+            )}
+          </p>
+          {product.variants.some(v => v.sizes.some(s => s.size !== 'One Size')) && (
+            <button
+              type="button"
+              onClick={() => setSizeGuideOpen(true)}
+              className="flex items-center gap-1 font-body text-[0.65rem] tracking-[0.08em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+            >
+              <Ruler size={12} strokeWidth={1.5} />
+              Size Guide
+            </button>
           )}
-        </p>
+        </div>
         <div className="flex flex-wrap gap-2">
           {variant.sizes.map(({ size, stock }) => {
             const outOfStock = stock === 0
@@ -161,31 +182,52 @@ export function ProductInfo({ product, defaultColor }: Props) {
         </div>
       </div>
 
-      {/* ── Add to cart ────────────────────────────────────────────────── */}
-      <motion.button
-        onClick={handleAddToCart}
-        disabled={!canAdd}
-        className={
-          canAdd
-            ? addedToCart
-              ? 'btn-gold w-full justify-center'
-              : 'btn-primary w-full justify-center'
-            : 'btn-primary w-full justify-center opacity-40 cursor-not-allowed'
-        }
-        whileTap={canAdd ? { scale: 0.97 } : {}}
-      >
-        {addedToCart ? (
-          <>
-            <Check size={16} strokeWidth={2} />
-            Added to cart
-          </>
-        ) : (
-          <>
-            <ShoppingBag size={16} strokeWidth={1.5} />
-            {!selectedSize ? 'Select Color & Size' : 'Add to cart'}
-          </>
-        )}
-      </motion.button>
+      {/* ── Add to cart + Wishlist ─────────────────────────────────────── */}
+      <div className="flex gap-3">
+        <motion.button
+          onClick={handleAddToCart}
+          disabled={!canAdd}
+          className={
+            canAdd
+              ? addedToCart
+                ? 'btn-gold flex-1 justify-center'
+                : 'btn-primary flex-1 justify-center'
+              : 'btn-primary flex-1 justify-center opacity-40 cursor-not-allowed'
+          }
+          whileTap={canAdd ? { scale: 0.97 } : {}}
+        >
+          {addedToCart ? (
+            <>
+              <Check size={16} strokeWidth={2} />
+              Added to cart
+            </>
+          ) : (
+            <>
+              <ShoppingBag size={16} strokeWidth={1.5} />
+              {!selectedSize ? 'Select Color & Size' : 'Add to cart'}
+            </>
+          )}
+        </motion.button>
+
+        {/* Wishlist */}
+        <motion.button
+          type="button"
+          onClick={() => {
+            toggle(product.id)
+            setWished((w) => !w)
+          }}
+          whileTap={{ scale: 0.93 }}
+          className="w-14 flex items-center justify-center border border-[var(--color-lp-border)] hover:border-[var(--color-lp-gold)] transition-colors duration-200 shrink-0"
+          aria-label={wished ? 'Remove from wishlist' : 'Save to wishlist'}
+        >
+          <Heart
+            size={18}
+            strokeWidth={1.5}
+            className="transition-colors duration-200"
+            style={{ color: wished ? '#C9A96E' : 'var(--color-lp-muted)', fill: wished ? '#C9A96E' : 'none' }}
+          />
+        </motion.button>
+      </div>
 
       {/* Low stock warning */}
       {sizeObj && sizeObj.stock > 0 && sizeObj.stock <= 5 && (
@@ -193,6 +235,8 @@ export function ProductInfo({ product, defaultColor }: Props) {
           Only {sizeObj.stock} left in stock
         </p>
       )}
+
+      <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
     </div>
   )
 }

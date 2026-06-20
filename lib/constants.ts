@@ -15,11 +15,12 @@ export const BRAND = {
 } as const
 
 export const ROUTES = {
-  home:    '/',
-  shop:    '/store/shop',
-  cart:    '/store/cart',
-  about:   '/store/about',
-  contact: '/store/contact',
+  home:     '/',
+  shop:     '/store/shop',
+  cart:     '/store/cart',
+  wishlist: '/store/wishlist',
+  about:    '/store/about',
+  contact:  '/store/contact',
 } as const
 
 export const NAV_ITEMS = [

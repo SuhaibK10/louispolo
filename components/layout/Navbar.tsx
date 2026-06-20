@@ -15,9 +15,23 @@ import Image                 from 'next/image'
 import { usePathname }       from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
-import { ShoppingBag, Menu, X } from 'lucide-react'
-import { NAV_ITEMS, ROUTES, BRAND }  from '@/lib/constants'
-import { cn }                from '@/lib/utils'
+import { ShoppingBag, Menu, X, Search, Heart } from 'lucide-react'
+import { NAV_ITEMS, ROUTES, BRAND }    from '@/lib/constants'
+import { cn }                          from '@/lib/utils'
+import { SearchOverlay }               from '@/components/search/SearchOverlay'
+
+// ─── Hook: wishlist count ─────────────────────────────────────────────────────
+function useWishlistCount() {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    import('@/store/wishlistStore').then(({ useWishlistStore }) => {
+      const unsub = useWishlistStore.subscribe((state) => setCount(state.ids.length))
+      setCount(useWishlistStore.getState().ids.length)
+      return unsub
+    })
+  }, [])
+  return count
+}
 
 // ─── Hook: cart item count ────────────────────────────────────────────────────
 // Lazy import to avoid SSR mismatch with Zustand localStorage
@@ -41,9 +55,11 @@ function useCartCount() {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function Navbar() {
-  const pathname  = usePathname()
-  const cartCount = useCartCount()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const pathname      = usePathname()
+  const cartCount     = useCartCount()
+  const wishlistCount = useWishlistCount()
+  const [menuOpen, setMenuOpen]     = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   // Scroll progress bar
   const { scrollYProgress } = useScroll({
@@ -64,6 +80,18 @@ export function Navbar() {
         'width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content'
       )
     }
+  }, [])
+
+  // CMD+K / Ctrl+K to open search
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setSearchOpen(true)
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
   }, [])
 
   // Close menu on route change
@@ -146,10 +174,37 @@ export function Navbar() {
                   />
             </Link>
 
-            {/* ── Right: WhatsApp + Cart ──────────────────────────────────── */}
+            {/* ── Right: Search + Cart ───────────────────────────────────── */}
             <div className="flex items-center gap-4 flex-1 justify-end">
 
-              
+              {/* Search */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                aria-label="Search products (⌘K)"
+              >
+                <Search size={20} strokeWidth={1.5} />
+              </button>
+
+              {/* Wishlist */}
+              <Link
+                href={ROUTES.wishlist}
+                className="relative text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                aria-label={`Wishlist — ${wishlistCount} items`}
+              >
+                <Heart size={20} strokeWidth={1.5} />
+                {wishlistCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+                    className="absolute -top-1.5 -right-1.5 w-[18px] h-[18px] rounded-full bg-[var(--color-lp-gold)] text-[var(--color-lp-ink)] text-[9px] font-semibold flex items-center justify-center tabular-nums"
+                  >
+                    {wishlistCount > 9 ? '9+' : wishlistCount}
+                  </motion.span>
+                )}
+              </Link>
+
               {/* Cart */}
               <Link
                 href={ROUTES.cart}
@@ -235,6 +290,8 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   )
 }

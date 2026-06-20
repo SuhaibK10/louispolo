@@ -27,7 +27,7 @@ export const EXHIBITIONS: Exhibition[] = [
     id: 'mumbai_exhib_26_27_28_Feb',
     city: 'Mumbai',
     venue: 'Gifts World Expo',
-    date: '26-28 Feb',
+    date: '26-28 Feb 2026',
     photos: [
       { publicId: '1773867226962_loaw14.jpg', alt: 'Louis Polo ' },
       { publicId: '1773867223468_i9huwp', alt: 'Louis Polo ' },
@@ -38,10 +38,10 @@ export const EXHIBITIONS: Exhibition[] = [
     ],
   },
   {
-    id: 'Gift Expo ',
+    id: 'Banglore Expo ',
     city: 'Bengaluru ',
-    venue: '[SHOW NAME 2]',
-    date: '[MONTH YEAR 2]',
+    venue: 'Tripura Vasini',
+    date: '11-13 Sep 2025',
     photos: [
       { publicId: 'WhatsApp_Image_2026-06-20_at_21.28.02_wzghgv.jpg', alt: 'Louis Polo ', fit: 'pad' },
       { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.58_2_o9nek0.jpg', alt: 'Louis Polo ' },
@@ -54,8 +54,8 @@ export const EXHIBITIONS: Exhibition[] = [
   {
     id: 'exhibition-3',
     city: 'Delhi',
-    venue: 'Bharat Mandapam',
-    date: '[MONTH YEAR 3]',
+venue: 'Bharat Mandapam',
+    date: '24-26 July 2025',
     photos: [
       { publicId: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781971752/WhatsApp_Image_2026-06-20_at_21.28.23_ivxion.jpg', alt: 'Louis Polo booth front entrance', fit: 'pad' },
       { publicId: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781970846/WhatsApp_Image_2026-06-20_at_21.23.19_ldrbvf.jpg', alt: 'Louis Polo product display' },

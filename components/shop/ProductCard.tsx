@@ -6,27 +6,36 @@
 // Clicking navigates to PDP. Color/size is passed as query param.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState }                 from 'react'
+import { useState, useEffect }      from 'react'
 import Image                        from 'next/image'
 import Link                         from 'next/link'
 import { motion }                   from 'framer-motion'
-import { ArrowRight, ShoppingBag, Check } from 'lucide-react'
+import { ArrowRight, ShoppingBag, Check, Heart, Ruler } from 'lucide-react'
 import type { Product, ProductSize } from '@/types'
 import { cardUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { formatPrice }              from '@/lib/utils'
 import { ROUTES }                   from '@/lib/constants'
 import { useCartStore }             from '@/store/cartStore'
+import { useWishlistStore }         from '@/store/wishlistStore'
+import { SizeGuideModal }           from '@/components/ui/SizeGuideModal'
 
 interface ProductCardProps {
   product: Product
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const addItem = useCartStore((s) => s.addItem)
+  const addItem  = useCartStore((s) => s.addItem)
+  const toggle   = useWishlistStore((s) => s.toggle)
+  const has      = useWishlistStore((s) => s.has)
+  const [wished, setWished] = useState(false)
 
-  const [activeVariant, setActiveVariant] = useState(0)
-  const [activeSize,    setActiveSize]    = useState<ProductSize | null>(null)
-  const [addedToCart,   setAddedToCart]   = useState(false)
+  // Sync after hydration to avoid SSR mismatch
+  useEffect(() => { setWished(has(product.id)) }, [has, product.id])
+
+  const [activeVariant,   setActiveVariant]   = useState(0)
+  const [activeSize,      setActiveSize]      = useState<ProductSize | null>(null)
+  const [addedToCart,     setAddedToCart]     = useState(false)
+  const [sizeGuideOpen,   setSizeGuideOpen]   = useState(false)
 
   const variant      = product.variants[activeVariant]
   const lowestPrice  = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
@@ -89,6 +98,25 @@ export function ProductCard({ product }: ProductCardProps) {
           <span className="lp-tag absolute top-3 left-3 z-10">{product.tag}</span>
         )}
 
+        {/* Wishlist heart */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault()
+            toggle(product.id)
+            setWished((w) => !w)
+          }}
+          className="absolute top-3 right-3 z-10 p-1"
+          aria-label={wished ? 'Remove from wishlist' : 'Save to wishlist'}
+        >
+          <Heart
+            size={15}
+            strokeWidth={1.5}
+            className="transition-colors duration-200"
+            style={{ color: wished ? '#C9A96E' : 'var(--color-lp-muted)', fill: wished ? '#C9A96E' : 'none' }}
+          />
+        </button>
+
         {/* Quick shop overlay */}
         <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-[var(--color-lp-ink)]/90 backdrop-blur-sm py-3 flex items-center justify-center gap-2">
           <span className="font-body text-[0.68rem] tracking-[0.12em] uppercase text-[var(--color-lp-porcelain)]">
@@ -140,26 +168,43 @@ export function ProductCard({ product }: ProductCardProps) {
           })}
         </div>
 
-        {/* Color swatches */}
-        <div className="flex items-center gap-1.5 pt-0.5">
-          {product.variants.map((v, i) => (
-            <button
-              key={v.color}
-              type="button"
-              onClick={(e) => handleColorChange(e, i)}
-              title={v.color}
-              className="w-3.5 h-3.5 rounded-full transition-all duration-200 flex-shrink-0"
-              style={{
-                backgroundColor: v.colorHex,
-                boxShadow: i === activeVariant
-                  ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
-                  : '0 0 0 1px var(--color-lp-border)',
-              }}
-              aria-label={v.color}
-              aria-pressed={i === activeVariant}
-            />
-          ))}
-        </div>
+        {/* Color swatches + Size Guide */}
+        {(() => {
+          const hasStandardSizes = product.variants.some(v => v.sizes.some(s => s.size !== 'One Size'))
+          return (
+            <div className="flex items-center justify-between pt-0.5">
+              <div className="flex items-center gap-1.5">
+                {product.variants.map((v, i) => (
+                  <button
+                    key={v.color}
+                    type="button"
+                    onClick={(e) => handleColorChange(e, i)}
+                    title={v.color}
+                    className="w-3.5 h-3.5 rounded-full transition-all duration-200 flex-shrink-0"
+                    style={{
+                      backgroundColor: v.colorHex,
+                      boxShadow: i === activeVariant
+                        ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
+                        : '0 0 0 1px var(--color-lp-border)',
+                    }}
+                    aria-label={v.color}
+                    aria-pressed={i === activeVariant}
+                  />
+                ))}
+              </div>
+              {hasStandardSizes && (
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setSizeGuideOpen(true) }}
+                  className="flex items-center gap-1 font-body text-[0.55rem] tracking-[0.08em] uppercase text-[var(--color-lp-faint)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                >
+                  <Ruler size={10} strokeWidth={1.5} />
+                  Size Guide
+                </button>
+              )}
+            </div>
+          )
+        })()}
 
         {/* Price */}
         <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
@@ -194,6 +239,8 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </motion.button>
       </div>
+
+      <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
     </motion.div>
   )
 }
