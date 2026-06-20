@@ -46,7 +46,7 @@ export const EXHIBITIONS: Exhibition[] = [
       { publicId: 'WhatsApp_Image_2026-06-20_at_21.28.02_wzghgv.jpg', alt: 'Louis Polo ', fit: 'pad' },
       { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.58_2_o9nek0.jpg', alt: 'Louis Polo ' },
        { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.58_pe0rvj.jpg', alt: 'Louis Polo ' },
-       { publicId: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781969895/WhatsApp_Image_2026-06-20_at_21.05.59_eyfgiy.jpg', alt: 'Louis Polo ' },
+       { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.59_eyfgiy.jpg', alt: 'Louis Polo ' },
        { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.59_1_vg3ts9.jpg', alt: 'Louis Polo ' },
       
     ],
@@ -57,9 +57,9 @@ export const EXHIBITIONS: Exhibition[] = [
 venue: 'Bharat Mandapam',
     date: '24-26 July 2025',
     photos: [
-      { publicId: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781971752/WhatsApp_Image_2026-06-20_at_21.28.23_ivxion.jpg', alt: 'Louis Polo booth front entrance', fit: 'pad' },
-      { publicId: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781970846/WhatsApp_Image_2026-06-20_at_21.23.19_ldrbvf.jpg', alt: 'Louis Polo product display' },
-      { publicId: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1781970846/WhatsApp_Image_2026-06-20_at_21.23.18_1_i9gzff.jpg', alt: 'Louis Polo trolley bag lineup' },
+      { publicId: 'WhatsApp_Image_2026-06-20_at_21.28.23_ivxion.jpg', alt: 'Louis Polo booth front entrance', fit: 'pad' },
+      { publicId: 'WhatsApp_Image_2026-06-20_at_21.23.19_ldrbvf.jpg', alt: 'Louis Polo product display' },
+      { publicId: 'WhatsApp_Image_2026-06-20_at_21.23.18_1_i9gzff.jpg', alt: 'Louis Polo trolley bag lineup' },
     ],
   },
 ]

@@ -33,8 +33,8 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Dubai airport is massive and I barely felt the bag. Wheels are buttery smooth. Packed for 2 weeks, zipped shut on the first try. Someone at the hotel literally asked me where I got it.',
-    photos:  [] as string[],
+    text:    'This Trolley looks really nice, and it is highly organizable too',
+    photos:  ['WhatsApp_Image_2026-06-21_at_02.04.32_hfq8q4.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_1_i8ggxu.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_2_nl3wpv.jpg'] as string[],
   },
   
 ]

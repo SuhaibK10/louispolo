@@ -32,7 +32,7 @@ const PILLARS = [
 
 const STATS = [
   { value: '10+',   label: 'Years manufacturing' },
-  { value: '500K+', label: 'Bags produced'       },
+  { value: '600K+', label: 'Bags produced'       },
   { value: '500+',  label: 'Trip-rated wheels'   },
   { value: '3',     label: 'Global offices'      },
 ]

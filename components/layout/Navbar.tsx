@@ -19,6 +19,7 @@ import { ShoppingBag, Menu, X, Search, Heart } from 'lucide-react'
 import { NAV_ITEMS, ROUTES, BRAND }    from '@/lib/constants'
 import { cn }                          from '@/lib/utils'
 import { SearchOverlay }               from '@/components/search/SearchOverlay'
+import { CorporateEnquiryModal }       from '@/components/ui/CorporateEnquiryModal'
 
 // ─── Hook: wishlist count ─────────────────────────────────────────────────────
 function useWishlistCount() {
@@ -58,8 +59,9 @@ export function Navbar() {
   const pathname      = usePathname()
   const cartCount     = useCartCount()
   const wishlistCount = useWishlistCount()
-  const [menuOpen, setMenuOpen]     = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
+  const [menuOpen,     setMenuOpen]     = useState(false)
+  const [searchOpen,   setSearchOpen]   = useState(false)
+  const [corpOpen,     setCorpOpen]     = useState(false)
 
   // Scroll progress bar
   const { scrollYProgress } = useScroll({
@@ -154,6 +156,12 @@ export function Navbar() {
                     {label}
                   </Link>
                 ))}
+                <button
+                  onClick={() => setCorpOpen(true)}
+                  className="relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)]"
+                >
+                  Corporate Enquiry
+                </button>
               </nav>
             </div>
 
@@ -260,6 +268,23 @@ export function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Corporate Enquiry */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ delay: 0.08 + NAV_ITEMS.length * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <button
+                  onClick={() => { setMenuOpen(false); setCorpOpen(true) }}
+                  className="block w-full text-left py-4 border-b border-[var(--color-lp-border)]"
+                >
+                  <span className="font-display text-[2.25rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
+                    Corporate Enquiry
+                  </span>
+                </button>
+              </motion.div>
             </nav>
 
             {/* Bottom CTA */}
@@ -292,6 +317,7 @@ export function Navbar() {
       </AnimatePresence>
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <CorporateEnquiryModal open={corpOpen} onClose={() => setCorpOpen(false)} />
     </>
   )
 }

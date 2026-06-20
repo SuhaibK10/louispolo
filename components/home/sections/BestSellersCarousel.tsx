@@ -10,7 +10,7 @@ import { useRef, useState, useEffect }       from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
-import { ArrowRight, ShoppingBag, Check }    from 'lucide-react'
+import { ArrowRight, ShoppingBag, Check, Ruler } from 'lucide-react'
 import type { ProductSize }                  from '@/types'
 import { FEATURED_PRODUCTS }                 from '@/config/products'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
@@ -18,17 +18,22 @@ import { formatPrice }                       from '@/lib/utils'
 import { ROUTES }                            from '@/lib/constants'
 import { useCartStore }                      from '@/store/cartStore'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
+import { SizeGuideModal }                    from '@/components/ui/SizeGuideModal'
 
 // ─── Single product card ──────────────────────────────────────────────────────
 function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
   const addItem = useCartStore((s) => s.addItem)
 
-  const [activeVariant, setActiveVariant] = useState(0)
-  const [activeSize,    setActiveSize]    = useState<ProductSize | null>(null)
-  const [addedToCart,   setAddedToCart]   = useState(false)
+  const [activeVariant,  setActiveVariant]  = useState(0)
+  const [activeSize,     setActiveSize]     = useState<ProductSize | null>(null)
+  const [addedToCart,    setAddedToCart]    = useState(false)
+  const [sizeGuideOpen,  setSizeGuideOpen]  = useState(false)
 
-  const variant     = product.variants[activeVariant]
-  const lowestPrice = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
+  const hasStandardSizes = product.variants.some(v => v.sizes.some(s => s.size !== 'One Size'))
+
+  const variant      = product.variants[activeVariant]
+  const displayImage = product.images[activeVariant] ?? product.images[0]
+  const lowestPrice  = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
   const sizeObj     = variant.sizes.find(s => s.size === activeSize)
   const price       = sizeObj?.price ?? lowestPrice
   const inStock     = sizeObj ? sizeObj.stock > 0 : true
@@ -70,7 +75,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         draggable="false"
       >
         <Image
-          src={cardUrl(product.images[0]) || PLACEHOLDER_URL}
+          src={cardUrl(displayImage) || PLACEHOLDER_URL}
           alt={product.name}
           fill
           className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -104,28 +109,40 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         </Link>
 
         {/* Color dots */}
-        <div className="flex gap-1.5 pt-0.5">
-          {product.variants.slice(0, 5).map((v, i) => (
+        <div className="flex items-center justify-between pt-0.5 pr-2">
+          <div className="flex gap-1.5">
+            {product.variants.slice(0, 5).map((v, i) => (
+              <button
+                key={v.color}
+                type="button"
+                onClick={(e) => handleColorChange(e, i)}
+                title={v.color}
+                className="w-4 h-4 rounded-full transition-all duration-200 flex-shrink-0"
+                style={{
+                  backgroundColor: v.colorHex,
+                  boxShadow: i === activeVariant
+                    ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
+                    : '0 0 0 1px var(--color-lp-border)',
+                }}
+                aria-label={v.color}
+                aria-pressed={i === activeVariant}
+              />
+            ))}
+            {product.variants.length > 5 && (
+              <span className="font-body text-[0.6rem] text-[var(--color-lp-faint)] self-center">
+                +{product.variants.length - 5}
+              </span>
+            )}
+          </div>
+          {hasStandardSizes && (
             <button
-              key={v.color}
               type="button"
-              onClick={(e) => handleColorChange(e, i)}
-              title={v.color}
-              className="w-4 h-4 rounded-full transition-all duration-200 flex-shrink-0"
-              style={{
-                backgroundColor: v.colorHex,
-                boxShadow: i === activeVariant
-                  ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
-                  : '0 0 0 1px var(--color-lp-border)',
-              }}
-              aria-label={v.color}
-              aria-pressed={i === activeVariant}
-            />
-          ))}
-          {product.variants.length > 5 && (
-            <span className="font-body text-[0.6rem] text-[var(--color-lp-faint)] self-center">
-              +{product.variants.length - 5}
-            </span>
+              onClick={(e) => { e.stopPropagation(); setSizeGuideOpen(true) }}
+              className="flex items-center gap-1 font-body text-[0.6rem] tracking-[0.08em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+            >
+              <Ruler size={11} strokeWidth={1.5} />
+              Size Guide
+            </button>
           )}
         </div>
 
@@ -192,6 +209,8 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
           )}
         </motion.button>
       </div>
+
+      <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
     </div>
   )
 }
