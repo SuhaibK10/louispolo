@@ -118,6 +118,7 @@ export function HeroSection() {
                 alt={slide.headline ?? 'Louis Polo luggage'}
                 fill
                 priority={current === 0}
+                loading={current === 0 ? 'eager' : 'lazy'}
                 className="object-cover object-center block md:hidden"
                 sizes="(max-width: 767px) 100vw, 1px"
               />
@@ -127,9 +128,8 @@ export function HeroSection() {
                 alt={slide.headline ?? 'Louis Polo luggage'}
                 fill
                 priority={current === 0}
-                loading="eager"
                 className="object-cover object-center hidden md:block"
-                sizes="100vw"
+                sizes="(max-width: 767px) 1px, 100vw"
               />
             </>
           )}

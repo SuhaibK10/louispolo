@@ -3,13 +3,20 @@ import { createClient }   from '@/lib/supabase/server'
 import { logout }         from '@/app/account/actions'
 import Link              from 'next/link'
 import { ROUTES }        from '@/lib/constants'
-import { ShoppingBag, Heart, LogOut, User } from 'lucide-react'
+import { ShoppingBag, Heart, LogOut, User, Package } from 'lucide-react'
 
 export default async function AccountPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) redirect('/account/login')
+
+  const { data: orders } = await supabase
+    .from('orders')
+    .select('id, status, total, created_at, full_name, city, state, order_items(product_name, color, size, quantity, price, image)')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(10)
 
   const name  = user.user_metadata?.full_name ?? user.user_metadata?.name ?? null
   const email = user.email ?? ''
@@ -19,7 +26,7 @@ export default async function AccountPage() {
 
   return (
     <div className="pt-16 md:pt-[4.5rem] min-h-screen">
-      <div className="container-lp section-pad max-w-[38rem]">
+      <div className="container-lp section-pad max-w-152 pt-8! md:pt-10!">
 
         {/* Header */}
         <div className="flex items-center gap-4 mb-10">
@@ -90,7 +97,7 @@ export default async function AccountPage() {
           </div>
         </div>
 
-        {/* Orders placeholder */}
+        {/* Orders */}
         <div className="border border-[var(--color-lp-border)] mb-8">
           <div className="px-5 py-4 border-b border-[var(--color-lp-border)]">
             <div className="flex items-center gap-2">
@@ -98,15 +105,58 @@ export default async function AccountPage() {
               <p className="font-body text-[0.65rem] tracking-[0.12em] uppercase text-[var(--color-lp-muted)]">Orders</p>
             </div>
           </div>
-          <div className="px-5 py-8 text-center">
-            <p className="font-body text-[0.85rem] text-[var(--color-lp-muted)]">No orders yet.</p>
-            <Link
-              href={ROUTES.shop}
-              className="inline-block mt-3 font-body text-[0.75rem] tracking-[0.08em] uppercase text-[var(--color-lp-gold)] hover:underline"
-            >
-              Start shopping →
-            </Link>
-          </div>
+
+          {!orders || orders.length === 0 ? (
+            <div className="px-5 py-8 text-center">
+              <p className="font-body text-[0.85rem] text-lp-muted">No orders yet.</p>
+              <Link
+                href={ROUTES.shop}
+                className="inline-block mt-3 font-body text-[0.75rem] tracking-[0.08em] uppercase text-lp-gold hover:underline"
+              >
+                Start shopping →
+              </Link>
+            </div>
+          ) : (
+            <div className="divide-y divide-lp-border">
+              {orders.map((order) => {
+                const date = new Date(order.created_at).toLocaleDateString('en-IN', {
+                  day: 'numeric', month: 'short', year: 'numeric',
+                })
+                const statusColor =
+                  order.status === 'paid'   ? 'text-emerald-600' :
+                  order.status === 'failed' ? 'text-red-500'     :
+                  'text-lp-muted'
+
+                return (
+                  <div key={order.id} className="px-5 py-4">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <div className="flex items-center gap-2">
+                        <Package size={13} strokeWidth={1.5} className="text-lp-muted shrink-0" />
+                        <span className="font-body text-[0.7rem] text-lp-muted">
+                          #{order.id.slice(0, 8).toUpperCase()}
+                        </span>
+                        <span className={`font-body text-[0.65rem] tracking-[0.08em] uppercase ${statusColor}`}>
+                          {order.status}
+                        </span>
+                      </div>
+                      <span className="font-body text-[0.75rem] font-medium text-lp-ink shrink-0">
+                        ₹{order.total.toLocaleString('en-IN')}
+                      </span>
+                    </div>
+                    <div className="space-y-0.5 mb-1.5">
+                      {(order.order_items as { product_name: string; color: string; size: string; quantity: number; price: number }[]).map((item, i) => (
+                        <p key={i} className="font-body text-[0.78rem] text-lp-ink">
+                          {item.product_name}
+                          <span className="text-lp-muted"> · {item.color}{item.size ? `, ${item.size}` : ''} × {item.quantity}</span>
+                        </p>
+                      ))}
+                    </div>
+                    <p className="font-body text-[0.68rem] text-lp-faint">{date}</p>
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
 
         {/* Sign out */}
