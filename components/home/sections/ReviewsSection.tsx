@@ -60,7 +60,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Gifted the VeeZoom Set of 3 to my parents for their Umrah trip. They were thrilled with how light yet strong the bags are. Checked in without any issues at Mumbai airport. A very thoughtful gift that actually performed.',
+    text:    'Gifted the VeeZoom Set of 3 to my relative for their Umrah trip.A very thoughtful gift.',
     photos:  [] as string[],
   },
   {
