@@ -33,7 +33,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Really impressed with the build quality. The interior compartments are well thought out and everything stays in place during travel. Looks far more premium than the price suggests. Exactly what I was looking for.',
+    text:    'This Trolley looks really nice, and it is highly organizable too',
     photos:  ['WhatsApp_Image_2026-06-21_at_02.04.32_hfq8q4.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_1_i8ggxu.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_2_nl3wpv.jpg'] as string[],
   },
   {
@@ -42,7 +42,7 @@ const REVIEWS = [
     trip:    '',
     product: 'HexCore Office Bag',
     rating:  5,
-    text:    'I travel every week for work — Delhi, Pune, Chennai, repeat. This laptop bag has been with me for 4 months now and looks brand new. Perfectly organised for my laptop and docs, and it handles daily commutes without a scratch.',
+    text:    'I travel every week for work — Delhi, Pune, Chennai, repeat. This laptop bag has been with me for 4 months now and looks brand new. Highly oranizable for my laptop and docs.',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.32_vxakr3.jpg','WhatsApp_Image_2026-06-21_at_11.59.35_1_hmuoej.jpg','WhatsApp_Image_2026-06-21_at_11.59.34_tsxhuo.jpg','WhatsApp_Image_2026-06-21_at_11.59.33_sgoybw.jpg'] as string[],
   },
   {
@@ -51,7 +51,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Got this customised backpack from Louis Polo with my name engraved on it. The personalisation is clean and sharp. The bag itself feels solid and looks elegant — gets a lot of attention at the office.',
+    text:    'Bought this custamised backpack from Louis Polo, Engraived my name on it, The backpack looks solid and elegant',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.22_1_zcuvhk.jpg','WhatsApp_Image_2026-06-21_at_11.59.22_pzqhxk.jpg'] as string[],
   },
   {
@@ -60,7 +60,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Gifted the Set of 3 to my parents for their Umrah trip. They were thrilled with how light yet strong the bags are. Checked in without any issues at Mumbai airport. A very thoughtful gift that actually performed.',
+    text:    'Gifted the VeeZoom Set of 3 to my parents for their Umrah trip. They were thrilled with how light yet strong the bags are. Checked in without any issues at Mumbai airport. A very thoughtful gift that actually performed.',
     photos:  [] as string[],
   },
   {
@@ -69,7 +69,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Clean design, smooth zippers, and the hard shell held up perfectly on my Goa trip. Looks far more expensive than it is. Really happy with the quality — will be ordering another colour soon.',
+    text:    'Bought this on Buy 1 Get 1 Free, Looks good and best for stuffs',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.27_unigr1.jpg'] as string[],
   },
   {
@@ -78,7 +78,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Picked this up as a gym and weekend bag. Roomy compartments, sturdy zippers, and it holds its shape well even when packed full. Looks great and feels built to last. Very happy with the purchase.',
+    text:    'Ordered this Gym Bag, its quite fine in this price',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.28_usgque.jpg'] as string[],
   },
 ]

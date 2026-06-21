@@ -4,6 +4,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import Link                       from 'next/link'
+import Image                      from 'next/image'
 import { Instagram, Linkedin, Mail } from 'lucide-react'
 import { BRAND, ROUTES }          from '@/lib/constants'
 
@@ -39,9 +40,13 @@ export function Footer() {
 
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <span className="font-display text-xl tracking-[0.04em] block mb-4">
-              Louis Polo
-            </span>
+            <Image
+              src="/logo.svg"
+              alt="Louis Polo"
+              width={78}
+              height={52}
+              className="mb-4 brightness-0 invert"
+            />
             <p className="font-body text-[0.8rem] text-white/45 leading-relaxed mb-6">
               Premium hard luggage, designed for every journey.<br />
               10+ years of manufacturing excellence.
