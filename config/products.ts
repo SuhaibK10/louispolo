@@ -679,11 +679,321 @@ export const PRODUCTS: Product[] = [
           { size: 'One Size', price: 4699, stock: 30 },
         ],
       },
-      
+
+    ],
+  },
+
+  // ── FlexBag Hybrid Duffel ────────────────────────────────────────────────
+  {
+    id:          'flexbag-hybrid-duffel',
+    name:        'FlexBag Hybrid Duffel',
+    slug:        'flexbag-hybrid-duffel',
+    category:    'duffle',
+    cardZoom:    1.3,
+    isFeatured:  true,
+    description: 'A hybrid travel bag combining hard-shell protection with the flexibility of a duffel. Perfect for weekend getaways, business trips, and cabin travel, lightweight, durable, and spacious.',
+    images:      [
+      '01---flexbag---black-1781383670118-1781383670118_Background_Removed_n03tnr',
+      'untitled-1-1-1781414351367-1781414351367_Background_Removed_nr2vnl',
+      'untitled-1-1-1781414384834-1781414384834_Background_Removed_zchjbk',
+      'untitled-1-1-1781414421642-1781414421642_Background_Removed_jh0xjj',
+      'untitled-1-1-1781414459774-1781414459774_Background_Removed_c8gvms'
+
+
+    ],
+    features: [
+      { label: 'Hard shell protection panel' },
+      { label: 'Trolley attachment sleeve' },
+      { label: 'Spacious main compartment' },
+      { label: 'Lightweight build' },
+      { label: 'Versatile — gym, cabin & weekend use' },
+    ],
+    variants: [
+      {
+        color:    'Black',
+        colorHex: '#212121',
+        sizes: [{ size: '20 Inch', price: 2999, stock: 30 }],
+      },
+      {
+        color:    'Navy',
+        colorHex: '#1A237E',
+        sizes: [{ size: '20 Inch', price: 2999, stock: 30 }],
+      },
+      {
+        color:    'Green',
+        colorHex: '#2E7D32',
+        sizes: [{ size: '20 Inch', price: 2999, stock: 30 }],
+      },
+      {
+        color:    'Grey',
+        colorHex: '#757575',
+        sizes: [{ size: '20 Inch', price: 2999, stock: 30 }],
+      },
+      {
+        color:    'Silver',
+        colorHex: '#BDBDBD',
+        sizes: [{ size: '20 Inch', price: 2999, stock: 30 }],
+      },
+    ],
+  },
+
+  // ── GridPod 8" Travel Utility Case ───────────────────────────────────────
+  {
+    id:          'gridpod',
+    name:        'GridPod ',
+    slug:        'gridpod',
+    category:    'vanity',
+    description: 'A compact hard-shell organizer built to protect cosmetics, toiletries, electronics, cables, chargers, medicines, and all your travel essentials. Impact-resistant shell, comfortable fabric lining, and a luggage mounting sleeve so it stays with your bag.',
+    isFeatured:  false,
+    images:      [
+      'louis-polo-grid-pod-vanity-silver-08-1781757213777-1781757213777_Background_Removed_nf3usc',
+      'louis-polo-grid-pod-vanity-grey-08-1781757256978-1781757256978_Background_Removed_fcbi2f',
+      'louis-polo-grid-pod-vanity-blue-01-1781757330010-1781757330010_Background_Removed_qtb4xf.png',
+      'louis-polo-grid-pod-vanity-black-08-1781757362906-1781757362906_Background_Removed_ynroed'
+    ],
+    features: [
+      { label: 'Hard shell — impact & compression resistant' },
+      { label: 'Concealed pocket inside' },
+      { label: 'Comfortable fabric lining' },
+      { label: 'Smooth zipper' },
+      { label: 'Luggage mounting sleeve' },
+      { label: 'Lightweight & wear resistant' },
+    ],
+    variants: [
+      {
+        color:    'Silver',
+        colorHex: '#BDBDBD',
+        sizes: [{ size: '9 Inch', price: 999, stock: 50 }],
+      },
+      {
+        color:    'Green',
+        colorHex: '#2E7D32',
+        sizes: [{ size: '9 Inch', price: 999, stock: 50 }],
+      },
+      {
+        color:    'Blue',
+        colorHex: '#1565C0',
+        sizes: [{ size: '9 Inch', price: 999, stock: 50 }],
+      },
+      {
+        color:    'Red',
+        colorHex: '#C62828',
+        sizes: [{ size: '9 Inch', price: 999, stock: 50 }],
+      },
     ],
   },
 
   
+
+  // ── The Attaché Overnighter ──────────────────────────────────────────────
+  {
+    id:          'attache-overnighter',
+    name:        'Attache',
+    slug:        'attache-overnighter',
+    category:    'overnighter',
+    cardZoom:    1.3,
+    isFeatured:  true,
+    description: 'Built for professionals on the move. Cabin-friendly dimensions with smart organisation — dedicated laptop storage, hard-shell protection, and 360° spinner wheels for effortless overnight business travel.',
+    images:      [
+      'louis-polo-attache-red-08-1781606815844-1781606815844_Background_Removed_vug5zj',
+      'louis-polo-attache-black-hero-10-1781606578945-1781606578945_Background_Removed_v0prue'
+    ],
+    features: [
+      { label: '360° silent spinner wheels' },
+      { label: 'Dedicated laptop compartment' },
+      { label: 'Combination lock' },
+      { label: 'Telescopic handle' },
+      { label: 'Hard shell ABS' },
+      { label: 'Carry-on approved' },
+    ],
+    variants: [
+       {
+        color:    'Red',
+        colorHex: '#C62828',
+        sizes: [{ size: '17 Inch', price: 6999, stock: 30 }],
+      },
+      {
+        color:    'Black',
+        colorHex: '#212121',
+        sizes: [{ size: '17 Inch', price: 6999, stock: 30 }],
+      },
+     
+    ],
+  },
+
+  // ── SwiftGate 17" Overnighter Trolley ────────────────────────────────────
+  {
+    id:          'swiftgate',
+    name:        'SwiftGate',
+    slug:        'swiftgate',
+    category:    'overnighter',
+    description: 'Professional styling meets practical organisation. The SwiftGate features a front-opening compartment for instant access to your laptop, tablet, documents, and chargers — without touching the main compartment. Built for overnight trips and short business travel.',
+    isFeatured:  false,
+    images:      [
+      'swiftgate---blue01-1781498983947-1781498983947_Background_Removed_lanodd','swiftgate---red09-1781498866690-1781498866690_Background_Removed_zdqhyi',],
+    features: [
+      { label: 'Front-access laptop compartment' },
+      { label: '360° silent spinner wheels' },
+      { label: 'Combination security lock' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Telescopic handle' },
+      { label: 'Lightweight hard-shell construction' },
+      { label: 'Carry-on approved dimensions' },
+    ],
+    variants: [
+      {
+        color:    'Blue',
+        colorHex: '#1565C0',
+        sizes: [{ size: '17 Inch', price: 9899, stock: 30 }],
+      },
+      {
+        color:    'Red',
+        colorHex: '#C62828',
+        sizes: [{ size: '17 Inch', price: 9899, stock: 30 }],
+      },
+    ],
+  },
+  
+
+  // ── V-Glide Beauty Case ──────────────────────────────────────────────────
+  {
+    id:          'v-glide',
+    name:        'V-Glide',
+    slug:        'v-glide',
+    category:    'vanity',
+    description: 'A stylish hard-shell travel beauty organizer with a signature V-pattern finish. Dedicated compartments, mesh pockets, and an integrated trolley sleeve keep your cosmetics, skincare, and accessories perfectly organised and secure on every trip.',
+    isFeatured:  false,
+    images:      [
+      '1-1781427971087-1781427971087_Background_Removed_f1vctd',
+      '1-1781427934381-1781427934381_Background_Removed_iw2ctm',
+      '1-1781427886031-1781427886031_Background_Removed_syzs8q',
+      '8-1781428020176-1781428020176_Background_Removed_v6a0uj'
+      
+    ],
+    features: [
+      { label: 'Hard-shell V-pattern finish' },
+      { label: 'Dedicated compartments & mesh pockets' },
+      { label: 'Concealed pocket inside' },
+      { label: 'Comfortable fabric lining' },
+      { label: 'Smooth zipper' },
+      { label: 'Integrated trolley sleeve' },
+      { label: 'Lightweight & wear resistant' },
+    ],
+    variants: [
+      {
+        color:    'Silver',
+        colorHex: '#BDBDBD',
+        sizes: [{ size: '9 Inch', price: 2999, stock: 50 }],
+      },
+      {
+        color:    'Rose Gold',
+        colorHex: '#B76E79',
+        sizes: [{ size: '9 Inch', price: 2999, stock: 50 }],
+      },
+      {
+        color:    'Black',
+        colorHex: '#212121',
+        sizes: [{ size: '9 Inch', price: 2999, stock: 50 }],
+      },
+      {
+        color:    'Sky Blue',
+        colorHex: '#4FC3F7',
+        sizes: [{ size: '9 Inch', price: 2999, stock: 50 }],
+      },
+    ],
+  },
+
+  // ── OrbitPod 12" Vanity Case ─────────────────────────────────────────────
+  {
+    id:          'orbitpod',
+    name:        'OrbitPod',
+    slug:        'orbitpod',
+    category:    'vanity',
+    description: 'A stylish hard-shell travel organizer for modern travellers. The dual-compartment interior with zippered centre section keeps cosmetics, gadgets, chargers, toiletries, medicines, and daily essentials neatly separated. Comes with a shoulder strap for hands-free carry.',
+    isFeatured:  false,
+    images:      [
+      'louis-polo-orbit-pod-vanity-metallic-gre-1781766231871-1781766231871_Background_Removed_l5lzhb',
+      'louis-polo-orbit-pod-vanity-turquoise-bl-1781766125876-1781766125876_Background_Removed_g39dpv',
+      
+      'louis-polo-orbit-pod-vanity-metallic-sil-1781766417179-1781766417179_Background_Removed_db00pk',
+      
+      
+    ],
+    features: [
+      { label: '360° hard-shell protection' },
+      { label: 'Smart dual-compartment interior' },
+      { label: 'Zippered centre divider' },
+      { label: 'Shoulder strap included' },
+      { label: 'Concealed pocket' },
+      { label: 'Comfortable fabric lining' },
+      { label: 'Smooth zipper & wear resistant' },
+    ],
+    variants: [
+      
+      {
+        color:    'Metallic Grey',
+        colorHex: '#757575',
+        sizes: [{ size: '12 Inch', price: 1999, stock: 50 }],
+      },
+      {
+        color:    'Turquoise Blue',
+        colorHex: '#00B0C8',
+        sizes: [{ size: '12 Inch', price: 1999, stock: 50 }],
+      },
+      {
+        color:    'Metallic Silver',
+        colorHex: '#BDBDBD',
+        sizes: [{ size: '12 Inch', price: 1999, stock: 50 }],
+      },
+    ],
+  },
+  // ── Voyage Pod  ───────────────────────────────
+  {
+    id:          'voyage-pod',
+    name:        'Voyage Pod ',
+    slug:        'voyage-pod',
+    category:    'vanity',
+    description: 'A compact hard-shell travel organizer for cosmetics, toiletries, grooming essentials, electronics, medicines, and personal accessories. Features a spacious interior with zippered mesh pocket and an integrated luggage mounting sleeve that attaches to your trolley handle.',
+    isFeatured:  false,
+    images:      [
+      'louis-polo-voyage-pod-silver-09-1781689965483-1781689965483_Background_Removed_ysfewb',
+      'louis-polo-voyage-pod-grey-09-1781690030424-1781690030424_Background_Removed_s63370','louis-polo-voyage-pod-blue-09-1781690104205-1781690104205_Background_Removed_eoz5ph',
+      'louis-polo-voyage-pod-black01-1781690181273-1781690181273_Background_Removed_k1um9u'
+    ],
+    features: [
+      { label: 'Hard shell — impact & compression resistant' },
+      { label: 'Zippered mesh organizer pocket inside' },
+      { label: 'Comfortable fabric lining' },
+      { label: 'Smooth zipper' },
+      { label: 'Luggage mounting sleeve' },
+      { label: 'Lightweight & wear resistant' },
+    ],
+    variants: [
+      {
+        color:    'Silver',
+        colorHex: '#BDBDBD',
+        sizes: [{ size: '9 Inch', price: 1999, stock: 50 }],
+      },
+      {
+        color:    'Grey',
+        colorHex: '#757575',
+        sizes: [{ size: '9 Inch', price: 1999, stock: 50 }],
+      },
+      {
+        color:    'Blue',
+        colorHex: '#1565C0',
+        sizes: [{ size: '9 Inch', price: 1999, stock: 50 }],
+      },
+      {
+        color:    'Black',
+        colorHex: '#212121',
+        sizes: [{ size: '9 Inch', price: 1999, stock: 50 }],
+      },
+    ],
+  },
+
+  
+
 ]
 
 // ─── Helper: get all featured products ───────────────────────────────────────
@@ -714,6 +1024,7 @@ export const CATEGORIES = [
   { label: 'Sets',        value: 'set',        count: PRODUCTS.filter(p => p.category === 'set').length },
   { label: 'Backpacks',   value: 'backpack',   count: PRODUCTS.filter(p => p.category === 'backpack').length },
   { label: 'Office Bags', value: 'office-bag', count: PRODUCTS.filter(p => p.category === 'office-bag').length },
-  { label: 'Duffle Bags', value: 'duffle',     count: PRODUCTS.filter(p => p.category === 'duffle').length },
-  { label: 'Vanity Cases',value: 'vanity',     count: PRODUCTS.filter(p => p.category === 'vanity').length },
+  { label: 'Duffle Bags', value: 'duffle',       count: PRODUCTS.filter(p => p.category === 'duffle').length },
+  { label: 'Vanity Cases',value: 'vanity',       count: PRODUCTS.filter(p => p.category === 'vanity').length },
+  { label: 'OverNighters', value: 'overnighter', count: PRODUCTS.filter(p => p.category === 'overnighter').length },
 ] as const

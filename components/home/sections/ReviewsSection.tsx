@@ -235,7 +235,7 @@ export function ReviewsSection() {
               <motion.div
                 key={review.name}
                 variants={fadeUp}
-                className="lp-card p-6 md:p-7 flex flex-col gap-4"
+                className="lp-card rounded-xl p-6 md:p-7 flex flex-col gap-4"
               >
                 {/* Stars + product */}
                 <div className="flex items-start justify-between gap-3">

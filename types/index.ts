@@ -11,8 +11,9 @@ export type ProductCategory =
   | 'vanity'
   | 'kids'
   | 'duffle'
+  | 'overnighter'
 
-export type ProductSize = 'Cabin' | 'Medium' | 'Large' | 'Set of 3' | 'One Size'
+export type ProductSize = 'Cabin' | 'Medium' | 'Large' | 'Set of 3' | 'One Size' | '9 Inch' | '12 Inch' | '17 Inch' | '20 Inch'
 
 export type ProductTag =
   | 'Best Seller'
@@ -50,6 +51,7 @@ export interface Product {
   // Cloudinary public_ids — transform on the fly via URL
   // e.g. "louispolo/products/aerosmart/aerosmart-red-1"
   images: string[]
+  cardZoom?: number       // e.g. 1.3 = zoom in 30% on shop listing card
   features: ProductFeature[]
   variants: ColorVariant[]
 }

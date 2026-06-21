@@ -15,7 +15,7 @@ import Image                 from 'next/image'
 import { usePathname }       from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
-import { ShoppingBag, Menu, X, Search, Heart } from 'lucide-react'
+import { ShoppingBag, Menu, X, Search, Heart, User } from 'lucide-react'
 import { NAV_ITEMS, ROUTES, BRAND }    from '@/lib/constants'
 import { cn }                          from '@/lib/utils'
 import { SearchOverlay }               from '@/components/search/SearchOverlay'
@@ -202,6 +202,15 @@ export function Navbar() {
               >
                 <Search size={20} strokeWidth={1.5} />
               </button>
+
+              {/* Account — desktop only */}
+              <Link
+                href="/account"
+                className="hidden md:block text-lp-ink hover:text-lp-gold transition-colors duration-200"
+                aria-label="My Account"
+              >
+                <User size={20} strokeWidth={1.5} />
+              </Link>
 
               {/* Wishlist */}
               <Link

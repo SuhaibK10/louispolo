@@ -141,11 +141,11 @@ export function ProductInfo({ product, defaultColor }: Props) {
             Size
             {!selectedSize && (
               <span className="text-[var(--color-lp-faint)] normal-case tracking-normal ml-2">
-                — please select
+                - Select the Size
               </span>
             )}
           </p>
-          {product.variants.some(v => v.sizes.some(s => s.size !== 'One Size')) && (
+          {product.category !== 'vanity' && product.variants.some(v => v.sizes.some(s => s.size !== 'One Size')) && (
             <button
               type="button"
               onClick={() => setSizeGuideOpen(true)}

@@ -79,7 +79,7 @@ export function ExhibitionGallery() {
         )}
       </div>
 
-      <div ref={containerRef} className="overflow-hidden w-full pt-4 md:pt-14">
+      <div ref={containerRef} className="overflow-hidden w-full pt-4 md:pt-7">
         <motion.div
           key={active.id}
           ref={trackRef}
@@ -94,7 +94,7 @@ export function ExhibitionGallery() {
           {active.photos.map((photo, i) => (
             <div
               key={`${photo.publicId}-${i}`}
-              className="relative flex-shrink-0 w-[84vw] sm:w-[68vw] md:w-[34vw] lg:w-[34rem] aspect-[3/4] bg-[var(--color-lp-cream)] overflow-hidden rounded-md"
+              className="relative flex-shrink-0 w-[84vw] sm:w-[68vw] md:w-[34vw] lg:w-[34rem] aspect-[3/4] lg:aspect-4/5 bg-[var(--color-lp-cream)] overflow-hidden rounded-md"
             >
               <Image
                 src={

@@ -85,13 +85,18 @@ export function ProductCard({ product }: ProductCardProps) {
         href={`${ROUTES.shop}/${product.slug}?color=${encodeURIComponent(variant.color)}`}
         className="relative block aspect-[3/4] overflow-hidden bg-[var(--color-lp-cream)] mb-3"
       >
-        <Image
-          src={cardUrl(displayImage) || PLACEHOLDER_URL}
-          alt={`${product.name} — ${variant.color}`}
-          fill
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
-        />
+        <div
+          className="absolute inset-0"
+          style={product.cardZoom ? { transform: `scale(${product.cardZoom})` } : undefined}
+        >
+          <Image
+            src={cardUrl(displayImage) || PLACEHOLDER_URL}
+            alt={`${product.name} — ${variant.color}`}
+            fill
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+            sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+          />
+        </div>
 
         {/* Tag */}
         {product.tag && (

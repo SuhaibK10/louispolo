@@ -32,7 +32,7 @@ const LEGAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] mt-0">
+    <footer className="bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] mt-0 pt-10 md:pt-14">
       <div className="container-lp py-14 md:py-16">
 
         {/* Top grid */}

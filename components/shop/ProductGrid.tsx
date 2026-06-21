@@ -85,7 +85,7 @@ export function ProductGrid() {
       {/* ── Product grid ──────────────────────────────────────────────── */}
       <motion.div
         layout
-        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-10 md:gap-x-6 md:gap-y-14"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-10 md:gap-x-6 md:gap-y-14"
       >
         <AnimatePresence mode="popLayout">
           {sorted.map((product) => (
