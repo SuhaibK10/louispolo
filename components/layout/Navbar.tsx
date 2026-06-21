@@ -99,10 +99,19 @@ export function Navbar() {
   // Close menu on route change
   useEffect(() => { setMenuOpen(false) }, [pathname])
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open (html + body for iOS Safari)
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
   }, [menuOpen])
 
   return (

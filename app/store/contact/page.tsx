@@ -4,6 +4,7 @@
 
 import type { Metadata } from 'next'
 import { BRAND }         from '@/lib/constants'
+import { ContactForm }   from '@/components/contact/ContactForm'
 
 export const metadata: Metadata = {
   title:       'Contact',
@@ -64,18 +65,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* RIGHT — response info */}
-            <div className="space-y-4">
-              <p className="font-body text-[var(--color-lp-ink)]">
-                We typically respond within 2 hours on WhatsApp.
-              </p>
-              <p className="font-body text-[var(--color-lp-ink)]">
-                For bulk orders or B2B enquiries, email us directly.
-              </p>
-              <p className="font-body text-sm text-[var(--color-lp-muted)]">
-                Monday – Saturday, 9 am – 7 pm IST.
-              </p>
-            </div>
+            {/* RIGHT — contact form */}
+            <ContactForm />
           </div>
         </div>
       </div>
