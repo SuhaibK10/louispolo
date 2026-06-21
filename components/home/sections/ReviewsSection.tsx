@@ -6,9 +6,9 @@
 // Replace placeholder copy with verified customer reviews before launch.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState }                          from 'react'
+import { useState, useEffect, useCallback }  from 'react'
 import { motion, AnimatePresence }           from 'framer-motion'
-import { Star, X }                           from 'lucide-react'
+import { Star, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image                                 from 'next/image'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 import { cld }                               from '@/lib/cloudinary'
@@ -33,38 +33,29 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'This Trolley looks really nice, and it is highly organizable too',
+    text:    'Really impressed with the build quality. The interior compartments are well thought out and everything stays in place during travel. Looks far more premium than the price suggests. Exactly what I was looking for.',
     photos:  ['WhatsApp_Image_2026-06-21_at_02.04.32_hfq8q4.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_1_i8ggxu.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_2_nl3wpv.jpg'] as string[],
   },
   {
-    name:    'Priya Nair',
-    city:    'Mumbai',
-    trip:    '',
-    product: '',
-    rating:  5,
-    text:    'Bought the Medium size for a 10-day Europe trip. Survived Heathrow, Charles de Gaulle, and two budget airline transfers without a single scratch. The lock held perfectly and the wheels are still silent. Worth every rupee.',
-    photos:  [] as string[],
-  },
-  {
-    name:    'Rohit Sharma',
+    name:    'Gurovind Sharma',
     city:    'Hyderabad',
     trip:    '',
-    product: '',
+    product: 'HexCore Office Bag',
     rating:  5,
-    text:    'I travel every week for work — Delhi, Pune, Chennai, repeat. This cabin bag has been with me for 4 months now and looks brand new. Fits overhead on IndiGo every single time. My colleagues have started asking which brand it is.',
-    photos:  [] as string[],
+    text:    'I travel every week for work — Delhi, Pune, Chennai, repeat. This laptop bag has been with me for 4 months now and looks brand new. Perfectly organised for my laptop and docs, and it handles daily commutes without a scratch.',
+    photos:  ['WhatsApp_Image_2026-06-21_at_11.59.32_vxakr3.jpg','WhatsApp_Image_2026-06-21_at_11.59.35_1_hmuoej.jpg','WhatsApp_Image_2026-06-21_at_11.59.34_tsxhuo.jpg','WhatsApp_Image_2026-06-21_at_11.59.33_sgoybw.jpg'] as string[],
   },
   {
-    name:    'Fatima Sheikh',
+    name:    'Adil Ali',
     city:    'Pune',
     trip:    '',
     product: '',
     rating:  5,
-    text:    'The colour options are what got me first, I ordered the Teal. But the quality is what kept me. Sturdy shell, smooth zip, great interior pockets. Honestly better than bags I have seen at double the price in malls.',
-    photos:  [] as string[],
+    text:    'Got this customised backpack from Louis Polo with my name engraved on it. The personalisation is clean and sharp. The bag itself feels solid and looks elegant — gets a lot of attention at the office.',
+    photos:  ['WhatsApp_Image_2026-06-21_at_11.59.22_1_zcuvhk.jpg','WhatsApp_Image_2026-06-21_at_11.59.22_pzqhxk.jpg'] as string[],
   },
   {
-    name:    'Karan Mehta',
+    name:    'Fatima Sheikh',
     city:    'Ahmedabad',
     trip:    '',
     product: '',
@@ -78,8 +69,17 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Finally a luggage brand from India that does not compromise on looks or build. The hard shell feels premium, the interior strap system is well thought out, and it rolls so smoothly. Took it to Bali and got compliments at the airport.',
-    photos:  [] as string[],
+    text:    'Clean design, smooth zippers, and the hard shell held up perfectly on my Goa trip. Looks far more expensive than it is. Really happy with the quality — will be ordering another colour soon.',
+    photos:  ['WhatsApp_Image_2026-06-21_at_11.59.27_unigr1.jpg'] as string[],
+  },
+  {
+    name:    'Arun Pillai',
+    city:    'Kochi',
+    trip:    '',
+    product: '',
+    rating:  5,
+    text:    'Picked this up as a gym and weekend bag. Roomy compartments, sturdy zippers, and it holds its shape well even when packed full. Looks great and feels built to last. Very happy with the purchase.',
+    photos:  ['WhatsApp_Image_2026-06-21_at_11.59.28_usgque.jpg'] as string[],
   },
 ]
 
@@ -98,7 +98,34 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+function Lightbox({
+  photos,
+  index,
+  reviewName,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  photos: string[]
+  index: number
+  reviewName: string
+  onClose: () => void
+  onPrev: () => void
+  onNext: () => void
+}) {
+  const src = cld(photos[index], 'f_auto,q_90,w_900,h_900,c_pad,b_rgb:F5F3ED')
+  const multi = photos.length > 1
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft')  onPrev()
+      if (e.key === 'ArrowRight') onNext()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose, onPrev, onNext])
+
   return (
     <AnimatePresence>
       <motion.div
@@ -126,12 +153,41 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
           onClick={(e) => e.stopPropagation()}
         >
           <Image
+            key={index}
             src={src}
-            alt={alt}
+            alt={`${reviewName} photo ${index + 1}`}
             fill
             className="object-contain"
             sizes="(max-width: 768px) 90vw, 448px"
           />
+
+          {multi && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); onPrev() }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/70 transition-colors"
+                aria-label="Previous"
+              >
+                <ChevronLeft size={18} strokeWidth={1.5} />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); onNext() }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/70 transition-colors"
+                aria-label="Next"
+              >
+                <ChevronRight size={18} strokeWidth={1.5} />
+              </button>
+
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {photos.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`block w-1.5 h-1.5 rounded-full transition-colors ${i === index ? 'bg-white' : 'bg-white/40'}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>
@@ -139,7 +195,12 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
 }
 
 export function ReviewsSection() {
-  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
+  const [lightbox, setLightbox] = useState<{ photos: string[]; index: number; reviewName: string } | null>(null)
+
+  const handlePrev = useCallback(() =>
+    setLightbox(lb => lb && { ...lb, index: (lb.index - 1 + lb.photos.length) % lb.photos.length }), [])
+  const handleNext = useCallback(() =>
+    setLightbox(lb => lb && { ...lb, index: (lb.index + 1) % lb.photos.length }), [])
 
   return (
     <>
@@ -195,18 +256,15 @@ export function ReviewsSection() {
                     {review.photos.map((pid, i) => (
                       <button
                         key={i}
-                        onClick={() => setLightbox({
-                          src: cld(pid, 'f_auto,q_90,w_900,h_900,c_pad,b_rgb:F5F3ED'),
-                          alt: `${review.name} photo ${i + 1}`,
-                        })}
-                        className="relative shrink-0 w-20 h-20 rounded-sm overflow-hidden bg-[var(--color-lp-porcelain)] cursor-zoom-in hover:opacity-90 transition-opacity"
+                        onClick={() => setLightbox({ photos: review.photos, index: i, reviewName: review.name })}
+                        className="relative shrink-0 w-24 h-24 rounded-sm overflow-hidden bg-[var(--color-lp-porcelain)] cursor-zoom-in hover:opacity-90 transition-opacity"
                       >
                         <Image
                           src={cld(pid, 'f_auto,q_80,w_200,h_200,c_pad,b_rgb:F5F3ED')}
                           alt={`${review.name} photo ${i + 1}`}
                           fill
                           className="object-contain"
-                          sizes="80px"
+                          sizes="96px"
                         />
                       </button>
                     ))}
@@ -231,9 +289,12 @@ export function ReviewsSection() {
       {/* Lightbox */}
       {lightbox && (
         <Lightbox
-          src={lightbox.src}
-          alt={lightbox.alt}
+          photos={lightbox.photos}
+          index={lightbox.index}
+          reviewName={lightbox.reviewName}
           onClose={() => setLightbox(null)}
+          onPrev={handlePrev}
+          onNext={handleNext}
         />
       )}
     </>
