@@ -36,7 +36,51 @@ const REVIEWS = [
     text:    'This Trolley looks really nice, and it is highly organizable too',
     photos:  ['WhatsApp_Image_2026-06-21_at_02.04.32_hfq8q4.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_1_i8ggxu.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_2_nl3wpv.jpg'] as string[],
   },
-  
+  {
+    name:    'Priya Nair',
+    city:    'Mumbai',
+    trip:    '',
+    product: '',
+    rating:  5,
+    text:    'Bought the Medium size for a 10-day Europe trip. Survived Heathrow, Charles de Gaulle, and two budget airline transfers without a single scratch. The lock held perfectly and the wheels are still silent. Worth every rupee.',
+    photos:  [] as string[],
+  },
+  {
+    name:    'Rohit Sharma',
+    city:    'Hyderabad',
+    trip:    '',
+    product: '',
+    rating:  5,
+    text:    'I travel every week for work — Delhi, Pune, Chennai, repeat. This cabin bag has been with me for 4 months now and looks brand new. Fits overhead on IndiGo every single time. My colleagues have started asking which brand it is.',
+    photos:  [] as string[],
+  },
+  {
+    name:    'Fatima Sheikh',
+    city:    'Pune',
+    trip:    '',
+    product: '',
+    rating:  5,
+    text:    'The colour options are what got me first, I ordered the Teal. But the quality is what kept me. Sturdy shell, smooth zip, great interior pockets. Honestly better than bags I have seen at double the price in malls.',
+    photos:  [] as string[],
+  },
+  {
+    name:    'Karan Mehta',
+    city:    'Ahmedabad',
+    trip:    '',
+    product: '',
+    rating:  5,
+    text:    'Gifted the Set of 3 to my parents for their Umrah trip. They were thrilled with how light yet strong the bags are. Checked in without any issues at Mumbai airport. A very thoughtful gift that actually performed.',
+    photos:  [] as string[],
+  },
+  {
+    name:    'Sneha Iyer',
+    city:    'Chennai',
+    trip:    '',
+    product: '',
+    rating:  5,
+    text:    'Finally a luggage brand from India that does not compromise on looks or build. The hard shell feels premium, the interior strap system is well thought out, and it rolls so smoothly. Took it to Bali and got compliments at the airport.',
+    photos:  [] as string[],
+  },
 ]
 
 function StarRating({ rating }: { rating: number }) {

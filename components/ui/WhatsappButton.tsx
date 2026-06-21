@@ -1,11 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BRAND } from '@/lib/constants'
 
 export function WhatsAppButton() {
   const [visible, setVisible] = useState(false)
+  const pathname = usePathname()
+
+  const isCheckout = pathname?.includes('/checkout')
 
   useEffect(() => {
     const hero = document.getElementById('hero-section')
@@ -23,6 +27,8 @@ export function WhatsAppButton() {
     observer.observe(hero)
     return () => observer.disconnect()
   }, [])
+
+  if (isCheckout) return null
 
   return (
     <AnimatePresence>

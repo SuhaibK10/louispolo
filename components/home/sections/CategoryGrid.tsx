@@ -110,7 +110,7 @@ export function CategoryGrid() {
             >
               <Link
                 href={`${ROUTES.shop}?category=${value}`}
-                className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border"
+                className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border rounded-xl"
               >
                 {/* Image */}
                 <Image

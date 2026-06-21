@@ -46,10 +46,10 @@ function StepIndicator({ current }: { current: Step }) {
   const currentIndex = STEP_ORDER.indexOf(current)
 
   return (
-    <div className="flex items-center gap-2 mb-10">
+    <div className="flex items-center gap-1.5 mb-10">
       {STEP_ORDER.map((step, i) => (
-        <div key={step} className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
+        <div key={step} className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5">
             <motion.div
               animate={{
                 backgroundColor: i <= currentIndex ? 'var(--color-lp-ink)' : 'var(--color-lp-border)',
@@ -62,15 +62,15 @@ function StepIndicator({ current }: { current: Step }) {
             <span
               className={
                 i === currentIndex
-                  ? 'font-body text-[0.75rem] tracking-[0.08em] uppercase text-[var(--color-lp-ink)]'
-                  : 'font-body text-[0.75rem] tracking-[0.08em] uppercase text-[var(--color-lp-faint)]'
+                  ? 'font-body text-[0.6rem] tracking-[0.04em] uppercase text-lp-ink'
+                  : 'font-body text-[0.6rem] tracking-[0.04em] uppercase text-lp-faint'
               }
             >
               {labels[step]}
             </span>
           </div>
           {i < STEP_ORDER.length - 1 && (
-            <div className="w-8 h-px bg-[var(--color-lp-border)] mx-1" />
+            <div className="w-5 h-px bg-[var(--color-lp-border)]" />
           )}
         </div>
       ))}
