@@ -382,9 +382,26 @@ header {
   -webkit-backface-visibility: hidden;
 }
 
-/* ─── Mobile bottom nav: explicit dimensions for reliable initial paint ───── */
+/* ─── Mobile bottom nav safe area ────────────────────────────────────────── */
+/* Base: clear the home indicator on Face ID iPhones */
 .mobile-nav-bar {
-  height: 56px;
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+/* iOS Safari: env(safe-area-inset-bottom) only covers the home indicator (~34px),
+   NOT the Safari compact tab bar (~50px above it). Add 50px extra on iOS only. */
+@supports (-webkit-touch-callout: none) {
+  .mobile-nav-bar {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px);
+  }
+}
+
+/* Spacer that matches the nav height so page content doesn't hide behind it */
+.mobile-nav-spacer {
+  height: calc(54px + env(safe-area-inset-bottom, 0px));
+}
+@supports (-webkit-touch-callout: none) {
+  .mobile-nav-spacer {
+    height: calc(54px + env(safe-area-inset-bottom, 0px) + 50px);
+  }
 }
 

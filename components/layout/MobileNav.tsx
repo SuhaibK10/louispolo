@@ -67,7 +67,7 @@ export function MobileNav() {
     : 'text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)]'
 
   return (
-   <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-t border-[var(--color-lp-border)]" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) * 0.1)' }}>
+   <nav className="mobile-nav-bar lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-t border-[var(--color-lp-border)]">
       <div className="flex items-center h-[54px]">
         {NAV.map(({ label, href, icon: Icon }) => {
           const isActive = href === ROUTES.home

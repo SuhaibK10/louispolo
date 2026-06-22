@@ -21,9 +21,9 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
       <Footer />
       {/* Mobile bottom nav — hidden on md+ via CSS */}
       <MobileNav />
-      {/* Spacer so content isn't hidden behind mobile nav */}
+      {/* Spacer so content isn't hidden behind mobile nav — matches nav height + safe area */}
       <WhatsAppButton />
-      <div className="h-[56px] md:hidden" aria-hidden="true" />
+      <div className="mobile-nav-spacer lg:hidden" aria-hidden="true" />
     </>
   )
 }

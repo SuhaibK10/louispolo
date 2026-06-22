@@ -141,15 +141,15 @@ export function Navbar() {
               {/* Hamburger — mobile only */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="md:hidden text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors"
+                className="lg:hidden text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors"
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               >
                 {menuOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
               </button>
 
-              {/* Desktop nav links */}
-              <nav className="hidden md:flex items-center gap-8">
-                {NAV_ITEMS.map(({ label, href }) => (
+              {/* Desktop nav links — left of logo (Home, Shop, About) */}
+              <nav className="hidden lg:flex items-center gap-8">
+                {NAV_ITEMS.filter(({ label }) => label !== 'Contact').map(({ label, href }) => (
                   <Link
                     key={href}
                     href={href}
@@ -165,12 +165,6 @@ export function Navbar() {
                     {label}
                   </Link>
                 ))}
-                <button
-                  onClick={() => setCorpOpen(true)}
-                  className="relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)]"
-                >
-                  Corporate Enquiry
-                </button>
               </nav>
             </div>
 
@@ -191,8 +185,16 @@ export function Navbar() {
                   />
             </Link>
 
-            {/* ── Right: Search + Cart ───────────────────────────────────── */}
+            {/* ── Right: Contact + Corporate Enquiry + icons ────────────── */}
             <div className="flex items-center gap-4 flex-1 justify-end">
+
+              {/* Corporate Enquiry — desktop only */}
+              <button
+                onClick={() => setCorpOpen(true)}
+                className="hidden lg:block relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)]"
+              >
+                Corporate Enquiry
+              </button>
 
               {/* Search */}
               <button
@@ -206,7 +208,7 @@ export function Navbar() {
               {/* Account — desktop only */}
               <Link
                 href="/account"
-                className="hidden md:block text-lp-ink hover:text-lp-gold transition-colors duration-200"
+                className="hidden lg:block text-lp-ink hover:text-lp-gold transition-colors duration-200"
                 aria-label="My Account"
               >
                 <User size={20} strokeWidth={1.5} />
@@ -266,7 +268,7 @@ export function Navbar() {
             className="fixed inset-0 z-40 bg-[var(--color-lp-porcelain)] flex flex-col pt-16"
           >
             {/* Nav links */}
-            <nav className="flex-1 flex flex-col justify-center px-8 gap-1">
+            <nav className="flex-1 flex flex-col justify-start pt-8 px-8 gap-1">
               {NAV_ITEMS.map(({ label, href }, i) => (
                 <motion.div
                   key={href}
@@ -280,7 +282,7 @@ export function Navbar() {
                     onClick={() => setMenuOpen(false)}
                     className="block py-4 border-b border-[var(--color-lp-border)]"
                   >
-                    <span className="font-display text-[2.25rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
+                    <span className="font-display text-[1.5rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
                       {label}
                     </span>
                   </Link>
@@ -298,7 +300,7 @@ export function Navbar() {
                   onClick={() => { setMenuOpen(false); setCorpOpen(true) }}
                   className="block w-full text-left py-4 border-b border-[var(--color-lp-border)]"
                 >
-                  <span className="font-display text-[2.25rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
+                  <span className="font-display text-[1.5rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
                     Corporate Enquiry
                   </span>
                 </button>
