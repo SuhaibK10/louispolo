@@ -22,11 +22,13 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'hero12_h3ptde.jpg',
     headline:  'Every Trip, Covered',
+    desktopImage: 'desk5_Large_j2ydg3.jpg',
     textStyle: 'shadow',
   },
   {
     image:       'hero123_qezgc2.jpg',
     headline:    'Bold in Every Color',
+    desktopImage: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1782121136/desk2_Large_rzdeg8.jpg',
     textStyle:   'teal',
     textOffset:  1,
   },
@@ -49,6 +51,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'heroLast_dkzwim.jpg',
     headline:  'Stop Scrolling. Start Buying.',
+    desktopImage: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1782121135/desk1_Large_yhjrpo.jpg',
     textStyle: 'shadow',
     textSize:  'lg',
   },

@@ -52,7 +52,6 @@ export function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(true)
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
-
   const next = useCallback(() => {
     setCurrent((c) => (c + 1) % HERO_SLIDES.length)
   }, [])
@@ -122,9 +121,9 @@ export function HeroSection() {
                 className="object-cover object-center block md:hidden"
                 sizes="(max-width: 767px) 100vw, 1px"
               />
-              {/* Desktop: 16:9 landscape crop — hidden below md */}
+              {/* Desktop: separate 16:9 image if provided, else same image with landscape crop */}
               <Image
-                src={heroUrl(slide.image) || PLACEHOLDER_URL}
+                src={heroUrl(slide.desktopImage ?? slide.image) || PLACEHOLDER_URL}
                 alt={slide.headline ?? 'Louis Polo luggage'}
                 fill
                 priority={current === 0}

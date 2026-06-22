@@ -84,7 +84,8 @@ export interface CategoryChip {
 }
 
 export interface HeroSlide {
-  image: string
+  image: string          // mobile (9:16 portrait)
+  desktopImage?: string  // desktop (16:9 landscape) — falls back to image if omitted
   headline?: string
   subline?: string
   isVideo?: boolean

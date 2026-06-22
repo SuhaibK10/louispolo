@@ -6,7 +6,7 @@
 // Clicking navigates to PDP. Color/size is passed as query param.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState, useEffect }      from 'react'
+import { useState, useEffect } from 'react'
 import Image                        from 'next/image'
 import Link                         from 'next/link'
 import { motion }                   from 'framer-motion'
@@ -69,7 +69,7 @@ export function ProductCard({ product }: ProductCardProps) {
     })
 
     setAddedToCart(true)
-    setTimeout(() => setAddedToCart(false), 2000)
+    setTimeout(() => setAddedToCart(false), 7000)
   }
 
   return (
@@ -217,32 +217,40 @@ export function ProductCard({ product }: ProductCardProps) {
         </p>
 
         {/* Add to cart */}
+        {addedToCart ? (
+          <div className="flex gap-1.5 mt-2">
+            <Link
+              href={ROUTES.cart}
+              className="btn-ghost flex-1 justify-center"
+              style={{ height: '36px' }}
+            >
+              Go to Cart
+            </Link>
+            <Link
+              href="/store/checkout"
+              className="btn-gold flex-1 justify-center"
+              style={{ height: '36px' }}
+            >
+              Checkout
+            </Link>
+          </div>
+        ) : (
         <motion.button
           type="button"
           onClick={handleAddToCart}
           disabled={!canAdd}
           className={
             canAdd
-              ? addedToCart
-                ? 'btn-gold w-full justify-center mt-2'
-                : 'btn-ghost w-full justify-center mt-2'
+              ? 'btn-ghost w-full justify-center mt-2'
               : 'btn-ghost w-full justify-center opacity-40 cursor-not-allowed mt-2'
           }
           style={{ height: '36px' }}
           whileTap={canAdd ? { scale: 0.97 } : {}}
         >
-          {addedToCart ? (
-            <>
-              <Check size={22} strokeWidth={2} style={{ flexShrink: 0 }} />
-              Added
-            </>
-          ) : (
-            <>
-              {activeSize && <ShoppingBag size={22} strokeWidth={1.5} style={{ flexShrink: 0 }} />}
-              {!activeSize ? 'Select Color & Size' : 'Add to cart'}
-            </>
-          )}
+          {activeSize && <ShoppingBag size={22} strokeWidth={1.5} style={{ flexShrink: 0 }} />}
+          {!activeSize ? 'Select Color & Size' : 'Add to cart'}
         </motion.button>
+        )}
       </div>
 
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />

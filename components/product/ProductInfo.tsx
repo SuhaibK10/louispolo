@@ -70,7 +70,7 @@ export function ProductInfo({ product, defaultColor }: Props) {
     })
 
     setAddedToCart(true)
-    setTimeout(() => setAddedToCart(false), 2200)
+    setTimeout(() => setAddedToCart(false), 7000)
   }
 
   return (
@@ -184,30 +184,36 @@ export function ProductInfo({ product, defaultColor }: Props) {
 
       {/* ── Add to cart + Wishlist ─────────────────────────────────────── */}
       <div className="flex gap-3">
+        {addedToCart ? (
+          <>
+            <a
+              href={ROUTES.cart}
+              className="btn-ghost flex-1 justify-center"
+            >
+              Go to Cart
+            </a>
+            <a
+              href="/store/checkout"
+              className="btn-gold flex-1 justify-center"
+            >
+              Checkout
+            </a>
+          </>
+        ) : (
         <motion.button
           onClick={handleAddToCart}
           disabled={!canAdd}
           className={
             canAdd
-              ? addedToCart
-                ? 'btn-gold flex-1 justify-center'
-                : 'btn-primary flex-1 justify-center'
+              ? 'btn-primary flex-1 justify-center'
               : 'btn-primary flex-1 justify-center opacity-40 cursor-not-allowed'
           }
           whileTap={canAdd ? { scale: 0.97 } : {}}
         >
-          {addedToCart ? (
-            <>
-              <Check size={16} strokeWidth={2} />
-              Added to cart
-            </>
-          ) : (
-            <>
-              <ShoppingBag size={16} strokeWidth={1.5} />
-              {!selectedSize ? 'Select Color & Size' : 'Add to cart'}
-            </>
-          )}
+          <ShoppingBag size={16} strokeWidth={1.5} />
+          {!selectedSize ? 'Select Color & Size' : 'Add to cart'}
         </motion.button>
+        )}
 
         {/* Wishlist */}
         <motion.button

@@ -11,7 +11,7 @@ import { createPortal }                      from 'react-dom'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
-import { ArrowRight, ShoppingBag, Check, Ruler } from 'lucide-react'
+import { ArrowRight, ShoppingBag, Ruler } from 'lucide-react'
 import type { ProductSize }                  from '@/types'
 import { FEATURED_PRODUCTS }                 from '@/config/products'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
@@ -64,7 +64,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
     })
 
     setAddedToCart(true)
-    setTimeout(() => setAddedToCart(false), 2000)
+    setTimeout(() => setAddedToCart(false), 7000)
   }
 
   return (
@@ -183,32 +183,40 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         </p>
 
         {/* Add to cart */}
-        <motion.button
-          type="button"
-          onClick={handleAddToCart}
-          disabled={!canAdd}
-          className={
-            canAdd
-              ? addedToCart
-                ? 'btn-gold w-3/4 justify-center mt-2'
-                : 'btn-ghost w-3/4 justify-center mt-2'
-              : 'btn-ghost w-3/4 justify-center opacity-40 cursor-not-allowed mt-2'
-          }
-          style={{ height: '36px' }}
-          whileTap={canAdd ? { scale: 0.97 } : {}}
-        >
-          {addedToCart ? (
-            <>
-              <Check size={16} strokeWidth={2} />
-              Added
-            </>
-          ) : (
-            <>
-              <ShoppingBag size={16} strokeWidth={1.5} />
-              {!activeSize ? 'Select Color & Size' : 'Add to cart'}
-            </>
-          )}
-        </motion.button>
+        {addedToCart ? (
+          <div className="flex gap-1.5 mt-2">
+            <Link
+              href={ROUTES.cart}
+              className="btn-ghost flex-1 justify-center"
+              style={{ height: '36px' }}
+            >
+              Go to Cart
+            </Link>
+            <Link
+              href="/store/checkout"
+              className="btn-gold flex-1 justify-center"
+              style={{ height: '36px' }}
+            >
+              Checkout
+            </Link>
+          </div>
+        ) : (
+          <motion.button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={!canAdd}
+            className={
+              canAdd
+                ? 'btn-ghost w-3/4 justify-center mt-2'
+                : 'btn-ghost w-3/4 justify-center opacity-40 cursor-not-allowed mt-2'
+            }
+            style={{ height: '36px' }}
+            whileTap={canAdd ? { scale: 0.97 } : {}}
+          >
+            <ShoppingBag size={16} strokeWidth={1.5} />
+            {!activeSize ? 'Select Color & Size' : 'Add to cart'}
+          </motion.button>
+        )}
       </div>
 
       {sizeGuideOpen && createPortal(
