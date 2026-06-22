@@ -9,7 +9,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
       {children}
       <MobileNav />
       <WhatsAppButton />
-      <div className="h-[56px] md:hidden" aria-hidden="true" />
+      <div className="mobile-nav-spacer lg:hidden" aria-hidden="true" />
     </>
   )
 }
