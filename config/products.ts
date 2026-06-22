@@ -22,7 +22,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'hero12_h3ptde.jpg',
     headline:  'Every Trip, Covered',
-    desktopImage: 'desk5_Large_j2ydg3.jpg',
+    desktopImage: 'desk5_w5zevy.jpg',
     textStyle: 'shadow',
   },
   {
@@ -35,8 +35,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:        'duffle_kgw8qx.jpg',
     headline:     'Less Bag, More Swag',
-    desktopImage: 'desk2_Large_rzdeg8.jpg',
-    textStyle:    'light',
+    desktopImage: 'desk2_cu4kp5.jpg',
+    textStyle:    'shadow',
     textPosition: 'top',
   },
   
@@ -53,7 +53,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'heroLast_dkzwim.jpg',
     headline:  'Stop Scrolling. Start Buying.',
-    desktopImage: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1782121135/desk1_Large_yhjrpo.jpg',
+    desktopImage: 'desk1_Large_yhjrpo.jpg',
     textStyle: 'shadow',
     textSize:  'lg',
   },
