@@ -15,7 +15,7 @@ export const BRAND = {
 } as const
 
 export const ROUTES = {
-  home:     '/',
+  home:     '/store',
   shop:     '/store/shop',
   cart:     '/store/cart',
   wishlist: '/store/wishlist',
