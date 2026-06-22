@@ -9,7 +9,7 @@ export function WhatsAppButton() {
   const [visible, setVisible] = useState(false)
   const pathname = usePathname()
 
-  const isCheckout = pathname?.includes('/checkout')
+  const isHidden = pathname?.includes('/checkout') || pathname?.includes('/cart')
 
   useEffect(() => {
     const hero = document.getElementById('hero-section')
@@ -28,7 +28,7 @@ export function WhatsAppButton() {
     return () => observer.disconnect()
   }, [])
 
-  if (isCheckout) return null
+  if (isHidden) return null
 
   return (
     <AnimatePresence>
@@ -45,7 +45,7 @@ export function WhatsAppButton() {
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="fixed bottom-18 right-4 md:bottom-8 md:right-6 z-50 w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center"
+          className="whatsapp-fixed fixed bottom-18 right-4 md:bottom-8 md:right-6 z-50 w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center"
           style={{ boxShadow: '0 0 0 2px var(--color-lp-ink), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}
         >
       <svg

@@ -100,17 +100,21 @@ export function Navbar() {
   useEffect(() => { setMenuOpen(false) }, [pathname])
 
   // Lock body scroll when mobile menu is open (html + body for iOS Safari)
+  // Also toggle a class used to hide the WhatsApp button behind the menu
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
       document.documentElement.style.overflow = 'hidden'
+      document.body.classList.add('menu-open')
     } else {
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
+      document.body.classList.remove('menu-open')
     }
     return () => {
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
+      document.body.classList.remove('menu-open')
     }
   }, [menuOpen])
 
