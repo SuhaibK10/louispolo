@@ -21,13 +21,12 @@ const SHOP_LINKS = [
 const COMPANY_LINKS = [
   { label: 'About Us',        href: ROUTES.about },
   { label: 'Contact',         href: ROUTES.contact },
-  { label: 'Track Order',     href: '/orders' },
 ]
 
 const LEGAL_LINKS = [
-  { label: 'Privacy Policy',  href: '/privacy' },
-  { label: 'Refund Policy',   href: '/refund-policy' },
-  { label: 'Terms of Use',    href: '/terms' },
+  { label: 'Privacy Policy',  href: '/store/privacy' },
+  { label: 'Refund Policy',   href: '/store/refund-policy' },
+  { label: 'Terms of Use',    href: '/store/terms' },
 ]
 
 export function Footer() {

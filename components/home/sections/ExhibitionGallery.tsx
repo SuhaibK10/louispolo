@@ -99,11 +99,12 @@ export function ExhibitionGallery() {
               <Image
                 src={
                   photo.fit === 'pad'
-                    ? cld(photo.publicId, 'f_auto,q_auto,w_1050,h_1400,c_pad,b_rgb:1A1714')
+                    ? cld(photo.publicId, 'f_auto,q_auto,w_1600,h_2133,c_pad,b_rgb:1A1714')
                     : expoUrl(photo.publicId) || PLACEHOLDER_URL
                 }
                 alt={photo.alt}
                 fill
+                priority={i === 0}
                 draggable="false"
                 className={photo.fit === 'pad' ? 'object-contain' : 'object-cover object-center'}
                 sizes="(max-width:768px) 92vw, (max-width:1024px) 46vw, 34rem"

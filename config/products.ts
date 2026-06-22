@@ -28,13 +28,14 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:       'hero123_qezgc2.jpg',
     headline:    'Bold in Every Color',
-    desktopImage: 'https://res.cloudinary.com/dpepctqdj/image/upload/v1782121136/desk2_Large_rzdeg8.jpg',
+    desktopImage: 'deskt_hpz4fe.jpg',
     textStyle:   'teal',
     textOffset:  1,
   },
   {
     image:        'duffle_kgw8qx.jpg',
     headline:     'Less Bag, More Swag',
+    desktopImage: 'desk2_Large_rzdeg8.jpg',
     textStyle:    'light',
     textPosition: 'top',
   },

@@ -53,9 +53,9 @@ export const thumbUrl = (id: string) =>
 export const mobileCardUrl = (id: string) =>
   cld(id, 'f_auto,q_75,w_400,h_533,c_fill,g_auto')
 
-// Exhibition / trade show gallery — landscape crop, content-aware gravity
+// Exhibition / trade show gallery — content-aware crop, wide enough for retina desktop
 export const expoUrl = (id: string) =>
-   cld(id, 'f_auto,q_auto,w_1050,h_1400,c_fill,g_auto')
+   cld(id, 'f_auto,q_auto,w_1600,h_2133,c_fill,g_auto')
 
 // Placeholder for when no image is uploaded yet
 export const PLACEHOLDER_URL = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800' fill='%23F0EDE6'%3E%3Crect width='600' height='800'/%3E%3Ctext x='50%25' y='50%25' font-family='serif' font-size='48' fill='%23C9A96E' text-anchor='middle' dominant-baseline='middle'%3ELP%3C/text%3E%3C/svg%3E`

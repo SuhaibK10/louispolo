@@ -326,6 +326,40 @@
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* ── Legal / long-form prose ── */
+  .prose-lp {
+    color: var(--color-lp-ink);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+  }
+  .prose-lp section { margin-bottom: 3.5rem; }
+  .prose-lp h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--color-lp-ink);
+    margin-bottom: 1rem;
+    font-variation-settings: 'WONK' 0;
+  }
+  .prose-lp p { margin-bottom: 1.25rem; color: var(--color-lp-muted); }
+  .prose-lp p:last-child { margin-bottom: 0; }
+  .prose-lp ul, .prose-lp ol {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-lp-muted);
+  }
+  .prose-lp li { margin-bottom: 0.6rem; }
+  .prose-lp strong { color: var(--color-lp-ink); font-weight: 500; }
+  .prose-lp a {
+    color: var(--color-lp-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-lp a:hover { color: var(--color-lp-gold-light); }
 }
 
 /* ─── Marquee animation ───────────────────────────────────────────────────── */
