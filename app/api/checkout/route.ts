@@ -53,6 +53,13 @@ interface CheckoutRequestBody {
 }
 
 export async function POST(request: NextRequest) {
+  console.log('[ENV CHECK]', {
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL?.slice(0, 30),
+    anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.slice(0, 10),
+    serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY?.slice(0, 10),
+    razorpayId: process.env.RAZORPAY_KEY_ID?.slice(0, 10),
+    resendKey: process.env.RESEND_API_KEY?.slice(0, 10),
+  })
   const supabase = await createClient()
 
   // ── Auth check — now informational, not a hard gate ─────────────────────
