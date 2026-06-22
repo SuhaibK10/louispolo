@@ -51,7 +51,7 @@ const REVIEWS = [
     trip:    '',
     product: '',
     rating:  5,
-    text:    'Bought this custamised backpack from Louis Polo, Engraived my name on it, The backpack looks solid and elegant',
+    text:    'Bought this customised backpack from Louis Polo, Engraived my name on it, The backpack looks solid and elegant',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.22_1_zcuvhk.jpg','WhatsApp_Image_2026-06-21_at_11.59.22_pzqhxk.jpg'] as string[],
   },
   {
