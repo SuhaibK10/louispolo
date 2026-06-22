@@ -45,6 +45,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:        'Generated_Image_June_19_2026_-_2_36AM_r9titc.jpg',
     headline:     'The Showstopper: AeroSmart 3in1',
+    desktopImage: 'Generated_Image_June_22_2026_-_8_19PM_infm85.jpg',
     textStyle:    'light',
     textSize:     'lg',
     textPosition: 'top',
