@@ -15,7 +15,7 @@ import './globals.css'
 // Display serif — editorial character, used for all headings
 const fraunces = Fraunces({
   subsets:  ['latin'],
-  axes:     ['opsz'],         // optical size axis — avoid explicit weight array
+  axes:     ['opsz', 'WONK'], // opsz = optical size; WONK = disable wonky glyphs
   variable: '--font-fraunces',
   display:  'swap',
 })

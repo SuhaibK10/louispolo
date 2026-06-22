@@ -66,7 +66,7 @@ export function ExhibitionGallery() {
                 key={ex.id}
                 onClick={() => setActiveId(ex.id)}
                 className={cn(
-                  'font-body text-[0.7rem] tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-200',
+                  'font-body text-[0.7rem] tracking-[0.1em] uppercase px-4 py-2 border rounded-sm transition-all duration-200',
                   ex.id === active.id
                     ? 'bg-lp-gold text-lp-ink border-lp-gold'
                     : 'bg-transparent text-lp-porcelain/50 border-lp-porcelain/20 hover:border-lp-porcelain hover:text-lp-porcelain'

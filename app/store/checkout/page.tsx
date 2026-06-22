@@ -275,7 +275,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="pt-16 md:pt-[4.5rem]">
-      <div className="container-lp section-pad max-w-[42rem]">
+      <div className="container-lp section-pad pt-6! md:pt-8! max-w-[42rem]">
         <Link
           href={ROUTES.cart}
           className="flex items-center gap-1 font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200 mb-6"
