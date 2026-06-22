@@ -42,7 +42,7 @@ const REVIEWS = [
     trip:    '',
     product: 'HexCore Office Bag',
     rating:  5,
-    text:    'I travel every week for work — Delhi, Pune, Chennai, repeat. This laptop bag has been with me for 4 months now and looks brand new. Highly oranizable for my laptop and docs.',
+    text:    'I travel every week for work to Delhi, Pune, Chennai, repeat. This laptop bag has been with me for 4 months now and looks brand new. Highly oranizable for my laptop and docs.',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.32_vxakr3.jpg','WhatsApp_Image_2026-06-21_at_11.59.35_1_hmuoej.jpg','WhatsApp_Image_2026-06-21_at_11.59.34_tsxhuo.jpg','WhatsApp_Image_2026-06-21_at_11.59.33_sgoybw.jpg'] as string[],
   },
   {
