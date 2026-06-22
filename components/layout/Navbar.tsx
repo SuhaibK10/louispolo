@@ -145,7 +145,7 @@ export function Navbar() {
               {/* Hamburger — mobile only */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="lg:hidden text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors"
+                className="lg:hidden -m-2 p-2 text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors"
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               >
                 {menuOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
@@ -203,7 +203,7 @@ export function Navbar() {
               {/* Search */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                className="-m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
                 aria-label="Search products (⌘K)"
               >
                 <Search size={20} strokeWidth={1.5} />
@@ -212,7 +212,7 @@ export function Navbar() {
               {/* Account — desktop only */}
               <Link
                 href="/account"
-                className="hidden lg:block text-lp-ink hover:text-lp-gold transition-colors duration-200"
+                className="hidden lg:block -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
                 aria-label="My Account"
               >
                 <User size={20} strokeWidth={1.5} />
@@ -221,7 +221,7 @@ export function Navbar() {
               {/* Wishlist */}
               <Link
                 href={ROUTES.wishlist}
-                className="relative text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                className="relative -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
                 aria-label={`Wishlist — ${wishlistCount} items`}
               >
                 <Heart size={20} strokeWidth={1.5} />
@@ -240,7 +240,7 @@ export function Navbar() {
               {/* Cart */}
               <Link
                 href={ROUTES.cart}
-                className="relative text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                className="relative -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
                 aria-label={`Cart — ${cartCount} items`}
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />

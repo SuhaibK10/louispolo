@@ -389,11 +389,11 @@ body.menu-open .whatsapp-fixed {
 
 /* ─── Mobile bottom nav safe area ────────────────────────────────────────── */
 .mobile-nav-bar {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-bottom: max(0px, calc(env(safe-area-inset-bottom, 0px) - 8px));
 }
 
 /* Spacer that matches the nav height so page content doesn't hide behind it */
 .mobile-nav-spacer {
-  height: calc(54px + env(safe-area-inset-bottom, 0px));
+  height: calc(54px + max(0px, calc(env(safe-area-inset-bottom, 0px) - 8px)));
 }
 

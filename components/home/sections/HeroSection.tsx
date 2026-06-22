@@ -85,8 +85,7 @@ export function HeroSection() {
     <section
       id="hero-section"
       className="relative h-[82svh] md:h-[90vh] md:min-h-150 md:max-h-240 overflow-hidden"
-      onMouseEnter={() => setIsPlaying(false)}
-      onMouseLeave={() => setIsPlaying(true)}
+      onClick={() => setIsPlaying(p => !p)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
