@@ -98,10 +98,10 @@ export default function ShopPage() {
         <div className="container-lp">
           <div className="flex flex-wrap items-center justify-center md:justify-between gap-x-6 gap-y-2 py-3.5">
             {[
+              { icon: '⭐', text: '2.47L sold · 4.8★' },
               { icon: '🚚', text: 'Free shipping' },
               { icon: '🛡️', text: '2-year warranty' },
               { icon: '🧳', text: 'ABS & Polycarbonate' },
-              { icon: '⚙️', text: 'Spinner wheels' },
               { icon: '🔒', text: 'TSA-approved lock' },
             ].map(({ icon, text }) => (
               <div key={text} className="flex items-center gap-1.5">
