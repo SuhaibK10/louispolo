@@ -152,7 +152,8 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         {/* Size chips */}
-        <div className="flex flex-wrap gap-1 pt-0.5">
+        <div className="flex items-center justify-between gap-1 pt-0.5">
+          <div className="flex flex-wrap gap-1">
           {variant.sizes.map(({ size, stock }) => {
             const outOfStock = stock === 0
             const isSelected = activeSize === size
@@ -179,6 +180,13 @@ export function ProductCard({ product }: ProductCardProps) {
               </button>
             )
           })}
+          </div>
+          <span className="font-body text-[0.58rem] tracking-[0.06em] text-lp-muted leading-none shrink-0">
+            {variant.color}
+            {variant.accentColor && (
+              <span className="text-lp-faint"> | {variant.accentColor}</span>
+            )}
+          </span>
         </div>
 
         {/* Color swatches + Size Guide */}

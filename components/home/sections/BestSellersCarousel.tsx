@@ -150,33 +150,41 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         </div>
 
         {/* Size chips */}
-        <div className="flex flex-wrap gap-1 pt-0.5">
-          {variant.sizes.map(({ size, stock }) => {
-            const outOfStock = stock === 0
-            const isSelected = activeSize === size
-            return (
-              <button
-                key={size}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  if (!outOfStock) setActiveSize(size)
-                }}
-                disabled={outOfStock}
-                className={
-                  outOfStock
-                    ? 'relative font-body text-[0.68rem] px-2.5 py-1 border border-[var(--color-lp-border)] text-[var(--color-lp-faint)] opacity-50 cursor-not-allowed line-through'
-                    : isSelected
-                    ? 'font-body text-[0.68rem] px-2.5 py-1 border bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)] border-[var(--color-lp-ink)]'
-                    : 'font-body text-[0.68rem] px-2.5 py-1 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
-                }
-                aria-pressed={isSelected}
-                aria-label={outOfStock ? `${size} — out of stock` : size}
-              >
-                {size}
-              </button>
-            )
-          })}
+        <div className="flex items-center justify-between gap-1 pt-0.5">
+          <div className="flex flex-wrap gap-1">
+            {variant.sizes.map(({ size, stock }) => {
+              const outOfStock = stock === 0
+              const isSelected = activeSize === size
+              return (
+                <button
+                  key={size}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (!outOfStock) setActiveSize(size)
+                  }}
+                  disabled={outOfStock}
+                  className={
+                    outOfStock
+                      ? 'relative font-body text-[0.68rem] px-2.5 py-1 border border-lp-border text-lp-faint opacity-50 cursor-not-allowed line-through'
+                      : isSelected
+                      ? 'font-body text-[0.68rem] px-2.5 py-1 border bg-lp-ink text-lp-porcelain border-lp-ink'
+                      : 'font-body text-[0.68rem] px-2.5 py-1 border border-lp-border text-lp-muted hover:border-lp-ink transition-colors duration-200'
+                  }
+                  aria-pressed={isSelected}
+                  aria-label={outOfStock ? `${size} — out of stock` : size}
+                >
+                  {size}
+                </button>
+              )
+            })}
+          </div>
+          <span className="font-body text-[0.58rem] tracking-[0.06em] text-lp-muted leading-none shrink-0">
+            {variant.color}
+            {variant.accentColor && (
+              <span className="text-lp-faint"> | {variant.accentColor}</span>
+            )}
+          </span>
         </div>
 
         {/* Price */}

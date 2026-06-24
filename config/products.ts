@@ -131,6 +131,7 @@ export const PRODUCTS: Product[] = [
     images: [
       'IMG_2853_Background_Removed_bezyzs',
       '1C6A9363_Large_Background_Removed_ajflwe.png',
+      '1-9_Background_Removed_q3kvwv.png',
       
     ],
     features: [
@@ -156,6 +157,15 @@ export const PRODUCTS: Product[] = [
           { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840346' },
           { size: 'Medium', price: 10649, stock: 40, sku: '8906206840339' },
           { size: 'Large', price: 12550, stock: 30, sku: '8906206840322' },
+        ],
+      },
+      {
+        color: 'Midnight Blue',
+        colorHex: '#586483',
+        sizes: [
+          { size: 'Cabin', price: 9099, stock: 50 },
+          { size: 'Medium', price: 10649, stock: 40 },
+          { size: 'Large', price: 12550, stock: 30 },
         ],
       },
     ],
