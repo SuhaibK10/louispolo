@@ -30,7 +30,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
   const [addedToCart,    setAddedToCart]    = useState(false)
   const [sizeGuideOpen,  setSizeGuideOpen]  = useState(false)
 
-  const hasStandardSizes = product.variants.some(v => v.sizes.some(s => s.size !== 'One Size'))
+  const hasStandardSizes = !product.hideSizeGuide && product.variants.some(v => v.sizes.some(s => s.size !== 'One Size'))
 
   const variant      = product.variants[activeVariant]
   const displayImage = product.images[activeVariant] ?? product.images[0]
@@ -120,7 +120,9 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
                 title={v.color}
                 className="w-4 h-4 rounded-full transition-all duration-200 flex-shrink-0"
                 style={{
-                  backgroundColor: v.colorHex,
+                  background: v.bodyHex
+                    ? `linear-gradient(135deg, ${v.bodyHex} 60%, ${v.colorHex} 60%)`
+                    : v.colorHex,
                   boxShadow: i === activeVariant
                     ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
                     : '0 0 0 1px var(--color-lp-border)',

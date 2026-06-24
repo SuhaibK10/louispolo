@@ -36,8 +36,11 @@ export interface SizeOption {
 
 export interface ColorVariant {
   color: string
-  colorHex: string
+  colorHex: string      // accent / zipper color
+  bodyHex?: string      // main shell / body color
+  accentColor?: string  // accent / zipper color name (shown alongside color)
   sizes: SizeOption[]
+  lowStock?: boolean
 }
 
 export interface Product {
@@ -52,6 +55,7 @@ export interface Product {
   // e.g. "louispolo/products/aerosmart/aerosmart-red-1"
   images: string[]
   cardZoom?: number       // e.g. 1.3 = zoom in 30% on shop listing card
+  hideSizeGuide?: boolean
   features: ProductFeature[]
   variants: ColorVariant[]
 }

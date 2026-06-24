@@ -14,11 +14,16 @@ import { pdpUrl, thumbUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 interface Props {
   images: string[]
   productName: string
+  activeColorIndex?: number
 }
 
-export function ImageGallery({ images, productName }: Props) {
-  const [active, setActive]           = useState(0)
+export function ImageGallery({ images, productName, activeColorIndex }: Props) {
+  const [active, setActive]           = useState(activeColorIndex ?? 0)
   const [imageLoaded, setImageLoaded] = useState(false)
+
+  useEffect(() => {
+    if (activeColorIndex !== undefined) setActive(activeColorIndex)
+  }, [activeColorIndex])
 
   useEffect(() => {
     setImageLoaded(false)
@@ -27,7 +32,7 @@ export function ImageGallery({ images, productName }: Props) {
   return (
     <div className="flex flex-col gap-3">
       {/* Main image */}
-      <div className="relative aspect-[3/4] bg-[var(--color-lp-cream)] overflow-hidden">
+      <div className="relative aspect-3/4 bg-lp-cream overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -57,7 +62,7 @@ export function ImageGallery({ images, productName }: Props) {
             <button
               key={i}
               onClick={() => setActive(i)}
-              className="relative flex-shrink-0 w-16 h-[85px] overflow-hidden transition-all duration-200"
+              className="relative shrink-0 w-16 h-21.25 overflow-hidden transition-all duration-200"
               style={{
                 outline: i === active
                   ? '1.5px solid var(--color-lp-gold)'

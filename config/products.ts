@@ -74,7 +74,6 @@ export const PRODUCTS: Product[] = [
       '1C6A9455_Large_Background_Removed_xydl9r',
       '1C6A9495_Background_Removed_czmfug',
       'IMG_2420_Large_Background_Removed_ed2pt3.png',
-      '1C6A9455_Large_Background_Removed_xydl9r' 
     ],
     features: [
       { label: '3-in-1 compartments' },
@@ -84,16 +83,20 @@ export const PRODUCTS: Product[] = [
     ],
     variants: [
       {
-        color: 'Yellow',
-        colorHex: '#F4C430',
+        color: 'Charcoal Grey',
+        accentColor: 'Lime Green',
+        colorHex: '#A6B21A',
+        bodyHex: '#4A4945',
+        lowStock: true,
         sizes: [
           { size: 'Cabin', price: 8500, stock: 25, sku: '8906206840001-Y-20' },
         ],
       },
       {
-        
-        color: 'Red',
+        color: 'Black',
+        accentColor: 'Red',
         colorHex: '#C0392B',
+        bodyHex: '#3E3E3E',
         sizes: [
           { size: 'Cabin', price: 8500, stock: 40, sku: '8906206840001-R-20' },
           { size: 'Medium', price: 9500, stock: 30, sku: '8906206840001-R-24' },
@@ -101,20 +104,15 @@ export const PRODUCTS: Product[] = [
         ],
       },
       {
-        color: 'Teal',
-        colorHex: '#2C9E8F',
+        color: 'Silver',
+        accentColor: 'Royal Blue',
+        colorHex: '#3A5F97',
+        bodyHex: '#BDBDB6',
+        lowStock: true,
         sizes: [
           { size: 'Cabin', price: 8500, stock: 35, sku: '8906206840001-T-20' },
           { size: 'Medium', price: 9500, stock: 25, sku: '8906206840001-T-24' },
           { size: 'Large', price: 10500, stock: 15, sku: '8906206840001-T-28' },
-        ],
-      },
-      {
-        color: 'Brown',
-        colorHex: '#7D5A3C',
-        sizes: [
-          { size: 'Cabin', price: 8500, stock: 30, sku: '8906206840001-B-20' },
-          { size: 'Medium', price: 9500, stock: 20, sku: '8906206840001-B-24' },
         ],
       },
       
@@ -174,8 +172,8 @@ export const PRODUCTS: Product[] = [
       'Bold V-pattern design that stands out on every conveyor belt. Hard shell ABS with ultra-smooth spinner wheels — because your luggage should be as ambitious as you are.',
     images: [
       'VeeZoom__Yellow_lpokls',
-      'VeeZoom__Yellow_lpokls',
-      'VeeZoom__Yellow_lpokls',
+      '01-2_Background_Removed_3_guh9oa.png',
+      
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -187,6 +185,7 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Yellow',
         colorHex: '#FDD835',
+        lowStock: true,
         sizes: [
           { size: 'Cabin', price: 9099, stock: 50, sku: '8906206840230' },
           { size: 'Medium', price: 10649, stock: 40, sku: '8906206840247' },
@@ -276,13 +275,6 @@ export const PRODUCTS: Product[] = [
       { label: 'Telescopic handle' },
     ],
     variants: [
-      {
-        color: 'Grey',
-        colorHex: '#9E9E9E',
-        sizes: [
-          { size: 'Cabin', price: 13259, stock: 20, sku: '8906206840056' },
-        ],
-      },
       {
         color: 'Black',
         colorHex: '#212121',
@@ -636,7 +628,7 @@ export const PRODUCTS: Product[] = [
       'A hard-shell duffle built for short trips and quick getaways — structured enough to hold its shape, light enough to grab and go. Available in five colors.',
     images: [
       'Generated_Image_June_18_2026_-_1_53AM_Background_Removed_cblbni.png',
-      'louispolo/products/gemtote-duffle-bag/gemtote-duffle-bag-grey-1',
+      
       '1C6A9677_Large_Background_Removed_w6duba.png',
       '1C6A9697_Background_Removed_Large_Background_Removed_fc0j9n.png',
       '1C6A9716_Background_Removed_r9rkn4.png',
@@ -656,13 +648,7 @@ export const PRODUCTS: Product[] = [
         ],
       },
       
-      {
-        color: 'Yellow',
-        colorHex: '#FDD835',
-        sizes: [
-          { size: 'One Size', price: 4699, stock: 30 },
-        ],
-      },
+      
       {
         color: 'Grey',
         colorHex: '#9E9E9E',
@@ -690,12 +676,13 @@ export const PRODUCTS: Product[] = [
 
   // ── FlexBag Hybrid Duffel ────────────────────────────────────────────────
   {
-    id:          'flexbag-hybrid-duffel',
-    name:        'FlexBag Hybrid Duffel',
-    slug:        'flexbag-hybrid-duffel',
-    category:    'duffle',
-    cardZoom:    1.3,
-    isFeatured:  true,
+    id:            'flexbag-hybrid-duffel',
+    name:          'FlexBag Hybrid Duffel',
+    slug:          'flexbag-hybrid-duffel',
+    category:      'duffle',
+    cardZoom:      1.3,
+    isFeatured:    true,
+    hideSizeGuide: true,
     description: 'A hybrid travel bag combining hard-shell protection with the flexibility of a duffel. Perfect for weekend getaways, business trips, and cabin travel, lightweight, durable, and spacious.',
     images:      [
       '01---flexbag---black-1781383670118-1781383670118_Background_Removed_n03tnr',
@@ -744,12 +731,13 @@ export const PRODUCTS: Product[] = [
 
   // ── GridPod 8" Travel Utility Case ───────────────────────────────────────
   {
-    id:          'gridpod',
-    name:        'GridPod ',
-    slug:        'gridpod',
-    category:    'vanity',
-    description: 'A compact hard-shell organizer built to protect cosmetics, toiletries, electronics, cables, chargers, medicines, and all your travel essentials. Impact-resistant shell, comfortable fabric lining, and a luggage mounting sleeve so it stays with your bag.',
-    isFeatured:  false,
+    id:            'gridpod',
+    name:          'GridPod ',
+    slug:          'gridpod',
+    category:      'vanity',
+    description:   'A compact hard-shell organizer built to protect cosmetics, toiletries, electronics, cables, chargers, medicines, and all your travel essentials. Impact-resistant shell, comfortable fabric lining, and a luggage mounting sleeve so it stays with your bag.',
+    isFeatured:    false,
+    hideSizeGuide: true,
     images:      [
       'louis-polo-grid-pod-vanity-silver-08-1781757213777-1781757213777_Background_Removed_nf3usc',
       'louis-polo-grid-pod-vanity-grey-08-1781757256978-1781757256978_Background_Removed_fcbi2f',
@@ -862,12 +850,13 @@ export const PRODUCTS: Product[] = [
 
   // ── V-Glide Beauty Case ──────────────────────────────────────────────────
   {
-    id:          'v-glide',
-    name:        'V-Glide',
-    slug:        'v-glide',
-    category:    'vanity',
-    description: 'A stylish hard-shell travel beauty organizer with a signature V-pattern finish. Dedicated compartments, mesh pockets, and an integrated trolley sleeve keep your cosmetics, skincare, and accessories perfectly organised and secure on every trip.',
-    isFeatured:  false,
+    id:            'v-glide',
+    name:          'V-Glide',
+    slug:          'v-glide',
+    category:      'vanity',
+    description:   'A stylish hard-shell travel beauty organizer with a signature V-pattern finish. Dedicated compartments, mesh pockets, and an integrated trolley sleeve keep your cosmetics, skincare, and accessories perfectly organised and secure on every trip.',
+    isFeatured:    false,
+    hideSizeGuide: true,
     images:      [
       '1-1781427971087-1781427971087_Background_Removed_f1vctd',
       '1-1781427934381-1781427934381_Background_Removed_iw2ctm',
@@ -910,12 +899,13 @@ export const PRODUCTS: Product[] = [
 
   // ── OrbitPod 12" Vanity Case ─────────────────────────────────────────────
   {
-    id:          'orbitpod',
-    name:        'OrbitPod',
-    slug:        'orbitpod',
-    category:    'vanity',
-    description: 'A stylish hard-shell travel organizer for modern travellers. The dual-compartment interior with zippered centre section keeps cosmetics, gadgets, chargers, toiletries, medicines, and daily essentials neatly separated. Comes with a shoulder strap for hands-free carry.',
-    isFeatured:  false,
+    id:            'orbitpod',
+    name:          'OrbitPod',
+    slug:          'orbitpod',
+    category:      'vanity',
+    description:   'A stylish hard-shell travel organizer for modern travellers. The dual-compartment interior with zippered centre section keeps cosmetics, gadgets, chargers, toiletries, medicines, and daily essentials neatly separated. Comes with a shoulder strap for hands-free carry.',
+    isFeatured:    false,
+    hideSizeGuide: true,
     images:      [
       'louis-polo-orbit-pod-vanity-metallic-gre-1781766231871-1781766231871_Background_Removed_l5lzhb',
       'louis-polo-orbit-pod-vanity-turquoise-bl-1781766125876-1781766125876_Background_Removed_g39dpv',
@@ -954,12 +944,13 @@ export const PRODUCTS: Product[] = [
   },
   // ── Voyage Pod  ───────────────────────────────
   {
-    id:          'voyage-pod',
-    name:        'Voyage Pod ',
-    slug:        'voyage-pod',
-    category:    'vanity',
-    description: 'A compact hard-shell travel organizer for cosmetics, toiletries, grooming essentials, electronics, medicines, and personal accessories. Features a spacious interior with zippered mesh pocket and an integrated luggage mounting sleeve that attaches to your trolley handle.',
-    isFeatured:  false,
+    id:            'voyage-pod',
+    name:          'Voyage Pod ',
+    slug:          'voyage-pod',
+    category:      'vanity',
+    description:   'A compact hard-shell travel organizer for cosmetics, toiletries, grooming essentials, electronics, medicines, and personal accessories. Features a spacious interior with zippered mesh pocket and an integrated luggage mounting sleeve that attaches to your trolley handle.',
+    isFeatured:    false,
+    hideSizeGuide: true,
     images:      [
       'louis-polo-voyage-pod-silver-09-1781689965483-1781689965483_Background_Removed_ysfewb',
       'louis-polo-voyage-pod-grey-09-1781690030424-1781690030424_Background_Removed_s63370','louis-polo-voyage-pod-blue-09-1781690104205-1781690104205_Background_Removed_eoz5ph',

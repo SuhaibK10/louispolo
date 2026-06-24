@@ -122,6 +122,14 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </button>
 
+        {/* Low stock badge */}
+        {variant.lowStock && (
+          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 font-body text-[0.6rem] font-semibold tracking-[0.06em] text-lp-ink">
+            <span className="inline-block w-1 h-1 rounded-full bg-[#C0392B] animate-blink-slow shrink-0" />
+            Only Few Left
+          </span>
+        )}
+
         {/* Quick shop overlay */}
         <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-[var(--color-lp-ink)]/90 backdrop-blur-sm py-3 flex items-center justify-center gap-2">
           <span className="font-body text-[0.68rem] tracking-[0.12em] uppercase text-[var(--color-lp-porcelain)]">
@@ -175,7 +183,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Color swatches + Size Guide */}
         {(() => {
-          const hasStandardSizes = product.variants.some(v => v.sizes.some(s => s.size !== 'One Size'))
+          const hasStandardSizes = !product.hideSizeGuide && product.variants.some(v => v.sizes.some(s => s.size !== 'One Size'))
           return (
             <div className="flex items-center justify-between pt-0.5">
               <div className="flex items-center gap-1.5">
@@ -187,7 +195,9 @@ export function ProductCard({ product }: ProductCardProps) {
                     title={v.color}
                     className="w-3.5 h-3.5 rounded-full transition-all duration-200 flex-shrink-0"
                     style={{
-                      backgroundColor: v.colorHex,
+                      background: v.bodyHex
+                        ? `linear-gradient(135deg, ${v.bodyHex} 60%, ${v.colorHex} 60%)`
+                        : v.colorHex,
                       boxShadow: i === activeVariant
                         ? `0 0 0 1.5px var(--color-lp-porcelain), 0 0 0 3px ${v.colorHex}`
                         : '0 0 0 1px var(--color-lp-border)',

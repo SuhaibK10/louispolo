@@ -21,9 +21,10 @@ import { SizeGuideModal }        from '@/components/ui/SizeGuideModal'
 interface Props {
   product: Product
   defaultColor?: string
+  onColorChange?: (index: number) => void
 }
 
-export function ProductInfo({ product, defaultColor }: Props) {
+export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
   const router        = useRouter()
   const addItem       = useCartStore((s) => s.addItem)
 
@@ -50,7 +51,8 @@ export function ProductInfo({ product, defaultColor }: Props) {
 
   function handleColorChange(i: number) {
     setColorIndex(i)
-    setSelectedSize(null)  // reset size when colour changes
+    setSelectedSize(null)
+    onColorChange?.(i)
   }
 
   function handleAddToCart() {
@@ -112,7 +114,13 @@ export function ProductInfo({ product, defaultColor }: Props) {
       {/* ── Colour selector ────────────────────────────────────────────── */}
       <div>
         <p className="font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] mb-3">
-          Colour — <span className="text-[var(--color-lp-ink)] font-medium">{variant.color}</span>
+          Colour —{' '}
+          <span className="text-lp-ink font-medium">
+            {variant.color}
+            {variant.accentColor && (
+              <span className="text-lp-ink font-normal"> | {variant.accentColor}</span>
+            )}
+          </span>
         </p>
         <div className="flex gap-3 flex-wrap">
           {product.variants.map((v, i) => (
@@ -122,7 +130,9 @@ export function ProductInfo({ product, defaultColor }: Props) {
               title={v.color}
               className="w-7 h-7 rounded-full transition-all duration-200"
               style={{
-                backgroundColor: v.colorHex,
+                background: v.bodyHex
+                  ? `linear-gradient(135deg, ${v.bodyHex} 60%, ${v.colorHex} 60%)`
+                  : v.colorHex,
                 boxShadow: i === colorIndex
                   ? `0 0 0 2px var(--color-lp-porcelain), 0 0 0 3.5px ${v.colorHex}`
                   : '0 0 0 1px var(--color-lp-border)',
@@ -133,6 +143,14 @@ export function ProductInfo({ product, defaultColor }: Props) {
           ))}
         </div>
       </div>
+
+      {/* ── Low stock urgency ──────────────────────────────────────────── */}
+      {variant.lowStock && (
+        <p className="font-body text-[0.75rem] tracking-wide text-[#C0392B] flex items-center gap-1.5">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C0392B] animate-blink-slow" />
+          Only a few left
+        </p>
+      )}
 
       {/* ── Size selector ──────────────────────────────────────────────── */}
       <div>
@@ -145,7 +163,7 @@ export function ProductInfo({ product, defaultColor }: Props) {
               </span>
             )}
           </p>
-          {product.category !== 'vanity' && product.variants.some(v => v.sizes.some(s => s.size !== 'One Size')) && (
+          {!product.hideSizeGuide && product.category !== 'vanity' && product.variants.some(v => v.sizes.some(s => s.size !== 'One Size')) && (
             <button
               type="button"
               onClick={() => setSizeGuideOpen(true)}

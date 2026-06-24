@@ -9,8 +9,7 @@ import { notFound }            from 'next/navigation'
 import Link                    from 'next/link'
 import { ChevronLeft }         from 'lucide-react'
 import { getProductBySlug, PRODUCTS } from '@/config/products'
-import { ImageGallery }        from '@/components/product/ImageGallery'
-import { ProductInfo }         from '@/components/product/ProductInfo'
+import { ProductPageClient }   from '@/components/product/ProductPageClient'
 import { ROUTES }              from '@/lib/constants'
 
 interface Props {
@@ -59,23 +58,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
         </div>
 
         {/* PDP grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 lg:gap-20">
-          {/* Gallery */}
-          <div className="md:sticky md:top-24 md:self-start">
-            <ImageGallery
-              images={product.images}
-              productName={product.name}
-            />
-          </div>
-
-          {/* Info */}
-          <div>
-            <ProductInfo
-              product={product}
-              defaultColor={color}
-            />
-          </div>
-        </div>
+        <ProductPageClient product={product} defaultColor={color} />
 
       </div>
     </div>
