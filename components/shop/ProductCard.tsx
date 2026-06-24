@@ -126,7 +126,7 @@ export function ProductCard({ product }: ProductCardProps) {
         {variant.lowStock && (
           <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 font-body text-[0.6rem] font-semibold tracking-[0.06em] text-lp-ink">
             <span className="inline-block w-1 h-1 rounded-full bg-[#C0392B] animate-blink-slow shrink-0" />
-            Only Few Left
+            Few Left
           </span>
         )}
 
