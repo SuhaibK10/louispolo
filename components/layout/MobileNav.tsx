@@ -68,7 +68,7 @@ export function MobileNav() {
 
   return (
    <nav className="mobile-nav-bar lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-t border-[var(--color-lp-border)]">
-      <div className="flex items-center h-[54px]">
+      <div className="flex items-center h-12">
         {NAV.map(({ label, href, icon: Icon }) => {
           const isActive = href === ROUTES.home
             ? pathname === href
@@ -80,7 +80,7 @@ export function MobileNav() {
               key={href}
               href={href}
               className={cn(
-                'relative flex-1 flex flex-col items-center justify-center gap-1 py-3 transition-colors duration-200',
+                'relative flex-1 flex flex-col items-center justify-center gap-1 pt-2 pb-3 transition-colors duration-200',
                 isActive
                   ? 'text-[var(--color-lp-gold)]'
                   : inactiveClasses

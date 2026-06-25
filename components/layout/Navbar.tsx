@@ -122,12 +122,15 @@ export function Navbar() {
     <>
       <header
         className={cn(
-            'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-            'bg-[var(--color-lp-porcelain)]/95 backdrop-blur-md border-b border-[var(--color-lp-border)]'
-          )}
-        style={{ isolation: 'isolate', overflowX: 'hidden' }}
+          'fixed top-1 left-1/2 -translate-x-1/2 z-50 transition-all duration-500',
+          'bg-lp-porcelain/95 backdrop-blur-md',
+          'border border-lp-border',
+          'rounded-full shadow-lg shadow-black/8',
+          'w-[calc(100%-2rem)] max-w-5xl overflow-hidden',
+        )}
+        style={{ isolation: 'isolate' }}
       >
-        {/* ── Scroll progress bar ────────────────────────────────────────── */}
+        {/* ── Scroll progress bar (clips to pill shape via overflow-hidden) ── */}
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-[var(--color-lp-gold)]"
           style={{ scaleX }}
@@ -136,8 +139,8 @@ export function Navbar() {
           }
         />
 
-        <div className="container-lp">
-          <div className="flex items-center justify-between h-16 md:h-[4.5rem]">
+        <div className="px-5 md:px-8">
+          <div className="flex items-center justify-between h-14 md:h-16">
 
             {/* ── Left: Hamburger (mobile) / Nav links (desktop) ─────────── */}
             <div className="flex items-center gap-8 flex-1">
