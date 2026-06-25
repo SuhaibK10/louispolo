@@ -589,6 +589,38 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
+  // ── Matrix Set of 3 ──────────────────────────────────────────────────────
+  {
+    id: 'matrix-set',
+    name: 'Matrix- Set of 3',
+    slug: 'matrix-set',
+    category: 'set',
+    isFeatured: true,
+    description:
+      'Premium hard-shell spinner luggage in three nesting sizes — 20", 24", and 28". Engineered for business travellers, vacationers, and frequent flyers who demand lightweight durability, secure locking, and smooth mobility in one complete collection.',
+    images: [
+      '1_Background_Removed_aukpfh.png'
+      
+    ],
+    features: [
+      { label: '20", 24" & 28" included' },
+      { label: '360° silent spinner wheels' },
+      { label: 'Combination lock' },
+      { label: 'Impact-resistant hard shell' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Nesting storage design' },
+    ],
+    variants: [
+      {
+        color: 'Black',
+        colorHex: '#212121',
+        sizes: [
+          { size: 'Set of 3', price: 31699, stock: 15, sku: 'LP-TM-SET-BLK' },
+        ],
+      },
+    ],
+  },
+
   // ── VeeZoom Set of 3 ─────────────────────────────────────────────────────
   {
     id: 'veezoom-set',

@@ -9,7 +9,7 @@
 import { useState, useEffect }   from 'react'
 import { useRouter }             from 'next/navigation'
 import { motion }                from 'framer-motion'
-import { ShoppingBag, Check, Heart, Ruler } from 'lucide-react'
+import { ShoppingBag, Check, Heart, Ruler, Minus, Plus } from 'lucide-react'
 import type { Product, ProductSize } from '@/types'
 import { formatPrice }           from '@/lib/utils'
 import { ROUTES }                from '@/lib/constants'
@@ -42,6 +42,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
   const [colorIndex,    setColorIndex]    = useState(Math.max(0, defaultVariantIndex))
   const [selectedSize,  setSelectedSize]  = useState<ProductSize | null>(null)
   const [addedToCart,   setAddedToCart]   = useState(false)
+  const [quantity,      setQuantity]      = useState(1)
 
   const variant  = product.variants[colorIndex]
   const sizeObj  = variant.sizes.find(s => s.size === selectedSize)
@@ -52,6 +53,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
   function handleColorChange(i: number) {
     setColorIndex(i)
     setSelectedSize(null)
+    setQuantity(1)
     onColorChange?.(i)
   }
 
@@ -68,7 +70,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       colorHex:    variant.colorHex,
       size:        selectedSize,
       price:       sizeObj.price,
-      quantity:    1,
+      quantity,
     })
 
     setAddedToCart(true)
@@ -197,6 +199,34 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
               </button>
             )
           })}
+        </div>
+      </div>
+
+      {/* ── Quantity stepper ───────────────────────────────────────────── */}
+      <div className="flex items-center gap-4">
+        <p className="font-body text-[0.7rem] tracking-widest uppercase text-lp-muted">Quantity</p>
+        <div className="flex items-center border border-lp-border">
+          <button
+            type="button"
+            onClick={() => setQuantity(q => Math.max(1, q - 1))}
+            disabled={quantity <= 1}
+            className="w-9 h-9 flex items-center justify-center text-lp-ink hover:text-lp-gold disabled:opacity-30 transition-colors duration-200"
+            aria-label="Decrease quantity"
+          >
+            <Minus size={14} strokeWidth={1.5} />
+          </button>
+          <span className="w-9 text-center font-body text-[0.85rem] text-lp-ink select-none">
+            {quantity}
+          </span>
+          <button
+            type="button"
+            onClick={() => setQuantity(q => Math.min(sizeObj?.stock ?? 10, q + 1))}
+            disabled={sizeObj ? quantity >= sizeObj.stock : false}
+            className="w-9 h-9 flex items-center justify-center text-lp-ink hover:text-lp-gold disabled:opacity-30 transition-colors duration-200"
+            aria-label="Increase quantity"
+          >
+            <Plus size={14} strokeWidth={1.5} />
+          </button>
         </div>
       </div>
 
