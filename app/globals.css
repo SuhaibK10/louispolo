@@ -75,10 +75,12 @@
     overflow-x: hidden;
   }
 
-  /* Disable Fraunces wonky glyphs (distorted f, etc.) across all display text */
+  /* Fraunces: WONK 0 disables the wonky alternate glyphs; keep standard
+     ligatures ON — the ff/ffi/ffl ligatures are what stop the f-hoods
+     colliding in words like "Office" and "Duffle". */
   h1, h2, h3, h4, .font-display {
     font-variation-settings: 'WONK' 0;
-    font-feature-settings: 'liga' 0, 'calt' 0;
+    font-feature-settings: 'calt' 0;
   }
 
   h1, h2, h3, h4 {
@@ -86,7 +88,7 @@
     font-weight: 400;             /* Fraunces looks best at regular weight */
     line-height: 1.05;
     letter-spacing: -0.02em;
-    font-feature-settings: 'liga' 0, 'calt' 0;
+    font-feature-settings: 'calt' 0;
     font-variation-settings: 'WONK' 0;
   }
 
@@ -155,7 +157,7 @@
     line-height: 1.0;
     letter-spacing: -0.025em;
     color: var(--color-lp-ink);
-    font-feature-settings: 'liga' 0, 'calt' 0;
+    font-feature-settings: 'calt' 0;
     font-variation-settings: 'WONK' 0;
   }
 
@@ -166,7 +168,7 @@
     line-height: 1.05;
     letter-spacing: -0.02em;
     color: var(--color-lp-ink);
-    font-feature-settings: 'liga' 0, 'calt' 0;
+    font-feature-settings: 'calt' 0;
     font-variation-settings: 'WONK' 0;
   }
 
@@ -177,7 +179,7 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--color-lp-ink);
-    font-feature-settings: 'liga' 0, 'calt' 0;
+    font-feature-settings: 'calt' 0;
     font-variation-settings: 'WONK' 0;
   }
 
@@ -402,6 +404,6 @@ body.menu-open .whatsapp-fixed {
 
 /* Spacer that matches the nav height so page content doesn't hide behind it */
 .mobile-nav-spacer {
-  height: calc(54px + max(0px, calc(env(safe-area-inset-bottom, 0px) - 8px)));
+  height: calc(48px + max(0px, calc(env(safe-area-inset-bottom, 0px) - 8px)));
 }
 
