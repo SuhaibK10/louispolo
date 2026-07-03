@@ -6,7 +6,8 @@
 // Reads from config/products.ts — swap to Supabase later without touching this.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState }                from 'react'
+import { useState, useEffect }     from 'react'
+import { useSearchParams }         from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PRODUCTS, CATEGORIES }    from '@/config/products'
 import { ProductCard }             from './ProductCard'
@@ -34,8 +35,15 @@ function sortProducts(products: typeof PRODUCTS, sort: SortKey) {
 }
 
 export function ProductGrid() {
-  const [activeCategory, setActiveCategory] = useState<string>('all')
+  // ?category= deep links (footer, home category cards) select the filter
+  const searchParams  = useSearchParams()
+  const categoryParam = searchParams.get('category') ?? 'all'
+  const validCategory = CATEGORIES.some(c => c.value === categoryParam) ? categoryParam : 'all'
+
+  const [activeCategory, setActiveCategory] = useState<string>(validCategory)
   const [sortKey, setSortKey] = useState<SortKey>('default')
+
+  useEffect(() => { setActiveCategory(validCategory) }, [validCategory])
 
   const filtered = activeCategory === 'all'
     ? PRODUCTS

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title:       'Refund Policy — Louis Polo',
+  title:       'Refund Policy',
   description: 'Louis Polo\'s return and refund policy for luggage and travel accessories.',
 }
 
@@ -47,7 +47,7 @@ export default function RefundPolicyPage() {
               of the issue. Our team will respond within 2 business days with return instructions.
             </p>
             <p>
-              Do not ship items back without receiving a return authorisation from our team — such
+              Do not ship items back without receiving a return authorisation from our team. Such
               parcels may be refused or lost.
             </p>
           </section>
@@ -78,7 +78,7 @@ export default function RefundPolicyPage() {
             <h2>6. Return Shipping</h2>
             <p>
               Customers are responsible for return shipping costs unless the return is due to a
-              defective or incorrect item. We recommend using a trackable shipping method — we are
+              defective or incorrect item. We recommend using a trackable shipping method. We are
               not responsible for items lost in transit.
             </p>
           </section>

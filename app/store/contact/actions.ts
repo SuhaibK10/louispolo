@@ -16,7 +16,7 @@ export async function sendContactEnquiry(formData: FormData): Promise<ContactRes
     from:    EMAIL_FROM,
     to:      [BRAND.teamEmail, BRAND.email],
     reply_to: email,
-    subject: `Contact enquiry${name ? ` from ${name}` : ''} — louispolo.in`,
+    subject: `Contact enquiry${name ? ` from ${name}` : ''} (louispolo.in)`,
     html: `
       <div style="font-family:sans-serif;max-width:480px;margin:0 auto;">
         <h2 style="font-size:18px;">New contact enquiry</h2>

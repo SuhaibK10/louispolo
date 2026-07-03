@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Skill(artifact-design)",
+      "Skill(artifact-design:*)",
+      "Bash(python3 -)",
+      "Bash(awk '/\\\\/\\\\* latin \\\\*\\\\//{flag=1} flag && /unicode-range/{print; exit}' \"/private/tmp/claude-501/-Users-suhaibkhan-Downloads-louispolo-2/820a1005-632b-4942-af21-c8fe5c78afcf/scratchpad/fonts/lora.css\")",
+      "Bash(.*—)",
+      "Bash(grep -E \"'.*—|\\\\\".*—|`.*—)"
     ]
   }
 }

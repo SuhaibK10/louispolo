@@ -179,7 +179,7 @@ export function Navbar() {
             <Link
               href={ROUTES.home}
               className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group"
-              aria-label="Louis Polo — Home"
+              aria-label="Louis Polo home"
             >
               
               <Image
@@ -225,7 +225,7 @@ export function Navbar() {
               <Link
                 href={ROUTES.wishlist}
                 className="relative -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
-                aria-label={`Wishlist — ${wishlistCount} items`}
+                aria-label={`Wishlist, ${wishlistCount} items`}
               >
                 <Heart size={20} strokeWidth={1.5} />
                 {wishlistCount > 0 && (
@@ -244,7 +244,7 @@ export function Navbar() {
               <Link
                 href={ROUTES.cart}
                 className="relative -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
-                aria-label={`Cart — ${cartCount} items`}
+                aria-label={`Cart, ${cartCount} items`}
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />
                 {cartCount > 0 && (

@@ -6,7 +6,7 @@
 /* ─── Design Tokens ──────────────────────────────────────────────────────── */
 @theme {
   /* Fonts */
-  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-display: var(--font-lora), Georgia, serif;
   --font-body:    var(--font-hanken), system-ui, sans-serif;
 
   /* Palette — Louis Polo SEAT 1A */
@@ -75,21 +75,11 @@
     overflow-x: hidden;
   }
 
-  /* Fraunces: WONK 0 disables the wonky alternate glyphs; keep standard
-     ligatures ON — the ff/ffi/ffl ligatures are what stop the f-hoods
-     colliding in words like "Office" and "Duffle". */
-  h1, h2, h3, h4, .font-display {
-    font-variation-settings: 'WONK' 0;
-    font-feature-settings: 'calt' 0;
-  }
-
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;             /* Fraunces looks best at regular weight */
+    font-weight: 400;             /* Lora sits well at regular weight */
     line-height: 1.05;
     letter-spacing: -0.02em;
-    font-feature-settings: 'calt' 0;
-    font-variation-settings: 'WONK' 0;
   }
 
   p    { line-height: 1.7; }
@@ -157,8 +147,6 @@
     line-height: 1.0;
     letter-spacing: -0.025em;
     color: var(--color-lp-ink);
-    font-feature-settings: 'calt' 0;
-    font-variation-settings: 'WONK' 0;
   }
 
   .lp-heading-lg {
@@ -168,8 +156,6 @@
     line-height: 1.05;
     letter-spacing: -0.02em;
     color: var(--color-lp-ink);
-    font-feature-settings: 'calt' 0;
-    font-variation-settings: 'WONK' 0;
   }
 
   .lp-heading-md {
@@ -179,8 +165,6 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--color-lp-ink);
-    font-feature-settings: 'calt' 0;
-    font-variation-settings: 'WONK' 0;
   }
 
   /* ── Buttons ── */
@@ -352,7 +336,6 @@
     letter-spacing: -0.01em;
     color: var(--color-lp-ink);
     margin-bottom: 1rem;
-    font-variation-settings: 'WONK' 0;
   }
   .prose-lp p { margin-bottom: 1.25rem; color: var(--color-lp-muted); }
   .prose-lp p:last-child { margin-bottom: 0; }

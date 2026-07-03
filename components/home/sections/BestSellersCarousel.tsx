@@ -172,7 +172,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
                       : 'font-body text-[0.68rem] px-2.5 py-1 border border-lp-border text-lp-muted hover:border-lp-ink transition-colors duration-200'
                   }
                   aria-pressed={isSelected}
-                  aria-label={outOfStock ? `${size} — out of stock` : size}
+                  aria-label={outOfStock ? `${size}, out of stock` : size}
                 >
                   {size}
                 </button>

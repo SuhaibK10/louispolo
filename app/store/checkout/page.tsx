@@ -467,7 +467,7 @@ export default function CheckoutPage() {
                 <p className="font-body text-[0.85rem] text-[var(--color-lp-ink)] leading-relaxed">
                   {address.fullName}<br />
                   {address.addressLine1}{address.addressLine2 ? `, ${address.addressLine2}` : ''}<br />
-                  {address.city}, {address.state} — {address.pincode}<br />
+                  {address.city}, {address.state} {address.pincode}<br />
                   {address.phone}
                 </p>
               </div>

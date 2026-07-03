@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     from:    EMAIL_FROM,
     to:      BRAND.teamEmail,
     reply_to: email,
-    subject: `Corporate Enquiry — ${company}`,
+    subject: `Corporate Enquiry from ${company}`,
     html: `
       <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; color: #1a1714;">
         <h1 style="font-size: 20px; margin-bottom: 4px;">New Corporate Enquiry</h1>

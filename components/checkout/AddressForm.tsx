@@ -204,7 +204,7 @@ export function AddressForm({ value, onChange, onValidChange }: Props) {
               exit={{ opacity: 0, height: 0 }}
               className="font-body text-[0.75rem] text-[var(--color-lp-error)] mt-1.5"
             >
-              Pincode not recognized — please fill city/state manually.
+              Pincode not recognized. Please fill city and state manually.
             </motion.p>
           )}
           {pincodeStatus === 'error' && (
@@ -214,7 +214,7 @@ export function AddressForm({ value, onChange, onValidChange }: Props) {
               exit={{ opacity: 0, height: 0 }}
               className="font-body text-[0.75rem] text-[var(--color-lp-muted)] mt-1.5"
             >
-              Couldn't look up pincode — please fill city/state manually.
+              Couldn't look up pincode. Please fill city and state manually.
             </motion.p>
           )}
         </AnimatePresence>

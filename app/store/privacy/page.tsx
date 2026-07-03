@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title:       'Privacy Policy — Louis Polo',
+  title:       'Privacy Policy',
   description: 'How Louis Polo collects, uses, and protects your personal information.',
 }
 
@@ -51,13 +51,13 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>
-                <strong>Logistics partners</strong> — to deliver your order (name, phone, address)
+                <strong>Logistics partners</strong>: to deliver your order (name, phone, address)
               </li>
               <li>
-                <strong>Razorpay</strong> — to process payments securely
+                <strong>Razorpay</strong>: to process payments securely
               </li>
               <li>
-                <strong>Analytics tools</strong> — aggregated, anonymised data only
+                <strong>Analytics tools</strong>: aggregated, anonymised data only
               </li>
             </ul>
           </section>
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             <p>
               We implement industry-standard security measures including HTTPS encryption, secure
               database access controls, and regular security audits. Payment card data is never
-              stored on our systems — it is tokenised and handled entirely by Razorpay.
+              stored on our systems. It is tokenised and handled entirely by Razorpay.
             </p>
           </section>
 

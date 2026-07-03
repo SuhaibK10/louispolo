@@ -116,7 +116,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       {/* ── Colour selector ────────────────────────────────────────────── */}
       <div>
         <p className="font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] mb-3">
-          Colour —{' '}
+          Colour ·{' '}
           <span className="text-lp-ink font-medium">
             {variant.color}
             {variant.accentColor && (
@@ -193,7 +193,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
                     : 'font-body text-[0.75rem] px-4 py-2.5 border border-[var(--color-lp-border)] text-[var(--color-lp-ink)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
                 }
                 aria-pressed={isSelected}
-                aria-label={outOfStock ? `${size} — out of stock` : size}
+                aria-label={outOfStock ? `${size}, out of stock` : size}
               >
                 {size}
               </button>

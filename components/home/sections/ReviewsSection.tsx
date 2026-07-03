@@ -91,7 +91,7 @@ function StarRating({ rating }: { rating: number }) {
           key={i}
           size={13}
           strokeWidth={1.5}
-          className={i < rating ? 'fill-[var(--color-lp-gold)] text-[var(--color-lp-gold)]' : 'text-[var(--color-lp-border)]'}
+          className={i < rating ? 'fill-lp-gold text-lp-gold' : 'text-lp-border'}
         />
       ))}
     </div>
@@ -223,31 +223,31 @@ export function ReviewsSection() {
             </motion.h2>
           </motion.div>
 
-          {/* Cards */}
+          {/* Testimonials — editorial columns, hairline rules, no card boxes */}
           <motion.div
             variants={staggerChildren}
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10 md:gap-y-14"
           >
             {REVIEWS.map((review) => (
-              <motion.div
+              <motion.article
                 key={review.name}
                 variants={fadeUp}
-                className="lp-card rounded-xl p-6 md:p-7 flex flex-col gap-4"
+                className="flex flex-col gap-4 border-t border-lp-border pt-6"
               >
                 {/* Stars + product */}
                 <div className="flex items-start justify-between gap-3">
                   <StarRating rating={review.rating} />
-                  <span className="font-body text-[0.6rem] tracking-[0.1em] uppercase text-[var(--color-lp-faint)] flex-shrink-0">
+                  <span className="font-body text-[0.6rem] tracking-widest uppercase text-lp-faint shrink-0">
                     {review.product}
                   </span>
                 </div>
 
                 {/* Quote */}
-                <p className="font-body text-[0.9rem] text-[var(--color-lp-ink)] leading-relaxed flex-1">
-                  "{review.text}"
+                <p className="font-body text-[0.9rem] text-lp-ink/90 leading-relaxed flex-1">
+                  &ldquo;{review.text}&rdquo;
                 </p>
 
                 {/* Customer photos */}
@@ -257,10 +257,10 @@ export function ReviewsSection() {
                       <button
                         key={i}
                         onClick={() => setLightbox({ photos: review.photos, index: i, reviewName: review.name })}
-                        className="relative shrink-0 w-24 h-24 rounded-sm overflow-hidden bg-[var(--color-lp-porcelain)] cursor-zoom-in hover:opacity-90 transition-opacity"
+                        className="relative shrink-0 w-24 h-24 overflow-hidden bg-lp-cream border border-lp-border cursor-zoom-in hover:opacity-90 transition-opacity"
                       >
                         <Image
-                          src={cld(pid, 'f_auto,q_80,w_200,h_200,c_pad,b_rgb:F5F3ED')}
+                          src={cld(pid, 'f_auto,q_80,w_200,h_200,c_pad,b_rgb:EDE9E1')}
                           alt={`${review.name} photo ${i + 1}`}
                           fill
                           className="object-contain"
@@ -271,16 +271,16 @@ export function ReviewsSection() {
                   </div>
                 )}
 
-                {/* Attribution */}
-                <div className="border-t border-[var(--color-lp-border)] pt-4">
-                  <p className="font-body text-[0.8rem] font-medium text-lp-ink">
+                {/* Attribution — small caps, quiet */}
+                <div className="pt-1">
+                  <p className="font-body text-[0.72rem] tracking-[0.12em] uppercase font-medium text-lp-ink">
                     {review.name}
                   </p>
-                  <p className="font-body text-[0.7rem] text-lp-muted">
-                    {review.city} · {review.trip}
+                  <p className="font-body text-[0.7rem] text-lp-muted mt-0.5">
+                    {review.city}
                   </p>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </motion.div>
         </div>

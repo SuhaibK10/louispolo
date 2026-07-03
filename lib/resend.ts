@@ -52,7 +52,7 @@ export async function sendOrderConfirmationEmail({
   const { error } = await resend.emails.send({
     from: EMAIL_FROM,
     to,
-    subject: `Your Louis Polo order is confirmed — #${orderId.slice(0, 8).toUpperCase()}`,
+    subject: `Your Louis Polo order is confirmed (#${orderId.slice(0, 8).toUpperCase()})`,
     html: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
         <h1 style="font-size: 20px;">Order confirmed</h1>
@@ -106,7 +106,7 @@ export async function sendOrderNotificationEmail({
   const { error } = await resend.emails.send({
     from: EMAIL_FROM,
     to: BRAND.teamEmail,
-    subject: `New order — #${orderId.slice(0, 8).toUpperCase()} — ₹${total.toLocaleString('en-IN')}`,
+    subject: `New order #${orderId.slice(0, 8).toUpperCase()} · ₹${total.toLocaleString('en-IN')}`,
     html: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
         <h1 style="font-size: 20px;">New order received</h1>
@@ -117,7 +117,7 @@ export async function sendOrderNotificationEmail({
         <p>
           ${shipping.fullName}<br/>
           ${shipping.addressLine1}${shipping.addressLine2 ? `, ${shipping.addressLine2}` : ''}<br/>
-          ${shipping.city}, ${shipping.state} — ${shipping.pincode}<br/>
+          ${shipping.city}, ${shipping.state} ${shipping.pincode}<br/>
           ${shipping.phone}
         </p>
         <p style="color:#777; font-size:13px;">Order ID: ${orderId.slice(0, 8).toUpperCase()}</p>

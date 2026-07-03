@@ -91,7 +91,7 @@ export function ProductCard({ product }: ProductCardProps) {
         >
           <Image
             src={cardUrl(displayImage) || PLACEHOLDER_URL}
-            alt={`${product.name} — ${variant.color}`}
+            alt={`${product.name} in ${variant.color}`}
             fill
             className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
@@ -174,7 +174,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     : 'font-body text-[0.6rem] px-2 py-0.5 border border-[var(--color-lp-border)] text-[var(--color-lp-muted)] hover:border-[var(--color-lp-ink)] transition-colors duration-200'
                 }
                 aria-pressed={isSelected}
-                aria-label={outOfStock ? `${size} — out of stock` : size}
+                aria-label={outOfStock ? `${size}, out of stock` : size}
               >
                 {size}
               </button>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title:       'Terms of Use — Louis Polo',
+  title:       'Terms of Use',
   description: 'Terms and conditions for using the Louis Polo website and purchasing our products.',
 }
 
@@ -80,7 +80,7 @@ export default function TermsPage() {
           <section>
             <h2>7. Intellectual Property</h2>
             <p>
-              All content on this website — including text, images, logos, and design — is owned
+              All content on this website, including text, images, logos, and design, is owned
               by or licensed to Louis Polo. You may not reproduce, distribute, or create
               derivative works without our written permission.
             </p>

@@ -8,7 +8,7 @@ import { ExhibitionGallery }   from '@/components/home/sections/ExhibitionGaller
 
 export const metadata: Metadata = {
   title:       'About Us',
-  description: '10+ years of OEM manufacturing excellence. Louis Polo — premium hard luggage, now direct to you.',
+  description: '10+ years of OEM manufacturing excellence. Louis Polo: premium hard luggage, now direct to you.',
 }
 
 export default function AboutPage() {

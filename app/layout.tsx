@@ -4,7 +4,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata, Viewport } from 'next'
-import { Fraunces, Hanken_Grotesk } from 'next/font/google'
+import { Lora, Hanken_Grotesk } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
@@ -14,11 +14,10 @@ import './globals.css'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 
-// Display serif — editorial character, used for all headings
-const fraunces = Fraunces({
+// Display serif — calm contemporary serif, used for all headings
+const lora = Lora({
   subsets:  ['latin'],
-  axes:     ['opsz', 'WONK'], // opsz = optical size; WONK = disable wonky glyphs
-  variable: '--font-fraunces',
+  variable: '--font-lora',
   display:  'swap',
 })
 
@@ -87,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${hanken.variable}`}>
+    <html lang="en" className={`${lora.variable} ${hanken.variable}`}>
       <body className="bg-[var(--color-lp-porcelain)] text-[var(--color-lp-ink)] font-body antialiased">
         <DesktopGate>
           <SmoothScrollProvider>

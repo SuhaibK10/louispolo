@@ -127,7 +127,7 @@ export const PRODUCTS: Product[] = [
     category: 'trolley',
     isFeatured: true,
     description:
-      'Built for the frequent flyer. SkyTrail combines a sleek hard shell ABS body with 360° spinner wheels and combination lock — smooth, secure, and ready for boarding.',
+      'Built for the frequent flyer. SkyTrail combines a sleek hard shell ABS body with 360° spinner wheels and combination lock. Smooth, secure, and ready for boarding.',
     images: [
       'IMG_2853_Background_Removed_bezyzs',
       '1C6A9363_Large_Background_Removed_ajflwe.png',
@@ -179,7 +179,7 @@ export const PRODUCTS: Product[] = [
     category: 'trolley',
     isFeatured: true,
     description:
-      'Bold V-pattern design that stands out on every conveyor belt. Hard shell ABS with ultra-smooth spinner wheels — because your luggage should be as ambitious as you are.',
+      'Bold V-pattern design that stands out on every conveyor belt. Hard shell ABS with ultra-smooth spinner wheels, because your luggage should be as ambitious as you are.',
     images: [
       'VeeZoom__Yellow_lpokls',
       '01-2_Background_Removed_3_guh9oa.png',
@@ -429,7 +429,7 @@ export const PRODUCTS: Product[] = [
     category: 'trolley',
     isFeatured: true,
     description:
-      'A vibrant two-tone suitcase with a bold animated character design on a yellow and red background. Eye-catching on every conveyor belt — for those who travel with personality front and centre.',
+      'A vibrant two-tone suitcase with a bold animated character design on a yellow and red background. Eye-catching on every conveyor belt, for those who travel with personality front and centre.',
     images: ['8466e6e9-f2b8-428e-a144-3fade53f6576.png_y7byfd'],
     features: [
       { label: 'Character print design' },
@@ -555,7 +555,7 @@ export const PRODUCTS: Product[] = [
   // ── SkyTrail Set of 3 ────────────────────────────────────────────────────
   {
     id: 'skytrail-set',
-    name: 'SkyTrail — Set of 3',
+    name: 'SkyTrail Set of 3',
     slug: 'skytrail-set',
     category: 'set',
     isFeatured: true,
@@ -597,7 +597,7 @@ export const PRODUCTS: Product[] = [
     category: 'set',
     isFeatured: true,
     description:
-      'Premium hard-shell spinner luggage in three nesting sizes — 20", 24", and 28". Engineered for business travellers, vacationers, and frequent flyers who demand lightweight durability, secure locking, and smooth mobility in one complete collection.',
+      'Premium hard-shell spinner luggage in three nesting sizes: 20", 24", and 28". Engineered for business travellers, vacationers, and frequent flyers who demand lightweight durability, secure locking, and smooth mobility in one complete collection.',
     images: [
       '1_Background_Removed_aukpfh.png'
       
@@ -624,12 +624,12 @@ export const PRODUCTS: Product[] = [
   // ── VeeZoom Set of 3 ─────────────────────────────────────────────────────
   {
     id: 'veezoom-set',
-    name: 'VeeZoom - Set of 3',
+    name: 'VeeZoom Set of 3',
     slug: 'veezoom-set',
     category: 'set',
     isFeatured: true,
     description:
-      'The full VeeZoom family — 20", 24", and 28" in matching bold design. Nesting format for home storage. Everything you need for a week, a month, or forever.',
+      'The full VeeZoom family: 20", 24", and 28" in matching bold design. Nesting format for home storage. Everything you need for a week, a month, or forever.',
     images: [
       '01-2_Background_Removed_o0b5il.png',
       '01-3_Background_Removed_cut3ue.png',
@@ -667,7 +667,7 @@ export const PRODUCTS: Product[] = [
     category: 'duffle',
     isFeatured: true,
     description:
-      'A hard-shell duffle built for short trips and quick getaways — structured enough to hold its shape, light enough to grab and go. Available in five colors.',
+      'A hard-shell duffle built for short trips and quick getaways, structured enough to hold its shape, light enough to grab and go. Available in five colors.',
     images: [
       'Generated_Image_June_18_2026_-_1_53AM_Background_Removed_cblbni.png',
       
@@ -740,7 +740,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Trolley attachment sleeve' },
       { label: 'Spacious main compartment' },
       { label: 'Lightweight build' },
-      { label: 'Versatile — gym, cabin & weekend use' },
+      { label: 'Versatile: gym, cabin & weekend use' },
     ],
     variants: [
       {
@@ -787,7 +787,7 @@ export const PRODUCTS: Product[] = [
       'louis-polo-grid-pod-vanity-black-08-1781757362906-1781757362906_Background_Removed_ynroed'
     ],
     features: [
-      { label: 'Hard shell — impact & compression resistant' },
+      { label: 'Impact & compression resistant hard shell' },
       { label: 'Concealed pocket inside' },
       { label: 'Comfortable fabric lining' },
       { label: 'Smooth zipper' },
@@ -828,7 +828,7 @@ export const PRODUCTS: Product[] = [
     category:    'overnighter',
     cardZoom:    1.3,
     isFeatured:  true,
-    description: 'Built for professionals on the move. Cabin-friendly dimensions with smart organisation — dedicated laptop storage, hard-shell protection, and 360° spinner wheels for effortless overnight business travel.',
+    description: 'Built for professionals on the move. Cabin-friendly dimensions with smart organisation: dedicated laptop storage, hard-shell protection, and 360° spinner wheels for effortless overnight business travel.',
     images:      [
       'louis-polo-attache-red-08-1781606815844-1781606815844_Background_Removed_vug5zj',
       'louis-polo-attache-black-hero-10-1781606578945-1781606578945_Background_Removed_v0prue'
@@ -862,7 +862,7 @@ export const PRODUCTS: Product[] = [
     name:        'SwiftGate',
     slug:        'swiftgate',
     category:    'overnighter',
-    description: 'Professional styling meets practical organisation. The SwiftGate features a front-opening compartment for instant access to your laptop, tablet, documents, and chargers — without touching the main compartment. Built for overnight trips and short business travel.',
+    description: 'Professional styling meets practical organisation. The SwiftGate features a front-opening compartment for instant access to your laptop, tablet, documents, and chargers, without touching the main compartment. Built for overnight trips and short business travel.',
     isFeatured:  false,
     images:      [
       'swiftgate---blue01-1781498983947-1781498983947_Background_Removed_lanodd','swiftgate---red09-1781498866690-1781498866690_Background_Removed_zdqhyi',],
@@ -999,7 +999,7 @@ export const PRODUCTS: Product[] = [
       'louis-polo-voyage-pod-black01-1781690181273-1781690181273_Background_Removed_k1um9u'
     ],
     features: [
-      { label: 'Hard shell — impact & compression resistant' },
+      { label: 'Impact & compression resistant hard shell' },
       { label: 'Zippered mesh organizer pocket inside' },
       { label: 'Comfortable fabric lining' },
       { label: 'Smooth zipper' },

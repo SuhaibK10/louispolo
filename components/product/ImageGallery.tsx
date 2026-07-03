@@ -44,7 +44,7 @@ export function ImageGallery({ images, productName, activeColorIndex }: Props) {
           >
             <Image
               src={pdpUrl(images[active]) || PLACEHOLDER_URL}
-              alt={`${productName} — view ${active + 1}`}
+              alt={`${productName}, view ${active + 1}`}
               fill
               priority
               onLoad={() => setImageLoaded(true)}

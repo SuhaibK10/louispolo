@@ -42,7 +42,7 @@ const AIRLINES = [
   { name: 'Vistara',   cabin: true,  limit: '7 kg'  },
   { name: 'SpiceJet',  cabin: true,  limit: '7 kg'  },
   { name: 'Emirates',  cabin: true,  limit: '7 kg'  },
-  { name: 'IndiGo',    cabin: false, limit: '—'      },
+  { name: 'IndiGo',    cabin: false, limit: 'N/A'      },
 ]
 
 export function SizeGuideModal({ open, onClose }: Props) {
@@ -165,7 +165,7 @@ export function SizeGuideModal({ open, onClose }: Props) {
                         { name: 'Air India', ok: true,  limit: '8 kg' },
                         { name: 'SpiceJet',  ok: true,  limit: '7 kg' },
                         { name: 'Emirates',  ok: true,  limit: '7 kg' },
-                        { name: 'Air Arabia',ok: false, limit: '—'    },
+                        { name: 'Air Arabia',ok: false, limit: 'N/A'    },
                       ].map((a) => (
                         <tr key={a.name} className="hover:bg-[var(--color-lp-cream)]/50 transition-colors">
                           <td className="font-body text-[0.8rem] text-[var(--color-lp-ink)] px-4 py-2.5">{a.name}</td>

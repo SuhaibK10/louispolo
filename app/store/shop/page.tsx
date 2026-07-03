@@ -4,6 +4,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata }        from 'next'
+import { Suspense }             from 'react'
 import { ProductGrid }          from '@/components/shop/ProductGrid'
 import { ShopSizeGuideButton }  from '@/components/shop/ShopSizeGuideButton'
 
@@ -115,7 +116,10 @@ export default function ShopPage() {
 
       <div className="section-pad pt-2">
         <div className="container-lp">
-          <ProductGrid />
+          {/* Suspense required: ProductGrid reads ?category= via useSearchParams */}
+          <Suspense fallback={null}>
+            <ProductGrid />
+          </Suspense>
         </div>
       </div>
     </div>
