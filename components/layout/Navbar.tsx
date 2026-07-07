@@ -131,13 +131,15 @@ export function Navbar() {
         style={{ isolation: 'isolate' }}
       >
         {/* ── Scroll progress bar (clips to pill shape via overflow-hidden) ── */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-[var(--color-lp-gold)]"
-          style={{ scaleX }}
-          transformTemplate={({ scaleX }) =>
-            `scaleX(${scaleX ?? 1})`
-          }
-        />
+        {!pathname.startsWith('/account') && (
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-lp-ink/45"
+            style={{ scaleX }}
+            transformTemplate={({ scaleX }) =>
+              `scaleX(${scaleX ?? 1})`
+            }
+          />
+        )}
 
         <div className="px-5 md:px-8">
           <div className="flex items-center justify-between h-14 md:h-16">
@@ -240,10 +242,10 @@ export function Navbar() {
                 )}
               </Link>
 
-              {/* Cart */}
+              {/* Cart — desktop only */}
               <Link
                 href={ROUTES.cart}
-                className="relative -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
+                className="relative hidden lg:block -m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
                 aria-label={`Cart, ${cartCount} items`}
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />
@@ -327,6 +329,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold w-full justify-center"
+                style={{ backgroundColor: '#D2CFC8', borderColor: '#D2CFC8', color: 'var(--color-lp-ink)' }}
                 onClick={() => setMenuOpen(false)}
               >
                 <svg width={16} height={16} viewBox="0 0 24 24" fill="currentColor">

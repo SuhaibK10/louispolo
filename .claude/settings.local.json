@@ -11,7 +11,9 @@
       "Bash(command -v chromium-cli)",
       "Read(//Applications/**)",
       "Bash(curl -sf -o /dev/null -w \"%{http_code}\" http://localhost:3999/store)",
-      "Bash(node shoot.js)"
+      "Bash(node shoot.js)",
+      "Bash(curl -s -o poster.jpg \"https://res.cloudinary.com/dpepctqdj/video/upload/f_jpg,q_auto/Trimmed_and_Audio_Removed_keanoc.jpg\")",
+      "Bash(sips -g pixelWidth -g pixelHeight poster.jpg)"
     ]
   }
 }

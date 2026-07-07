@@ -10,28 +10,37 @@
 // want a custom thumbnail instead.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useRef, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion }           from 'framer-motion'
 import { Play }             from 'lucide-react'
 import { cldVideo, videoPosterUrl, cld } from '@/lib/cloudinary'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 
 const SPOTLIGHT = {
-  videoId:  '',   // ← Cloudinary VIDEO public_id, e.g. 'backpack-demo_abc123'
+  videoId:  'Trimmed_and_Audio_Removed_keanoc',   // ← Cloudinary VIDEO public_id (no file extension)
   posterId: '',   // optional custom thumbnail (IMAGE public_id); blank = video's first frame
   eyebrow:  'A closer look',
-  heading:  'Our backpack, up close.',
+  heading:  'See it the way you will use it.',
   copy:     'Every pocket, zip, and strap. See exactly what arrives at your door.',
 }
 
 export function ProductSpotlight() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [playing, setPlaying] = useState(false)
 
-  function handlePlay() {
-    setPlaying(true)
-    videoRef.current?.play()
-  }
+  // Autoplay when the section scrolls into view, pause when it leaves
+  useEffect(() => {
+    const vid = videoRef.current
+    if (!vid) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) vid.play().catch(() => {})
+        else vid.pause()
+      },
+      { threshold: 0.35 }
+    )
+    io.observe(vid)
+    return () => io.disconnect()
+  }, [])
 
   const hasVideo = SPOTLIGHT.videoId !== ''
   const poster = hasVideo
@@ -41,7 +50,7 @@ export function ProductSpotlight() {
     : undefined
 
   return (
-    <section className="section-pad" style={{ paddingTop: '1.5rem' }}>
+    <section className="section-pad" style={{ paddingTop: '1.5rem', paddingBottom: '2rem' }}>
       <div className="container-lp">
 
         {/* Header */}
@@ -58,12 +67,6 @@ export function ProductSpotlight() {
           <motion.h2 variants={fadeUp} className="lp-heading-lg">
             {SPOTLIGHT.heading}
           </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl mx-auto mt-3"
-          >
-            {SPOTLIGHT.copy}
-          </motion.p>
         </motion.div>
 
         {/* Video */}
@@ -72,7 +75,7 @@ export function ProductSpotlight() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative max-w-4xl mx-auto aspect-video bg-lp-cream overflow-hidden rounded-md"
+          className="relative w-full max-w-5xl mx-auto aspect-video bg-lp-cream overflow-hidden rounded-md"
         >
           {hasVideo ? (
             <>
@@ -80,25 +83,13 @@ export function ProductSpotlight() {
                 ref={videoRef}
                 src={cldVideo(SPOTLIGHT.videoId)}
                 poster={poster}
-                controls={playing}
+                autoPlay
+                muted
+                loop
                 playsInline
                 preload="metadata"
-                className="absolute inset-0 w-full h-full object-cover"
-                onEnded={() => setPlaying(false)}
+                className="absolute inset-0 w-full h-full object-contain"
               />
-              {!playing && (
-                <button
-                  type="button"
-                  onClick={handlePlay}
-                  className="absolute inset-0 flex items-center justify-center group cursor-pointer"
-                  aria-label="Play product demonstration video"
-                >
-                  <span className="absolute inset-0 bg-lp-ink/20 group-hover:bg-lp-ink/30 transition-colors duration-300" />
-                  <span className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-lp-porcelain/95 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <Play size={26} strokeWidth={1.5} className="text-lp-ink ml-1" fill="var(--color-lp-ink)" />
-                  </span>
-                </button>
-              )}
             </>
           ) : (
             /* Placeholder until the video is uploaded */
@@ -112,6 +103,17 @@ export function ProductSpotlight() {
             </div>
           )}
         </motion.div>
+
+        {/* Copy — below the video */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl mx-auto mt-6 md:mt-8 text-center"
+        >
+          {SPOTLIGHT.copy}
+        </motion.p>
       </div>
     </section>
   )

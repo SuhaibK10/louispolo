@@ -34,7 +34,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     image:        'duffle_kgw8qx.jpg',
-    headline:     'Less Bag, More Swag',
+    headline:     'Pack Light. Go Far.',
     desktopImage: 'desk2_cu4kp5.jpg',
     textStyle:    'shadow',
     textPosition: 'top',
@@ -52,7 +52,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     image:     'heroLast_dkzwim.jpg',
-    headline:  'Stop Scrolling. Start Buying.',
+    headline:  'Made for the Long Haul.',
     desktopImage: 'desk1_Large_yhjrpo.jpg',
     textStyle: 'shadow',
     textSize:  'lg',

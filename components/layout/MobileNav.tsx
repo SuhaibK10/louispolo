@@ -91,7 +91,7 @@ export function MobileNav() {
               <div className="relative">
                 <Icon size={20} strokeWidth={isActive ? 2 : 1.5} />
                 {isCart && cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 w-[16px] h-[16px] rounded-full bg-[var(--color-lp-gold)] text-[var(--color-lp-ink)] text-[8px] font-bold flex items-center justify-center tabular-nums">
+                  <span className="absolute -top-1.5 -right-1.5 w-[16px] h-[16px] rounded-full bg-[#332619] text-lp-porcelain text-[8px] font-bold flex items-center justify-center tabular-nums">
                     {cartCount > 9 ? '9+' : cartCount}
                   </span>
                 )}

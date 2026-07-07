@@ -35,14 +35,6 @@
   /* Transitions */
   --transition-base: 0.25s var(--ease-lp);
   --transition-slow: 0.5s var(--ease-lp);
-
-  /* Animations */
-  --animate-blink-slow: blink-slow 2s ease-in-out infinite;
-}
-
-@keyframes blink-slow {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
 }
 
 /* ─── Base Reset ──────────────────────────────────────────────────────────── */

@@ -312,7 +312,7 @@ export function BestSellersCarousel() {
     <section className="pt-0.5 md:pt-4 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
 
       {/* Scroll indicator */}
-      <div className="container-lp flex flex-col items-center gap-1" style={{ marginBottom: '4.5rem' }}>
+      <div className="container-lp flex flex-col items-center gap-1" style={{ marginTop: '0.75rem', marginBottom: '4.5rem' }}>
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -381,7 +381,7 @@ export function BestSellersCarousel() {
 
       <div className="md:hidden" style={{ marginTop: '3rem' }}>
         <div className="container-lp">
-          <Link href={ROUTES.shop} className="btn-outline w-full justify-center">
+          <Link href={ROUTES.shop} className="btn-outline w-full justify-center rounded-md">
             View all products
           </Link>
         </div>

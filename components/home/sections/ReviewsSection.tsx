@@ -26,6 +26,7 @@ const REVIEWS = [
       'WhatsApp_Image_2026-06-20_at_22.54.07_ygiymy.jpg',
       'WhatsApp_Image_2026-06-20_at_22.54.07_1_j5avd4.jpg',
     ] as string[],
+    videos:  [] as string[],
   },
   {
     name:    'Arjun',
@@ -35,6 +36,7 @@ const REVIEWS = [
     rating:  5,
     text:    'This Trolley looks really nice, and it is highly organizable too',
     photos:  ['WhatsApp_Image_2026-06-21_at_02.04.32_hfq8q4.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_1_i8ggxu.jpg','WhatsApp_Image_2026-06-21_at_02.04.32_2_nl3wpv.jpg'] as string[],
+    videos:  [] as string[],
   },
   {
     name:    'Gurovind Sharma',
@@ -44,6 +46,7 @@ const REVIEWS = [
     rating:  5,
     text:    'I travel every week for work to Delhi, Pune, Chennai, repeat. This laptop bag has been with me for 4 months now and looks brand new. Highly oranizable for my laptop and docs.',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.32_vxakr3.jpg','WhatsApp_Image_2026-06-21_at_11.59.35_1_hmuoej.jpg','WhatsApp_Image_2026-06-21_at_11.59.34_tsxhuo.jpg','WhatsApp_Image_2026-06-21_at_11.59.33_sgoybw.jpg'] as string[],
+    videos:  [] as string[],
   },
   {
     name:    'Adil Ali',
@@ -53,6 +56,7 @@ const REVIEWS = [
     rating:  5,
     text:    'Bought this customised backpack from Louis Polo, Engraived my name on it, The backpack looks solid and elegant',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.22_1_zcuvhk.jpg','WhatsApp_Image_2026-06-21_at_11.59.22_pzqhxk.jpg'] as string[],
+    videos:  [] as string[],
   },
   {
     name:    'Fatima Sheikh',
@@ -62,6 +66,7 @@ const REVIEWS = [
     rating:  5,
     text:    'Gifted the VeeZoom Set of 3 to my relative for their Umrah trip.A very thoughtful gift.',
     photos:  [] as string[],
+    videos:  [] as string[],
   },
   {
     name:    'Sneha Iyer',
@@ -71,6 +76,7 @@ const REVIEWS = [
     rating:  5,
     text:    'Bought this on Buy 1 Get 1 Free, Looks good and best for stuffs',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.27_unigr1.jpg'] as string[],
+    videos:  [] as string[],
   },
   {
     name:    'Arun Pillai',
@@ -80,6 +86,7 @@ const REVIEWS = [
     rating:  5,
     text:    'Ordered this Gym Bag, its quite fine in this price',
     photos:  ['WhatsApp_Image_2026-06-21_at_11.59.28_usgque.jpg'] as string[],
+    videos:  [] as string[],
   },
 ]
 
@@ -194,8 +201,23 @@ function Lightbox({
   )
 }
 
+const REVIEW_FILTERS = [
+  { id: 'all',    label: 'All ' },
+  { id: 'images', label: 'Reviews with Images' },
+  { id: 'videos', label: 'Reviews with Videos' },
+] as const
+
+type ReviewFilter = typeof REVIEW_FILTERS[number]['id']
+
 export function ReviewsSection() {
   const [lightbox, setLightbox] = useState<{ photos: string[]; index: number; reviewName: string } | null>(null)
+  const [filter, setFilter] = useState<ReviewFilter>('all')
+
+  const filtered = REVIEWS.filter((r) =>
+    filter === 'all'    ? true :
+    filter === 'images' ? r.photos.length > 0 :
+    r.videos.length > 0
+  )
 
   const trackRef     = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -213,7 +235,13 @@ export function ReviewsSection() {
     const ro = new ResizeObserver(calculate)
     ro.observe(trackRef.current)
     return () => ro.disconnect()
-  }, [])
+  }, [filter])
+
+  // Reset scroll position when the filter changes
+  useEffect(() => {
+    x.set(0)
+    setActiveIndex(0)
+  }, [filter, x])
 
   // Track drag position → active dot
   useMotionValueEvent(x, 'change', (latest) => {
@@ -222,7 +250,7 @@ export function ReviewsSection() {
       : 0
     if (dw <= 0) return
     const progress = Math.min(Math.max(-latest / dw, 0), 1)
-    setActiveIndex(Math.round(progress * (REVIEWS.length - 1)))
+    setActiveIndex(Math.round(progress * Math.max(filtered.length - 1, 1)))
   })
 
   // Dot click → glide the track to that review
@@ -231,8 +259,8 @@ export function ReviewsSection() {
       ? trackRef.current.scrollWidth - containerRef.current.offsetWidth
       : 0
     if (dw <= 0) return
-    animate(x, -(i / (REVIEWS.length - 1)) * dw, { type: 'spring', stiffness: 220, damping: 32 })
-  }, [x])
+    animate(x, -(i / Math.max(filtered.length - 1, 1)) * dw, { type: 'spring', stiffness: 220, damping: 32 })
+  }, [x, filtered.length])
 
   const handlePrev = useCallback(() =>
     setLightbox(lb => lb && { ...lb, index: (lb.index - 1 + lb.photos.length) % lb.photos.length }), [])
@@ -259,11 +287,38 @@ export function ReviewsSection() {
               Packed, Travelled, Approved.
             </motion.h2>
           </motion.div>
+
+          {/* Filter tabs */}
+          <div className="flex flex-nowrap justify-between gap-1.5 md:gap-2 -mt-4 mb-8 md:-mt-6 md:mb-10">
+            {REVIEW_FILTERS.map(({ id, label }) => (
+              <button
+                key={id}
+                type="button"
+                onClick={() => setFilter(id)}
+                className={
+                  id === filter
+                    ? 'whitespace-nowrap font-body text-[0.58rem] md:text-[0.7rem] tracking-[0.06em] md:tracking-widest uppercase px-2.5 md:px-4 py-2 border rounded-sm bg-lp-ink text-lp-porcelain border-lp-ink transition-all duration-200'
+                    : 'whitespace-nowrap font-body text-[0.58rem] md:text-[0.7rem] tracking-[0.06em] md:tracking-widest uppercase px-2.5 md:px-4 py-2 border rounded-sm bg-transparent text-lp-muted border-lp-border hover:border-lp-ink hover:text-lp-ink transition-all duration-200'
+                }
+                aria-pressed={id === filter}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Testimonials — swipeable editorial carousel */}
+        {filtered.length === 0 ? (
+          <div className="container-lp py-10">
+            <p className="font-body text-[0.85rem] text-lp-muted text-center">
+              No video reviews yet,  check back soon.
+            </p>
+          </div>
+        ) : (
         <div ref={containerRef} className="overflow-hidden w-full">
           <motion.div
+            key={filter}
             ref={trackRef}
             drag="x"
             dragConstraints={{ left: -dragWidth, right: 0 }}
@@ -273,22 +328,22 @@ export function ReviewsSection() {
             style={{ x, WebkitUserSelect: 'none' }}
             whileTap={{ cursor: 'grabbing' }}
           >
-            {REVIEWS.map((review) => (
+            {filtered.map((review) => (
               <article
                 key={review.name}
-                className="flex flex-col gap-4 border-t border-lp-border pt-6 shrink-0 w-[78vw] sm:w-[46vw] md:w-[34vw] lg:w-[24rem]"
+                className="flex flex-col gap-4 bg-[#4A4F55] rounded-xl p-6 md:p-7 shrink-0 w-[78vw] sm:w-[46vw] md:w-[34vw] lg:w-[24rem]"
               >
                 {/* Stars + product */}
                 <div className="flex items-start justify-between gap-3">
                   <StarRating rating={review.rating} />
-                  <span className="font-body text-[0.6rem] tracking-widest uppercase text-lp-faint shrink-0">
+                  <span className="font-body text-[0.6rem] tracking-widest uppercase text-lp-porcelain/50 shrink-0">
                     {review.product}
                   </span>
                 </div>
 
                 {/* Quote */}
-                <p className="font-body text-[0.9rem] text-lp-ink/90 leading-relaxed flex-1">
-                  &ldquo;{review.text}&rdquo;
+                <p className="font-body text-[0.9rem] text-lp-porcelain/90 leading-relaxed flex-1">
+                  {review.text}
                 </p>
 
                 {/* Customer photos */}
@@ -298,10 +353,10 @@ export function ReviewsSection() {
                       <button
                         key={i}
                         onClick={() => setLightbox({ photos: review.photos, index: i, reviewName: review.name })}
-                        className="relative shrink-0 w-24 h-24 overflow-hidden bg-lp-cream border border-lp-border cursor-zoom-in hover:opacity-90 transition-opacity"
+                        className="relative shrink-0 w-24 h-24 overflow-hidden bg-lp-porcelain border border-lp-border cursor-zoom-in hover:opacity-90 transition-opacity"
                       >
                         <Image
-                          src={cld(pid, 'f_auto,q_80,w_200,h_200,c_pad,b_rgb:EDE9E1')}
+                          src={cld(pid, 'f_auto,q_80,w_200,h_200,c_pad,b_rgb:F5F3ED')}
                           alt={`${review.name} photo ${i + 1}`}
                           fill
                           className="object-contain"
@@ -315,10 +370,10 @@ export function ReviewsSection() {
 
                 {/* Attribution — small caps, quiet */}
                 <div className="pt-1">
-                  <p className="font-body text-[0.72rem] tracking-[0.12em] uppercase font-medium text-lp-ink">
+                  <p className="font-body text-[0.72rem] tracking-[0.12em] uppercase font-medium text-lp-porcelain">
                     {review.name}
                   </p>
-                  <p className="font-body text-[0.7rem] text-lp-muted mt-0.5">
+                  <p className="font-body text-[0.7rem] text-lp-porcelain/60 mt-0.5">
                     {review.city}
                   </p>
                 </div>
@@ -326,28 +381,31 @@ export function ReviewsSection() {
             ))}
           </motion.div>
         </div>
+        )}
 
         {/* Carousel dots */}
+        {filtered.length > 1 && (
         <div className="flex items-center justify-center gap-2 mt-8 md:mt-10">
-          {REVIEWS.map((review, i) => (
+          {filtered.map((review, i) => (
             <button
               key={review.name}
               type="button"
               onClick={() => goTo(i)}
               className="p-1"
-              aria-label={`Go to review ${i + 1} of ${REVIEWS.length}`}
+              aria-label={`Go to review ${i + 1} of ${filtered.length}`}
               aria-current={i === activeIndex}
             >
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   i === activeIndex
-                    ? 'w-6 h-1.5 bg-lp-gold'
-                    : 'w-1.5 h-1.5 bg-lp-border hover:bg-lp-muted'
+                    ? 'w-6 h-1.5 bg-[#4A4F55]'
+                    : 'w-1.5 h-1.5 bg-lp-border hover:bg-[#4A4F55]/60'
                 }`}
               />
             </button>
           ))}
         </div>
+        )}
       </section>
 
       {/* Lightbox */}

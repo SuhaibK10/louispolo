@@ -110,8 +110,13 @@ export function CategoryGrid() {
             >
               <Link
                 href={`${ROUTES.shop}?category=${value}`}
-                className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border rounded-xl"
+                className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-lp-ink/15 active:scale-[0.985]"
               >
+                {/* Hover frame — ink border draws in */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 z-10 rounded-xl border-[1.5px] border-lp-ink opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out pointer-events-none"
+                />
                 {/* Image */}
                 <Image
                   src={cardUrl(image) || PLACEHOLDER_URL}

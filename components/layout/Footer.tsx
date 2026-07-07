@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/layout/Footer.tsx
 // Server Component — newsletter + corporate enquiry are client islands.
-// Structure: newsletter band → link grid → payments/legal bar → © line →
-// giant cropped wordmark. Social icons are monochrome (gold on hover).
+// Structure: newsletter band → link grid → payments/legal bar → © line.
+// Social icons are monochrome (gold on hover).
 // ─────────────────────────────────────────────────────────────────────────────
 
 import Link                          from 'next/link'
@@ -36,9 +36,6 @@ const LEGAL_LINKS = [
 
 const footerLink =
   'font-body text-[0.8rem] text-[#F5F3ED]/65 hover:text-[var(--color-lp-gold)] transition-colors duration-200'
-
-const socialIcon =
-  'text-[#F5F3ED]/45 hover:text-[var(--color-lp-gold)] transition-colors duration-200'
 
 function WhatsAppIcon({ size = 17 }: { size?: number }) {
   return (
@@ -125,7 +122,7 @@ export function Footer() {
       <div className="container-lp pt-14 md:pt-20">
 
         {/* ── Newsletter band ─────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 md:items-end pb-12 md:pb-14 border-b border-[#C9A96E]/15">
+        <div className="flex flex-col items-center text-center gap-8 pb-12 md:pb-14 border-b border-[#C9A96E]/15">
           <div>
             <p className="lp-eyebrow">Newsletter</p>
             <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight text-[var(--color-lp-porcelain)]">
@@ -135,7 +132,9 @@ export function Footer() {
               New collections, launches and offers. One email a month, no noise.
             </p>
           </div>
-          <FooterNewsletter />
+          <div className="w-full max-w-sm">
+            <FooterNewsletter />
+          </div>
         </div>
 
         {/* ── Link grid ───────────────────────────────────────────────────── */}
@@ -148,28 +147,28 @@ export function Footer() {
               alt="Louis Polo"
               width={78}
               height={52}
-              className="mb-4 brightness-0 invert"
+              className="mb-4 brightness-0 invert mx-auto"
             />
             <p className="font-body text-[0.8rem] text-[#F5F3ED]/55 leading-relaxed mb-4">
               Premium hard-shell luggage from the factory that builds for the
               world&apos;s biggest brands.
             </p>
-            <p className="font-body text-[0.62rem] tracking-[0.16em] uppercase text-[#C9A96E]/60 mb-6">
+            <p className="font-body text-[0.62rem] tracking-[0.16em] uppercase text-[#C9A96E]/60 mb-6 text-center">
               Mumbai · London · Hong Kong
             </p>
 
-            {/* Social — monochrome, gold on hover */}
-            <div className="flex gap-4">
-              <a href={BRAND.instagram} target="_blank" rel="noopener noreferrer" className={socialIcon} aria-label="Instagram">
+            {/* Social — official brand colors */}
+            <div className="flex gap-4 justify-center">
+              <a href={BRAND.instagram} target="_blank" rel="noopener noreferrer" className="transition-opacity duration-200 hover:opacity-70" style={{ color: '#E4405F' }} aria-label="Instagram">
                 <Instagram size={17} strokeWidth={1.5} />
               </a>
-              <a href={BRAND.linkedin} target="_blank" rel="noopener noreferrer" className={socialIcon} aria-label="LinkedIn">
+              <a href={BRAND.linkedin} target="_blank" rel="noopener noreferrer" className="transition-opacity duration-200 hover:opacity-70" style={{ color: '#0A66C2' }} aria-label="LinkedIn">
                 <Linkedin size={17} strokeWidth={1.5} />
               </a>
-              <a href={BRAND.whatsapp} target="_blank" rel="noopener noreferrer" className={socialIcon} aria-label="WhatsApp">
+              <a href={BRAND.whatsapp} target="_blank" rel="noopener noreferrer" className="transition-opacity duration-200 hover:opacity-70" style={{ color: '#25D366' }} aria-label="WhatsApp">
                 <WhatsAppIcon />
               </a>
-              <a href={`mailto:${BRAND.email}`} className={socialIcon} aria-label="Email support">
+              <a href={`mailto:${BRAND.email}`} className="transition-opacity duration-200 hover:opacity-70" style={{ color: '#EA4335' }} aria-label="Email support">
                 <Mail size={17} strokeWidth={1.5} />
               </a>
             </div>
@@ -225,7 +224,7 @@ export function Footer() {
         </div>
 
         {/* ── Payments + legal ────────────────────────────────────────────── */}
-        <div className="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#C9A96E]/15">
+        <div className="py-5 flex flex-col items-center justify-center gap-4 border-b border-[#C9A96E]/15">
           <PaymentMarks />
           <div className="flex items-center gap-5">
             {LEGAL_LINKS.map(({ label, href }) => (
@@ -241,26 +240,12 @@ export function Footer() {
         </div>
 
         {/* ── Copyright ───────────────────────────────────────────────────── */}
-        <div className="py-5">
+        <div className="py-5 text-center">
           <p className="font-body text-[0.7rem] text-[#F5F3ED]/35 tracking-wide">
             © {new Date().getFullYear()} LOUISPOLO FASHION INDIA PRIVATE LIMITED.
             All rights reserved.
           </p>
         </div>
-      </div>
-
-      {/* ── Giant wordmark — cropped at the bottom edge ───────────────────── */}
-      <div
-        aria-hidden="true"
-        className="font-display select-none pointer-events-none text-center whitespace-nowrap leading-none pt-4"
-        style={{
-          fontSize:      'clamp(3rem, 13.5vw, 11.5rem)',
-          color:         'rgba(201, 169, 110, 0.08)',
-          letterSpacing: '-0.02em',
-          marginBottom:  '-0.22em',
-        }}
-      >
-        LOUIS POLO
       </div>
     </footer>
   )

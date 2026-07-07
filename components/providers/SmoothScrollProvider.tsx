@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { MotionConfig } from 'framer-motion'
 import Lenis         from 'lenis'
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
@@ -10,7 +11,10 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       navigator.maxTouchPoints > 0 ||
       window.matchMedia('(pointer: coarse)').matches
 
-    if (isTouch) return
+    const prefersReducedMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (isTouch || prefersReducedMotion) return
 
     const lenis = new Lenis({
       duration:    1.2,
@@ -31,5 +35,5 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     }
   }, [])
 
-  return <>{children}</>
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>
 }
