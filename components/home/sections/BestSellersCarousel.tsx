@@ -11,19 +11,39 @@ import { createPortal }                      from 'react-dom'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
-import { ArrowRight, ShoppingBag, Ruler } from 'lucide-react'
+import { ArrowRight, ShoppingBag, Ruler, Heart } from 'lucide-react'
 import type { ProductSize }                  from '@/types'
 import { FEATURED_PRODUCTS }                 from '@/config/products'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
 import { formatPrice }                       from '@/lib/utils'
 import { ROUTES }                            from '@/lib/constants'
 import { useCartStore }                      from '@/store/cartStore'
+import { useWishlistStore }                  from '@/store/wishlistStore'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 import { SizeGuideModal }                    from '@/components/ui/SizeGuideModal'
 
 // ─── Single product card ──────────────────────────────────────────────────────
 function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
   const addItem = useCartStore((s) => s.addItem)
+  const toggle  = useWishlistStore((s) => s.toggle)
+  const has     = useWishlistStore((s) => s.has)
+  const [wished, setWished] = useState(false)
+  const [burst,  setBurst]  = useState(false)
+
+  // Sync after hydration to avoid SSR mismatch
+  useEffect(() => { setWished(has(product.id)) }, [has, product.id])
+
+  function handleWishlist(e: React.MouseEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    const adding = !wished
+    toggle(product.id)
+    setWished(adding)
+    if (adding) {
+      setBurst(true)
+      setTimeout(() => setBurst(false), 1050)
+    }
+  }
 
   const [activeVariant,  setActiveVariant]  = useState(0)
   const [activeSize,     setActiveSize]     = useState<ProductSize | null>(null)
@@ -89,6 +109,38 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
             {product.tag}
           </span>
         )}
+        {/* Wishlist heart */}
+        <motion.button
+          type="button"
+          onClick={handleWishlist}
+          whileTap={{ scale: 0.75 }}
+          className="absolute top-3 right-3 z-10 p-1"
+          aria-label={wished ? 'Remove from wishlist' : 'Save to wishlist'}
+        >
+          <span className="relative block">
+            <motion.span
+              className="block"
+              animate={burst ? { scale: [1, 1.28, 1, 1.32, 1] } : { scale: 1 }}
+              transition={{ duration: 1, ease: 'easeInOut', times: [0, 0.25, 0.5, 0.75, 1] }}
+            >
+              <Heart
+                size={19}
+                strokeWidth={1.5}
+                className="transition-colors duration-200"
+                style={{ color: wished ? '#C0392B' : 'var(--color-lp-muted)', fill: wished ? '#C0392B' : 'none' }}
+              />
+            </motion.span>
+            {burst && (
+              <motion.span
+                className="absolute -inset-1 rounded-full pointer-events-none"
+                style={{ border: '1.5px solid #C0392B' }}
+                initial={{ scale: 0.4, opacity: 0.9 }}
+                animate={{ scale: 1.9, opacity: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+              />
+            )}
+          </span>
+        </motion.button>
         {/* Quick shop overlay */}
         <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-350 ease-out bg-[var(--color-lp-ink)]/90 backdrop-blur-sm py-3 flex items-center justify-center gap-2">
           <span className="font-body text-[0.7rem] tracking-[0.12em] uppercase text-[var(--color-lp-porcelain)]">

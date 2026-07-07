@@ -35,6 +35,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
   const toggle   = useWishlistStore((s) => s.toggle)
   const has      = useWishlistStore((s) => s.has)
   const [wished,        setWished]        = useState(false)
+  const [burst,         setBurst]         = useState(false)
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
 
   useEffect(() => { setWished(has(product.id)) }, [has, product.id])
@@ -267,19 +268,41 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
         <motion.button
           type="button"
           onClick={() => {
+            const adding = !wished
             toggle(product.id)
-            setWished((w) => !w)
+            setWished(adding)
+            if (adding) {
+              setBurst(true)
+              setTimeout(() => setBurst(false), 1050)
+            }
           }}
-          whileTap={{ scale: 0.93 }}
+          whileTap={{ scale: 0.9 }}
           className="w-14 flex items-center justify-center border border-[var(--color-lp-border)] hover:border-[var(--color-lp-gold)] transition-colors duration-200 shrink-0"
           aria-label={wished ? 'Remove from wishlist' : 'Save to wishlist'}
         >
-          <Heart
-            size={18}
-            strokeWidth={1.5}
-            className="transition-colors duration-200"
-            style={{ color: wished ? '#C9A96E' : 'var(--color-lp-muted)', fill: wished ? '#C9A96E' : 'none' }}
-          />
+          <span className="relative block">
+            <motion.span
+              className="block"
+              animate={burst ? { scale: [1, 1.28, 1, 1.32, 1] } : { scale: 1 }}
+              transition={{ duration: 1, ease: 'easeInOut', times: [0, 0.25, 0.5, 0.75, 1] }}
+            >
+              <Heart
+                size={18}
+                strokeWidth={1.5}
+                className="transition-colors duration-200"
+                style={{ color: wished ? '#C0392B' : 'var(--color-lp-muted)', fill: wished ? '#C0392B' : 'none' }}
+              />
+            </motion.span>
+            {burst && (
+              <motion.span
+                className="absolute -inset-1 rounded-full pointer-events-none"
+                style={{ border: '1.5px solid #C0392B' }}
+                initial={{ scale: 0.4, opacity: 0.9 }}
+                animate={{ scale: 1.9, opacity: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+              />
+            )}
+          </span>
         </motion.button>
       </div>
 

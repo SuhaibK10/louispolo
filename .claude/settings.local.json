@@ -7,7 +7,11 @@
       "Bash(python3 -)",
       "Bash(awk '/\\\\/\\\\* latin \\\\*\\\\//{flag=1} flag && /unicode-range/{print; exit}' \"/private/tmp/claude-501/-Users-suhaibkhan-Downloads-louispolo-2/820a1005-632b-4942-af21-c8fe5c78afcf/scratchpad/fonts/lora.css\")",
       "Bash(.*—)",
-      "Bash(grep -E \"'.*—|\\\\\".*—|`.*—)"
+      "Bash(grep -E \"'.*—|\\\\\".*—|`.*—)",
+      "Bash(command -v chromium-cli)",
+      "Read(//Applications/**)",
+      "Bash(curl -sf -o /dev/null -w \"%{http_code}\" http://localhost:3999/store)",
+      "Bash(node shoot.js)"
     ]
   }
 }

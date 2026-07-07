@@ -233,7 +233,7 @@ export function Navbar() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                    className="absolute -top-1.5 -right-1.5 w-[18px] h-[18px] rounded-full bg-[var(--color-lp-gold)] text-[var(--color-lp-ink)] text-[9px] font-semibold flex items-center justify-center tabular-nums"
+                    className="absolute top-0 right-0 w-4.5 h-4.5 rounded-full bg-[#C0392B] text-lp-porcelain text-[9px] font-semibold flex items-center justify-center tabular-nums"
                   >
                     {wishlistCount > 9 ? '9+' : wishlistCount}
                   </motion.span>
@@ -252,7 +252,7 @@ export function Navbar() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                    className="absolute -top-1.5 -right-1.5 w-[18px] h-[18px] rounded-full bg-[var(--color-lp-gold)] text-[var(--color-lp-ink)] text-[9px] font-semibold flex items-center justify-center tabular-nums"
+                    className="absolute top-0 right-0 w-4.5 h-4.5 rounded-full bg-lp-ink text-lp-porcelain text-[9px] font-semibold flex items-center justify-center tabular-nums"
                   >
                     {cartCount > 9 ? '9+' : cartCount}
                   </motion.span>

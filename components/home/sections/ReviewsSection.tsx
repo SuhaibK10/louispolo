@@ -6,8 +6,8 @@
 // Replace placeholder copy with verified customer reviews before launch.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState, useEffect, useCallback }  from 'react'
-import { motion, AnimatePresence }           from 'framer-motion'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, useMotionValueEvent, animate } from 'framer-motion'
 import { Star, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image                                 from 'next/image'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
@@ -197,6 +197,43 @@ function Lightbox({
 export function ReviewsSection() {
   const [lightbox, setLightbox] = useState<{ photos: string[]; index: number; reviewName: string } | null>(null)
 
+  const trackRef     = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [dragWidth, setDragWidth] = useState(0)
+  const x = useMotionValue(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const calculate = () => {
+      if (trackRef.current && containerRef.current) {
+        setDragWidth(trackRef.current.scrollWidth - containerRef.current.offsetWidth)
+      }
+    }
+    if (!trackRef.current) return
+    const ro = new ResizeObserver(calculate)
+    ro.observe(trackRef.current)
+    return () => ro.disconnect()
+  }, [])
+
+  // Track drag position → active dot
+  useMotionValueEvent(x, 'change', (latest) => {
+    const dw = trackRef.current && containerRef.current
+      ? trackRef.current.scrollWidth - containerRef.current.offsetWidth
+      : 0
+    if (dw <= 0) return
+    const progress = Math.min(Math.max(-latest / dw, 0), 1)
+    setActiveIndex(Math.round(progress * (REVIEWS.length - 1)))
+  })
+
+  // Dot click → glide the track to that review
+  const goTo = useCallback((i: number) => {
+    const dw = trackRef.current && containerRef.current
+      ? trackRef.current.scrollWidth - containerRef.current.offsetWidth
+      : 0
+    if (dw <= 0) return
+    animate(x, -(i / (REVIEWS.length - 1)) * dw, { type: 'spring', stiffness: 220, damping: 32 })
+  }, [x])
+
   const handlePrev = useCallback(() =>
     setLightbox(lb => lb && { ...lb, index: (lb.index - 1 + lb.photos.length) % lb.photos.length }), [])
   const handleNext = useCallback(() =>
@@ -204,7 +241,7 @@ export function ReviewsSection() {
 
   return (
     <>
-      <section className="section-pad" style={{ paddingTop: '1.5rem' }}>
+      <section className="section-pad overflow-hidden" style={{ paddingTop: '1.5rem' }}>
         <div className="container-lp">
 
           {/* Header */}
@@ -222,20 +259,24 @@ export function ReviewsSection() {
               Packed, Travelled, Approved.
             </motion.h2>
           </motion.div>
+        </div>
 
-          {/* Testimonials — editorial columns, hairline rules, no card boxes */}
+        {/* Testimonials — swipeable editorial carousel */}
+        <div ref={containerRef} className="overflow-hidden w-full">
           <motion.div
-            variants={staggerChildren}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10 md:gap-y-14"
+            ref={trackRef}
+            drag="x"
+            dragConstraints={{ left: -dragWidth, right: 0 }}
+            dragElastic={0.05}
+            dragMomentum={true}
+            className="flex gap-8 md:gap-10 pl-[max(1.25rem,calc((100vw-88rem)/2+4rem))] pr-6 cursor-grab active:cursor-grabbing select-none"
+            style={{ x, WebkitUserSelect: 'none' }}
+            whileTap={{ cursor: 'grabbing' }}
           >
             {REVIEWS.map((review) => (
-              <motion.article
+              <article
                 key={review.name}
-                variants={fadeUp}
-                className="flex flex-col gap-4 border-t border-lp-border pt-6"
+                className="flex flex-col gap-4 border-t border-lp-border pt-6 shrink-0 w-[78vw] sm:w-[46vw] md:w-[34vw] lg:w-[24rem]"
               >
                 {/* Stars + product */}
                 <div className="flex items-start justify-between gap-3">
@@ -265,6 +306,7 @@ export function ReviewsSection() {
                           fill
                           className="object-contain"
                           sizes="96px"
+                          draggable="false"
                         />
                       </button>
                     ))}
@@ -280,9 +322,31 @@ export function ReviewsSection() {
                     {review.city}
                   </p>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </motion.div>
+        </div>
+
+        {/* Carousel dots */}
+        <div className="flex items-center justify-center gap-2 mt-8 md:mt-10">
+          {REVIEWS.map((review, i) => (
+            <button
+              key={review.name}
+              type="button"
+              onClick={() => goTo(i)}
+              className="p-1"
+              aria-label={`Go to review ${i + 1} of ${REVIEWS.length}`}
+              aria-current={i === activeIndex}
+            >
+              <span
+                className={`block rounded-full transition-all duration-300 ${
+                  i === activeIndex
+                    ? 'w-6 h-1.5 bg-lp-gold'
+                    : 'w-1.5 h-1.5 bg-lp-border hover:bg-lp-muted'
+                }`}
+              />
+            </button>
+          ))}
         </div>
       </section>
 

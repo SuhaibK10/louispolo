@@ -28,9 +28,22 @@ export function ProductCard({ product }: ProductCardProps) {
   const toggle   = useWishlistStore((s) => s.toggle)
   const has      = useWishlistStore((s) => s.has)
   const [wished, setWished] = useState(false)
+  const [burst,  setBurst]  = useState(false)
 
   // Sync after hydration to avoid SSR mismatch
   useEffect(() => { setWished(has(product.id)) }, [has, product.id])
+
+  function handleWishlist(e: React.MouseEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    const adding = !wished
+    toggle(product.id)
+    setWished(adding)
+    if (adding) {
+      setBurst(true)
+      setTimeout(() => setBurst(false), 1050)
+    }
+  }
 
   const [activeVariant,   setActiveVariant]   = useState(0)
   const [activeSize,      setActiveSize]      = useState<ProductSize | null>(null)
@@ -104,23 +117,37 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
 
         {/* Wishlist heart */}
-        <button
+        <motion.button
           type="button"
-          onClick={(e) => {
-            e.preventDefault()
-            toggle(product.id)
-            setWished((w) => !w)
-          }}
+          onClick={handleWishlist}
+          whileTap={{ scale: 0.75 }}
           className="absolute top-3 right-3 z-10 p-1"
           aria-label={wished ? 'Remove from wishlist' : 'Save to wishlist'}
         >
-          <Heart
-            size={15}
-            strokeWidth={1.5}
-            className="transition-colors duration-200"
-            style={{ color: wished ? '#C9A96E' : 'var(--color-lp-muted)', fill: wished ? '#C9A96E' : 'none' }}
-          />
-        </button>
+          <span className="relative block">
+            <motion.span
+              className="block"
+              animate={burst ? { scale: [1, 1.28, 1, 1.32, 1] } : { scale: 1 }}
+              transition={{ duration: 1, ease: 'easeInOut', times: [0, 0.25, 0.5, 0.75, 1] }}
+            >
+              <Heart
+                size={19}
+                strokeWidth={1.5}
+                className="transition-colors duration-200"
+                style={{ color: wished ? '#C0392B' : 'var(--color-lp-muted)', fill: wished ? '#C0392B' : 'none' }}
+              />
+            </motion.span>
+            {burst && (
+              <motion.span
+                className="absolute -inset-1 rounded-full pointer-events-none"
+                style={{ border: '1.5px solid #C0392B' }}
+                initial={{ scale: 0.4, opacity: 0.9 }}
+                animate={{ scale: 1.9, opacity: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+              />
+            )}
+          </span>
+        </motion.button>
 
         {/* Low stock badge */}
         {variant.lowStock && (

@@ -6,6 +6,7 @@
 
 const CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dpepctqdj'
 const BASE   = `https://res.cloudinary.com/${CLOUD}/image/upload`
+const VIDEO_BASE = `https://res.cloudinary.com/${CLOUD}/video/upload`
 
 // Build a Cloudinary URL from a public_id + transform string.
 // Also handles full Cloudinary URLs by injecting transforms after /upload/.
@@ -56,6 +57,16 @@ export const mobileCardUrl = (id: string) =>
 // Exhibition / trade show gallery — content-aware crop, wide enough for retina desktop
 export const expoUrl = (id: string) =>
    cld(id, 'f_auto,q_auto,w_1600,h_2133,c_fill,g_auto')
+
+// ─── Video helpers ────────────────────────────────────────────────────────────
+
+// Streamable MP4 from a Cloudinary VIDEO public_id
+export const cldVideo = (id: string, transforms = 'f_mp4,q_auto,w_1280') =>
+  `${VIDEO_BASE}/${transforms}/${id}.mp4`
+
+// Poster frame extracted from the video itself (first frame as JPG)
+export const videoPosterUrl = (id: string) =>
+  `${VIDEO_BASE}/f_jpg,q_auto,w_1280/${id}.jpg`
 
 // Placeholder for when no image is uploaded yet
 export const PLACEHOLDER_URL = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800' fill='%23F0EDE6'%3E%3Crect width='600' height='800'/%3E%3Ctext x='50%25' y='50%25' font-family='serif' font-size='48' fill='%23C9A96E' text-anchor='middle' dominant-baseline='middle'%3ELP%3C/text%3E%3C/svg%3E`

@@ -4,6 +4,7 @@
 
 import type { Metadata }       from 'next'
 import { BrandStory }          from '@/components/home/sections/BrandStory'
+import { FactoryGallery }      from '@/components/about/FactoryGallery'
 import { ExhibitionGallery }   from '@/components/home/sections/ExhibitionGallery'
 
 export const metadata: Metadata = {
@@ -14,15 +15,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="pt-16 md:pt-[4.5rem]">
-      <div className="section-pad pb-0">
-        <div className="container-lp">
-          <span className="lp-eyebrow">Our Story</span>
-          <h1 className="lp-heading-lg mb-2">
-            10+ years building for the world&apos;s biggest brands.
-          </h1>
-        </div>
-      </div>
-
+      <FactoryGallery />
       <BrandStory />
       <ExhibitionGallery />
     </div>
