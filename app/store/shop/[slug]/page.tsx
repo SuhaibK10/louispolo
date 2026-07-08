@@ -10,6 +10,7 @@ import Link                    from 'next/link'
 import { ChevronLeft }         from 'lucide-react'
 import { getProductBySlug, PRODUCTS } from '@/config/products'
 import { ProductPageClient }   from '@/components/product/ProductPageClient'
+import { ProductStory }        from '@/components/product/ProductDetails'
 import { ROUTES }              from '@/lib/constants'
 
 interface Props {
@@ -59,6 +60,9 @@ export default async function ProductPage({ params, searchParams }: Props) {
 
         {/* PDP grid */}
         <ProductPageClient product={product} defaultColor={color} />
+
+        {/* Long-form editorial detail */}
+        <ProductStory product={product} />
 
       </div>
     </div>

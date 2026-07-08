@@ -45,7 +45,7 @@ const CITIES = [
 
 export function BrandStory() {
   return (
-    <section className="section-pad bg-[var(--color-lp-ink)] text-[var(--color-lp-porcelain)]" style={{ paddingTop: '2.5rem' }}>
+    <section className="section-pad bg-[var(--color-lp-ink)] text-white" style={{ paddingTop: '2.5rem' }}>
       <div className="container-lp">
 
         {/* ── Main grid: headline left / pillars right ── */}
@@ -59,14 +59,14 @@ export function BrandStory() {
             viewport={VIEWPORT}
           >
             <span className="lp-eyebrow text-[var(--color-lp-gold)]">Our story</span>
-            <h2 className="lp-heading-lg text-[var(--color-lp-porcelain)] mb-6">
+            <h2 className="lp-heading-lg text-white mb-6">
               10+ years building for the world's biggest brands.
-              <span className="text-[var(--color-lp-gold)]"> Now we build it for you.</span>
+              <em className="italic"> Now we build it for you.</em>
             </h2>
-            <p className="font-body text-[var(--color-lp-porcelain)]/60 text-base leading-relaxed mb-8">
+            <p className="font-body text-white/60 text-base leading-relaxed mb-8">
               Louis Polo started as an OEM manufacturer, making luggage for brands you have carried through airports all over the world. In 2025, we decided to put our name on it. Same factory, same materials, same quality control. Your price just removed the middleman.
             </p>
-            <Link href={ROUTES.about} className="btn-gold inline-flex">
+            <Link href={ROUTES.about} className="btn-dove inline-flex">
               Read our story
               <ArrowRight size={15} strokeWidth={1.5} />
             </Link>
@@ -87,10 +87,10 @@ export function BrandStory() {
                   {number}
                 </span>
                 <div>
-                  <h3 className="font-display text-[1.1rem] text-[var(--color-lp-porcelain)] mb-2 leading-snug">
+                  <h3 className="font-display text-[1.1rem] text-white mb-2 leading-snug">
                     {label}
                   </h3>
-                  <p className="font-body text-[0.85rem] text-[var(--color-lp-porcelain)]/55 leading-relaxed">
+                  <p className="font-body text-[0.85rem] text-white/55 leading-relaxed">
                     {copy}
                   </p>
                 </div>
@@ -109,10 +109,10 @@ export function BrandStory() {
         >
           {STATS.map(({ value, label }) => (
             <motion.div key={label} variants={fadeUp} className="flex flex-col gap-1">
-              <p className="font-display leading-none" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-lp-gold)' }}>
+              <p className="font-display leading-none text-white" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {value}
               </p>
-              <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/45">
+              <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-white/45">
                 {label}
               </p>
             </motion.div>
@@ -121,7 +121,7 @@ export function BrandStory() {
 
         {/* ── City strip ── */}
         <div className="mt-12 pt-8 border-t border-white/10">
-          <p className="font-body text-[0.6rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/30 text-center mb-6">
+          <p className="font-body text-[0.6rem] tracking-[0.18em] uppercase text-white/30 text-center mb-6">
             Offices &amp; Partners
           </p>
           <div className="flex items-center justify-between">
@@ -129,7 +129,7 @@ export function BrandStory() {
               <React.Fragment key={city}>
                 <div className="flex flex-col items-center gap-1.5">
                   <span className="text-2xl">{flag}</span>
-                  <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-[var(--color-lp-porcelain)]/70">{city}</p>
+                  <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-white/70">{city}</p>
                 </div>
                 {i < CITIES.length - 1 && (
                   <div className="flex-1 h-px mx-6 bg-white/10" />

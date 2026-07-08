@@ -35,7 +35,7 @@ const LEGAL_LINKS = [
 ]
 
 const footerLink =
-  'font-body text-[0.8rem] text-[#F5F3ED]/65 hover:text-[var(--color-lp-gold)] transition-colors duration-200'
+  'font-body text-[0.8rem] text-white/65 hover:text-[var(--color-lp-gold)] transition-colors duration-200'
 
 function WhatsAppIcon({ size = 17 }: { size?: number }) {
   return (
@@ -50,7 +50,7 @@ function WhatsAppIcon({ size = 17 }: { size?: number }) {
 // Wordmark-style marks are set in type; geometric marks (Mastercard circles,
 // UPI/RuPay chevrons) are drawn from primitives so they stay crisp at 28px.
 const payChip =
-  'flex h-6 items-center justify-center gap-1.5 rounded-[3px] bg-[#F5F3ED] px-2 opacity-90'
+  'flex h-6 items-center justify-center gap-1.5 rounded-[3px] bg-white px-2 opacity-90'
 
 function PaymentMarks() {
   return (
@@ -99,9 +99,9 @@ function PaymentMarks() {
 
       {/* Gateway note — Razorpay mark in brand blue, wordmark light (their
           dark-background badge style) */}
-      <span className="flex items-center gap-1.5 font-body text-[0.68rem] text-[#F5F3ED]/45 ml-1">
+      <span className="flex items-center gap-1.5 font-body text-[0.68rem] text-white/45 ml-1">
         Secured by
-        <span className="flex items-center gap-1 font-medium text-[#F5F3ED]/70">
+        <span className="flex items-center gap-1 font-medium text-white/70">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="#3395FF" aria-hidden="true">
             <path d="M22.436 0l-11.91 7.773-1.174 4.276 6.625-4.297L11.65 24h4.391l6.395-24z" />
             <path d="M14.26 10.098L3.389 17.166 1.564 24h9.428l3.268-13.902z" />
@@ -116,7 +116,7 @@ function PaymentMarks() {
 export function Footer() {
   return (
     <footer
-      className="relative overflow-hidden text-[var(--color-lp-porcelain)]"
+      className="relative overflow-hidden text-white"
       style={{ background: 'linear-gradient(180deg, #1A1714 0%, #120F0A 100%)' }}
     >
       <div className="container-lp pt-14 md:pt-20">
@@ -125,10 +125,10 @@ export function Footer() {
         <div className="flex flex-col items-center text-center gap-8 pb-12 md:pb-14 border-b border-[#C9A96E]/15">
           <div>
             <p className="lp-eyebrow">Newsletter</p>
-            <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight text-[var(--color-lp-porcelain)]">
+            <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight text-white">
               Join the journey.
             </h2>
-            <p className="font-body text-[0.85rem] text-[#F5F3ED]/55 mt-2">
+            <p className="font-body text-[0.85rem] text-white/55 mt-2">
               New collections, launches and offers. One email a month, no noise.
             </p>
           </div>
@@ -149,11 +149,11 @@ export function Footer() {
               height={52}
               className="mb-4 brightness-0 invert mx-auto"
             />
-            <p className="font-body text-[0.8rem] text-[#F5F3ED]/55 leading-relaxed mb-4">
+            <p className="font-body text-[0.8rem] text-white/55 leading-relaxed mb-4">
               Premium hard-shell luggage from the factory that builds for the
               world&apos;s biggest brands.
             </p>
-            <p className="font-body text-[0.62rem] tracking-[0.16em] uppercase text-[#C9A96E]/60 mb-6 text-center">
+            <p className="font-body text-[0.62rem] tracking-[0.16em] uppercase text-white/45 mb-6 text-center">
               Mumbai · London · Hong Kong
             </p>
 
@@ -217,7 +217,7 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-            <p className="font-body text-[0.72rem] text-[#F5F3ED]/40 mt-4">
+            <p className="font-body text-[0.72rem] text-white/40 mt-4">
               We reply within 2 hours.
             </p>
           </div>
@@ -231,7 +231,7 @@ export function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="font-body text-[0.72rem] text-[#F5F3ED]/45 hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+                className="font-body text-[0.72rem] text-white/45 hover:text-[var(--color-lp-gold)] transition-colors duration-200"
               >
                 {label}
               </Link>
@@ -241,7 +241,7 @@ export function Footer() {
 
         {/* ── Copyright ───────────────────────────────────────────────────── */}
         <div className="py-5 text-center">
-          <p className="font-body text-[0.7rem] text-[#F5F3ED]/35 tracking-wide">
+          <p className="font-body text-[0.7rem] text-white/35 tracking-wide">
             © {new Date().getFullYear()} LOUISPOLO FASHION INDIA PRIVATE LIMITED.
             All rights reserved.
           </p>

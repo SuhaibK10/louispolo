@@ -27,6 +27,25 @@ export interface ProductFeature {
   label: string
 }
 
+// Editorial detail block — short heading + body, shown in the "In Detail"
+// section of the PDP. Two or three per product, written in brand voice.
+export interface ProductHighlight {
+  heading: string
+  body: string
+}
+
+// One row of the Specifications accordion,
+// e.g. { label: 'Shell', value: 'Polycarbonate + ABS' }
+export interface SpecRow {
+  label: string
+  value: string
+}
+
+export interface ProductFAQ {
+  q: string
+  a: string
+}
+
 export interface SizeOption {
   size: ProductSize
   price: number
@@ -58,6 +77,12 @@ export interface Product {
   hideSizeGuide?: boolean
   features: ProductFeature[]
   variants: ColorVariant[]
+  // ── PDP detail content (all optional — sections render only when present) ──
+  story?: string[]               // long-form paragraphs for the "In Detail" section
+  highlights?: ProductHighlight[]
+  specs?: SpecRow[]              // Specifications accordion rows
+  warranty?: string              // e.g. '3-year manufacturer warranty'
+  faqs?: ProductFAQ[]
 }
 
 // ─── Cart ─────────────────────────────────────────────────────────────────────

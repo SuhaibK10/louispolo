@@ -9,7 +9,8 @@
 import { useState, useEffect }   from 'react'
 import { useRouter }             from 'next/navigation'
 import { motion }                from 'framer-motion'
-import { ShoppingBag, Check, Heart, Ruler, Minus, Plus } from 'lucide-react'
+import { ShoppingBag, Heart, Ruler, Minus, Plus } from 'lucide-react'
+import { featureIconFor }        from '@/lib/featureIcons'
 import type { Product, ProductSize } from '@/types'
 import { formatPrice }           from '@/lib/utils'
 import { ROUTES }                from '@/lib/constants'
@@ -17,6 +18,7 @@ import { useCartStore }          from '@/store/cartStore'
 import { thumbUrl }              from '@/lib/cloudinary'
 import { useWishlistStore }      from '@/store/wishlistStore'
 import { SizeGuideModal }        from '@/components/ui/SizeGuideModal'
+import { ProductAccordions }     from '@/components/product/ProductDetails'
 
 interface Props {
   product: Product
@@ -103,13 +105,18 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       </p>
 
       {/* ── Features ───────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 gap-2">
-        {product.features.map(({ label }) => (
-          <div key={label} className="flex items-center gap-2">
-            <Check size={13} strokeWidth={2} className="text-[var(--color-lp-gold)] flex-shrink-0" />
-            <span className="font-body text-[0.78rem] text-[var(--color-lp-ink)]">{label}</span>
-          </div>
-        ))}
+      <div className="grid grid-cols-2 gap-x-2 gap-y-3">
+        {product.features.map(({ label }) => {
+          const Icon = featureIconFor(label)
+          return (
+            <div key={label} className="flex items-center gap-2.5">
+              <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[var(--color-lp-cream)] shrink-0">
+                <Icon size={15} strokeWidth={1.5} className="text-[var(--color-lp-gold)]" />
+              </span>
+              <span className="font-body text-[0.78rem] leading-snug text-[var(--color-lp-ink)]">{label}</span>
+            </div>
+          )
+        })}
       </div>
 
       <div className="lp-hr" />
@@ -312,6 +319,11 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
           Only {sizeObj.stock} left in stock
         </p>
       )}
+
+      {/* ── Specifications / Warranty / Shipping / FAQ accordions ─────────── */}
+      <div className="pt-2">
+        <ProductAccordions product={product} />
+      </div>
 
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
     </div>

@@ -62,13 +62,11 @@ export function ImageGallery({ images, productName, activeColorIndex }: Props) {
             <button
               key={i}
               onClick={() => setActive(i)}
-              className="relative shrink-0 w-16 h-21.25 overflow-hidden transition-all duration-200"
-              style={{
-                outline: i === active
-                  ? '1.5px solid var(--color-lp-gold)'
-                  : '1.5px solid var(--color-lp-border)',
-                outlineOffset: '1.5px',
-              }}
+              className={`relative shrink-0 w-16 h-21.25 overflow-hidden bg-lp-cream border transition-colors duration-200 ${
+                i === active
+                  ? 'border-lp-gold shadow-[inset_0_0_0_1px_var(--color-lp-gold)]'
+                  : 'border-lp-border hover:border-lp-border-strong'
+              }`}
               aria-label={`View image ${i + 1}`}
               aria-pressed={i === active}
             >

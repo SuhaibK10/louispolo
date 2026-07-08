@@ -217,6 +217,34 @@
   }
   .btn-gold:active { transform: scale(0.97); }
 
+  /* Dove — warm light-gray fill, ink text. For CTAs on dark sections where
+     gold text reads too loud. */
+  .btn-dove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 48px;
+    padding: 0 1.75rem;
+    background-color: #B7B3AC;
+    color: var(--color-lp-ink);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid #B7B3AC;
+    border-radius: 6px;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+  }
+  .btn-dove:hover {
+    background-color: #C6C2BB;
+    border-color: #C6C2BB;
+    transform: translateY(-1px);
+  }
+  .btn-dove:active { transform: scale(0.97); }
+
   /* Ghost — transparent bg, ink border, fills on hover. For product cards. */
   .btn-ghost {
     display: inline-flex;
