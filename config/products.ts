@@ -84,7 +84,6 @@ export const PRODUCTS: Product[] = [
     variants: [
       {
         color: 'Charcoal Grey',
-        accentColor: 'Lime Green',
         colorHex: '#A6B21A',
         bodyHex: '#4A4945',
         lowStock: true,
@@ -94,7 +93,6 @@ export const PRODUCTS: Product[] = [
       },
       {
         color: 'Black',
-        accentColor: 'Red',
         colorHex: '#C0392B',
         bodyHex: '#3E3E3E',
         sizes: [
@@ -105,7 +103,6 @@ export const PRODUCTS: Product[] = [
       },
       {
         color: 'Silver',
-        accentColor: 'Royal Blue',
         colorHex: '#3A5F97',
         bodyHex: '#BDBDB6',
         lowStock: true,
