@@ -70,7 +70,7 @@ function PaymentMarks() {
 
       {/* Visa */}
       <span className={payChip} role="img" aria-label="Visa">
-        <span className="font-body text-[0.72rem] font-semibold italic tracking-[-0.03em] text-[#1A1F71]">
+        <span className="font-body text-[0.72rem] font-semibold tracking-[-0.03em] text-[#1A1F71]">
           VISA
         </span>
       </span>
@@ -89,7 +89,7 @@ function PaymentMarks() {
 
       {/* RuPay */}
       <span className={payChip} role="img" aria-label="RuPay">
-        <span className="font-body text-[0.7rem] font-semibold italic tracking-[-0.02em] text-[#1B3281]">
+        <span className="font-body text-[0.7rem] font-semibold tracking-[-0.02em] text-[#1B3281]">
           RuPay
         </span>
         <svg viewBox="0 0 12 14" width="8" height="10" aria-hidden="true">
@@ -120,21 +120,23 @@ export function Footer() {
       className="relative overflow-hidden text-white"
       style={{ background: 'linear-gradient(180deg, #1A1714 0%, #120F0A 100%)' }}
     >
-      <div className="container-lp pt-14 md:pt-20">
+      <div className="container-lp pt-20 md:pt-28">
 
-        {/* ── Newsletter band ─────────────────────────────────────────────── */}
-        <div className="flex flex-col items-center text-center gap-8 pb-12 md:pb-14 border-b border-[#C9A96E]/15">
-          <div>
-            <p className="lp-eyebrow">Newsletter</p>
-            <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight text-white">
-              Join the journey.
-            </h2>
-            <p className="font-body text-[0.85rem] text-white/55 mt-2">
-              New collections, launches and offers. One email a month, no noise.
-            </p>
-          </div>
-          <div className="w-full max-w-sm">
-            <FooterNewsletter />
+        {/* ── Newsletter card ─────────────────────────────────────────────── */}
+        <div className="pb-12 md:pb-14 border-b border-[#C9A96E]/15">
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-10 md:py-14 flex flex-col items-center text-center gap-8">
+            <div>
+              <p className="lp-eyebrow">Newsletter</p>
+              <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight text-white">
+                Join the journey.
+              </h2>
+              <p className="font-body text-[0.85rem] text-white/55 mt-2">
+                New collections, launches and offers. One email a month, no noise.
+              </p>
+            </div>
+            <div className="w-full max-w-sm">
+              <FooterNewsletter />
+            </div>
           </div>
         </div>
 

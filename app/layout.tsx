@@ -4,7 +4,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata, Viewport } from 'next'
-import { Lora, Hanken_Grotesk } from 'next/font/google'
+import { Lora, Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
@@ -21,11 +21,11 @@ const lora = Lora({
   display:  'swap',
 })
 
-// Body sans — clean, readable, modern
-const hanken = Hanken_Grotesk({
+// Body sans — refined contemporary sans, even letterforms, elegant at small sizes
+const jakarta = Plus_Jakarta_Sans({
   subsets:  ['latin'],
   weight:   ['300', '400', '500', '600'],
-  variable: '--font-hanken',
+  variable: '--font-body-sans',
   display:  'swap',
 })
 
@@ -86,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${lora.variable} ${hanken.variable}`}>
+    <html lang="en" className={`${lora.variable} ${jakarta.variable}`}>
       <body className="bg-[var(--color-lp-porcelain)] text-[var(--color-lp-ink)] font-body antialiased">
         <DesktopGate>
           <SmoothScrollProvider>

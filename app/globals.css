@@ -7,7 +7,7 @@
 @theme {
   /* Fonts */
   --font-display: var(--font-lora), Georgia, serif;
-  --font-body:    var(--font-hanken), system-ui, sans-serif;
+  --font-body:    var(--font-body-sans), system-ui, sans-serif;
 
   /* Palette — Louis Polo SEAT 1A */
   --color-lp-porcelain:    #F5F3ED;   /* page background — warm off-white    */
@@ -99,15 +99,19 @@
 
 /* ─── Layout utilities ────────────────────────────────────────────────────── */
 
-/* Consistent page container */
+/* Consistent page container.
+   Horizontal padding only — the `padding: 0 X` shorthand would force
+   padding-top to 0 and, being unlayered, override Tailwind pt-/py-
+   utilities on the same element. */
 .container-lp {
   width: 100%;
   max-width: 88rem;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
-@media (min-width: 768px)  { .container-lp { padding: 0 2.5rem; } }
-@media (min-width: 1280px) { .container-lp { padding: 0 4rem;   } }
+@media (min-width: 768px)  { .container-lp { padding-left: 2.5rem; padding-right: 2.5rem; } }
+@media (min-width: 1280px) { .container-lp { padding-left: 4rem;   padding-right: 4rem;   } }
 
 /* Section vertical rhythm */
 .section-pad {

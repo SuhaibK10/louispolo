@@ -70,23 +70,28 @@ export function ComparePageClient({ initialSlugs }: { initialSlugs?: string[] })
                 />
               </div>
 
-              {/* Product switcher */}
-              <div className="relative">
+              {/* Product switcher — visible centered label + invisible select
+                  overlay. A bare <select> sizes to its widest option and
+                  Safari ignores text-align on it, so the name drifts left. */}
+              <div className="relative inline-flex items-center justify-center gap-1.5 border-b border-transparent hover:border-lp-border-strong transition-colors duration-200">
+                <span className="font-display text-[0.95rem] md:text-[1.05rem] text-lp-ink">
+                  {product.name.trim()}
+                </span>
+                <ChevronDown
+                  size={13}
+                  strokeWidth={1.5}
+                  className="text-lp-muted"
+                />
                 <select
                   value={product.slug}
                   onChange={(e) => setColumn(col, e.target.value)}
-                  className="appearance-none bg-transparent font-display text-[0.95rem] md:text-[1.05rem] text-lp-ink text-center pr-5 cursor-pointer outline-none border-b border-transparent hover:border-lp-border-strong transition-colors duration-200"
+                  className="absolute inset-0 w-full opacity-0 cursor-pointer"
                   aria-label={`Product in column ${col + 1}`}
                 >
                   {PRODUCTS.map(p => (
                     <option key={p.slug} value={p.slug}>{p.name.trim()}</option>
                   ))}
                 </select>
-                <ChevronDown
-                  size={13}
-                  strokeWidth={1.5}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-lp-muted"
-                />
               </div>
 
               <p className="font-body text-[0.8rem] text-lp-muted -mt-1">

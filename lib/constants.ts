@@ -17,6 +17,7 @@ export const BRAND = {
 export const ROUTES = {
   home:     '/store',
   shop:     '/store/shop',
+  compare:  '/store/compare',
   cart:     '/store/cart',
   wishlist: '/store/wishlist',
   about:    '/store/about',
@@ -26,6 +27,7 @@ export const ROUTES = {
 export const NAV_ITEMS = [
   { label: 'Home',    href: ROUTES.home    },
   { label: 'Shop',    href: ROUTES.shop    },
+  { label: 'Compare', href: ROUTES.compare },
   { label: 'About',   href: ROUTES.about   },
   { label: 'Contact', href: ROUTES.contact },
 ] as const

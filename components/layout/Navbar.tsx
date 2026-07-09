@@ -164,11 +164,11 @@ export function Navbar() {
                     href={href}
                     className={cn(
                       'relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200',
-                      'after:absolute after:bottom-[-3px] after:left-0 after:h-[1.5px] after:bg-[var(--color-lp-gold)]',
+                      'after:absolute after:bottom-[-3px] after:left-0 after:h-[1.5px] after:bg-lp-ink/45',
                       'after:transition-all after:duration-300',
                       pathname === href
-                        ? 'text-[var(--color-lp-gold)] after:w-full'
-                        : 'text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] after:w-0 hover:after:w-full'
+                        ? 'text-lp-ink after:w-full'
+                        : 'text-[var(--color-lp-ink)] hover:text-lp-ink/45 after:w-0 hover:after:w-full'
                     )}
                   >
                     {label}
@@ -200,7 +200,7 @@ export function Navbar() {
               {/* Corporate Enquiry — desktop only */}
               <button
                 onClick={() => setCorpOpen(true)}
-                className="hidden lg:block relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)]"
+                className="hidden lg:block relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-lp-ink/45"
               >
                 Corporate Enquiry
               </button>

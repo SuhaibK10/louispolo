@@ -61,7 +61,7 @@ export function BrandStory() {
             <span className="lp-eyebrow text-[var(--color-lp-gold)]">Our story</span>
             <h2 className="lp-heading-lg text-white mb-6">
               10+ years building for the world's biggest brands.
-              <em className="italic"> Now we build it for you.</em>
+              Now we build it for you.
             </h2>
             <p className="font-body text-white/60 text-base leading-relaxed mb-8">
               Louis Polo started as an OEM manufacturer, making luggage for brands you have carried through airports all over the world. In 2025, we decided to put our name on it. Same factory, same materials, same quality control. Your price just removed the middleman.
