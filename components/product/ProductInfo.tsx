@@ -155,14 +155,6 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
         </div>
       </div>
 
-      {/* ── Low stock urgency ──────────────────────────────────────────── */}
-      {variant.lowStock && (
-        <p className="font-body text-[0.75rem] tracking-wide text-[#C0392B] flex items-center gap-1.5">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C0392B] animate-blink-slow" />
-          Only a few left
-        </p>
-      )}
-
       {/* ── Size selector ──────────────────────────────────────────────── */}
       <div>
         <div className="flex items-center justify-between mb-3">
