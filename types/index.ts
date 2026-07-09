@@ -83,6 +83,10 @@ export interface Product {
   specs?: SpecRow[]              // Specifications accordion rows
   warranty?: string              // e.g. '3-year manufacturer warranty'
   faqs?: ProductFAQ[]
+  // ── SEO (optional — PDP metadata falls back to name/description) ──
+  metaTitle?: string
+  metaDescription?: string
+  keywords?: string[]
 }
 
 // ─── Cart ─────────────────────────────────────────────────────────────────────

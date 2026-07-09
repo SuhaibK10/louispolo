@@ -27,8 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product   = getProductBySlug(slug)
   if (!product) return { title: 'Product not found' }
   return {
-    title:       product.name,
-    description: product.description,
+    title:       product.metaTitle ?? product.name,
+    description: product.metaDescription ?? product.description,
+    keywords:    product.keywords,
   }
 }
 

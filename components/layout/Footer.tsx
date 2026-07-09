@@ -21,6 +21,7 @@ const SHOP_LINKS = [
   { label: 'Duffle Bags',  href: `${ROUTES.shop}?category=duffle` },
   { label: 'Vanity Cases', href: `${ROUTES.shop}?category=vanity` },
   { label: 'Overnighters', href: `${ROUTES.shop}?category=overnighter` },
+  { label: 'Compare Models', href: '/store/compare' },
 ]
 
 const COMPANY_LINKS = [

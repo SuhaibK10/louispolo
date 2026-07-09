@@ -9,7 +9,8 @@
 import { useState, useEffect }   from 'react'
 import { useRouter }             from 'next/navigation'
 import { motion }                from 'framer-motion'
-import { ShoppingBag, Heart, Ruler, Minus, Plus } from 'lucide-react'
+import Link                      from 'next/link'
+import { ShoppingBag, Heart, Ruler, Minus, Plus, ArrowRight } from 'lucide-react'
 import { featureIconFor }        from '@/lib/featureIcons'
 import type { Product, ProductSize } from '@/types'
 import { formatPrice }           from '@/lib/utils'
@@ -323,6 +324,20 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       {/* ── Specifications / Warranty / Shipping / FAQ accordions ─────────── */}
       <div className="pt-2">
         <ProductAccordions product={product} />
+        <Link
+          href={`/store/compare?p=${product.slug}`}
+          className="group mt-5 inline-flex items-center gap-2 font-body text-[0.72rem] tracking-[0.14em] uppercase text-[var(--color-lp-gold)]"
+        >
+          <span className="relative">
+            Compare with other models
+            <span className="absolute left-0 -bottom-1 h-px w-full bg-[var(--color-lp-gold)]/35 group-hover:bg-[var(--color-lp-gold)] transition-colors duration-300" />
+          </span>
+          <ArrowRight
+            size={13}
+            strokeWidth={1.5}
+            className="transition-transform duration-300 group-hover:translate-x-1"
+          />
+        </Link>
       </div>
 
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />

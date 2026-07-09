@@ -149,14 +149,6 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
         </motion.button>
 
-        {/* Low stock badge */}
-        {variant.lowStock && (
-          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 font-body text-[0.6rem] font-semibold tracking-[0.06em] text-lp-ink">
-            <span className="inline-block w-1 h-1 rounded-full bg-[#C0392B] animate-blink-slow shrink-0" />
-            Few Left
-          </span>
-        )}
-
         {/* Quick shop overlay */}
         <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-[var(--color-lp-ink)]/90 backdrop-blur-sm py-3 flex items-center justify-center gap-2">
           <span className="font-body text-[0.68rem] tracking-[0.12em] uppercase text-[var(--color-lp-porcelain)]">

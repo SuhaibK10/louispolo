@@ -64,6 +64,9 @@ export const PRODUCTS: Product[] = [
   // ── AeroSmart 3-in-1 ────────────────────────────────────────────────────
   {
     id: 'aerosmart-3in1',
+    metaTitle: 'AeroSmart 3-in-1 Cabin Trolley with Front Laptop Pocket',
+    metaDescription: 'Smart cabin trolley with front laptop access, side quick-access pocket, combination lock, and 360° spinner wheels. Hard-shell protection for business travel.',
+    keywords: ['cabin trolley with laptop compartment', 'front opening cabin luggage', 'hard shell carry-on suitcase', 'combination lock trolley bag', '360 spinner wheel cabin bag'],
     name: 'AeroSmart 3-in-1',
     slug: 'aerosmart-3in1',
     category: 'trolley',
@@ -71,8 +74,8 @@ export const PRODUCTS: Product[] = [
     description:
       'Our most innovative design, front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     story: [
-      'The AeroSmart began as an observation from our own trips: travellers do not unpack at security — they excavate. So we gave this cabin bag three separate doors. A front pocket holds your laptop and documents, a side pocket takes the things you reach for mid-journey, and the main compartment stays packed, zipped, and untouched until you arrive.',
-      'The shell is moulded from polycarbonate and ABS — light enough to lift into an overhead bin one-handed, rigid enough to shrug off a season of conveyor belts. Inside, cross-compression straps and zipped dividers hold everything exactly where you packed it.',
+      'The AeroSmart began as an observation from our own trips: travellers do not unpack at security. They excavate. So we gave this cabin bag three separate doors. A front pocket holds your laptop and documents, a side pocket takes the things you reach for mid-journey, and the main compartment stays packed, zipped, and untouched until you arrive.',
+      'The shell is moulded from polycarbonate and ABS: light enough to lift into an overhead bin one-handed, rigid enough to shrug off a season of conveyor belts. Inside, cross-compression straps and zipped dividers hold everything exactly where you packed it.',
     ],
     highlights: [
       {
@@ -85,7 +88,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Moves the way you do',
-        body: '360° spinner wheels and a multi-stage telescopic handle keep the AeroSmart gliding beside you — through airports, railway platforms, and hotel corridors.',
+        body: '360° spinner wheels and a multi-stage telescopic handle keep the AeroSmart gliding beside you through airports, railway platforms, and hotel corridors.',
       },
     ],
     specs: [
@@ -97,7 +100,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Handle',       value: 'Multi-stage telescopic' },
     ],
     warranty:
-      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Will the cabin size be accepted on board?',
@@ -105,7 +108,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         q: 'How do I set the combination lock?',
-        a: 'The lock ships set to 0-0-0. Press the reset pin, dial in your own code, and release — full instructions are in the box. If you ever forget the code, our support team can walk you through recovery.',
+        a: 'The lock ships set to 0-0-0. Press the reset pin, dial in your own code, and release. Full instructions are in the box. If you ever forget the code, our support team can walk you through recovery.',
       },
     ],
     images: [
@@ -118,6 +121,9 @@ export const PRODUCTS: Product[] = [
       { label: '360° spinner wheels' },
       { label: 'Hard shell ABS' },
       { label: 'Telescopic handle' },
+      { label: 'Combination lock' },
+      { label: 'Carry-on approved' },
+      { label: 'Cross packing straps' },
     ],
     variants: [
       {
@@ -157,6 +163,9 @@ export const PRODUCTS: Product[] = [
   // ── SkyTrail ────────────────────────────────────────────────────────────
   {
     id: 'skytrail',
+    metaTitle: 'SkyTrail Hard Shell Trolley Bag in 20″, 24″ & 28″',
+    metaDescription: 'Premium polycarbonate hard-shell luggage with combination lock, 360° spinner wheels, and organised interior. Three sizes, 3-year warranty.',
+    keywords: ['premium hard shell luggage', 'combination lock suitcase', '360 spinner wheel trolley', 'lightweight travel luggage', 'check-in luggage india'],
     name: 'SkyTrail',
     slug: 'skytrail',
     category: 'trolley',
@@ -170,7 +179,7 @@ export const PRODUCTS: Product[] = [
     highlights: [
       {
         heading: 'Quiet on the outside',
-        body: 'Clean lines, a low-sheen finish, and no loud branding. SkyTrail is designed to look as at home in a hotel lobby as it does on a carousel — on day one and on day five hundred.',
+        body: 'Clean lines, a low-sheen finish, and no loud branding. SkyTrail is designed to look as at home in a hotel lobby as it does on a carousel, on day one and on day five hundred.',
       },
       {
         heading: 'Serious underneath',
@@ -190,11 +199,11 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',       value: '360° spinner wheels' },
     ],
     warranty:
-      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Which size do I need?',
-        a: 'The cabin handles two to four days, the 24″ covers a week, and the 28″ is built for a fortnight — or for one person packing for two.',
+        a: 'The cabin handles two to four days, the 24″ covers a week, and the 28″ is built for a fortnight, or for one person packing for two.',
       },
       {
         q: 'Will the cabin size be accepted on board?',
@@ -212,6 +221,10 @@ export const PRODUCTS: Product[] = [
       { label: 'Combination lock' },
       { label: 'Telescopic handle' },
       { label: 'Hard shell ABS' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Cross packing straps' },
+      { label: 'Impact resistant' },
+      { label: 'Lightweight build' },
     ],
     variants: [
       {
@@ -247,6 +260,9 @@ export const PRODUCTS: Product[] = [
   // ── VeeZoom ─────────────────────────────────────────────────────────────
   {
     id: 'veezoom',
+    metaTitle: 'VeeZoom Bold V-Pattern Hard Shell Spinner Luggage',
+    metaDescription: 'Lightweight hard-shell spinner luggage with a moulded V-pattern shell, combination lock, and 360° wheels. Cabin, medium, and large sizes.',
+    keywords: ['lightweight cabin spinner luggage', 'hard shell suitcase 20 inch', '360 spinner wheel luggage', 'airline cabin size carry-on', 'abs spinner suitcase'],
     name: 'VeeZoom',
     slug: 'veezoom',
     category: 'trolley',
@@ -254,13 +270,13 @@ export const PRODUCTS: Product[] = [
     description:
       'Bold V-pattern design that stands out on every conveyor belt. Hard shell ABS with ultra-smooth spinner wheels, because your luggage should be as ambitious as you are.',
     story: [
-      'Most luggage is designed to disappear. VeeZoom is not. The V-pattern is moulded into the shell itself — not printed on it — so it catches the light, identifies your bag from across a carousel, and adds structural stiffness where flat panels flex.',
+      'Most luggage is designed to disappear. VeeZoom is not. The V-pattern is moulded into the shell itself, not printed on it, so it catches the light, identifies your bag from across a carousel, and adds structural stiffness where flat panels flex.',
       'Underneath the geometry it is a serious travel case: a lightweight hard shell over an interior of compression straps and zipped mesh pockets, rolling on 360° spinner wheels that need one finger to steer.',
     ],
     highlights: [
       {
         heading: 'A shell you can spot',
-        body: 'The raised V-ribs do double duty — a signature you will never mistake for someone else’s bag, and reinforcement that helps the shell shrug off pressure and impacts.',
+        body: 'The raised V-ribs do double duty: a signature you will never mistake for someone else’s bag, and reinforcement that helps the shell shrug off pressure and impacts.',
       },
       {
         heading: 'Light where it counts',
@@ -268,7 +284,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Smooth through the terminal',
-        body: '360° spinner wheels and a telescopic handle carry the load so your arm doesn’t — across airports, platforms, and the last stretch of pavement to the hotel.',
+        body: '360° spinner wheels and a telescopic handle carry the load so your arm doesn’t. Airports, platforms, the last stretch of pavement to the hotel.',
       },
     ],
     specs: [
@@ -276,15 +292,16 @@ export const PRODUCTS: Product[] = [
       { label: 'Cabin (20″)',  value: '54.6 × 36.8 × 23.5 cm · approx. 2.7 kg' },
       { label: 'Medium (24″)', value: '65.4 × 45.7 × 27.3 cm · approx. 3.7 kg' },
       { label: 'Large (28″)',  value: '76.8 × 50.8 × 31.8 cm · approx. 4.2 kg' },
+      { label: 'Lock',         value: '3-digit combination lock' },
       { label: 'Wheels',       value: '360° spinner wheels' },
       { label: 'Handle',       value: 'Telescopic, multi-stage' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Which size do I need?',
-        a: 'The cabin handles two to four days, the 24″ covers a week, and the 28″ is built for a fortnight — or for one person packing for two.',
+        a: 'The cabin handles two to four days, the 24″ covers a week, and the 28″ is built for a fortnight, or for one person packing for two.',
       },
     ],
     images: [
@@ -297,6 +314,9 @@ export const PRODUCTS: Product[] = [
       { label: 'Telescopic handle' },
       { label: 'Hard shell ABS' },
       { label: 'Lightweight build' },
+      { label: 'Combination lock' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Cross packing straps' },
     ],
     variants: [
       {
@@ -324,6 +344,9 @@ export const PRODUCTS: Product[] = [
   // ── SoftSquare ──────────────────────────────────────────────────────────
   {
     id: 'softsquare',
+    metaTitle: 'SoftSquare Hard Shell Trunk Luggage with Combination Lock',
+    metaDescription: 'Trunk-style hard-shell luggage with dual-compartment interior, combination lock, and 360° spinner wheels. Cabin to 28″ check-in sizes.',
+    keywords: ['hard shell trunk luggage', 'combination lock suitcase', 'trunk style suitcase india', '360 spinner wheel luggage', 'cabin and check-in luggage'],
     name: 'SoftSquare',
     slug: 'softsquare',
     category: 'trolley',
@@ -331,7 +354,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Clean geometric lines meet premium ABS protection. SoftSquare is the one for people who travel often and want luggage that looks good on day 50 as it did on day 1.',
     story: [
-      'SoftSquare borrows its silhouette from the steamer trunk — squared shoulders, a flat face, and a wide mouth that opens like a wardrobe rather than a clamshell you dig through. It is the shape luggage had before luggage became disposable.',
+      'SoftSquare borrows its silhouette from the steamer trunk: squared shoulders, a flat face, and a wide mouth that opens like a wardrobe rather than a clamshell you dig through. It is the shape luggage had before luggage became disposable.',
       'The trunk profile is more than styling. Squared corners pack flatter shirts and stack cleaner in a car boot; the dual-compartment interior, with compression straps on one side and a zipped divider on the other, keeps outbound and return packing from ever meeting.',
     ],
     highlights: [
@@ -341,7 +364,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Locked as standard',
-        body: 'A built-in combination lock closes both compartments at once — no padlock to lose, nothing dangling from a zip.',
+        body: 'A built-in combination lock closes both compartments at once. No padlock to lose, nothing dangling from a zip.',
       },
       {
         heading: 'Corners that keep their edge',
@@ -358,7 +381,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',       value: '360° spinner wheels' },
     ],
     warranty:
-      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Will the cabin size be accepted on board?',
@@ -366,7 +389,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         q: 'How do I set the combination lock?',
-        a: 'The lock ships set to 0-0-0. Press the reset pin, dial in your own code, and release — full instructions are in the box. If you ever forget the code, our support team can walk you through recovery.',
+        a: 'The lock ships set to 0-0-0. Press the reset pin, dial in your own code, and release. Full instructions are in the box. If you ever forget the code, our support team can walk you through recovery.',
       },
     ],
     images: [
@@ -379,6 +402,10 @@ export const PRODUCTS: Product[] = [
       { label: 'Combination lock' },
       { label: 'Telescopic handle' },
       { label: 'Hard shell ABS' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Impact resistant' },
+      { label: 'Dual-compartment interior' },
+      { label: 'Lightweight build' },
     ],
     variants: [
       {
@@ -414,6 +441,9 @@ export const PRODUCTS: Product[] = [
   // ── ProStripe ───────────────────────────────────────────────────────────
   {
     id: 'prostripe',
+    metaTitle: 'ProStripe Front-Access Cabin Trolley for Business Travel',
+    metaDescription: 'Front-opening 20″ cabin trolley with a dedicated work compartment, combination lock, and 360° spinner wheels. Built for business travel.',
+    keywords: ['front access laptop compartment trolley', 'business travel cabin luggage', 'front opening suitcase', 'combination lock cabin trolley', 'carry-on for business travel'],
     name: 'ProStripe',
     slug: 'prostripe',
     category: 'trolley',
@@ -421,7 +451,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Front-open design for the business traveller who moves fast. Instant access to your laptop, documents, and essentials without opening the main compartment.',
     story: [
-      'ProStripe is built around one door most suitcases don’t have. The front panel opens on its own, holding your laptop, documents, and chargers upright and reachable — through security, at the gate, in the taxi — while the main compartment behind it stays packed and locked.',
+      'ProStripe is built around one door most suitcases don’t have. The front panel opens on its own, holding your laptop, documents, and chargers upright and reachable through security, at the gate, and in the taxi, while the main compartment behind it stays packed and locked.',
       'The rest is quietly conventional in the best way: a hard shell with a fine stripe finish, compression straps inside, a combination lock, and 360° spinner wheels that treat a terminal floor like ice.',
     ],
     highlights: [
@@ -431,7 +461,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Dressed for the meeting',
-        body: 'The pinstripe texture reads more tailoring than travel gear — a case that can follow you from the carousel straight into a client’s office.',
+        body: 'The pinstripe texture reads more tailoring than travel gear, a case that can follow you from the carousel straight into a client’s office.',
       },
       {
         heading: 'Locked, both doors',
@@ -446,11 +476,11 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',      value: '360° spinner wheels' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'What fits in the front compartment?',
-        a: 'A laptop, a tablet or notebook, documents, and chargers — the things you reach for between departure and arrival. Clothing and everything else travels in the main compartment behind it.',
+        a: 'A laptop, a tablet or notebook, documents, and chargers: the things you reach for between departure and arrival. Clothing and everything else travels in the main compartment behind it.',
       },
     ],
     images: [
@@ -462,6 +492,9 @@ export const PRODUCTS: Product[] = [
       { label: '360° spinner wheels' },
       { label: 'Combination lock' },
       { label: 'Telescopic handle' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Carry-on approved' },
+      { label: 'Cross packing straps' },
     ],
     variants: [
       {
@@ -477,6 +510,9 @@ export const PRODUCTS: Product[] = [
   // ── MotoStripe ──────────────────────────────────────────────────────────
   {
     id: 'motostripe',
+    metaTitle: 'MotoStripe 20″ Racing Stripe Hard Shell Cabin Trolley',
+    metaDescription: 'Racing-inspired 20″ cabin trolley with a lightweight polycarbonate-blend shell, organised interior, and 360° spinner wheels.',
+    keywords: ['cabin size carry-on', 'hard shell cabin trolley 20 inch', 'lightweight travel luggage', 'spinner wheel cabin bag', 'striped suitcase'],
     name: 'MotoStripe',
     slug: 'motostripe',
     category: 'trolley',
@@ -484,13 +520,13 @@ export const PRODUCTS: Product[] = [
     description:
       'Racing-inspired stripe design on a polycarbonate shell. Lightweight, impact-resistant, and fast through the terminal. MotoStripe is for people who move.',
     story: [
-      'MotoStripe takes its cues from motorsport livery — a diagonal stripe across a clean shell, drawn once and left alone. It reads quick standing still, and it is genuinely quick moving: a light polycarbonate-blend shell on 360° spinners built for tight terminal corners.',
+      'MotoStripe takes its cues from motorsport livery: a diagonal stripe across a clean shell, drawn once and left alone. It reads quick standing still, and it is genuinely quick moving: a light polycarbonate-blend shell on 360° spinners built for tight terminal corners.',
       'Inside, elastic cross straps and zipped mesh pockets keep a short trip’s packing in order, so the bag that looks fast doesn’t arrive scrambled.',
     ],
     highlights: [
       {
         heading: 'Livery, not decoration',
-        body: 'The stripe runs the full diagonal of the shell — a single confident mark instead of a pattern, easy to spot on a belt and hard to tire of.',
+        body: 'The stripe runs the full diagonal of the shell, a single confident mark instead of a pattern, easy to spot on a belt and hard to tire of.',
       },
       {
         heading: 'Built light, built solid',
@@ -501,11 +537,12 @@ export const PRODUCTS: Product[] = [
       { label: 'Shell',       value: 'Polycarbonate + ABS' },
       { label: 'Cabin (20″)', value: '55.9 × 37.5 × 23.5 cm · approx. 3.5 kg' },
       { label: 'Interior',    value: 'Cross straps · zipped mesh pockets' },
+      { label: 'Lock',        value: '3-digit combination lock' },
       { label: 'Wheels',      value: '360° spinner wheels' },
       { label: 'Handle',      value: 'Telescopic, multi-stage' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
       'IMG_2892_Background_Removed_dnutdx',
       '1-13_Background_Removed_c0oxox',
@@ -516,6 +553,9 @@ export const PRODUCTS: Product[] = [
       { label: 'Polycarbonate shell' },
       { label: 'Telescopic handle' },
       { label: 'Ultra lightweight' },
+      { label: 'Combination lock' },
+      { label: 'Cross packing straps' },
+      { label: 'Carry-on approved' },
     ],
     variants: [
       {
@@ -539,14 +579,17 @@ export const PRODUCTS: Product[] = [
   // ── Champ ────────────────────────────────────────────────────────────────
   {
     id: 'champ',
+    metaTitle: 'Champ 20″ Lightweight Cabin Trolley',
+    metaDescription: 'A light polypropylene 20″ cabin trolley with 360° spinner wheels and organised packing. The dependable everyday carry-on.',
+    keywords: ['lightweight cabin trolley', 'polypropylene suitcase', 'airline approved cabin size trolley', 'everyday carry-on luggage', 'hard shell cabin bag'],
     name: 'Champ',
     slug: 'champ',
     category: 'trolley',
     isFeatured: true,
     description:
-      'A no-nonsense cabin trolley: hard polypropylene shell, smooth spinner wheels, honest weight. Champ covers the short trips that make up most of real travel — reliably, and without fuss.',
+      'A no-nonsense cabin trolley: hard polypropylene shell, smooth spinner wheels, honest weight. Champ covers the short trips that make up most of real travel, reliably and without fuss.',
     story: [
-      'Not every trip needs a statement. Champ is the cabin bag for the Friday-evening flight, the overnight train, the two-day work trip — a tough polypropylene shell at an honest weight, with nothing on it that can break off or wear out.',
+      'Not every trip needs a statement. Champ is the cabin bag for the Friday-evening flight, the overnight train, the two-day work trip: a tough polypropylene shell at an honest weight, with nothing on it that can break off or wear out.',
       'Inside there are zipped dividers and compression straps; underneath, four 360° spinner wheels. It does the job, keeps doing it, and asks nothing in return.',
     ],
     highlights: [
@@ -556,23 +599,26 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Polypropylene, deliberately',
-        body: 'PP shells flex on impact and spring back rather than crack — the right material for a bag that will be thrown into more boots and racks than bins.',
+        body: 'PP shells flex on impact and spring back rather than crack, the right material for a bag that will be thrown into more boots and racks than bins.',
       },
     ],
     specs: [
       { label: 'Shell',       value: 'Polypropylene' },
       { label: 'Cabin (20″)', value: '57.5 × 37 × 22 cm · approx. 2.6 kg' },
+      { label: 'Lock',        value: '3-digit combination lock' },
       { label: 'Wheels',      value: '360° spinner wheels' },
       { label: 'Handle',      value: 'Telescopic, multi-stage' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-champ-08-1781602537072-1781602537072_Background_Removed_ywa111.png','https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-champ-black-08-1781603000214-1781603000214_Background_Removed_dg0xa2'],
     features: [
       { label: 'Hard shell construction' },
       { label: '360° spinner wheels' },
       { label: 'Telescopic handle' },
       { label: 'Lightweight polypropylene' },
+      { label: 'Combination lock' },
+      { label: 'Carry-on approved' },
     ],
     variants: [
       {
@@ -595,6 +641,9 @@ export const PRODUCTS: Product[] = [
   // ── Magma ────────────────────────────────────────────────────────────────
   {
     id: 'magma',
+    metaTitle: 'Magma 20″ Cabin Trolley with Secure Combination Lock',
+    metaDescription: 'Ripple-textured polypropylene cabin trolley with a built-in combination lock, 360° double-spinner wheels, and a light, easy-lift build.',
+    keywords: ['secure lock cabin luggage', 'polypropylene hard shell suitcase', '360 spinner wheel trolley', 'lightweight carry-on luggage', 'textured shell suitcase'],
     name: 'Magma',
     slug: 'magma',
     category: 'trolley',
@@ -602,13 +651,13 @@ export const PRODUCTS: Product[] = [
     description:
       'A ripple-textured hard shell cabin trolley with a combination lock as standard. Light to lift, easy to steer, and secure enough to leave your eyes off it for a minute.',
     story: [
-      'Magma’s shell carries a moulded ripple across its face — a pattern borrowed from flowing rock that stiffens the panel the way corrugation stiffens steel. It looks sculptural; it works structural.',
+      'Magma’s shell carries a moulded ripple across its face, a pattern borrowed from flowing rock that stiffens the panel the way corrugation stiffens steel. It looks sculptural; it works structural.',
       'The case itself is a light polypropylene build with a combination lock fitted as standard, organised inside with zipped sections and compression straps, and rolling on 360° double-spinner wheels.',
     ],
     highlights: [
       {
         heading: 'Texture with a job',
-        body: 'The ripple isn’t printed — it’s moulded into the shell, adding rigidity against pressure and hiding the scuffs that flat glossy cases collect on their first trip.',
+        body: 'The ripple isn’t printed, it’s moulded into the shell, adding rigidity against pressure and hiding the scuffs that flat glossy cases collect on their first trip.',
       },
       {
         heading: 'Locked by default',
@@ -622,13 +671,15 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',      value: '360° double-spinner wheels' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: ['https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-magma-blue-08-1781604249533-1781604249533_Background_Removed_i6ef93','https://res.cloudinary.com/dpepctqdj/image/upload/c_fill,w_600,h_600,g_auto/louis-polo-magma-black-08-1781604029524-1781604029524_Background_Removed_gn6fjh'],
     features: [
       { label: 'Secure combination lock' },
       { label: 'Hard shell construction' },
       { label: '360° spinner wheels' },
       { label: 'Telescopic handle' },
+      { label: 'Carry-on approved' },
+      { label: 'Lightweight build' },
     ],
     variants: [
       {
@@ -652,6 +703,9 @@ export const PRODUCTS: Product[] = [
   // ── Luna Blue ───────────────────────────────────────────────────────────
   {
     id: 'luna-blue',
+    metaTitle: 'Luna Blue Character-Print Cabin Trolley',
+    metaDescription: 'A cheerful full-shell character print on a lightweight hard-shell 20″ cabin trolley. Easy to spot, easy to pull, built for family travel.',
+    keywords: ['kids cabin trolley', 'character print suitcase', 'printed hard shell luggage', 'fun carry-on for kids', 'family travel luggage'],
     name: 'Luna Blue',
     slug: 'luna-blue',
     category: 'trolley',
@@ -659,7 +713,7 @@ export const PRODUCTS: Product[] = [
     description:
       'A cheerful character-print carry-on featuring a quirky blue illustrated character with curly hair and an adorable companion. Light, durable, and impossible to miss on the luggage carousel.',
     story: [
-      'Luna Blue is the case that ends the “which bag is ours?” conversation at the carousel. The illustration wraps the full shell, so it is unmistakable from any angle — and underneath the artwork sits the same lightweight hard-shell build, smooth wheels, and telescopic handle as our plainer cabin bags.',
+      'Luna Blue is the case that ends the “which bag is ours?” conversation at the carousel. The illustration wraps the full shell, so it is unmistakable from any angle, and underneath the artwork sits the same lightweight hard-shell build, smooth wheels, and telescopic handle as our plainer cabin bags.',
     ],
     highlights: [
       {
@@ -668,7 +722,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'A serious case underneath',
-        body: 'Hard-shell protection, easy-rolling wheels, and a light frame a child can pull — the fun is on the surface, not in the engineering.',
+        body: 'Hard-shell protection, easy-rolling wheels, and a light frame a child can pull. The fun is on the surface, not in the engineering.',
       },
     ],
     specs: [
@@ -678,7 +732,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Handle',      value: 'Telescopic' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: ['ced09a26-95e8-4385-bf21-973db653ca5b.png_y0ocex'],
     features: [
       { label: 'Character print design' },
@@ -698,6 +752,9 @@ export const PRODUCTS: Product[] = [
   // ── CharacterPop ─────────────────────────────────────────────────────────
   {
     id: 'character-pop',
+    metaTitle: 'CharacterPop Printed Cabin & Medium Trolley',
+    metaDescription: 'A bold two-tone animated character print across a hard-shell suitcase. Cabin and medium sizes with 360° spinner wheels.',
+    keywords: ['character print suitcase', 'printed cabin trolley', 'two tone suitcase', 'kids luggage india', 'fun printed luggage'],
     name: 'CharacterPop',
     slug: 'character-pop',
     category: 'trolley',
@@ -705,12 +762,12 @@ export const PRODUCTS: Product[] = [
     description:
       'A vibrant two-tone suitcase with a bold animated character design on a yellow and red background. Eye-catching on every conveyor belt, for those who travel with personality front and centre.',
     story: [
-      'CharacterPop puts a full animated scene on a hard shell — yellow and red, front and centre, zero chance of being mistaken for the black suitcase beside it. It comes in cabin and medium sizes, both built on the same spinner-wheel, telescopic-handle chassis as the rest of our trolleys.',
+      'CharacterPop puts a full animated scene on a hard shell: yellow and red, front and centre, zero chance of being mistaken for the black suitcase beside it. It comes in cabin and medium sizes, both built on the same spinner-wheel, telescopic-handle chassis as the rest of our trolleys.',
     ],
     highlights: [
       {
         heading: 'Impossible to lose',
-        body: 'On a belt full of grey and navy, a two-tone illustrated shell is spotted from across the hall — by you, and by the kid it probably belongs to.',
+        body: 'On a belt full of grey and navy, a two-tone illustrated shell is spotted from across the hall, by you and by the kid it probably belongs to.',
       },
       {
         heading: 'Two sizes, same energy',
@@ -724,7 +781,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Handle',      value: 'Telescopic' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: ['8466e6e9-f2b8-428e-a144-3fade53f6576.png_y7byfd'],
     features: [
       { label: 'Character print design' },
@@ -747,6 +804,9 @@ export const PRODUCTS: Product[] = [
   // ── RetroTech ─────────────────────────────────────────────────────────────
   {
     id: 'retrotech',
+    metaTitle: 'RetroTech Printed Hard Shell Carry-On',
+    metaDescription: 'Vintage-electronics print across a lightweight hard-shell 20″ carry-on with smooth-rolling wheels and an ergonomic telescopic handle.',
+    keywords: ['retro print suitcase', 'printed hard shell carry-on', 'unique cabin luggage', 'vintage print trolley bag', 'statement suitcase'],
     name: 'RetroTech',
     slug: 'retrotech',
     category: 'trolley',
@@ -754,12 +814,12 @@ export const PRODUCTS: Product[] = [
     description:
       'Vintage electronics and dynamic abstract patterns printed on a hard shell carry-on. RetroTech is for travellers who want their luggage to be a conversation starter at every airport.',
     story: [
-      'RetroTech wears a collage of vintage electronics and abstract pattern across its whole shell — a print with enough going on to reward a second look in the boarding queue. The bag beneath it is straightforward: a light hard shell, smooth-rolling wheels, and an ergonomic handle for the sprint to the gate.',
+      'RetroTech wears a collage of vintage electronics and abstract pattern across its whole shell, a print with enough going on to reward a second look in the boarding queue. The bag beneath it is straightforward: a light hard shell, smooth-rolling wheels, and an ergonomic handle for the sprint to the gate.',
     ],
     highlights: [
       {
         heading: 'A print worth studying',
-        body: 'Cassette decks, dials, and static-wave patterns cover the case edge to edge — luggage as a conversation starter rather than a monolith.',
+        body: 'Cassette decks, dials, and static-wave patterns cover the case edge to edge. Luggage as a conversation starter rather than a monolith.',
       },
       {
         heading: 'Everyday-tough underneath',
@@ -773,7 +833,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Handle',      value: 'Ergonomic telescopic' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: ['d96f8eb1-6b93-4016-be59-01945e579924.png_kskcae'],
     features: [
       { label: 'Retro print design' },
@@ -796,6 +856,9 @@ export const PRODUCTS: Product[] = [
   // ── ArmorPack (Backpack) ─────────────────────────────────────────────────
   {
     id: 'armorpack',
+    metaTitle: 'ArmorPack Hard Shell Laptop Backpack',
+    metaDescription: 'A rigid polycarbonate-shell backpack with a dedicated laptop bay, organised compartments, and padded straps. Protection a fabric pack can’t match.',
+    keywords: ['hard shell laptop backpack', 'business travel backpack', 'impact resistant backpack', 'professional work backpack', 'laptop backpack with organizer'],
     name: 'ArmorPack',
     slug: 'armorpack',
     category: 'backpack',
@@ -803,17 +866,17 @@ export const PRODUCTS: Product[] = [
     description:
       'Hard shell protection in a backpack form. ArmorPack keeps your laptop, camera, and essentials safe without adding bulk. Adjustable straps, rigid outer shell, secure zip.',
     story: [
-      'Backpacks are soft because that is how backpacks have always been made — not because soft is what a laptop wants. ArmorPack applies suitcase logic to the commute: a rigid polycarbonate-and-ABS shell that keeps its shape in a crowded metro, under an airline seat, or at the bottom of a pile of bags.',
+      'Backpacks are soft because that is how backpacks have always been made, not because soft is what a laptop wants. ArmorPack applies suitcase logic to the commute: a rigid polycarbonate-and-ABS shell that keeps its shape in a crowded metro, under an airline seat, or at the bottom of a pile of bags.',
       'Inside, the structure works for you: a dedicated laptop bay, ordered compartments for chargers, notebooks, and cables, and retention straps that stop everything sliding to the bottom. Padded shoulder straps and a supportive back panel carry the load for a full day.',
     ],
     highlights: [
       {
         heading: 'A shell, not a sack',
-        body: 'The moulded exterior resists impacts and pressure that would transfer straight through a fabric pack — the difference between a bag that carries a laptop and one that protects it.',
+        body: 'The moulded exterior resists impacts and pressure that would transfer straight through a fabric pack. That is the difference between a bag that carries a laptop and one that protects it.',
       },
       {
         heading: 'Ordered like a workspace',
-        body: 'Laptop, tablet, chargers, documents — each gets its own place, so the pack opens like a drawer instead of a lucky dip.',
+        body: 'Laptop, tablet, chargers, documents: each gets its own place, so the pack opens like a drawer instead of a lucky dip.',
       },
       {
         heading: 'Comfortable at commuter distance',
@@ -828,11 +891,11 @@ export const PRODUCTS: Product[] = [
       { label: 'Closure',    value: 'Secure zip' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Does it fit under an airline seat?',
-        a: 'Yes — at 48 × 32 × 20 cm it works as a personal item on most carriers, and the rigid shell means it comes out the same shape it went in.',
+        a: 'Yes. At 48 × 32 × 20 cm it works as a personal item on most carriers, and the rigid shell means it comes out the same shape it went in.',
       },
     ],
     images: [
@@ -844,6 +907,9 @@ export const PRODUCTS: Product[] = [
       { label: 'Adjustable shoulder straps' },
       { label: 'Laptop compartment' },
       { label: 'Secure zip closure' },
+      { label: 'Comfortable fabric lining' },
+      { label: 'Concealed pocket' },
+      { label: 'Fits under airline seats' },
     ],
     variants: [
       {
@@ -867,6 +933,9 @@ export const PRODUCTS: Product[] = [
   // ── HexCore (Office Bag) ─────────────────────────────────────────────────
   {
     id: 'hexcore',
+    metaTitle: 'HexCore 17″ Executive Hard Shell Briefcase',
+    metaDescription: 'A 1.1 kg hard-shell briefcase with brushed-metal finish, organised interior, dual handles, and detachable shoulder strap. Fits most 15–16″ laptops.',
+    keywords: ['hard shell laptop briefcase', 'executive briefcase india', '17 inch laptop case', 'business travel briefcase', 'lightweight professional briefcase'],
     name: 'HexCore',
     slug: 'hexcore',
     category: 'office-bag',
@@ -874,7 +943,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Rigid hard shell office bag built for daily professional use. Documents stay flat, tech stays safe, and you arrive looking sharp. The briefcase for people who hate briefcases.',
     story: [
-      'HexCore is what happens when a briefcase is engineered rather than stitched. The geometric hard shell holds documents flat and laptops safe through the daily compression test of commutes, cab boots, and crowded overhead racks — and at just over a kilogram, it never announces itself on your shoulder.',
+      'HexCore is what happens when a briefcase is engineered rather than stitched. The geometric hard shell holds documents flat and laptops safe through the daily compression test of commutes, cab boots, and crowded overhead racks, and at just over a kilogram, it never announces itself on your shoulder.',
       'The brushed-metal finish and hexagonal detailing do the talking in a meeting room; inside, elastic retention straps and ordered pockets keep laptop, tablet, chargers, and paperwork exactly where you filed them. Dual carry handles and a detachable shoulder strap cover every leg of the day.',
     ],
     highlights: [
@@ -899,7 +968,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Carry',      value: 'Dual handles + detachable shoulder strap' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
       'hexcore_vhfwcc.png',
       'hexcore_vhfwcc.png',
@@ -909,6 +978,9 @@ export const PRODUCTS: Product[] = [
       { label: 'Professional design' },
       { label: 'Document friendly' },
       { label: 'Secure zip closure' },
+      { label: 'Detachable shoulder strap' },
+      { label: 'Concealed pocket' },
+      { label: 'Lightweight build' },
     ],
     variants: [
       {
@@ -931,6 +1003,9 @@ export const PRODUCTS: Product[] = [
   // ── SkyTrail Set of 3 ────────────────────────────────────────────────────
   {
     id: 'skytrail-set',
+    metaTitle: 'SkyTrail Luggage Set of 3 (20″, 24″ & 28″)',
+    metaDescription: 'The full SkyTrail line in one matched set: cabin, 24″, and 28″ hard-shell spinners with combination locks. Nests into a single footprint at home.',
+    keywords: ['luggage set of 3 india', 'hard shell spinner suitcase set', 'nesting luggage set', 'combination lock luggage set', 'family travel luggage set'],
     name: 'SkyTrail Set of 3',
     slug: 'skytrail-set',
     category: 'set',
@@ -938,17 +1013,17 @@ export const PRODUCTS: Product[] = [
     description:
       '20", 24", and 28" SkyTrail bags in a nesting set, one fits inside another for compact storage at home. The complete setup for every kind of trip.',
     story: [
-      'One decision instead of three. The SkyTrail set puts the whole line — cabin, 24″, and 28″ — in a single matched finish, so the weekend bag, the week bag, and the family bag all speak the same language.',
+      'One decision instead of three. The SkyTrail set puts the cabin, 24″, and 28″ in a single matched finish, so the weekend bag, the week bag, and the family bag all speak the same language.',
       'Between trips they nest like Russian dolls: the 20″ inside the 24″ inside the 28″, storing three suitcases in the cupboard space of one. Each carries the same polycarbonate-and-ABS shell, combination lock, and 360° spinner wheels as the individual SkyTrail.',
     ],
     highlights: [
       {
         heading: 'Every trip, pre-decided',
-        body: 'Two nights takes the cabin, a week takes the 24″, and the long haul takes the 28″ — no more forcing a fortnight into the wrong bag.',
+        body: 'Two nights takes the cabin, a week takes the 24″, and the long haul takes the 28″. No more forcing a fortnight into the wrong bag.',
       },
       {
         heading: 'Stores as one suitcase',
-        body: 'The nesting design means the set occupies a single 28″ footprint at home — the difference between owning three suitcases and storing three suitcases.',
+        body: 'The nesting design means the set occupies a single 28″ footprint at home. That is the difference between owning three suitcases and storing three suitcases.',
       },
       {
         heading: 'Matched to the millimetre',
@@ -964,15 +1039,15 @@ export const PRODUCTS: Product[] = [
       { label: 'Lock',         value: '3-digit combination lock on each case' },
     ],
     warranty:
-      '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Do the three sizes really nest?',
-        a: 'Yes — the 20″ fits inside the 24″, which fits inside the 28″, so the whole set stores in the footprint of one large suitcase.',
+        a: 'Yes. The 20″ fits inside the 24″, which fits inside the 28″, so the whole set stores in the footprint of one large suitcase.',
       },
       {
         q: 'Can I buy the sizes separately?',
-        a: 'You can — each SkyTrail size is available on its own. The set simply prices the three together and guarantees a matched batch and finish.',
+        a: 'You can. Each SkyTrail size is available on its own. The set simply prices the three together and guarantees a matched batch and finish.',
       },
     ],
     images: [
@@ -984,6 +1059,8 @@ export const PRODUCTS: Product[] = [
       { label: '360° spinner wheels' },
       { label: 'Combination lock' },
       { label: 'Nesting storage design' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Impact resistant' },
     ],
     variants: [
       {
@@ -1006,6 +1083,9 @@ export const PRODUCTS: Product[] = [
   // ── Matrix Set of 3 ──────────────────────────────────────────────────────
   {
     id: 'matrix-set',
+    metaTitle: 'Matrix Hard Shell Spinner Luggage Set (20″, 24″ & 28″)',
+    metaDescription: 'Moulded-grid hard-shell luggage set with silent double-spinner wheels, combination locks, and anti-theft zippers across all three sizes.',
+    keywords: ['hard shell spinner luggage set', 'anti theft zipper suitcase', 'silent wheel luggage', '3 piece luggage set', 'impact resistant travel case'],
     name: 'Matrix- Set of 3',
     slug: 'matrix-set',
     category: 'set',
@@ -1014,12 +1094,12 @@ export const PRODUCTS: Product[] = [
       'Premium hard-shell spinner luggage in three nesting sizes: 20", 24", and 28". Engineered for business travellers, vacationers, and frequent flyers who demand lightweight durability, secure locking, and smooth mobility in one complete collection.',
     story: [
       'The Matrix set is built around a moulded geometric grid that does two jobs: it gives all three cases a shared identity, and it stiffens every panel against the pressure of a full baggage hold. One pattern, three sizes, zero guesswork about which bag to take.',
-      'Each case runs the full hardware set — silent double-spinner wheels, a combination lock, and an anti-theft zipper whose interlocking teeth resist being forced with a pen. Between trips, the three nest into the footprint of the largest.',
+      'Each case runs the full hardware set: silent double-spinner wheels, a combination lock, and an anti-theft zipper whose interlocking teeth resist being forced with a pen. Between trips, the three nest into the footprint of the largest.',
     ],
     highlights: [
       {
         heading: 'A grid with a purpose',
-        body: 'The geometric surface is moulded, not printed — every ridge adds rigidity, so the pattern that makes the set recognisable is also what keeps it from flexing under load.',
+        body: 'The geometric surface is moulded, not printed. Every ridge adds rigidity, so the pattern that makes the set recognisable is also what keeps it from flexing under load.',
       },
       {
         heading: 'Security, twice over',
@@ -1027,7 +1107,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Silent through the terminal',
-        body: 'Double-spinner wheels on all three sizes roll quietly and turn in place — even the 28″ steers with two fingers.',
+        body: 'Double-spinner wheels on all three sizes roll quietly and turn in place. Even the 28″ steers with two fingers.',
       },
     ],
     specs: [
@@ -1038,11 +1118,11 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',      value: '360° silent double-spinner wheels' },
     ],
     warranty:
-      '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Do the three sizes nest for storage?',
-        a: 'Yes — the 20″ fits inside the 24″, which fits inside the 28″, so the whole set stores in the footprint of one large suitcase.',
+        a: 'Yes. The 20″ fits inside the 24″, which fits inside the 28″, so the whole set stores in the footprint of one large suitcase.',
       },
     ],
     images: [
@@ -1056,6 +1136,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Impact-resistant hard shell' },
       { label: 'Anti-theft zipper' },
       { label: 'Nesting storage design' },
+      { label: 'Telescopic handle' },
     ],
     variants: [
       {
@@ -1071,6 +1152,9 @@ export const PRODUCTS: Product[] = [
   // ── VeeZoom Set of 3 ─────────────────────────────────────────────────────
   {
     id: 'veezoom-set',
+    metaTitle: 'VeeZoom Matching Spinner Luggage Set of 3',
+    metaDescription: 'Three VeeZoom spinners in 20″, 24″, and 28″, one matched V-pattern set with nesting storage and 360° wheels.',
+    keywords: ['3 piece luggage set', 'hard shell spinner suitcase set', 'nesting luggage set', 'abs suitcase set', 'matching luggage set india'],
     name: 'VeeZoom Set of 3',
     slug: 'veezoom-set',
     category: 'set',
@@ -1084,7 +1168,7 @@ export const PRODUCTS: Product[] = [
     highlights: [
       {
         heading: 'One look, three sizes',
-        body: 'The V-ribs that stiffen the shell also brand the whole set — a matched trio that reads as one deliberate purchase, not three compromises.',
+        body: 'The V-ribs that stiffen the shell also brand the whole set: a matched trio that reads as one deliberate purchase, not three compromises.',
       },
       {
         heading: 'A cupboard-friendly fleet',
@@ -1100,11 +1184,11 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',       value: '360° spinner wheels' },
     ],
     warranty:
-      '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Do the three sizes nest for storage?',
-        a: 'Yes — the 20″ fits inside the 24″, which fits inside the 28″, so the whole set stores in the footprint of one large suitcase.',
+        a: 'Yes. The 20″ fits inside the 24″, which fits inside the 28″, so the whole set stores in the footprint of one large suitcase.',
       },
     ],
     images: [
@@ -1116,6 +1200,9 @@ export const PRODUCTS: Product[] = [
       { label: '360° spinner wheels' },
       { label: 'Hard shell ABS' },
       { label: 'Nesting storage design' },
+      { label: 'Combination lock' },
+      { label: 'Anti-theft zipper' },
+      { label: 'Cross packing straps' },
     ],
     variants: [
       {
@@ -1139,6 +1226,9 @@ export const PRODUCTS: Product[] = [
   // ── Gemtote Duffle Bag ──────────────────────────────────────────────────
   {
     id: 'gemtote-duffle-bag',
+    metaTitle: 'GemTote 15.5″ Hard Shell Duffle & Vanity Bag',
+    metaDescription: 'A structured hard-shell duffle with dual compartments and mesh pockets: overnighter, vanity case, and organised second bag in one.',
+    keywords: ['hard shell duffle bag', 'multipurpose vanity organizer', 'weekend travel bag', 'structured duffle india', 'travel organizer bag'],
     name: 'Gemtote Duffle Bag',
     slug: 'gemtote-duffle-bag',
     category: 'duffle',
@@ -1146,13 +1236,13 @@ export const PRODUCTS: Product[] = [
     description:
       'A hard-shell duffle built for short trips and quick getaways, structured enough to hold its shape, light enough to grab and go. Available in five colors.',
     story: [
-      'GemTote is a duffle that behaves like a case. The rigid shell holds its faceted shape whether it is full or empty — nothing crushed at the bottom of a soft bag, nothing slumping in the back seat. At just over a kilogram, it is the bag you grab without thinking for one night away.',
+      'GemTote is a duffle that behaves like a case. The rigid shell holds its faceted shape whether it is full or empty. Nothing crushed at the bottom of a soft bag, nothing slumping in the back seat. At just over a kilogram, it is the bag you grab without thinking for one night away.',
       'Inside, a dual-compartment layout with zipped mesh pockets sorts cosmetics, chargers, grooming kit, and a change of clothes, and the wide opening shows you everything at once. It works as an overnighter, a vanity case, or the organised half of a bigger trip.',
     ],
     highlights: [
       {
         heading: 'Structure in a soft-bag shape',
-        body: 'The gem-cut hard shell protects what duffles usually crush — glasses, bottles, electronics — while keeping the one-hand, one-bag convenience.',
+        body: 'The gem-cut hard shell protects what duffles usually crush, like glasses, bottles, and electronics, while keeping the one-hand, one-bag convenience.',
       },
       {
         heading: 'Opens like a countertop',
@@ -1166,7 +1256,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Carry',       value: 'Twin handles + adjustable shoulder strap' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
       'Generated_Image_June_18_2026_-_1_53AM_Background_Removed_cblbni.png',
       
@@ -1179,6 +1269,8 @@ export const PRODUCTS: Product[] = [
       { label: 'Adjustable shoulder strap' },
       { label: 'Spacious main compartment' },
       { label: 'Lightweight build' },
+      { label: 'Concealed pocket' },
+      { label: 'Comfortable fabric lining' },
     ],
     variants: [
       {
@@ -1218,6 +1310,9 @@ export const PRODUCTS: Product[] = [
   // ── FlexBag Hybrid Duffel ────────────────────────────────────────────────
   {
     id:            'flexbag-hybrid-duffel',
+    metaTitle: 'FlexBag Hybrid Duffel with Hard Shell Front & Soft Body',
+    metaDescription: 'A hybrid duffel with a protective hard-shell front panel, spacious fabric body, trolley sleeve, and shoulder strap. Cabin, gym, and weekend ready.',
+    keywords: ['hybrid duffel bag', 'duffel with trolley sleeve', 'weekend getaway bag', 'cabin duffel bag', 'lightweight travel duffel'],
     name:          'FlexBag Hybrid Duffel',
     slug:          'flexbag-hybrid-duffel',
     category:      'duffle',
@@ -1227,7 +1322,7 @@ export const PRODUCTS: Product[] = [
     description: 'A hybrid travel bag combining hard-shell protection with the flexibility of a duffel. Perfect for weekend getaways, business trips, and cabin travel, lightweight, durable, and spacious.',
     story: [
       'FlexBag splits the difference the industry usually forces you to choose: a structured hard-shell front panel guards your valuables, while the soft-sided body behind it swallows the clothes, shoes, and last-minute additions a rigid case would refuse.',
-      'A trolley sleeve on the back slides over any suitcase handle, turning it into the perfect second bag — and at about a kilogram, it earns its place on gym days and weekend runs when no suitcase is coming along.',
+      'A trolley sleeve on the back slides over any suitcase handle, turning it into the perfect second bag, and at about a kilogram, it earns its place on gym days and weekend runs when no suitcase is coming along.',
     ],
     highlights: [
       {
@@ -1240,7 +1335,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'One bag, three lives',
-        body: 'Cabin bag on Friday, gym bag on Monday, overnighter in between — dual handles and an adjustable shoulder strap cover all of them.',
+        body: 'Cabin bag on Friday, gym bag on Monday, overnighter in between. Dual handles and an adjustable shoulder strap cover all of them.',
       },
     ],
     specs: [
@@ -1250,7 +1345,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Carry',      value: 'Dual handles · shoulder strap · trolley sleeve' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell panel, fabric, straps, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell panel, fabric, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images:      [
       '01---flexbag---black-1781383670118-1781383670118_Background_Removed_n03tnr',
       'untitled-1-1-1781414351367-1781414351367_Background_Removed_nr2vnl',
@@ -1266,6 +1361,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Spacious main compartment' },
       { label: 'Lightweight build' },
       { label: 'Versatile: gym, cabin & weekend use' },
+      { label: 'Comfortable fabric lining' },
     ],
     variants: [
       {
@@ -1299,17 +1395,20 @@ export const PRODUCTS: Product[] = [
   // ── GridPod 8" Travel Utility Case ───────────────────────────────────────
   {
     id:            'gridpod',
+    metaTitle: 'GridPod Hard Shell Travel Utility Case & Organizer',
+    metaDescription: 'A 260 g hard-shell pod for chargers, cables, cosmetics, and medicines, with a mesh pocket, elastic dividers, and a trolley mounting sleeve.',
+    keywords: ['hard shell travel utility case', 'travel organizer pouch', 'gadget organizer case', 'cosmetic storage case', 'cable organizer travel'],
     name:          'GridPod ',
     slug:          'gridpod',
     category:      'vanity',
     description:   'A compact hard-shell organizer built to protect cosmetics, toiletries, electronics, cables, chargers, medicines, and all your travel essentials. Impact-resistant shell, comfortable fabric lining, and a luggage mounting sleeve so it stays with your bag.',
     story: [
-      'GridPod is the answer to the loose-ends problem — the chargers, cables, medicines, and small valuables that otherwise migrate to the bottom of a suitcase. A quarter-kilogram grid-textured shell gives them a crush-proof home that slips into any bag, or rides your trolley handle on its mounting sleeve.',
+      'GridPod is the answer to the loose-ends problem: the chargers, cables, medicines, and small valuables that otherwise migrate to the bottom of a suitcase. A quarter-kilogram grid-textured shell gives them a crush-proof home that slips into any bag, or rides your trolley handle on its mounting sleeve.',
     ],
     highlights: [
       {
         heading: 'A shell for the small stuff',
-        body: 'Earbuds, power banks, jewellery, and medication get the same hard-shell treatment as a laptop — protected from the weight of everything packed on top.',
+        body: 'Earbuds, power banks, jewellery, and medication get the same hard-shell treatment as a laptop, protected from the weight of everything packed on top.',
       },
       {
         heading: 'Everything in its slot',
@@ -1323,7 +1422,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Attachment', value: 'Luggage mounting sleeve' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     isFeatured:    false,
     hideSizeGuide: true,
     images:      [
@@ -1369,6 +1468,9 @@ export const PRODUCTS: Product[] = [
   // ── The Attaché Overnighter ──────────────────────────────────────────────
   {
     id:          'attache-overnighter',
+    metaTitle: 'The Attaché 17″ Overnighter Cabin Trolley',
+    metaDescription: 'A 17″ hard-shell overnighter with laptop storage, combination lock, and 360° spinner wheels, sized exactly for one-night business trips.',
+    keywords: ['17 inch overnighter trolley', 'business travel carry-on', 'overnighter with laptop storage', 'compact cabin trolley', 'hard shell overnighter'],
     name:        'Attache',
     slug:        'attache-overnighter',
     category:    'overnighter',
@@ -1376,13 +1478,13 @@ export const PRODUCTS: Product[] = [
     isFeatured:  true,
     description: 'Built for professionals on the move. Cabin-friendly dimensions with smart organisation: dedicated laptop storage, hard-shell protection, and 360° spinner wheels for effortless overnight business travel.',
     story: [
-      'The Attaché is sized for the trip that is really a meeting with a flight around it. Seventeen inches of hard shell holds a laptop, a change of clothes, chargers, and documents — and nothing that would tempt you to pack more than one night needs.',
+      'The Attaché is sized for the trip that is really a meeting with a flight around it. Seventeen inches of hard shell holds a laptop, a change of clothes, chargers, and documents, and nothing that would tempt you to pack more than one night needs.',
       'Cross straps keep the shirt pressed, dedicated pockets keep the tech sorted, and a combination lock keeps it all closed. On 360° spinner wheels, it follows you from the taxi to the boardroom without asking to be carried.',
     ],
     highlights: [
       {
         heading: 'The one-night format',
-        body: 'Bigger than a briefcase, smaller than a cabin trolley — the Attaché is exactly the size of an overnight business trip, so packing takes five minutes because there is no room to overthink it.',
+        body: 'Bigger than a briefcase, smaller than a cabin trolley, the Attaché is exactly the size of an overnight business trip, so packing takes five minutes because there is no room to overthink it.',
       },
       {
         heading: 'Office half, wardrobe half',
@@ -1397,7 +1499,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Handle',     value: 'Telescopic' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images:      [
       'louis-polo-attache-red-08-1781606815844-1781606815844_Background_Removed_vug5zj',
       'louis-polo-attache-black-hero-10-1781606578945-1781606578945_Background_Removed_v0prue'
@@ -1428,12 +1530,15 @@ export const PRODUCTS: Product[] = [
   // ── SwiftGate 17" Overnighter Trolley ────────────────────────────────────
   {
     id:          'swiftgate',
+    metaTitle: 'SwiftGate 17″ Front-Access Overnighter Trolley',
+    metaDescription: 'Front-opening work compartment, anti-theft zipper, combination lock, and silent spinner wheels in a 17″ overnighter for short business trips.',
+    keywords: ['front access laptop trolley', '17 inch overnighter', 'business travel trolley', 'anti theft zipper luggage', 'overnight business bag'],
     name:        'SwiftGate',
     slug:        'swiftgate',
     category:    'overnighter',
     description: 'Professional styling meets practical organisation. The SwiftGate features a front-opening compartment for instant access to your laptop, tablet, documents, and chargers, without touching the main compartment. Built for overnight trips and short business travel.',
     story: [
-      'SwiftGate is named for the way it opens: a front gate for the working half of your trip — laptop, tablet, documents, chargers — that swings open without touching the packed main compartment behind it. Security lines, gate delays, and hotel lobbies all become places you can work from.',
+      'SwiftGate is named for the way it opens: a front gate for the working half of your trip (laptop, tablet, documents, chargers) that swings open without touching the packed main compartment behind it. Security lines, gate delays, and hotel lobbies all become places you can work from.',
       'The main compartment behind the gate is a proper overnighter: compression straps, mesh pockets, and room for a night or two of clothes. A combination lock and anti-theft zipper close the case; silent 360° spinners move it.',
     ],
     highlights: [
@@ -1447,7 +1552,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Sized for the short haul',
-        body: 'Seventeen inches covers one to two nights — compact enough for any cabin, complete enough that nothing gets left behind.',
+        body: 'Seventeen inches covers one to two nights, compact enough for any cabin, complete enough that nothing gets left behind.',
       },
     ],
     specs: [
@@ -1458,7 +1563,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Wheels',     value: '360° silent spinner wheels' },
     ],
     warranty:
-      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     isFeatured:  false,
     images:      [
       'swiftgate---blue01-1781498983947-1781498983947_Background_Removed_lanodd','swiftgate---red09-1781498866690-1781498866690_Background_Removed_zdqhyi',],
@@ -1489,6 +1594,9 @@ export const PRODUCTS: Product[] = [
   // ── V-Glide Beauty Case ──────────────────────────────────────────────────
   {
     id:            'v-glide',
+    metaTitle: 'V-Glide Hard Shell Beauty & Vanity Case',
+    metaDescription: 'A V-patterned hard-shell beauty case with dedicated compartments, mesh pockets, and a trolley sleeve for hands-free travel.',
+    keywords: ['travel vanity case', 'hard shell beauty case', 'cosmetic organizer travel', 'vanity case with trolley sleeve', 'makeup travel case'],
     name:          'V-Glide',
     slug:          'v-glide',
     category:      'vanity',
@@ -1500,7 +1608,7 @@ export const PRODUCTS: Product[] = [
     highlights: [
       {
         heading: 'Protection for fragile things',
-        body: 'Pressed powders, glass bottles, and brushes travel inside a rigid shell instead of a soft pouch — arriving in the state you packed them.',
+        body: 'Pressed powders, glass bottles, and brushes travel inside a rigid shell instead of a soft pouch, arriving in the state you packed them.',
       },
       {
         heading: 'Rides the trolley',
@@ -1514,7 +1622,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Attachment', value: 'Integrated trolley sleeve' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     isFeatured:    false,
     hideSizeGuide: true,
     images:      [
@@ -1560,6 +1668,9 @@ export const PRODUCTS: Product[] = [
   // ── OrbitPod 12" Vanity Case ─────────────────────────────────────────────
   {
     id:            'orbitpod',
+    metaTitle: 'OrbitPod 12″ Dual-Compartment Vanity Case',
+    metaDescription: 'A 12″ hard-shell organizer split by a zipped centre divider: cosmetics one side, tech and essentials the other. Shoulder strap included.',
+    keywords: ['hard shell vanity case', 'multi purpose utility organizer', 'travel accessories organizer', 'portable cosmetic case', 'dual compartment travel case'],
     name:          'OrbitPod',
     slug:          'orbitpod',
     category:      'vanity',
@@ -1571,11 +1682,11 @@ export const PRODUCTS: Product[] = [
     highlights: [
       {
         heading: 'Two cases in one shell',
-        body: 'The zippered centre divider splits the interior fully in two — beauty kit on one side, tech and daily essentials on the other, nothing mingling in transit.',
+        body: 'The zippered centre divider splits the interior fully in two: beauty kit on one side, tech and daily essentials on the other, nothing mingling in transit.',
       },
       {
         heading: 'Carried, not clutched',
-        body: 'The included shoulder strap makes OrbitPod hands-free — a small case that works as hard on a commute as it does in a suitcase.',
+        body: 'The included shoulder strap makes OrbitPod hands-free, a small case that works as hard on a commute as it does in a suitcase.',
       },
     ],
     specs: [
@@ -1585,7 +1696,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Carry',    value: 'Detachable shoulder strap' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, strap, and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell, strap, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     isFeatured:    false,
     hideSizeGuide: true,
     images:      [
@@ -1627,17 +1738,20 @@ export const PRODUCTS: Product[] = [
   // ── Voyage Pod  ───────────────────────────────
   {
     id:            'voyage-pod',
+    metaTitle: 'Voyage Pod 9″ Multipurpose Vanity & Utility Case',
+    metaDescription: 'A 9″ hard-shell pod for toiletries, tech, or medicines, with a zipped mesh pocket and a luggage mounting sleeve.',
+    keywords: ['multipurpose vanity case', 'travel cosmetic organizer', 'hard shell beauty case', 'luggage mount vanity case', 'travel utility pod'],
     name:          'Voyage Pod ',
     slug:          'voyage-pod',
     category:      'vanity',
     description:   'A compact hard-shell travel organizer for cosmetics, toiletries, grooming essentials, electronics, medicines, and personal accessories. Features a spacious interior with zippered mesh pocket and an integrated luggage mounting sleeve that attaches to your trolley handle.',
     story: [
-      'Voyage Pod is the case that ends up holding a different thing every trip — toiletries this week, camera kit the next, the family medicine bag after that. A nine-inch hard shell with a zipped mesh pocket inside and a mounting sleeve behind, it adapts to whatever needs protecting.',
+      'Voyage Pod is the case that ends up holding a different thing every trip: toiletries this week, camera kit the next, the family medicine bag after that. A nine-inch hard shell with a zipped mesh pocket inside and a mounting sleeve behind, it adapts to whatever needs protecting.',
     ],
     highlights: [
       {
         heading: 'Whatever needs a shell',
-        body: 'Grooming kit, electronics, medicines, jewellery — the compression-resistant shell gives small valuables the protection a wash bag can’t.',
+        body: 'Grooming kit, electronics, medicines, jewellery. The compression-resistant shell gives small valuables the protection a wash bag can’t.',
       },
       {
         heading: 'Attaches and forgets',
@@ -1651,7 +1765,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Attachment', value: 'Luggage mounting sleeve' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell and zippers. Keep your invoice — a mail to support@louispolo.in is all a claim takes.',
+      '1-year warranty covering manufacturing defects in the shell and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     isFeatured:    false,
     hideSizeGuide: true,
     images:      [

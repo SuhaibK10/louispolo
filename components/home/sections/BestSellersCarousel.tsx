@@ -352,13 +352,21 @@ export function BestSellersCarousel() {
           </motion.h2>
         </motion.div>
 
-        <Link
-          href={ROUTES.shop}
-          className="hidden md:flex items-center gap-2 font-body text-[0.75rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200 group"
-        >
-          View all
-          <ArrowRight size={14} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-200" />
-        </Link>
+        <div className="hidden md:flex items-center gap-6">
+          <Link
+            href="/store/compare"
+            className="font-body text-[0.75rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+          >
+            Compare
+          </Link>
+          <Link
+            href={ROUTES.shop}
+            className="flex items-center gap-2 font-body text-[0.75rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200 group"
+          >
+            View all
+            <ArrowRight size={14} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-200" />
+          </Link>
+        </div>
       </div>
 
       {/* Drag-to-scroll track */}
@@ -380,9 +388,12 @@ export function BestSellersCarousel() {
       </div>
 
       <div className="md:hidden" style={{ marginTop: '3rem' }}>
-        <div className="container-lp">
+        <div className="container-lp flex flex-col gap-3">
           <Link href={ROUTES.shop} className="btn-outline w-full justify-center rounded-md">
             View all products
+          </Link>
+          <Link href="/store/compare" className="btn-outline w-full justify-center rounded-md">
+            Compare products
           </Link>
         </div>
       </div>
