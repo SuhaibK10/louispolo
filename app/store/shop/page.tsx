@@ -83,6 +83,46 @@ export default function ShopPage() {
                 label: 'Office Bags',
                 desc:  'Desk to departure gate. Structured, sharp, professional.',
               },
+              {
+                icon: (
+                  <svg viewBox="0 0 36 30" fill="none" className="w-7 h-7" aria-hidden="true">
+                    <path d="M13 7 C13 4 15 3 18 3 C21 3 23 4 23 7" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <rect x="3" y="7" width="30" height="20" rx="3" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <line x1="3" y1="17" x2="33" y2="17" stroke="currentColor" strokeWidth="1"/>
+                    <rect x="15" y="14.5" width="6" height="5" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
+                  </svg>
+                ),
+                label: 'Vanity Cases',
+                desc:  'Cosmetics, tech and medicines. Compact hard-shell order.',
+              },
+              {
+                icon: (
+                  <svg viewBox="0 0 30 34" fill="none" className="w-7 h-7" aria-hidden="true">
+                    <rect x="11" y="2" width="8" height="5" rx="1.5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <rect x="4" y="7" width="22" height="22" rx="2.5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <line x1="4" y1="15" x2="26" y2="15" stroke="currentColor" strokeWidth="1"/>
+                    <rect x="12" y="10" width="6" height="2.5" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
+                    <circle cx="9"  cy="31" r="2" fill="currentColor"/>
+                    <circle cx="21" cy="31" r="2" fill="currentColor"/>
+                  </svg>
+                ),
+                label: 'Overnighters',
+                desc:  'One-night trips, sorted. Laptop bay in a cabin-ready size.',
+              },
+              {
+                icon: (
+                  <svg viewBox="0 0 42 32" fill="none" className="w-7 h-7" aria-hidden="true">
+                    <rect x="2"  y="14" width="10" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <rect x="15" y="8"  width="12" height="22" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <rect x="30" y="2"  width="10" height="28" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <line x1="7"  y1="14" x2="7"  y2="30" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2"/>
+                    <line x1="21" y1="8"  x2="21" y2="30" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2"/>
+                    <line x1="35" y1="2"  x2="35" y2="30" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2"/>
+                  </svg>
+                ),
+                label: 'Sets',
+                desc:  'Three sizes, one finish. Nest inside each other at home.',
+              },
             ].map(({ icon, label, desc }) => (
               <div key={label} className="border-t-2 border-[var(--color-lp-gold)] pt-3 pr-2">
                 <div className="text-[var(--color-lp-ink)] mb-2">{icon}</div>
