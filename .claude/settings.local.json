@@ -27,7 +27,14 @@
       "Bash(awk -F: '$2>0')",
       "Bash(pkill -f \"next start\")",
       "Bash(pkill -f \"next build\")",
-      "Bash(node --env-file=.env.local -e ' *)"
+      "Bash(node --env-file=.env.local -e ' *)",
+      "Read(//Users/suhaibkhan/.Trash/**)",
+      "Read(//Users/suhaibkhan/Developer/LPSonnetFable/**)",
+      "Bash(ls -la /Users/suhaibkhan/.Trash/ 2>&1 | head -8; find /Users/suhaibkhan -maxdepth 2 -name \"louispolo-lpsonnetfable*\" 2>/dev/null)",
+      "Read(//Users/suhaibkhan/.Trash//**)",
+      "Read(//Users/suhaibkhan/**)",
+      "Bash(find /Users/suhaibkhan/Developer /Users/suhaibkhan/Downloads /Users/suhaibkhan/Desktop /Users/suhaibkhan/Documents -maxdepth 3 \\\\\\( -iname \"*louispolo*\" -o -iname \"*louis polo*\" -o -iname \"*louis-polo*\" \\\\\\) -not -path \"*/node_modules/*\" 2>/dev/null | head -30)",
+      "Read(//Users/suhaibkhan/Developer/**)"
     ]
   }
 }

@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     html: `
       <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; color: #1a1714;">
         <h1 style="font-size: 20px; margin-bottom: 4px;">New Corporate Enquiry</h1>
-        <p style="color: #888; font-size: 13px; margin-top: 0;">Submitted via louispoloworld.com</p>
+        <p style="color: #888; font-size: 13px; margin-top: 0;">Submitted via louispolo.in</p>
         <hr style="border: none; border-top: 1px solid #e5e1d8; margin: 20px 0;" />
         <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
           <tr><td style="padding: 6px 0; color: #888; width: 140px;">Company</td><td style="padding: 6px 0; font-weight: 600;">${company}</td></tr>

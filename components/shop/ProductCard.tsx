@@ -264,9 +264,10 @@ export function ProductCard({ product }: ProductCardProps) {
           )
         })()}
 
-        {/* Price */}
+        {/* Price — rating sits inline on the same row so Myntra and
+            non-Myntra cards keep identical height and buttons align */}
         {myntra && myntraTarget ? (
-          <div className="space-y-0.5">
+          <div className="flex items-baseline justify-between gap-2">
             <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
               {activeSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
               <span className="ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
@@ -276,13 +277,11 @@ export function ProductCard({ product }: ProductCardProps) {
                 ({Math.round((1 - myntraTarget.price / (activeSize ? price : lowestPrice)) * 100)}% off)
               </span>
             </p>
-            {myntra.rating ? (
-              <p className="flex items-center gap-1 font-body text-[0.68rem] text-[var(--color-lp-muted)]">
+            {myntra.rating && (
+              <p className="flex items-center gap-1 font-body text-[0.68rem] text-[var(--color-lp-muted)] shrink-0">
                 <Star size={11} strokeWidth={0} className="fill-[#5B6670]" />
-                {myntra.rating.toFixed(1)} ({myntra.ratingCount}) · on Myntra
+                {myntra.rating.toFixed(1)} ({myntra.ratingCount})
               </p>
-            ) : (
-              <p className="font-body text-[0.68rem] text-[var(--color-lp-muted)]">on Myntra</p>
             )}
           </div>
         ) : (
