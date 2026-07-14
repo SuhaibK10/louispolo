@@ -81,7 +81,7 @@ export function CorporateEnquiryModal({ open, onClose }: Props) {
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
                   <Building2 size={16} strokeWidth={1.5} className="text-[var(--color-lp-gold)]" />
-                  <h2 className="font-display text-[1.2rem] text-[var(--color-lp-ink)]">Corporate Enquiry</h2>
+                  <h2 className="font-display text-[1.2rem] text-[var(--color-lp-ink)]">B2B Corporate Enquiry</h2>
                 </div>
                 <p className="font-body text-[0.7rem] text-[var(--color-lp-muted)]">
                   Bulk orders · Corporate gifting · Custom branding

@@ -202,7 +202,7 @@ export function Navbar() {
                 onClick={() => setCorpOpen(true)}
                 className="hidden lg:block relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-lp-ink/45"
               >
-                Corporate Enquiry
+                B2B Corporate Enquiry
               </button>
 
               {/* Search */}
@@ -310,7 +310,7 @@ export function Navbar() {
                   className="block w-full text-left py-4 border-b border-[var(--color-lp-border)]"
                 >
                   <span className="font-display text-[1.5rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
-                    Corporate Enquiry
+                    B2B Corporate Enquiry
                   </span>
                 </button>
               </motion.div>

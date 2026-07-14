@@ -24,7 +24,10 @@
       "Bash(sed -i '' -e 's/text-\\\\[#C9A96E\\\\]\\\\/60/text-white\\\\/45/' components/layout/Footer.tsx)",
       "Bash(python3 /private/tmp/claude-501/-Users-suhaibkhan-Downloads-louispolo-2/b559ff51-d3a4-477f-b9f8-44daa8f0616e/scratchpad/dedash.py)",
       "Bash(awk -F':[0-9]+:' '{n=index\\($0,\":\"\\); f=$1; line=substr\\($0, n+1\\); sub\\(/^[0-9]+:/, \"\", line\\); gsub\\(/^[ \\\\t]+/, \"\", line\\); if \\(line !~ /^\\\\/\\\\// && line !~ /^\\\\/?\\\\*/ && line !~ /^\\\\{\\\\/\\\\*/ && line ~ /—/\\) print f\" ::: \"line}')",
-      "Bash(awk -F: '$2>0')"
+      "Bash(awk -F: '$2>0')",
+      "Bash(pkill -f \"next start\")",
+      "Bash(pkill -f \"next build\")",
+      "Bash(node --env-file=.env.local -e ' *)"
     ]
   }
 }

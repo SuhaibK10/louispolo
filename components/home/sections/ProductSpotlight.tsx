@@ -75,7 +75,7 @@ export function ProductSpotlight() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative w-full max-w-5xl mx-auto aspect-video bg-lp-cream overflow-hidden rounded-md"
+          className="relative w-full max-w-5xl mx-auto aspect-video bg-lp-cream overflow-hidden rounded-md border-[1.5px] border-[#5B6670]"
         >
           {hasVideo ? (
             <>
@@ -102,6 +102,21 @@ export function ProductSpotlight() {
               </p>
             </div>
           )}
+        </motion.div>
+
+        {/* Monitor stand — neck + base, makes the video read as a TV screen */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          aria-hidden
+        >
+          <div
+            className="mx-auto w-20 md:w-24 h-7 md:h-9 bg-[#5B6670]"
+            style={{ clipPath: 'polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)' }}
+          />
+          <div className="mx-auto w-44 md:w-56 h-1.5 rounded-full bg-[#5B6670]" />
         </motion.div>
 
         {/* Copy — below the video */}

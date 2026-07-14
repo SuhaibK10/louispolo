@@ -20,6 +20,13 @@ import type { Product, HeroSlide } from '@/types'
 // Replace public_ids with your Cloudinary uploads.
 export const HERO_SLIDES: HeroSlide[] = [
   {
+    image:     'heroLast_dkzwim.jpg',
+    headline:  'Made for the Long Haul.',
+    desktopImage: 'desk1_Large_yhjrpo.jpg',
+    textStyle: 'shadow',
+    textSize:  'lg',
+  },
+  {
     image:     'hero12_h3ptde.jpg',
     headline:  'Every Trip, Covered',
     desktopImage: 'desk5_w5zevy.jpg',
@@ -39,9 +46,6 @@ export const HERO_SLIDES: HeroSlide[] = [
     textStyle:    'shadow',
     textPosition: 'top',
   },
-  
-  
-
   {
     image:        'Generated_Image_June_19_2026_-_2_36AM_r9titc.jpg',
     headline:     'The Showstopper: AeroSmart 3in1',
@@ -49,13 +53,6 @@ export const HERO_SLIDES: HeroSlide[] = [
     textStyle:    'light',
     textSize:     'lg',
     textPosition: 'top',
-  },
-  {
-    image:     'heroLast_dkzwim.jpg',
-    headline:  'Made for the Long Haul.',
-    desktopImage: 'desk1_Large_yhjrpo.jpg',
-    textStyle: 'shadow',
-    textSize:  'lg',
   },
 ]
 

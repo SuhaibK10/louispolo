@@ -2,12 +2,36 @@ import { NextResponse }  from 'next/server'
 import { type NextRequest } from 'next/server'
 import { resend, EMAIL_FROM } from '@/lib/resend'
 import { BRAND }            from '@/lib/constants'
+import { createServiceRoleClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   const { company, name, email, phone, quantity, message } = await request.json()
 
   if (!company || !name || !email || !phone) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+  }
+
+  // Record the lead first — email delivery can fail (Resend outage, unverified
+  // domain), and a corporate lead is too valuable to lose. Service-role client:
+  // the table has RLS on with no policies, so only the server can touch it.
+  let savedToDb = false
+  try {
+    const supabase = createServiceRoleClient()
+    const { error: dbError } = await supabase.from('corporate_enquiries').insert({
+      company,
+      name,
+      email,
+      phone,
+      quantity: quantity || null,
+      message:  message  || null,
+    })
+    if (dbError) {
+      console.error('Failed to save corporate enquiry:', dbError)
+    } else {
+      savedToDb = true
+    }
+  } catch (e) {
+    console.error('Failed to save corporate enquiry:', e)
   }
 
   const { error } = await resend.emails.send({
@@ -35,8 +59,13 @@ export async function POST(request: NextRequest) {
     `,
   })
 
-  if (error) {
+  // Fail the request only if BOTH channels failed — if the lead is in the
+  // database, it is not lost even when the email bounces.
+  if (error && !savedToDb) {
     return NextResponse.json({ error: 'Failed to send enquiry' }, { status: 500 })
+  }
+  if (error) {
+    console.error('Corporate enquiry email failed (lead saved to DB):', error)
   }
 
   return NextResponse.json({ success: true })

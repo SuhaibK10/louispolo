@@ -10,7 +10,7 @@ import { useState, useEffect }   from 'react'
 import { useRouter }             from 'next/navigation'
 import { motion }                from 'framer-motion'
 import Link                      from 'next/link'
-import { ShoppingBag, Heart, Ruler, Minus, Plus, ArrowRight } from 'lucide-react'
+import { ShoppingBag, Heart, Ruler, Minus, Plus, ArrowRight, Star } from 'lucide-react'
 import { featureIconFor }        from '@/lib/featureIcons'
 import type { Product, ProductSize } from '@/types'
 import { formatPrice }           from '@/lib/utils'
@@ -20,6 +20,8 @@ import { thumbUrl }              from '@/lib/cloudinary'
 import { useWishlistStore }      from '@/store/wishlistStore'
 import { SizeGuideModal }        from '@/components/ui/SizeGuideModal'
 import { ProductAccordions }     from '@/components/product/ProductDetails'
+import { MyntraBuyButton }       from '@/components/ui/MyntraBuyButton'
+import { getMyntraListing, getMyntraForSize } from '@/config/myntra'
 
 interface Props {
   product: Product
@@ -53,6 +55,13 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
   const price    = sizeObj?.price ?? Math.min(...variant.sizes.map(s => s.price))
   const inStock  = sizeObj ? sizeObj.stock > 0 : true
   const canAdd   = selectedSize !== null && inStock
+
+  // Stocked on Myntra → purchase happens there while our logistics are pending
+  const myntra       = getMyntraListing(product.slug)
+  const myntraTarget = getMyntraForSize(product.slug, selectedSize)
+  const myntraSizeRating = selectedSize && myntra?.sizes?.[selectedSize]?.rating
+    ? myntra.sizes[selectedSize]
+    : myntra
 
   function handleColorChange(i: number) {
     setColorIndex(i)
@@ -96,9 +105,35 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       </div>
 
       {/* ── Price ──────────────────────────────────────────────────────── */}
+      {myntra && myntraTarget ? (
+        <div className="space-y-2">
+          <p className="font-display text-[2rem] leading-none text-[var(--color-lp-ink)]">
+            {selectedSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
+            <span className="ml-3 font-body text-[1rem] text-[var(--color-lp-faint)] line-through align-middle">
+              {formatPrice(price)}
+            </span>
+            <span className="ml-2 font-body text-[0.95rem] font-medium text-[#5B6670] align-middle">
+              ({Math.round((1 - myntraTarget.price / price) * 100)}% off)
+            </span>
+          </p>
+          <div className="flex items-center gap-3">
+            {myntraSizeRating?.rating ? (
+              <span className="flex items-center gap-1 font-body text-[0.78rem] text-[var(--color-lp-ink)]">
+                <Star size={13} strokeWidth={0} className="fill-[#5B6670]" />
+                {myntraSizeRating.rating.toFixed(1)}
+                <span className="text-[var(--color-lp-muted)]">({myntraSizeRating.ratingCount} ratings)</span>
+              </span>
+            ) : null}
+            <span className="font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)]">
+              Available on Myntra
+            </span>
+          </div>
+        </div>
+      ) : (
       <p className="font-display text-[2rem] leading-none text-[var(--color-lp-ink)]">
         {selectedSize ? formatPrice(price) : `From ${formatPrice(price)}`}
       </p>
+      )}
 
       {/* ── Description ────────────────────────────────────────────────── */}
       <p className="font-body text-[0.9rem] text-[var(--color-lp-muted)] leading-relaxed">
@@ -203,7 +238,8 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
         </div>
       </div>
 
-      {/* ── Quantity stepper ───────────────────────────────────────────── */}
+      {/* ── Quantity stepper (hidden when purchase happens on Myntra) ──── */}
+      {!myntra && (
       <div className="flex items-center gap-4">
         <p className="font-body text-[0.7rem] tracking-widest uppercase text-lp-muted">Quantity</p>
         <div className="flex items-center border border-lp-border">
@@ -230,10 +266,19 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
           </button>
         </div>
       </div>
+      )}
 
-      {/* ── Add to cart + Wishlist ─────────────────────────────────────── */}
+      {/* ── Buy CTA + Wishlist ─────────────────────────────────────────── */}
       <div className="flex gap-3">
-        {addedToCart ? (
+        {myntra && myntraTarget ? (
+          <MyntraBuyButton
+            url={myntraTarget.url}
+            slug={product.slug}
+            size={selectedSize}
+            placement="pdp"
+            className="btn-primary flex-1 justify-center"
+          />
+        ) : addedToCart ? (
           <>
             <a
               href={ROUTES.cart}
@@ -306,8 +351,15 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
         </motion.button>
       </div>
 
+      {/* Myntra fulfilment note */}
+      {myntra && (
+        <p className="font-body text-[0.75rem] text-[var(--color-lp-muted)] text-center">
+          Ships &amp; sold via Myntra · easy returns and COD available
+        </p>
+      )}
+
       {/* Low stock warning */}
-      {sizeObj && sizeObj.stock > 0 && sizeObj.stock <= 5 && (
+      {!myntra && sizeObj && sizeObj.stock > 0 && sizeObj.stock <= 5 && (
         <p className="font-body text-[0.75rem] text-[var(--color-lp-error)] text-center">
           Only {sizeObj.stock} left in stock
         </p>

@@ -11,7 +11,7 @@ import { createPortal }                      from 'react-dom'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
-import { ArrowRight, ShoppingBag, Ruler, Heart } from 'lucide-react'
+import { ArrowRight, ShoppingBag, Ruler, Heart, Star } from 'lucide-react'
 import type { ProductSize }                  from '@/types'
 import { FEATURED_PRODUCTS }                 from '@/config/products'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
@@ -21,6 +21,8 @@ import { useCartStore }                      from '@/store/cartStore'
 import { useWishlistStore }                  from '@/store/wishlistStore'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 import { SizeGuideModal }                    from '@/components/ui/SizeGuideModal'
+import { MyntraBuyButton }                   from '@/components/ui/MyntraBuyButton'
+import { getMyntraListing, getMyntraForSize } from '@/config/myntra'
 
 // ─── Single product card ──────────────────────────────────────────────────────
 function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
@@ -59,6 +61,10 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
   const price       = sizeObj?.price ?? lowestPrice
   const inStock     = sizeObj ? sizeObj.stock > 0 : true
   const canAdd      = activeSize !== null && inStock
+
+  // Stocked on Myntra → CTA routes there instead of the cart
+  const myntra       = getMyntraListing(product.slug)
+  const myntraTarget = getMyntraForSize(product.slug, activeSize)
 
   function handleColorChange(e: React.MouseEvent, i: number) {
     e.stopPropagation()
@@ -103,9 +109,18 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
           sizes="(max-width:768px) 72vw, (max-width:1024px) 40vw, 22rem"
           draggable="false"
         />
+        {/* Myntra Exclusive badge */}
+        {myntra && (
+          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm rounded-full pl-1.5 pr-2.5 py-1 shadow-sm border border-[#5B6670]/60">
+            <Image src="/myntra-m.png" alt="Myntra" width={13} height={11} />
+            <span className="font-body text-[0.55rem] tracking-[0.12em] uppercase text-[var(--color-lp-ink)] leading-none">
+              Myntra Exclusive
+            </span>
+          </span>
+        )}
         {/* Tag */}
         {product.tag && (
-          <span className="lp-tag absolute top-3 left-3">
+          <span className={`lp-tag absolute left-3 ${myntra ? 'top-11' : 'top-3'}`}>
             {product.tag}
           </span>
         )}
@@ -240,12 +255,42 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         </div>
 
         {/* Price */}
+        {myntra && myntraTarget ? (
+          <div className="space-y-0.5 pt-0.5">
+            <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
+              {activeSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
+              <span className="ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
+                {activeSize ? formatPrice(price) : formatPrice(lowestPrice)}
+              </span>
+              <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
+                ({Math.round((1 - myntraTarget.price / (activeSize ? price : lowestPrice)) * 100)}% off)
+              </span>
+            </p>
+            {myntra.rating ? (
+              <p className="flex items-center gap-1 font-body text-[0.68rem] text-[var(--color-lp-muted)]">
+                <Star size={11} strokeWidth={0} className="fill-[#5B6670]" />
+                {myntra.rating.toFixed(1)} ({myntra.ratingCount}) · on Myntra
+              </p>
+            ) : (
+              <p className="font-body text-[0.68rem] text-[var(--color-lp-muted)]">on Myntra</p>
+            )}
+          </div>
+        ) : (
         <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)] pt-0.5">
           {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
         </p>
+        )}
 
-        {/* Add to cart */}
-        {addedToCart ? (
+        {/* Buy on Myntra (stocked there) or Add to cart */}
+        {myntra && myntraTarget ? (
+          <MyntraBuyButton
+            url={myntraTarget.url}
+            slug={product.slug}
+            size={activeSize}
+            placement="card"
+            className="btn-ghost w-3/4 justify-center mt-2"
+          />
+        ) : addedToCart ? (
           <div className="flex gap-1.5 mt-2">
             <Link
               href={ROUTES.cart}

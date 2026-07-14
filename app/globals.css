@@ -389,6 +389,12 @@
   display: flex;
   white-space: nowrap;
 }
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+}
 
 /* ─── Android Chrome: promote navbar to its own compositor layer ─────────── */
 /* Prevents the header clipping when the address bar shrinks on scroll.       */

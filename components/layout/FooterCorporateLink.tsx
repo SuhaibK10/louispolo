@@ -19,7 +19,7 @@ export function FooterCorporateLink() {
         onClick={() => setOpen(true)}
         className="font-body text-[0.8rem] text-white/50 hover:text-[var(--color-lp-gold)] transition-colors duration-200"
       >
-        Corporate Enquiry
+        B2B Corporate Enquiry
       </button>
       <CorporateEnquiryModal open={open} onClose={() => setOpen(false)} />
     </>
