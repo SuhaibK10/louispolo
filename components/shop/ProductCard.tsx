@@ -309,7 +309,7 @@ export function ProductCard({ product }: ProductCardProps) {
               Go to Cart
             </Link>
             <Link
-              href="/store/checkout"
+              href="/checkout"
               className="btn-gold flex-1 justify-center"
               style={{ height: '36px' }}
             >

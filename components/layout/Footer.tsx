@@ -21,7 +21,7 @@ const SHOP_LINKS = [
   { label: 'Duffle Bags',  href: `${ROUTES.shop}?category=duffle` },
   { label: 'Vanity Cases', href: `${ROUTES.shop}?category=vanity` },
   { label: 'Overnighters', href: `${ROUTES.shop}?category=overnighter` },
-  { label: 'Compare Models', href: '/store/compare' },
+  { label: 'Compare Models', href: '/compare' },
 ]
 
 const COMPANY_LINKS = [
@@ -30,9 +30,9 @@ const COMPANY_LINKS = [
 ]
 
 const LEGAL_LINKS = [
-  { label: 'Privacy',       href: '/store/privacy' },
-  { label: 'Terms',         href: '/store/terms' },
-  { label: 'Refund Policy', href: '/store/refund-policy' },
+  { label: 'Privacy',       href: '/privacy' },
+  { label: 'Terms',         href: '/terms' },
+  { label: 'Refund Policy', href: '/refund-policy' },
 ]
 
 const footerLink =

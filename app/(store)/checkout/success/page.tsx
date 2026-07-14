@@ -1,7 +1,7 @@
 'use client'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/checkout/success/page.tsx
+// app/(store)/checkout/success/page.tsx
 // Lands here after /api/checkout/verify has confirmed payment.
 // Reads orderId + total from URL params (passed by checkout page after verify)
 // so it works for both logged-in and guest users — no Supabase RLS needed.

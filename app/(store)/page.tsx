@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/page.tsx  (renders at /)
+// app/(store)/page.tsx  (renders at /)
 // Homepage — delegates entirely to HomeEditorial.
 // ─────────────────────────────────────────────────────────────────────────────
 

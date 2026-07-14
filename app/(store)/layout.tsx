@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/layout.tsx
+// app/(store)/layout.tsx
 // All store pages share this layout — Navbar + Footer + MobileNav.
 // ─────────────────────────────────────────────────────────────────────────────
 

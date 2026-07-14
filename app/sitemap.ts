@@ -17,17 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: `${base}/store`,               lastModified, changeFrequency: 'weekly',  priority: 1   },
-    { url: `${base}/store/shop`,          lastModified, changeFrequency: 'weekly',  priority: 0.9 },
-    { url: `${base}/store/about`,         lastModified, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${base}/store/contact`,       lastModified, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${base}/store/privacy`,       lastModified, changeFrequency: 'yearly',  priority: 0.2 },
-    { url: `${base}/store/terms`,         lastModified, changeFrequency: 'yearly',  priority: 0.2 },
-    { url: `${base}/store/refund-policy`, lastModified, changeFrequency: 'yearly',  priority: 0.2 },
+    { url: base,                    lastModified, changeFrequency: 'weekly',  priority: 1   },
+    { url: `${base}/shop`,          lastModified, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${base}/about`,         lastModified, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${base}/contact`,       lastModified, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${base}/privacy`,       lastModified, changeFrequency: 'yearly',  priority: 0.2 },
+    { url: `${base}/terms`,         lastModified, changeFrequency: 'yearly',  priority: 0.2 },
+    { url: `${base}/refund-policy`, lastModified, changeFrequency: 'yearly',  priority: 0.2 },
   ]
 
   const productPages: MetadataRoute.Sitemap = PRODUCTS.map((product) => ({
-    url: `${base}/store/shop/${product.slug}`,
+    url: `${base}/shop/${product.slug}`,
     lastModified,
     changeFrequency: 'weekly',
     priority: 0.8,

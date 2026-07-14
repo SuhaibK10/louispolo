@@ -4,7 +4,7 @@
 // components/layout/actions.ts
 // Server actions used by footer client islands.
 // Newsletter signups are forwarded to the team inbox via Resend — same
-// pattern as the contact form (app/store/contact/actions.ts).
+// pattern as the contact form (app/(store)/contact/actions.ts).
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { resend, EMAIL_FROM } from '@/lib/resend'

@@ -1,7 +1,7 @@
 'use client'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/checkout/page.tsx
+// app/(store)/checkout/page.tsx
 // Three-step checkout: review → shipping → payment. Single page, internal
 // step state — NOT three routes, since that would mean losing in-memory
 // form state on every navigation unless lifted to a global store, which
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
             }
 
             clearCart()
-            router.push(`/store/checkout/success?orderId=${orderId}&total=${verifyData.total ?? ''}`)
+            router.push(`/checkout/success?orderId=${orderId}&total=${verifyData.total ?? ''}`)
           } catch {
             setPaymentError('Payment verification failed. If money was deducted, contact support with your order details.')
             setIsProcessing(false)
@@ -344,7 +344,7 @@ export default function CheckoutPage() {
                         className="grid grid-cols-1 md:grid-cols-2 gap-3"
                       >
                         <Link
-                          href={`/account/login?redirect=/store/checkout`}
+                          href={`/account/login?redirect=/checkout`}
                           className="btn-outline w-full justify-center"
                         >
                           Sign in

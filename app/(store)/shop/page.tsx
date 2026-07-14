@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/shop/page.tsx
+// app/(store)/shop/page.tsx
 // Shop page — server component. ProductGrid is client for filtering.
 // ─────────────────────────────────────────────────────────────────────────────
 

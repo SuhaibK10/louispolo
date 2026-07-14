@@ -287,7 +287,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
               Go to Cart
             </a>
             <a
-              href="/store/checkout"
+              href="/checkout"
               className="btn-gold flex-1 justify-center"
             >
               Checkout
@@ -369,7 +369,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       <div className="pt-2">
         <ProductAccordions product={product} />
         <Link
-          href={`/store/compare?p=${product.slug}`}
+          href={`/compare?p=${product.slug}`}
           className="group mt-5 inline-flex items-center gap-2 font-body text-[0.72rem] tracking-[0.14em] uppercase text-[var(--color-lp-gold)]"
         >
           <span className="relative">

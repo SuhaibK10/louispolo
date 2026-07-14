@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/compare/page.tsx
+// app/(store)/compare/page.tsx
 // Product comparison page. Deep-linkable: /store/compare?p=slug,slug,slug
 // pre-fills the columns (missing slots fall back to defaults).
 // ─────────────────────────────────────────────────────────────────────────────

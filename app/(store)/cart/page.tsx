@@ -1,7 +1,7 @@
 'use client'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/cart/page.tsx
+// app/(store)/cart/page.tsx
 // Cart page — reads from Zustand, shows items, totals, and checkout CTA.
 // Shipping is free on all orders (see CART_CONFIG in lib/constants.ts).
 // Checkout button now opens the real flow at /store/checkout.
@@ -187,7 +187,7 @@ export default function CartPage() {
 
             {/* Checkout — navigates to the multi-step checkout flow */}
             <button
-              onClick={() => router.push('/store/checkout')}
+              onClick={() => router.push('/checkout')}
               className="btn-gold w-full justify-center"
             >
               Proceed to Checkout

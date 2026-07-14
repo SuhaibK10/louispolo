@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/store/shop/slug/page.tsx
+// app/(store)/shop/slug/page.tsx
 // Product Detail Page (PDP).
 // Reads slug from URL, finds product in config/products.ts, renders.
 // ─────────────────────────────────────────────────────────────────────────────

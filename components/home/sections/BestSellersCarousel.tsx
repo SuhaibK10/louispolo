@@ -300,7 +300,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
               Go to Cart
             </Link>
             <Link
-              href="/store/checkout"
+              href="/checkout"
               className="btn-gold flex-1 justify-center"
               style={{ height: '36px' }}
             >
@@ -399,7 +399,7 @@ export function BestSellersCarousel() {
 
         <div className="hidden md:flex items-center gap-6">
           <Link
-            href="/store/compare"
+            href="/compare"
             className="font-body text-[0.75rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
           >
             Compare
@@ -437,7 +437,7 @@ export function BestSellersCarousel() {
           <Link href={ROUTES.shop} className="btn-outline w-full justify-center rounded-md">
             View all products
           </Link>
-          <Link href="/store/compare" className="btn-outline w-full justify-center rounded-md">
+          <Link href="/compare" className="btn-outline w-full justify-center rounded-md">
             Compare products
           </Link>
         </div>

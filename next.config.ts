@@ -18,6 +18,22 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  // Pages used to live under /store/* — permanent redirects keep old
+  // bookmarks and already-indexed Google results working.
+  async redirects() {
+    return [
+      {
+        source: '/store',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/store/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
