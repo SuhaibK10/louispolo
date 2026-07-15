@@ -119,7 +119,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Myntra Exclusive badge */}
         {myntra && (
-          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm rounded-full pl-1.5 pr-2.5 py-1 shadow-sm border border-[#5B6670]/60">
+          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 backdrop-blur-sm rounded-full pl-1.5 pr-2.5 py-1 border border-[#5B6670]/60">
             <Image src="/myntra-m.png" alt="Myntra" width={13} height={11} />
             <span className="font-body text-[0.55rem] tracking-[0.12em] uppercase text-[var(--color-lp-ink)] leading-none">
               Myntra Exclusive
@@ -264,26 +264,18 @@ export function ProductCard({ product }: ProductCardProps) {
           )
         })()}
 
-        {/* Price — rating sits inline on the same row so Myntra and
+        {/* Price — single line in both branches so Myntra and
             non-Myntra cards keep identical height and buttons align */}
         {myntra && myntraTarget ? (
-          <div className="flex items-baseline justify-between gap-2">
-            <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
-              {activeSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
-              <span className="ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
-                {activeSize ? formatPrice(price) : formatPrice(lowestPrice)}
-              </span>
-              <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
-                ({Math.round((1 - myntraTarget.price / (activeSize ? price : lowestPrice)) * 100)}% off)
-              </span>
-            </p>
-            {myntra.rating && (
-              <p className="flex items-center gap-1 font-body text-[0.68rem] text-[var(--color-lp-muted)] shrink-0">
-                <Star size={11} strokeWidth={0} className="fill-[#5B6670]" />
-                {myntra.rating.toFixed(1)} ({myntra.ratingCount})
-              </p>
-            )}
-          </div>
+          <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
+            {activeSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
+            <span className="ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
+              {activeSize ? formatPrice(price) : formatPrice(lowestPrice)}
+            </span>
+            <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
+              ({Math.round((1 - myntraTarget.price / (activeSize ? price : lowestPrice)) * 100)}% off)
+            </span>
+          </p>
         ) : (
         <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
           {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
@@ -292,13 +284,21 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Buy on Myntra (stocked there) or Add to cart */}
         {myntra && myntraTarget ? (
-          <MyntraBuyButton
-            url={myntraTarget.url}
-            slug={product.slug}
-            size={activeSize}
-            placement="card"
-            className="btn-ghost w-full justify-center mt-2"
-          />
+          <>
+            <MyntraBuyButton
+              url={myntraTarget.url}
+              slug={product.slug}
+              size={activeSize}
+              placement="card"
+              className="btn-ghost w-full justify-center mt-2"
+            />
+            {myntra.rating && (
+              <p className="flex items-center justify-center gap-1 font-body text-[0.68rem] text-lp-muted">
+                <Star size={11} strokeWidth={0} className="fill-[#5B6670]" />
+                {myntra.rating.toFixed(1)} ({myntra.ratingCount})
+              </p>
+            )}
+          </>
         ) : addedToCart ? (
           <div className="flex gap-1.5 mt-2">
             <Link
