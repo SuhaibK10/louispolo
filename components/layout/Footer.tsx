@@ -128,7 +128,7 @@ export function Footer() {
             <div>
               <p className="lp-eyebrow">Newsletter</p>
               <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight text-white">
-                Join the journey.
+                Join The Journey.
               </h2>
               <p className="font-body text-[0.85rem] text-white/55 mt-2">
                 New collections, launches and offers. One email a month, no noise.
