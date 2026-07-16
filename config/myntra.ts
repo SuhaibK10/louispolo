@@ -5,7 +5,8 @@
 // Myntra street price + rating and the buy CTA deep-links to the listing.
 //
 // Products WITHOUT an entry here keep the normal add-to-cart flow.
-// Prices/ratings snapshot: 2026-07-14 from myntra.com/louis-polo.
+// Prices/ratings snapshot: 2026-07-14 from myntra.com/louis-polo
+// (armorpack, skytrail-set: 2026-07-16).
 // Matched to our catalog via MRP (Myntra MRP == our size price).
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -90,6 +91,15 @@ export const MYNTRA_LISTINGS: Record<string, MyntraListing> = {
     ratingCount: 17,
     sizes: {
       'One Size': { url: `${M}/laptop-bag/louis+polo/louis-polo-unisex-hexcore-textured-laptop-bag/40280795/buy`, price: 1524, rating: 4.18, ratingCount: 17 },
+    },
+  },
+  armorpack: {
+    url: `${M}/backpacks/louis+polo/louis-polo-unisex-abs-hardshell-upto-18-inch-laptop-hard-shell-travel-backpack/40374112/buy`,
+    fromPrice: 2209,
+    rating: 4.0,
+    ratingCount: 9,
+    sizes: {
+      'One Size': { url: `${M}/backpacks/louis+polo/louis-polo-unisex-abs-hardshell-upto-18-inch-laptop-hard-shell-travel-backpack/40374112/buy`, price: 2209, rating: 4.0, ratingCount: 9 },
     },
   },
   'skytrail-set': {
