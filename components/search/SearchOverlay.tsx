@@ -6,7 +6,7 @@ import { Search, X, ArrowRight }        from 'lucide-react'
 import Image                            from 'next/image'
 import Link                             from 'next/link'
 import { PRODUCTS }                     from '@/config/products'
-import { cardUrl, PLACEHOLDER_URL }     from '@/lib/cloudinary'
+import { thumbUrl, PLACEHOLDER_URL }    from '@/lib/cloudinary'
 import { formatPrice }                  from '@/lib/utils'
 import { ROUTES }                       from '@/lib/constants'
 
@@ -106,7 +106,7 @@ export function SearchOverlay({ open, onClose }: Props) {
                       {/* Thumbnail */}
                       <div className="relative w-12 h-12 shrink-0 bg-[var(--color-lp-cream)] overflow-hidden">
                         <Image
-                          src={cardUrl(product.images[0]) || PLACEHOLDER_URL}
+                          src={thumbUrl(product.images[0]) || PLACEHOLDER_URL}
                           alt={product.name}
                           fill
                           className="object-cover object-center"
