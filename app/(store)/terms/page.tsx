@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title:       'Terms of Use',
   description: 'Terms and conditions for using the Louis Polo website and purchasing our products.',
+  alternates:  { canonical: '/terms' },
 }
 
 export default function TermsPage() {

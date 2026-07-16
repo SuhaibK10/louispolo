@@ -6,7 +6,8 @@ import type { Metadata } from 'next'
 import { AuthForm }      from '@/components/auth/AuthForm'
 
 export const metadata: Metadata = {
-  title: 'Sign In',
+  title:  'Sign In',
+  robots: { index: false },
 }
 
 interface Props {

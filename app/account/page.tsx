@@ -4,6 +4,11 @@ import { logout }         from '@/app/account/actions'
 import Link              from 'next/link'
 import { ROUTES }        from '@/lib/constants'
 import { ShoppingBag, Heart, LogOut, User, Package } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  robots: { index: false },
+}
 
 export default async function AccountPage() {
   const supabase = await createClient()

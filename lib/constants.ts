@@ -49,7 +49,7 @@ export const SEO = {
   description: 'Crafted for those who move with purpose. Discover Louis Polo\'s collection of hard-shell trolleys, duffles & travel sets, built to last, designed to impress.',
   keywords:    'louis polo, luggage, trolley bags, hard shell suitcase, travel bags, india',
   ogImage:     '/web-app-manifest-512x512.png',
-  url:         'https://louispolo.in',
+  url:         'https://www.louispolo.in',
 } as const
 
 // Size display order

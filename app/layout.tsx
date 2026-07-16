@@ -53,7 +53,6 @@ export const metadata: Metadata = {
   openGraph: {
     type:        'website',
     locale:      'en_IN',
-    url:         SEO.url,
     siteName:    'Louis Polo',
     title:       SEO.title,
     description: SEO.description,

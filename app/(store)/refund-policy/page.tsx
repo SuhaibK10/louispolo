@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title:       'Refund Policy',
   description: 'Louis Polo\'s return and refund policy for luggage and travel accessories.',
+  alternates:  { canonical: '/refund-policy' },
 }
 
 export default function RefundPolicyPage() {

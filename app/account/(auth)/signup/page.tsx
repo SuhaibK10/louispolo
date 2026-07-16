@@ -6,7 +6,8 @@ import type { Metadata } from 'next'
 import { AuthForm }      from '@/components/auth/AuthForm'
 
 export const metadata: Metadata = {
-  title: 'Create Account',
+  title:  'Create Account',
+  robots: { index: false },
 }
 
 export default function SignupPage() {

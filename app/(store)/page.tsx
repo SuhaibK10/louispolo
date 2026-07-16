@@ -8,8 +8,8 @@ import { HomeEditorial }   from '@/components/home/HomeEditorial'
 import { SEO }             from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title:       SEO.title,
   description: SEO.description,
+  alternates:  { canonical: '/' },
 }
 
 export default function HomePage() {

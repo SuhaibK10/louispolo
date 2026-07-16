@@ -11,6 +11,7 @@ import { ShopSizeGuideButton }  from '@/components/shop/ShopSizeGuideButton'
 export const metadata: Metadata = {
   title:       'Shop',
   description: 'Browse the complete Louis Polo collection - trolley bags, sets, backpacks and more.',
+  alternates:  { canonical: '/shop' },
 }
 
 export default function ShopPage() {

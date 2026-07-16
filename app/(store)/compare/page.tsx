@@ -10,6 +10,7 @@ import { ComparePageClient }    from '@/components/compare/ComparePageClient'
 export const metadata: Metadata = {
   title:       'Compare Models',
   description: 'Compare Louis Polo luggage side by side: shell material, dimensions, weight, locks, wheels, and warranty.',
+  robots:      { index: false },
 }
 
 interface Props {
