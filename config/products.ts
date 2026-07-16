@@ -189,9 +189,9 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',        value: 'Polycarbonate + ABS' },
-      { label: 'Cabin (20″)',  value: '55.9 × 38.1 × 22.9 cm · approx. 2.5 kg' },
-      { label: 'Medium (24″)', value: '66 × 44.5 × 26.7 cm · approx. 3.6 kg' },
-      { label: 'Large (28″)',  value: '76.2 × 50.8 × 30.5 cm · approx. 4.3 kg' },
+      { label: 'Cabin (20″)',  value: '55.9 × 38.1 × 22.9 cm · approx. 2.5 kg · 48.6 L' },
+      { label: 'Medium (24″)', value: '66 × 44.5 × 26.7 cm · approx. 3.6 kg · 78.2 L' },
+      { label: 'Large (28″)',  value: '76.2 × 50.8 × 30.5 cm · approx. 4.3 kg · 117.9 L' },
       { label: 'Lock',         value: '3-digit combination lock' },
       { label: 'Wheels',       value: '360° spinner wheels' },
     ],
@@ -286,15 +286,15 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',        value: 'Hard shell ABS composite' },
-      { label: 'Cabin (20″)',  value: '54.6 × 36.8 × 23.5 cm · approx. 2.7 kg' },
-      { label: 'Medium (24″)', value: '65.4 × 45.7 × 27.3 cm · approx. 3.7 kg' },
-      { label: 'Large (28″)',  value: '76.8 × 50.8 × 31.8 cm · approx. 4.2 kg' },
+      { label: 'Cabin (20″)',  value: '54.6 × 36.8 × 23.5 cm · approx. 2.7 kg · 47.2 L' },
+      { label: 'Medium (24″)', value: '65.4 × 45.7 × 27.3 cm · approx. 3.7 kg · 81.6 L' },
+      { label: 'Large (28″)',  value: '76.8 × 50.8 × 31.8 cm · approx. 4.2 kg · 123.9 L' },
       { label: 'Lock',         value: '3-digit combination lock' },
       { label: 'Wheels',       value: '360° spinner wheels' },
       { label: 'Handle',       value: 'Telescopic, multi-stage' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'Which size do I need?',
@@ -370,9 +370,9 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',        value: 'Polycarbonate + ABS' },
-      { label: 'Cabin (20″)',  value: '55.9 × 35.6 × 24.1 cm · approx. 2.7 kg' },
-      { label: 'Medium (24″)', value: '64.8 × 40 × 32.4 cm · approx. 3.3 kg' },
-      { label: 'Large (28″)',  value: '76.2 × 46.4 × 35.6 cm · approx. 4 kg' },
+      { label: 'Cabin (20″)',  value: '55.9 × 35.6 × 24.1 cm · approx. 2.7 kg · 47.9 L' },
+      { label: 'Medium (24″)', value: '64.8 × 40 × 32.4 cm · approx. 3.3 kg · 83.9 L' },
+      { label: 'Large (28″)',  value: '76.2 × 46.4 × 35.6 cm · approx. 4 kg · 125.6 L' },
       { label: 'Interior',     value: 'Dual compartment · compression straps · zipped divider' },
       { label: 'Lock',         value: '3-digit combination lock' },
       { label: 'Wheels',       value: '360° spinner wheels' },
@@ -467,13 +467,13 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',       value: 'Polycarbonate + ABS' },
-      { label: 'Cabin (20″)', value: '55.9 × 36.8 × 27.3 cm · approx. 3.8 kg' },
+      { label: 'Cabin (20″)', value: '55.9 × 36.8 × 27.3 cm · approx. 3.8 kg · 56.2 L' },
       { label: 'Access',      value: 'Front-opening work compartment + main compartment' },
       { label: 'Lock',        value: '3-digit combination lock' },
       { label: 'Wheels',      value: '360° spinner wheels' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     faqs: [
       {
         q: 'What fits in the front compartment?',
@@ -532,14 +532,14 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',       value: 'Polycarbonate + ABS' },
-      { label: 'Cabin (20″)', value: '55.9 × 37.5 × 23.5 cm · approx. 3.5 kg' },
+      { label: 'Cabin (20″)', value: '55.9 × 37.5 × 23.5 cm · approx. 3.5 kg · 49.2 L' },
       { label: 'Interior',    value: 'Cross straps · zipped mesh pockets' },
       { label: 'Lock',        value: '3-digit combination lock' },
       { label: 'Wheels',      value: '360° spinner wheels' },
       { label: 'Handle',      value: 'Telescopic, multi-stage' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
       'IMG_2892_Background_Removed_dnutdx',
       '1-13_Background_Removed_c0oxox',
@@ -959,13 +959,13 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',      value: 'Polycarbonate + ABS' },
-      { label: 'Size (17″)', value: '38.7 × 27.3 × 8.9 cm · approx. 1.1 kg' },
+      { label: 'Size (17″)', value: '38.7 × 27.3 × 8.9 cm · approx. 1.1 kg · 9.4 L' },
       { label: 'Fits',       value: 'Most laptops up to 15.6″, plus tablet and documents' },
       { label: 'Interior',   value: 'Elastic retention straps · organiser pockets' },
       { label: 'Carry',      value: 'Dual handles + detachable shoulder strap' },
     ],
     warranty:
-      '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
+      '3-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
       'hexcore_vhfwcc.png',
       'hexcore_vhfwcc.png',
@@ -1029,9 +1029,9 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',        value: 'Polycarbonate + ABS' },
-      { label: 'Cabin (20″)',  value: '55.9 × 38.1 × 22.9 cm · approx. 2.5 kg' },
-      { label: 'Medium (24″)', value: '66 × 44.5 × 26.7 cm · approx. 3.6 kg' },
-      { label: 'Large (28″)',  value: '76.2 × 50.8 × 30.5 cm · approx. 4.3 kg' },
+      { label: 'Cabin (20″)',  value: '55.9 × 38.1 × 22.9 cm · approx. 2.5 kg · 48.6 L' },
+      { label: 'Medium (24″)', value: '66 × 44.5 × 26.7 cm · approx. 3.6 kg · 78.2 L' },
+      { label: 'Large (28″)',  value: '76.2 × 50.8 × 30.5 cm · approx. 4.3 kg · 117.9 L' },
       { label: 'Set weight',   value: 'approx. 10.4 kg combined' },
       { label: 'Lock',         value: '3-digit combination lock on each case' },
     ],
@@ -1174,9 +1174,9 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Shell',        value: 'Hard shell ABS composite' },
-      { label: 'Cabin (20″)',  value: '54.6 × 36.8 × 23.5 cm · approx. 2.7 kg' },
-      { label: 'Medium (24″)', value: '65.4 × 45.7 × 27.3 cm · approx. 3.7 kg' },
-      { label: 'Large (28″)',  value: '76.8 × 50.8 × 31.8 cm · approx. 4.2 kg' },
+      { label: 'Cabin (20″)',  value: '54.6 × 36.8 × 23.5 cm · approx. 2.7 kg · 47.2 L' },
+      { label: 'Medium (24″)', value: '65.4 × 45.7 × 27.3 cm · approx. 3.7 kg · 81.6 L' },
+      { label: 'Large (28″)',  value: '76.8 × 50.8 × 31.8 cm · approx. 4.2 kg · 123.9 L' },
       { label: 'Set weight',   value: 'approx. 10.6 kg combined' },
       { label: 'Wheels',       value: '360° spinner wheels' },
     ],

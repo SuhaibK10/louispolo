@@ -276,7 +276,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
             slug={product.slug}
             size={selectedSize}
             placement="pdp"
-            className="btn-primary flex-1 justify-center"
+            className="btn-ghost h-12 flex-1 justify-center"
           />
         ) : addedToCart ? (
           <>

@@ -10,7 +10,6 @@ import Link                                      from 'next/link'
 import { motion }                                from 'framer-motion'
 import { ArrowRight }                            from 'lucide-react'
 import { ROUTES }                                from '@/lib/constants'
-import { OEMBrandsMarquee }                      from './OEMBrandsMarquee'
 import { slideFromLeft, slideFromRight, staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 
 const PILLARS = [
@@ -119,14 +118,6 @@ export function BrandStory() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* ── OEM brand marquee ── */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <p className="font-body text-[0.6rem] tracking-[0.18em] uppercase text-white/30 text-center mb-6">
-            Brands we&apos;ve manufactured for
-          </p>
-          <OEMBrandsMarquee />
-        </div>
 
         {/* ── City strip ── */}
         <div className="mt-12 pt-8 border-t border-white/10">

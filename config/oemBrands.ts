@@ -7,7 +7,8 @@
 // Upload each logo (transparent PNG or SVG) to Cloudinary, then paste its
 // public_id below. Until a publicId is filled in, the brand name is shown
 // as a styled text wordmark, so the strip works immediately.
-// Logos are rendered white via CSS filter to sit on the dark section.
+// Logos are flattened to ink silhouettes via CSS filter (brightness-0) to
+// sit uniformly on the light corporate section.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface OEMBrand {

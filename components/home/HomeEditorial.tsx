@@ -7,6 +7,7 @@
 import { HeroSection }         from './sections/HeroSection'
 import { BestSellersCarousel } from './sections/BestSellersCarousel'
 import { CategoryGrid }        from './sections/CategoryGrid'
+import { CorporateSection }    from './sections/CorporateSection'
 import { ProductSpotlight }    from './sections/ProductSpotlight'
 import { ReviewsSection }      from './sections/ReviewsSection'
 import { BrandStory }          from './sections/BrandStory'
@@ -18,6 +19,7 @@ export function HomeEditorial() {
       <HeroSection />
       <BestSellersCarousel />
       <CategoryGrid />
+      <CorporateSection />
       <ProductSpotlight />
       <ExhibitionGallery />
       <ReviewsSection />

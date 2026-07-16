@@ -1,8 +1,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/home/sections/OEMBrandsMarquee.tsx
-// Infinite moving strip of OEM client brands. Rendered inside BrandStory,
-// on the dark ink background. Brands come from config/oemBrands.ts:
-// logo image when a Cloudinary publicId is set, text wordmark otherwise.
+// Infinite moving strip of OEM client brands. Rendered inside the light
+// CorporateSection: logos flattened to ink silhouettes via brightness-0.
+// Brands come from config/oemBrands.ts: logo image when a Cloudinary
+// publicId is set, text wordmark otherwise.
 // The track is duplicated once and shifted -50% by .animate-marquee.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -20,10 +21,10 @@ function BrandItem({ name, publicId }: { name: string; publicId: string }) {
           width={120}
           height={32}
           draggable="false"
-          className="h-6 md:h-7 w-auto object-contain opacity-55 brightness-0 invert select-none"
+          className="h-6 md:h-7 w-auto object-contain opacity-60 brightness-0 select-none"
         />
       ) : (
-        <span className="font-display text-[0.95rem] md:text-[1.05rem] tracking-[0.08em] uppercase text-white/50 whitespace-nowrap select-none">
+        <span className="font-display text-[0.95rem] md:text-[1.05rem] tracking-[0.08em] uppercase text-[var(--color-lp-muted)] whitespace-nowrap select-none">
           {name}
         </span>
       )}

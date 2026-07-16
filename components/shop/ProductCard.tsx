@@ -97,7 +97,7 @@ export function ProductCard({ product }: ProductCardProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.4 }}
-      className="group"
+      className="group flex flex-col"
     >
       {/* Image container */}
       <Link
@@ -117,12 +117,13 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        {/* Myntra Exclusive badge */}
+        {/* Myntra Exclusive badge — text shortened on phones so it clears
+            the suitcase handle and the wishlist heart on narrow cards */}
         {myntra && (
-          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 backdrop-blur-sm rounded-full pl-1.5 pr-2.5 py-1 border border-[#5B6670]/60">
+          <span className="absolute top-2.5 left-2.5 md:top-3 md:left-3 z-10 flex items-center gap-1.5 backdrop-blur-sm rounded-full pl-1.5 pr-2 md:pr-2.5 py-1 border border-[#5B6670]/60">
             <Image src="/myntra-m.png" alt="Myntra" width={13} height={11} />
             <span className="font-body text-[0.55rem] tracking-[0.12em] uppercase text-[var(--color-lp-ink)] leading-none">
-              Myntra Exclusive
+              Myntra<span className="hidden md:inline"> Exclusive</span>
             </span>
           </span>
         )}
@@ -174,17 +175,27 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
 
-      {/* Info */}
-      <div className="space-y-1.5">
+      {/* Info — flex column filling the card so the CTA row can pin to the
+          bottom and stay aligned across cards whose content wraps differently */}
+      <div className="flex-1 flex flex-col space-y-1.5">
         {/* Category + name */}
         <p className="font-body text-[0.6rem] tracking-[0.14em] uppercase text-[var(--color-lp-faint)]">
           {product.category === 'trolley' ? 'Trolley Bag' : product.category}
         </p>
-        <Link href={`${ROUTES.shop}/${product.slug}`}>
-          <p className="font-display text-[1rem] md:text-[1.1rem] text-[var(--color-lp-ink)] leading-tight hover:text-[var(--color-lp-gold)] transition-colors duration-200">
-            {product.name}
-          </p>
-        </Link>
+        {/* Name left · Myntra rating right, on the same line */}
+        <div className="flex items-center justify-between gap-2">
+          <Link href={`${ROUTES.shop}/${product.slug}`}>
+            <p className="font-display text-[1rem] md:text-[1.1rem] text-[var(--color-lp-ink)] leading-tight hover:text-[var(--color-lp-gold)] transition-colors duration-200">
+              {product.name}
+            </p>
+          </Link>
+          {myntra?.rating && (
+            <span className="flex items-center gap-1 font-body text-[0.62rem] text-lp-muted leading-none shrink-0">
+              <Star size={10} strokeWidth={0} className="fill-[#5B6670]" />
+              {myntra.rating.toFixed(1)} ({myntra.ratingCount})
+            </span>
+          )}
+        </div>
 
         {/* Size chips */}
         <div className="flex items-center justify-between gap-1 pt-0.5">
@@ -216,7 +227,7 @@ export function ProductCard({ product }: ProductCardProps) {
             )
           })}
           </div>
-          <span className="font-body text-[0.58rem] tracking-[0.06em] text-lp-muted leading-none shrink-0">
+          <span className="hidden sm:inline font-body text-[0.58rem] tracking-[0.06em] text-lp-muted leading-none shrink-0">
             {variant.color}
             {variant.accentColor && (
               <span className="text-lp-faint"> | {variant.accentColor}</span>
@@ -267,9 +278,9 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Price — single line in both branches so Myntra and
             non-Myntra cards keep identical height and buttons align */}
         {myntra && myntraTarget ? (
-          <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)]">
+          <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)] whitespace-nowrap">
             {activeSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
-            <span className="ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
+            <span className="hidden sm:inline ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
               {activeSize ? formatPrice(price) : formatPrice(lowestPrice)}
             </span>
             <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
@@ -282,57 +293,53 @@ export function ProductCard({ product }: ProductCardProps) {
         </p>
         )}
 
-        {/* Buy on Myntra (stocked there) or Add to cart */}
-        {myntra && myntraTarget ? (
-          <>
+        {/* Buy on Myntra (stocked there) or Add to cart — mt-auto pins this
+            block to the card bottom (safety net for two-line product names);
+            content rows above are height-matched so the slack stays small */}
+        <div className="mt-auto pt-2">
+          {myntra && myntraTarget ? (
             <MyntraBuyButton
               url={myntraTarget.url}
               slug={product.slug}
               size={activeSize}
               placement="card"
-              className="btn-ghost w-full justify-center mt-2"
+              className="btn-ghost w-full justify-center"
             />
-            {myntra.rating && (
-              <p className="flex items-center justify-center gap-1 font-body text-[0.68rem] text-lp-muted">
-                <Star size={11} strokeWidth={0} className="fill-[#5B6670]" />
-                {myntra.rating.toFixed(1)} ({myntra.ratingCount})
-              </p>
-            )}
-          </>
-        ) : addedToCart ? (
-          <div className="flex gap-1.5 mt-2">
-            <Link
-              href={ROUTES.cart}
-              className="btn-ghost flex-1 justify-center"
-              style={{ height: '36px' }}
-            >
-              Go to Cart
-            </Link>
-            <Link
-              href="/checkout"
-              className="btn-gold flex-1 justify-center"
-              style={{ height: '36px' }}
-            >
-              Checkout
-            </Link>
-          </div>
-        ) : (
-        <motion.button
-          type="button"
-          onClick={handleAddToCart}
-          disabled={!canAdd}
-          className={
-            canAdd
-              ? 'btn-ghost w-full justify-center mt-2'
-              : 'btn-ghost w-full justify-center opacity-40 cursor-not-allowed mt-2'
-          }
-          style={{ height: '36px' }}
-          whileTap={canAdd ? { scale: 0.97 } : {}}
-        >
-          {activeSize && <ShoppingBag size={22} strokeWidth={1.5} style={{ flexShrink: 0 }} />}
-          {!activeSize ? 'Select Color & Size' : 'Add to cart'}
-        </motion.button>
-        )}
+          ) : addedToCart ? (
+            <div className="flex gap-1.5">
+              <Link
+                href={ROUTES.cart}
+                className="btn-ghost flex-1 justify-center"
+                style={{ height: '36px' }}
+              >
+                Go to Cart
+              </Link>
+              <Link
+                href="/checkout"
+                className="btn-gold flex-1 justify-center"
+                style={{ height: '36px' }}
+              >
+                Checkout
+              </Link>
+            </div>
+          ) : (
+          <motion.button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={!canAdd}
+            className={
+              canAdd
+                ? 'btn-ghost w-full justify-center'
+                : 'btn-ghost w-full justify-center opacity-40 cursor-not-allowed'
+            }
+            style={{ height: '36px' }}
+            whileTap={canAdd ? { scale: 0.97 } : {}}
+          >
+            {activeSize && <ShoppingBag size={22} strokeWidth={1.5} style={{ flexShrink: 0 }} />}
+            {!activeSize ? 'Select Color & Size' : 'Add to cart'}
+          </motion.button>
+          )}
+        </div>
       </div>
 
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
