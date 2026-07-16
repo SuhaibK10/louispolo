@@ -110,15 +110,15 @@ export function HeroSection() {
             />
           ) : (
             <>
-              {/* Mobile: full natural portrait, no pre-crop — hidden on md+ */}
+              {/* Mobile/tablet portrait (incl. iPad): full natural portrait, no pre-crop — hidden on lg+ */}
               <Image
                 src={heroUrlMobile(slide.image) || PLACEHOLDER_URL}
                 alt={slide.headline ?? 'Louis Polo luggage'}
                 fill
                 priority={current === 0}
                 loading={current === 0 ? 'eager' : 'lazy'}
-                className="object-cover object-center block md:hidden"
-                sizes="(max-width: 767px) 100vw, 1px"
+                className="object-cover object-center block lg:hidden"
+                sizes="(max-width: 1023px) 100vw, 1px"
               />
               {/* Desktop: separate 16:9 image if provided, else same image with landscape crop */}
               <Image
@@ -126,8 +126,8 @@ export function HeroSection() {
                 alt={slide.headline ?? 'Louis Polo luggage'}
                 fill
                 priority={current === 0}
-                className="object-cover object-center hidden md:block"
-                sizes="(max-width: 767px) 1px, 100vw"
+                className="object-cover object-center hidden lg:block"
+                sizes="(max-width: 1023px) 1px, 100vw"
               />
             </>
           )}
