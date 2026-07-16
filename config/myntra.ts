@@ -92,6 +92,15 @@ export const MYNTRA_LISTINGS: Record<string, MyntraListing> = {
       'One Size': { url: `${M}/laptop-bag/louis+polo/louis-polo-unisex-hexcore-textured-laptop-bag/40280795/buy`, price: 1524, rating: 4.18, ratingCount: 17 },
     },
   },
+  'skytrail-set': {
+    url: `${M}/trolley-bag/louis+polo/louis-polo-skytrail-set-of-3-textured-trolley-suitcase---cabin--medium--large/40284527/buy`,
+    fromPrice: 6949,
+    rating: 4.28,
+    ratingCount: 146,
+    sizes: {
+      'Set of 3': { url: `${M}/trolley-bag/louis+polo/louis-polo-skytrail-set-of-3-textured-trolley-suitcase---cabin--medium--large/40284527/buy`, price: 6949, rating: 4.28, ratingCount: 146 },
+    },
+  },
   'veezoom-set': {
     url: `${M}/trolley-bag/louis+polo/louis-polo-veezoom-set-of-3-textured-trolley-suitcase---cabin--medium--large/40284516/buy`,
     fromPrice: 6949,

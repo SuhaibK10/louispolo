@@ -29,15 +29,9 @@ export function MyntraBuyButton({ url, slug, size, placement, className }: Props
         e.stopPropagation()
         track('myntra_click', { slug, size: size ?? 'default', placement })
       }}
-      className={`${className ?? 'btn-primary flex-1 justify-center'} group/myntra`}
+      className={className ?? 'btn-primary flex-1 justify-center'}
     >
-      <Image
-        src="/myntra-m.png"
-        alt=""
-        width={15}
-        height={12}
-        className="brightness-0 invert transition-[filter] duration-200 group-hover/myntra:invert-0"
-      />
+      <Image src="/myntra-m.png" alt="" width={15} height={12} />
       Buy on Myntra
       <ExternalLink size={14} strokeWidth={1.5} />
     </a>
