@@ -79,19 +79,12 @@ export default function CareersPage() {
 
         {/* ── Open Positions ── */}
         <div className="mt-16 pt-12 border-t border-lp-border">
-          <div className="grid md:grid-cols-2 gap-x-10 md:gap-x-12 gap-y-8 items-start">
-            <h2 className="lp-heading-md">Open position</h2>
+          <div className="flex flex-col md:flex-row gap-x-10 md:gap-x-12 gap-y-8 items-start">
+            {/* LEFT — heading + role details, stacked so the form on the
+                right can align its top edge with "Open position" itself */}
+            <div className="md:w-1/2">
+              <h2 className="lp-heading-md mb-6">Open position</h2>
 
-            {/* RIGHT — application form, starts level with the heading and
-                spans down beside the role details. Ordered after the role
-                details on mobile so the task/form doesn't appear before
-                the applicant knows what the role is. */}
-            <div className="order-3 md:order-0 md:row-span-2">
-              <CareerApplicationForm role="Creative Intern (Gen AI)" />
-            </div>
-
-            {/* LEFT — role details */}
-            <div className="order-2 md:order-0">
               <div className="flex items-center gap-2 mb-3">
                 <Briefcase size={20} strokeWidth={1.5} className="text-lp-ink shrink-0" />
                 <span className="font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium">
@@ -113,7 +106,7 @@ export default function CareersPage() {
                 className="flex w-fit items-center gap-1.5 font-body text-[0.78rem] text-lp-ink underline underline-offset-2 hover:text-lp-gold transition-colors mb-8"
               >
                 <Download size={14} strokeWidth={1.5} />
-                Download full JD (PDF)
+                Job Description
               </a>
 
               <p className="font-body text-[0.72rem] tracking-widest uppercase text-lp-muted font-medium mb-3">
@@ -151,6 +144,12 @@ export default function CareersPage() {
               <p className="font-body text-[0.85rem] text-lp-muted leading-relaxed">
                 Expect a reply within 3-4 days, we are moving fast. Selection is on a rolling basis.
               </p>
+            </div>
+
+            {/* RIGHT — application form, top-aligned with the left column
+                so it starts level with "Open position" itself */}
+            <div className="md:w-1/2">
+              <CareerApplicationForm role="Creative Intern (Gen AI)" />
             </div>
           </div>
         </div>
