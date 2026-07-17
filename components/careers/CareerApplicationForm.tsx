@@ -11,14 +11,20 @@ import { useState, useTransition }   from 'react'
 import Image                         from 'next/image'
 import { motion }                    from 'framer-motion'
 import { Loader2, CheckCircle2, Download } from 'lucide-react'
-import { FEATURED_PRODUCTS }         from '@/config/products'
+import { FEATURED_PRODUCTS, getProductBySlug } from '@/config/products'
 import { cardUrl, cld }              from '@/lib/cloudinary'
+import type { Product }              from '@/types'
 
 interface Props {
   role: string
 }
 
-const TASK_PRODUCTS = FEATURED_PRODUCTS.slice(0, 3)
+const TASK_PRODUCTS: Product[] = [
+  ...FEATURED_PRODUCTS.slice(0, 3),
+  getProductBySlug('softsquare'),         // images[0] is the Rosegold colorway
+  getProductBySlug('hexcore'),
+  getProductBySlug('gemtote-duffle-bag'), // images[0] is the White colorway
+].filter((p): p is Product => Boolean(p))
 
 export function CareerApplicationForm({ role }: Props) {
   const [isPending, startTransition] = useTransition()
@@ -77,13 +83,21 @@ export function CareerApplicationForm({ role }: Props) {
 
       {/* ── The Task ── */}
       <div className="mb-7 pb-7 border-b border-lp-border">
-        <p className="font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium mb-2">
+        <p className="font-display text-[1.3rem] text-lp-ink text-center mb-3">
           The Task
         </p>
-        <p className="font-body text-[0.88rem] text-lp-ink leading-relaxed mb-4">
-          Pick one product photo below, generate a premium hero or lifestyle image from it
-          using any AI tool, and share the link to your result in the form.
-        </p>
+        <ol className="space-y-2.5 mb-4">
+          {[
+            'Pick one product photo below and download it',
+            'Generate a hero, lifestyle or ad image from it using any AI tool',
+            'Share the link to your result in the Task Submission field below',
+          ].map((step, i) => (
+            <li key={step} className="flex gap-3">
+              <span className="font-display text-[0.9rem] text-lp-ink shrink-0 w-4">{i + 1}.</span>
+              <span className="font-body text-[0.88rem] text-lp-ink leading-relaxed">{step}</span>
+            </li>
+          ))}
+        </ol>
         <div className="grid grid-cols-3 gap-3">
           {TASK_PRODUCTS.map((product) => (
             <a
@@ -109,16 +123,16 @@ export function CareerApplicationForm({ role }: Props) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field label="Full Name" name="name" type="text" placeholder="Your name" required inputClass={inputClass} />
-          <Field label="Email" name="email" type="email" placeholder="you@email.com" required inputClass={inputClass} />
+          <Field label="Email" name="email" type="email" placeholder="Enter your email" required inputClass={inputClass} />
         </div>
 
         <Field
-          label="Portfolio / Work Link"
+          label="Portfolio/ Resume link"
           name="portfolioUrl"
           type="url"
-          placeholder="Behance, Instagram, Drive, anywhere your work lives"
-          required
+          placeholder="Behance, Instagram, Drive"
           inputClass={inputClass}
+          optional
         />
 
         <Field
@@ -141,7 +155,7 @@ export function CareerApplicationForm({ role }: Props) {
 
         <div>
           <label className="block font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium mb-1.5">
-            Why this role <span className="normal-case tracking-normal text-lp-muted font-normal">(optional)</span>
+            Additional Notes <span className="normal-case tracking-normal text-lp-muted font-normal">(optional)</span>
           </label>
           <textarea
             name="message"
@@ -159,7 +173,7 @@ export function CareerApplicationForm({ role }: Props) {
           type="submit"
           disabled={isPending}
           whileTap={{ scale: 0.98 }}
-          className="btn-gold w-full justify-center disabled:opacity-60"
+          className="btn-primary w-full justify-center rounded-md disabled:opacity-60"
         >
           {isPending ? <Loader2 size={16} className="animate-spin" /> : 'Submit Application'}
         </motion.button>

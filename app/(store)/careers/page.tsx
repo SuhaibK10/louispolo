@@ -4,7 +4,6 @@
 
 import type { Metadata }          from 'next'
 import { Hammer, TrendingUp, Users, ShieldCheck, Briefcase } from 'lucide-react'
-import { BRAND }                  from '@/lib/constants'
 import { CareerApplicationForm }  from '@/components/careers/CareerApplicationForm'
 
 export const metadata: Metadata = {
@@ -53,11 +52,12 @@ export default function CareersPage() {
         {/* ── Hero ── */}
         <span className="lp-eyebrow">Careers</span>
         <h1 className="lp-heading-lg mb-4 max-w-2xl">Build with us.</h1>
-        <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl">
-          Louis Polo started as an OEM manufacturer over ten years ago, building
-          luggage for other brands. We are now building our own, direct to customers across
-          India. We are a small team,but we are always open to talking to
-          people who care about the work.
+        <p className="font-body text-[0.9rem] text-lp-ink leading-relaxed max-w-xl">
+          Louis Polo started as an OEM manufacturer over a decade ago, building luggage for
+          global brands. Now we also build our own, We are now building our own, direct to customers across
+          India, London, HongKong. <br/> <br/>
+          We remain a small, fast-moving team, and we are always glad to hear from people
+          who care about the craft.
         </p>
 
         {/* ── Values ── */}
@@ -79,18 +79,26 @@ export default function CareersPage() {
 
         {/* ── Open Positions ── */}
         <div className="mt-16 pt-12 border-t border-lp-border">
-          <h2 className="lp-heading-md mb-8">Open position</h2>
+          <div className="grid md:grid-cols-2 gap-x-10 md:gap-x-12 gap-y-8 items-start">
+            <h2 className="lp-heading-md">Open position</h2>
 
-          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-start">
+            {/* RIGHT — application form, starts level with the heading and
+                spans down beside the role details. Ordered after the role
+                details on mobile so the task/form doesn't appear before
+                the applicant knows what the role is. */}
+            <div className="order-3 md:order-0 md:row-span-2">
+              <CareerApplicationForm role="Creative Intern (Gen AI)" />
+            </div>
+
             {/* LEFT — role details */}
-            <div>
-              <div className="flex items-start gap-2 mb-3">
-                <Briefcase size={20} strokeWidth={1.5} className="text-lp-ink mt-0.5 shrink-0" />
+            <div className="order-2 md:order-0">
+              <div className="flex items-center gap-2 mb-3">
+                <Briefcase size={20} strokeWidth={1.5} className="text-lp-ink shrink-0" />
                 <span className="font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium">
                   Internship · Remote · 2 Months · ₹10,000/month · API cost on us
                 </span>
               </div>
-              <h3 className="font-display text-[1.4rem] text-lp-ink mt-3 mb-3">
+              <h3 className="font-display text-[1.4rem] text-lp-ink text-center mt-3 mb-3">
                 Creative Intern (Gen AI)
               </h3>
               <p className="font-body text-[0.92rem] text-lp-ink leading-relaxed mb-8">
@@ -130,10 +138,11 @@ export default function CareersPage() {
                   </li>
                 ))}
               </ul>
-            </div>
 
-            {/* RIGHT — application form */}
-            <CareerApplicationForm role="Creative Intern (Gen AI)" />
+              <p className="font-body text-[0.85rem] text-lp-muted leading-relaxed">
+                Expect a reply within 3-4 days, we are moving fast. Selection is on a rolling basis.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -161,10 +170,10 @@ export default function CareersPage() {
           <p className="font-body text-[0.85rem] text-lp-muted leading-relaxed mt-8">
             For any other department, email your resume to{' '}
             <a
-              href={`mailto:${BRAND.email}?subject=${encodeURIComponent('Career application, Louis Polo')}`}
+              href={`mailto:socials@louispolo.in?subject=${encodeURIComponent('Career application, Louis Polo')}`}
               className="text-lp-ink underline underline-offset-2 hover:text-lp-gold transition-colors"
             >
-              {BRAND.email}
+              socials@louispolo.in
             </a>.
           </p>
         </div>

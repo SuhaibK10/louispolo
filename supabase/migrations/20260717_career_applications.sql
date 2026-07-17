@@ -9,7 +9,7 @@ create table if not exists public.career_applications (
   role           text not null,
   name           text not null,
   email          text not null,
-  portfolio_url  text not null,
+  portfolio_url  text,
   task_url       text not null,
   tools          text,
   message        text,

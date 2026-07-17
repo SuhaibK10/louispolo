@@ -7,7 +7,7 @@ import { createServiceRoleClient } from '@/lib/supabase/server'
 export async function POST(request: NextRequest) {
   const { role, name, email, portfolioUrl, taskUrl, tools, message } = await request.json()
 
-  if (!role || !name || !email || !portfolioUrl || !taskUrl) {
+  if (!role || !name || !email || !taskUrl) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       role,
       name,
       email,
-      portfolio_url: portfolioUrl,
+      portfolio_url: portfolioUrl || null,
       task_url: taskUrl,
       tools:   tools   || null,
       message: message || null,
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
           <tr><td style="padding: 6px 0; color: #888; width: 140px;">Role</td><td style="padding: 6px 0; font-weight: 600;">${role}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Name</td><td style="padding: 6px 0;">${name}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Email</td><td style="padding: 6px 0;"><a href="mailto:${email}" style="color: #C9A96E;">${email}</a></td></tr>
-          <tr><td style="padding: 6px 0; color: #888;">Portfolio</td><td style="padding: 6px 0;"><a href="${portfolioUrl}" style="color: #C9A96E;">${portfolioUrl}</a></td></tr>
+          ${portfolioUrl ? `<tr><td style="padding: 6px 0; color: #888;">Portfolio</td><td style="padding: 6px 0;"><a href="${portfolioUrl}" style="color: #C9A96E;">${portfolioUrl}</a></td></tr>` : ''}
           <tr><td style="padding: 6px 0; color: #888;">Task submission</td><td style="padding: 6px 0;"><a href="${taskUrl}" style="color: #C9A96E;">${taskUrl}</a></td></tr>
           ${tools ? `<tr><td style="padding: 6px 0; color: #888;">Tools</td><td style="padding: 6px 0;">${tools}</td></tr>` : ''}
         </table>

@@ -122,7 +122,8 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-1 left-1/2 -translate-x-1/2 z-50 transition-all duration-500',
+          pathname.startsWith('/careers') ? 'absolute' : 'fixed',
+          'top-1 left-1/2 -translate-x-1/2 z-50 transition-all duration-500',
           'bg-lp-porcelain/95 backdrop-blur-md',
           'border border-lp-border',
           'rounded-full shadow-lg shadow-black/8',
@@ -329,7 +330,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold w-full justify-center"
-                style={{ backgroundColor: '#D2CFC8', borderColor: '#D2CFC8', color: 'var(--color-lp-ink)' }}
+                style={{ backgroundColor: '#25D366', borderColor: '#25D366', color: '#fff' }}
                 onClick={() => setMenuOpen(false)}
               >
                 <svg width={16} height={16} viewBox="0 0 24 24" fill="currentColor">

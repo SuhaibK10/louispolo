@@ -132,7 +132,7 @@ export default function CartPage() {
           <p className="font-body text-[var(--color-lp-muted)] text-sm">
             Looks like you haven't added anything yet.
           </p>
-          <Link href={ROUTES.shop} className="btn-primary inline-flex mt-4">
+          <Link href={ROUTES.shop} className="btn-primary inline-flex mt-4 rounded-md">
             Browse collection
             <ArrowRight size={15} strokeWidth={1.5} />
           </Link>

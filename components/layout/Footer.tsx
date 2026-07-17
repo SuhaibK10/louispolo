@@ -36,6 +36,12 @@ const LEGAL_LINKS = [
   { label: 'Refund Policy', href: '/refund-policy' },
 ]
 
+const FOOTER_CITIES = [
+  { city: 'Mumbai',    flag: '🇮🇳' },
+  { city: 'London',    flag: '🇬🇧' },
+  { city: 'Hong Kong', flag: '🇭🇰' },
+]
+
 const footerLink =
   'font-body text-[0.8rem] text-white/65 hover:text-[var(--color-lp-gold)] transition-colors duration-200'
 
@@ -157,9 +163,19 @@ export function Footer() {
               Premium hard-shell luggage from the factory that builds for the
               world&apos;s biggest brands.
             </p>
-            <p className="font-body text-[0.62rem] tracking-[0.16em] uppercase text-white/45 mb-6 text-center">
-              Mumbai · London · Hong Kong
-            </p>
+            <div className="flex items-center justify-center gap-4 mb-6">
+              {FOOTER_CITIES.map(({ city, flag }, i) => (
+                <span key={city} className="flex items-center gap-4">
+                  <span className="flex flex-col items-center gap-1">
+                    <span className="text-base leading-none">{flag}</span>
+                    <span className="font-body text-[0.6rem] tracking-[0.14em] uppercase text-white/45">{city}</span>
+                  </span>
+                  {i < FOOTER_CITIES.length - 1 && (
+                    <span className="w-px h-6 bg-white/10" />
+                  )}
+                </span>
+              ))}
+            </div>
 
             {/* Social — official brand colors */}
             <div className="flex gap-4 justify-center">

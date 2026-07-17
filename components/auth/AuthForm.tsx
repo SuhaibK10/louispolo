@@ -175,7 +175,7 @@ export function AuthForm({ mode, redirectTo }: Props) {
           type="submit"
           disabled={isPending}
           whileTap={{ scale: 0.98 }}
-          className="btn-primary w-full justify-center mt-2 disabled:opacity-60"
+          className="btn-primary w-full justify-center mt-2 rounded-md disabled:opacity-60"
         >
           {isPending ? (
             <Loader2 size={16} className="animate-spin" />
@@ -201,7 +201,7 @@ export function AuthForm({ mode, redirectTo }: Props) {
         onClick={handleGoogle}
         disabled={googlePending}
         whileTap={{ scale: 0.98 }}
-        className="mt-4 w-full flex items-center justify-center gap-3 h-[3.25rem] border border-[var(--color-lp-border)] bg-white hover:bg-[var(--color-lp-cream)] font-body text-[0.85rem] text-[var(--color-lp-ink)] transition-colors duration-200 disabled:opacity-60"
+        className="mt-4 w-full flex items-center justify-center gap-3 h-[3.25rem] border border-[var(--color-lp-border)] bg-white hover:bg-[var(--color-lp-cream)] font-body text-[0.85rem] text-[var(--color-lp-ink)] transition-colors duration-200 rounded-md disabled:opacity-60"
       >
         {googlePending ? (
           <Loader2 size={16} className="animate-spin" />
