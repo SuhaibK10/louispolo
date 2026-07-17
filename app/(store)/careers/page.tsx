@@ -121,6 +121,7 @@ export default function CareersPage() {
               <ul className="space-y-2 mb-2">
                 {[
                   'Strong visual instinct and a sharp eye for premium, realistic imagery',
+                  'Extremely good at prompt writing, you can get exact, consistent results out of any AI tool',
                   'Hands-on with AI image tools: Midjourney, Nano Banana Pro, Krea AI or FLUX',
                   'Bonus: AI video (Runway, Veo, Kling) or Photoshop, Premiere Pro, After Effects, Figma',
                 ].map(item => (
