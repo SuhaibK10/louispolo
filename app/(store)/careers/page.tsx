@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata }          from 'next'
-import { Hammer, TrendingUp, Users, ShieldCheck, Briefcase } from 'lucide-react'
+import { Hammer, TrendingUp, Users, ShieldCheck, Briefcase, Download } from 'lucide-react'
 import { CareerApplicationForm }  from '@/components/careers/CareerApplicationForm'
 
 export const metadata: Metadata = {
@@ -95,17 +95,26 @@ export default function CareersPage() {
               <div className="flex items-center gap-2 mb-3">
                 <Briefcase size={20} strokeWidth={1.5} className="text-lp-ink shrink-0" />
                 <span className="font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium">
-                  Internship · Remote · 2 Months · ₹10,000/month · API cost on us
+                  Internship · Remote · 2 Months · ₹10,000-20,000/month · API cost on us
                 </span>
               </div>
-              <h3 className="font-display text-[1.4rem] text-lp-ink text-center mt-3 mb-3">
+              <h3 className="font-display text-[1.4rem] text-lp-ink mt-6 mb-3">
                 Creative Intern (Gen AI)
               </h3>
-              <p className="font-body text-[0.92rem] text-lp-ink leading-relaxed mb-8">
+              <p className="font-body text-[0.92rem] text-lp-ink leading-relaxed mb-4">
                 Own the visual output for Louis Polo: hero shots, ad creatives and lifestyle
-                imagery, built with Gen AI tools and finished to a studio-grade 
+                imagery, built with Gen AI tools and finished to a studio-grade
                 standard. <br/> We are a small, fast-moving team and we ship at a fast pace.
               </p>
+
+              <a
+                href="/documents/louis-polo-creative-intern-jd.pdf"
+                download
+                className="flex w-fit items-center gap-1.5 font-body text-[0.78rem] text-lp-ink underline underline-offset-2 hover:text-lp-gold transition-colors mb-8"
+              >
+                <Download size={14} strokeWidth={1.5} />
+                Download full JD (PDF)
+              </a>
 
               <p className="font-body text-[0.72rem] tracking-widest uppercase text-lp-muted font-medium mb-3">
                 What you&apos;ll do
