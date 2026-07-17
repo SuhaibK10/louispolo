@@ -10,6 +10,7 @@ create table if not exists public.career_applications (
   name           text not null,
   email          text not null,
   portfolio_url  text not null,
+  task_url       text not null,
   tools          text,
   message        text,
   created_at     timestamptz not null default now()

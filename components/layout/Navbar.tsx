@@ -142,7 +142,7 @@ export function Navbar() {
         )}
 
         <div className="px-5 md:px-8">
-          <div className="flex items-center justify-between h-14 md:h-16">
+          <div className="flex items-center justify-between h-13 md:h-15">
 
             {/* ── Left: Hamburger (mobile) / Nav links (desktop) ─────────── */}
             <div className="flex items-center gap-8 flex-1">

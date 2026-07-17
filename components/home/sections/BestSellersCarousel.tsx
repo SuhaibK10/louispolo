@@ -111,16 +111,13 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
         />
         {/* Myntra Exclusive badge */}
         {myntra && (
-          <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 backdrop-blur-sm rounded-full pl-1.5 pr-2.5 py-1 border border-[#5B6670]/60">
+          <span className="absolute top-3 left-3 z-10 flex items-center justify-center backdrop-blur-sm rounded-full p-1.5 border border-[#5B6670]/60">
             <Image src="/myntra-m.png" alt="Myntra" width={13} height={11} />
-            <span className="font-body text-[0.55rem] tracking-[0.12em] uppercase text-[var(--color-lp-ink)] leading-none">
-              Myntra Exclusive
-            </span>
           </span>
         )}
         {/* Tag */}
         {product.tag && (
-          <span className={`lp-tag absolute left-3 ${myntra ? 'top-11' : 'top-3'}`}>
+          <span className={`lp-tag absolute left-3 ${myntra ? 'top-10' : 'top-3'}`}>
             {product.tag}
           </span>
         )}
@@ -337,7 +334,8 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-const MYNTRA_FEATURED = FEATURED_PRODUCTS.filter((p) => getMyntraListing(p.slug))
+const MYNTRA_FEATURED    = FEATURED_PRODUCTS.filter((p) => getMyntraListing(p.slug))
+const NON_MYNTRA_FEATURED = FEATURED_PRODUCTS.filter((p) => !getMyntraListing(p.slug))
 
 type Tab = 'bestsellers' | 'myntra'
 
@@ -347,7 +345,7 @@ export function BestSellersCarousel() {
   const [dragWidth, setDragWidth] = useState(0)
   const [tab, setTab] = useState<Tab>('bestsellers')
 
-  const products = tab === 'myntra' ? MYNTRA_FEATURED : FEATURED_PRODUCTS
+  const products = tab === 'myntra' ? MYNTRA_FEATURED : NON_MYNTRA_FEATURED
 
   useEffect(() => {
     const calculate = () => {
@@ -390,17 +388,17 @@ export function BestSellersCarousel() {
       </div>
 
       {/* Tabs */}
-      <div className="container-lp flex items-center gap-5" style={{ marginBottom: '1.5rem' }}>
+      <div className="container-lp flex items-center justify-center gap-5" style={{ marginBottom: '1.5rem' }}>
         <button
           type="button"
           onClick={() => setTab('bestsellers')}
           className={
             tab === 'bestsellers'
               ? 'font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-lp-ink pb-1.5 transition-colors duration-200'
-              : 'font-body text-[0.75rem] tracking-widest uppercase text-lp-faint border-b-2 border-transparent pb-1.5 hover:text-lp-muted transition-colors duration-200'
+              : 'font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-transparent pb-1.5 transition-colors duration-200'
           }
         >
-          Best Sellers
+          Our Best Sellers
         </button>
         <span className="text-lp-border">|</span>
         <button
@@ -409,10 +407,10 @@ export function BestSellersCarousel() {
           className={
             tab === 'myntra'
               ? 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-lp-ink pb-1.5 transition-colors duration-200'
-              : 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-faint border-b-2 border-transparent pb-1.5 hover:text-lp-muted transition-colors duration-200'
+              : 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-transparent pb-1.5 transition-colors duration-200'
           }
         >
-          <Image src="/myntra-m.png" alt="" width={13} height={11} className={tab === 'myntra' ? '' : 'opacity-50'} />
+          <Image src="/myntra-m.png" alt="" width={13} height={11} />
           Myntra Exclusives
         </button>
       </div>

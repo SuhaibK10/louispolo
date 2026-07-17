@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata }          from 'next'
-import { Hammer, TrendingUp, Users, ShieldCheck, Sparkles } from 'lucide-react'
+import { Hammer, TrendingUp, Users, ShieldCheck, Briefcase } from 'lucide-react'
 import { BRAND }                  from '@/lib/constants'
 import { CareerApplicationForm }  from '@/components/careers/CareerApplicationForm'
 
@@ -79,53 +79,52 @@ export default function CareersPage() {
 
         {/* ── Open Positions ── */}
         <div className="mt-16 pt-12 border-t border-lp-border">
-          <h2 className="lp-heading-md mb-8">Open position.</h2>
+          <h2 className="lp-heading-md mb-8">Open position</h2>
 
           <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-start">
             {/* LEFT — role details */}
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Sparkles size={15} strokeWidth={1.5} className="text-lp-gold" />
-                <span className="font-body text-[0.7rem] tracking-[0.14em] uppercase text-lp-muted">
-                  Internship · Remote · 2 Months · ₹10,000/month
+              <div className="flex items-start gap-2 mb-3">
+                <Briefcase size={20} strokeWidth={1.5} className="text-lp-ink mt-0.5 shrink-0" />
+                <span className="font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium">
+                  Internship · Remote · 2 Months · ₹10,000/month · API cost on us
                 </span>
               </div>
-              <h3 className="font-display text-[1.4rem] text-lp-ink mb-3">
+              <h3 className="font-display text-[1.4rem] text-lp-ink mt-3 mb-3">
                 Creative Intern (Gen AI)
               </h3>
-              <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed mb-7">
+              <p className="font-body text-[0.92rem] text-lp-ink leading-relaxed mb-8">
                 Own the visual output for Louis Polo: hero shots, ad creatives and lifestyle
-                imagery, built with generative AI tools and finished to a studio-grade,
-                luxury standard. We are a small, fast-moving team, we ship weekly and move
-                on ideas the same day we have them.
+                imagery, built with Gen AI tools and finished to a studio-grade 
+                standard. <br/> We are a small, fast-moving team and we ship at a fast pace.
               </p>
 
-              <p className="font-body text-[0.7rem] tracking-widest uppercase text-lp-faint mb-3">
+              <p className="font-body text-[0.72rem] tracking-widest uppercase text-lp-muted font-medium mb-3">
                 What you&apos;ll do
               </p>
-              <ul className="space-y-2 mb-7">
+              <ul className="space-y-2 mb-8">
                 {[
                   'Design hero images, ad creatives and campaign visuals for the brand',
                   'Generate photorealistic product and lifestyle images with AI tools',
                   'Edit and finish every piece to a premium, studio-quality standard',
                   'Track new AI creative tools and bring the useful ones into our workflow',
                 ].map(item => (
-                  <li key={item} className="font-body text-[0.85rem] text-lp-muted leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-lp-gold">
+                  <li key={item} className="font-body text-[0.9rem] text-lp-ink leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-lp-gold">
                     {item}
                   </li>
                 ))}
               </ul>
 
-              <p className="font-body text-[0.7rem] tracking-widest uppercase text-lp-faint mb-3">
+              <p className="font-body text-[0.72rem] tracking-widest uppercase text-lp-muted font-medium mb-3">
                 What we&apos;re looking for
               </p>
-              <ul className="space-y-2 mb-7">
+              <ul className="space-y-2 mb-2">
                 {[
                   'Strong visual instinct and a sharp eye for premium, realistic imagery',
                   'Hands-on with AI image tools: Midjourney, Nano Banana Pro, Krea AI or FLUX',
                   'Bonus: AI video (Runway, Veo, Kling) or Photoshop, Premiere Pro, After Effects, Figma',
                 ].map(item => (
-                  <li key={item} className="font-body text-[0.85rem] text-lp-muted leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-lp-gold">
+                  <li key={item} className="font-body text-[0.9rem] text-lp-ink leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-lp-gold">
                     {item}
                   </li>
                 ))}
