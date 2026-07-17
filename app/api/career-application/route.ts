@@ -71,5 +71,20 @@ export async function POST(request: NextRequest) {
     console.error('Career application email failed (saved to DB):', error)
   }
 
+  // Best-effort log to the team's Google Sheet — never blocks the response,
+  // this is a convenience mirror of what's already saved above.
+  const sheetWebhook = process.env.CAREER_APPLICATIONS_SHEET_WEBHOOK
+  if (sheetWebhook) {
+    try {
+      await fetch(sheetWebhook, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ role, name, email, portfolioUrl, taskUrl, tools, message }),
+      })
+    } catch (e) {
+      console.error('Failed to log career application to Google Sheet:', e)
+    }
+  }
+
   return NextResponse.json({ success: true })
 }
