@@ -337,10 +337,17 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
+const MYNTRA_FEATURED = FEATURED_PRODUCTS.filter((p) => getMyntraListing(p.slug))
+
+type Tab = 'bestsellers' | 'myntra'
+
 export function BestSellersCarousel() {
   const trackRef     = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [dragWidth, setDragWidth] = useState(0)
+  const [tab, setTab] = useState<Tab>('bestsellers')
+
+  const products = tab === 'myntra' ? MYNTRA_FEATURED : FEATURED_PRODUCTS
 
   useEffect(() => {
     const calculate = () => {
@@ -352,7 +359,7 @@ export function BestSellersCarousel() {
     const ro = new ResizeObserver(calculate)
     ro.observe(trackRef.current)
     return () => ro.disconnect()
-  }, [])
+  }, [tab])
 
   return (
     <section className="pt-0.5 md:pt-4 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
@@ -373,41 +380,70 @@ export function BestSellersCarousel() {
             <motion.div
               animate={{ y: [0, 14, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-1 h-1.5 rounded-full bg-[var(--color-lp-ink)]"
+              className="w-1 h-1.5 rounded-full bg-lp-ink"
             />
           </div>
-          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-[var(--color-lp-ink)]">
+          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-lp-ink">
             Swipe down to Begin the Journey
           </span>
         </motion.div>
       </div>
 
+      {/* Tabs */}
+      <div className="container-lp flex items-center gap-5" style={{ marginBottom: '1.5rem' }}>
+        <button
+          type="button"
+          onClick={() => setTab('bestsellers')}
+          className={
+            tab === 'bestsellers'
+              ? 'font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-lp-ink pb-1.5 transition-colors duration-200'
+              : 'font-body text-[0.75rem] tracking-widest uppercase text-lp-faint border-b-2 border-transparent pb-1.5 hover:text-lp-muted transition-colors duration-200'
+          }
+        >
+          Best Sellers
+        </button>
+        <span className="text-lp-border">|</span>
+        <button
+          type="button"
+          onClick={() => setTab('myntra')}
+          className={
+            tab === 'myntra'
+              ? 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-lp-ink pb-1.5 transition-colors duration-200'
+              : 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-faint border-b-2 border-transparent pb-1.5 hover:text-lp-muted transition-colors duration-200'
+          }
+        >
+          <Image src="/myntra-m.png" alt="" width={13} height={11} className={tab === 'myntra' ? '' : 'opacity-50'} />
+          Myntra Exclusives
+        </button>
+      </div>
+
       <div className="container-lp flex items-end justify-between" style={{ marginBottom: '2.5rem' }}>
-        
+
         <motion.div
+          key={tab}
           variants={staggerChildren}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
         >
           <motion.span variants={fadeUp} className="lp-eyebrow">
-            What India is carrying
+            {tab === 'myntra' ? 'Available exclusively on' : 'What India is carrying'}
           </motion.span>
           <motion.h2 variants={fadeUp} className="lp-heading-lg">
-            Our Best Sellers
+            {tab === 'myntra' ? 'Myntra Exclusives' : 'Our Best Sellers'}
           </motion.h2>
         </motion.div>
 
         <div className="hidden md:flex items-center gap-6">
           <Link
             href="/compare"
-            className="font-body text-[0.75rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+            className="font-body text-[0.75rem] tracking-widest uppercase text-lp-muted hover:text-lp-gold transition-colors duration-200"
           >
             Compare
           </Link>
           <Link
             href={ROUTES.shop}
-            className="flex items-center gap-2 font-body text-[0.75rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)] hover:text-[var(--color-lp-gold)] transition-colors duration-200 group"
+            className="flex items-center gap-2 font-body text-[0.75rem] tracking-widest uppercase text-lp-muted hover:text-lp-gold transition-colors duration-200 group"
           >
             View all
             <ArrowRight size={14} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -418,6 +454,7 @@ export function BestSellersCarousel() {
       {/* Drag-to-scroll track */}
       <div ref={containerRef} className="overflow-hidden w-full">
         <motion.div
+          key={tab}
           ref={trackRef}
           drag="x"
           dragConstraints={{ left: -dragWidth, right: 0 }}
@@ -427,7 +464,7 @@ export function BestSellersCarousel() {
           style={{ WebkitUserSelect: 'none' }}
           whileTap={{ cursor: 'grabbing' }}
         >
-          {FEATURED_PRODUCTS.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </motion.div>
