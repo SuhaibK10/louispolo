@@ -2,13 +2,14 @@
 // app/(store)/careers/page.tsx
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { Metadata } from 'next'
-import { Hammer, TrendingUp, Users, ShieldCheck } from 'lucide-react'
-import { BRAND }         from '@/lib/constants'
+import type { Metadata }          from 'next'
+import { Hammer, TrendingUp, Users, ShieldCheck, Sparkles } from 'lucide-react'
+import { BRAND }                  from '@/lib/constants'
+import { CareerApplicationForm }  from '@/components/careers/CareerApplicationForm'
 
 export const metadata: Metadata = {
   title:       'Careers',
-  description: 'Join Louis Polo. We build hard-shell luggage from our own factory in Bhiwandi, direct to customers across India.',
+  description: 'Join Louis Polo. We build hard-shell luggage from our own factory in Mumbai, direct to customers across India.',
   alternates:  { canonical: '/careers' },
 }
 
@@ -76,11 +77,71 @@ export default function CareersPage() {
           ))}
         </div>
 
+        {/* ── Open Positions ── */}
+        <div className="mt-16 pt-12 border-t border-lp-border">
+          <h2 className="lp-heading-md mb-8">Open position.</h2>
+
+          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-start">
+            {/* LEFT — role details */}
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles size={15} strokeWidth={1.5} className="text-lp-gold" />
+                <span className="font-body text-[0.7rem] tracking-[0.14em] uppercase text-lp-muted">
+                  Internship · Remote · 2 Months · ₹10,000/month
+                </span>
+              </div>
+              <h3 className="font-display text-[1.4rem] text-lp-ink mb-3">
+                Creative Intern (Gen AI)
+              </h3>
+              <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed mb-7">
+                Own the visual output for Louis Polo: hero shots, ad creatives and lifestyle
+                imagery, built with generative AI tools and finished to a studio-grade,
+                luxury standard. We are a small, fast-moving team, we ship weekly and move
+                on ideas the same day we have them.
+              </p>
+
+              <p className="font-body text-[0.7rem] tracking-widest uppercase text-lp-faint mb-3">
+                What you&apos;ll do
+              </p>
+              <ul className="space-y-2 mb-7">
+                {[
+                  'Design hero images, ad creatives and campaign visuals for the brand',
+                  'Generate photorealistic product and lifestyle images with AI tools',
+                  'Edit and finish every piece to a premium, studio-quality standard',
+                  'Track new AI creative tools and bring the useful ones into our workflow',
+                ].map(item => (
+                  <li key={item} className="font-body text-[0.85rem] text-lp-muted leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-lp-gold">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="font-body text-[0.7rem] tracking-widest uppercase text-lp-faint mb-3">
+                What we&apos;re looking for
+              </p>
+              <ul className="space-y-2 mb-7">
+                {[
+                  'Strong visual instinct and a sharp eye for premium, realistic imagery',
+                  'Hands-on with AI image tools: Midjourney, Nano Banana Pro, Krea AI or FLUX',
+                  'Bonus: AI video (Runway, Veo, Kling) or Photoshop, Premiere Pro, After Effects, Figma',
+                ].map(item => (
+                  <li key={item} className="font-body text-[0.85rem] text-lp-muted leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-lp-gold">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* RIGHT — application form */}
+            <CareerApplicationForm role="Creative Intern (Gen AI)" />
+          </div>
+        </div>
+
         {/* ── Departments ── */}
         <div className="mt-16 pt-12 border-t border-lp-border">
-          <h2 className="lp-heading-md mb-6">Where we hire.</h2>
+          <h2 className="lp-heading-md mb-6">Where else we hire.</h2>
           <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl mb-2">
-            We do not always have open roles listed, but we keep every resume we receive on
+            We do not always have every role listed, but we keep every resume we receive on
             file and reach out when the right one comes up.
           </p>
           <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl mb-8">
@@ -96,21 +157,16 @@ export default function CareersPage() {
               </span>
             ))}
           </div>
-        </div>
 
-        {/* ── Apply CTA ── */}
-        <div className="mt-16 pt-12 border-t border-lp-border max-w-xl">
-          <h2 className="lp-heading-md mb-3">Get in touch.</h2>
-          <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed mb-6">
-            Send us your resume and a note on what you would want to work on. Tell us which
-            department fits best.
+          <p className="font-body text-[0.85rem] text-lp-muted leading-relaxed mt-8">
+            For any other department, email your resume to{' '}
+            <a
+              href={`mailto:${BRAND.email}?subject=${encodeURIComponent('Career application, Louis Polo')}`}
+              className="text-lp-ink underline underline-offset-2 hover:text-lp-gold transition-colors"
+            >
+              {BRAND.email}
+            </a>.
           </p>
-          <a
-            href={`mailto:${BRAND.email}?subject=${encodeURIComponent('Career application, Louis Polo')}`}
-            className="btn-primary inline-flex rounded-md"
-          >
-            Email your resume
-          </a>
         </div>
 
       </div>

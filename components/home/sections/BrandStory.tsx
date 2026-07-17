@@ -16,7 +16,7 @@ const PILLARS = [
   {
     number: '01',
     label:  'Manufacturing',
-    copy:   'Our Bhiwandi factory has produced luggage for global brands for 10+ years. The same machines, the same QC, now working for you.',
+    copy:   'Our Mumbai factory has produced luggage for global brands for 10+ years. The same machines, the same QC, now working for you.',
   },
   {
     number: '02',

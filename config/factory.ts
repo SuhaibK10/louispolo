@@ -11,15 +11,15 @@
 export interface FactoryPhoto {
   publicId: string
   alt: string
-  caption: string   // small label shown on the photo, e.g. "Production line · Bhiwandi"
+  caption: string   // small label shown on the photo, e.g. "Production line · Mumbai"
   fit?: 'cover' | 'pad'  // 'cover' crops to fill (default), 'pad' shows the full image
 }
 
 export const FACTORY_PHOTOS: FactoryPhoto[] = [
   {
     publicId: '',
-    alt:      'Production line at the Louis Polo factory in Bhiwandi',
-    caption:  'Production line · Bhiwandi',
+    alt:      'Production line at the Louis Polo factory in Mumbai',
+    caption:  'Production line · Mumbai',
   },
   {
     publicId: '',

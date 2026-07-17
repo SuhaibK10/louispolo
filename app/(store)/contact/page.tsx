@@ -61,7 +61,7 @@ export default function ContactPage() {
               <div>
                 <p className="font-body text-sm text-[var(--color-lp-muted)] mb-1">Offices</p>
                 <p className="font-body text-[var(--color-lp-ink)]">
-                  Mumbai · Bhiwandi · London · Hong Kong
+                  Mumbai · London · Hong Kong
                 </p>
               </div>
             </div>
