@@ -22,6 +22,7 @@ export const ROUTES = {
   wishlist: '/wishlist',
   about:    '/about',
   contact:  '/contact',
+  careers:  '/careers',
 } as const
 
 export const NAV_ITEMS = [

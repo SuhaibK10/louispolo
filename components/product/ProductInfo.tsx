@@ -282,7 +282,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
           <>
             <a
               href={ROUTES.cart}
-              className="btn-ghost flex-1 justify-center"
+              className="btn-ghost h-12 flex-1 justify-center"
             >
               Go to Cart
             </a>

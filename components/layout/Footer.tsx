@@ -25,7 +25,8 @@ const SHOP_LINKS = [
 ]
 
 const COMPANY_LINKS = [
-  { label: 'About Us', href: ROUTES.about },
+  { label: 'About Us', href: ROUTES.about   },
+  { label: 'Careers',  href: ROUTES.careers },
   { label: 'Contact',  href: ROUTES.contact },
 ]
 
