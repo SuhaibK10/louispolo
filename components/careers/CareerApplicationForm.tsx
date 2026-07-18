@@ -19,17 +19,47 @@ interface Props {
   role: string
 }
 
-const TASK_PRODUCTS: Product[] = [
+interface TaskImage {
+  key:  string
+  name: string
+  src:  string
+  downloadHref: string
+}
+
+const CATALOG_TASK_PRODUCTS: Product[] = [
   ...FEATURED_PRODUCTS.slice(0, 3),
   getProductBySlug('softsquare'),         // images[0] is the Rosegold colorway
   getProductBySlug('hexcore'),
   getProductBySlug('gemtote-duffle-bag'), // images[0] is the White colorway
 ].filter((p): p is Product => Boolean(p))
 
+const TASK_IMAGES: TaskImage[] = [
+  ...CATALOG_TASK_PRODUCTS.map((product) => ({
+    key:  product.id,
+    name: product.name,
+    src:  cardUrl(product.images[0]),
+    downloadHref: cld(product.images[0], 'f_auto,q_auto,w_1200,fl_attachment'),
+  })),
+  { key: 'navy-backpack',  name: 'Navy Backpack',  src: '/careers/navy-backpack.jpg',  downloadHref: '/careers/navy-backpack.jpg' },
+  { key: 'olive-backpack', name: 'Olive Backpack', src: '/careers/olive-backpack.jpg', downloadHref: '/careers/olive-backpack.jpg' },
+  { key: 'white-trolley',  name: 'White Trolley',  src: '/careers/white-trolley.jpg',  downloadHref: '/careers/white-trolley.jpg' },
+]
+
+const MAX_NOTES_WORDS = 100
+
 export function CareerApplicationForm({ role }: Props) {
   const [isPending, startTransition] = useTransition()
   const [success, setSuccess]        = useState(false)
   const [error, setError]            = useState('')
+  const [notes, setNotes]            = useState('')
+
+  const notesWordCount = notes.trim() === '' ? 0 : notes.trim().split(/\s+/).length
+
+  function handleNotesChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const value = e.target.value
+    const words = value.trim() === '' ? [] : value.trim().split(/\s+/)
+    setNotes(words.length <= MAX_NOTES_WORDS ? value : words.slice(0, MAX_NOTES_WORDS).join(' '))
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -90,7 +120,7 @@ export function CareerApplicationForm({ role }: Props) {
         <ol className="space-y-2.5 mb-4">
           {[
             'Pick any product photo below and download it',
-            'Generate hero, lifestyle or ad images from it using any AI tool',
+            'Generate at least three hero, lifestyle or ad images from it using any AI tool',
             'Share the link to your result in the Task Submission field below',
           ].map((step, i) => (
             <li key={step} className="flex gap-3">
@@ -100,15 +130,16 @@ export function CareerApplicationForm({ role }: Props) {
           ))}
         </ol>
         <div className="grid grid-cols-3 gap-3">
-          {TASK_PRODUCTS.map((product) => (
+          {TASK_IMAGES.map((image) => (
             <a
-              key={product.id}
-              href={cld(product.images[0], 'f_auto,q_auto,w_1200,fl_attachment')}
+              key={image.key}
+              href={image.downloadHref}
+              download
               className="group relative block aspect-3/4 bg-white rounded-md overflow-hidden border border-lp-border"
             >
               <Image
-                src={cardUrl(product.images[0])}
-                alt={product.name}
+                src={image.src}
+                alt={image.name}
                 fill
                 className="object-cover"
                 sizes="120px"
@@ -153,7 +184,7 @@ export function CareerApplicationForm({ role }: Props) {
           placeholder="Link to the image you generated for the task above"
           required
           inputClass={inputClass}
-          hint="Make sure the link is set to public, we won't be able to view it otherwise."
+          hint="Make sure the link is set to public."
         />
 
         <Field
@@ -167,14 +198,19 @@ export function CareerApplicationForm({ role }: Props) {
 
         <div>
           <label className="block font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium mb-1.5">
-            Additional Notes <span className="normal-case tracking-normal text-lp-muted font-normal">(optional)</span>
+            Additional Notes <span className="normal-case tracking-normal text-lp-muted font-normal">(optional, max 100 words)</span>
           </label>
           <textarea
             name="message"
             rows={3}
+            value={notes}
+            onChange={handleNotesChange}
             placeholder="A quick note on the work you'd bring, or a link to your best piece"
             className={`${inputClass} h-auto py-3 resize-none`}
           />
+          <p className={`font-body text-[0.7rem] text-right mt-1 ${notesWordCount >= MAX_NOTES_WORDS ? 'text-lp-error font-medium' : 'text-lp-faint'}`}>
+            {notesWordCount}/{MAX_NOTES_WORDS} words
+          </p>
         </div>
 
         {error && (
