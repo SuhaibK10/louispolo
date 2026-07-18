@@ -119,9 +119,9 @@ export function CareerApplicationForm({ role }: Props) {
         </p>
         <ol className="space-y-2.5 mb-4">
           {[
-            'Pick any product photo below and download it',
-            'Generate at least three hero, lifestyle or ad images from it using any AI tool',
-            'Share the link to your result in the Task Submission field below',
+            'Pick at least three different product photos below and download them',
+            'Generate one hero, lifestyle or ad image of those three products using any AI tool',
+            'Share one link with all your results in the Task Submission field below',
           ].map((step, i) => (
             <li key={step} className="flex gap-3">
               <span className="font-display text-[0.9rem] text-lp-ink shrink-0 w-4">{i + 1}.</span>
@@ -181,7 +181,7 @@ export function CareerApplicationForm({ role }: Props) {
           label="Task Submission Link"
           name="taskUrl"
           type="url"
-          placeholder="Link to the image you generated for the task above"
+          placeholder="Folder or album link with all your images for the task above"
           required
           inputClass={inputClass}
           hint="Make sure the link is set to public."
@@ -198,7 +198,7 @@ export function CareerApplicationForm({ role }: Props) {
 
         <div>
           <label className="block font-body text-[0.72rem] tracking-widest uppercase text-lp-ink font-medium mb-1.5">
-            Additional Notes <span className="normal-case tracking-normal text-lp-muted font-normal">(optional, max 100 words)</span>
+            Additional Notes <span className="normal-case tracking-normal text-lp-muted font-normal">(optional)</span>
           </label>
           <textarea
             name="message"
