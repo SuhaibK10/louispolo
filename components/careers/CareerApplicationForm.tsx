@@ -39,6 +39,7 @@ export function CareerApplicationForm({ role }: Props) {
       name:         fd.get('name')         as string,
       email:        fd.get('email')        as string,
       portfolioUrl: fd.get('portfolioUrl') as string,
+      resumeUrl:    fd.get('resumeUrl')    as string,
       tools:        fd.get('tools')        as string,
       taskUrl:      fd.get('taskUrl')      as string,
       message:      fd.get('message')      as string,
@@ -88,8 +89,8 @@ export function CareerApplicationForm({ role }: Props) {
         </p>
         <ol className="space-y-2.5 mb-4">
           {[
-            'Pick one product photo below and download it',
-            'Generate a hero, lifestyle or ad image from it using any AI tool',
+            'Pick any product photo below and download it',
+            'Generate hero, lifestyle or ad images from it using any AI tool',
             'Share the link to your result in the Task Submission field below',
           ].map((step, i) => (
             <li key={step} className="flex gap-3">
@@ -126,14 +127,24 @@ export function CareerApplicationForm({ role }: Props) {
           <Field label="Email" name="email" type="email" placeholder="Enter your email" required inputClass={inputClass} />
         </div>
 
-        <Field
-          label="Portfolio/ Resume link"
-          name="portfolioUrl"
-          type="url"
-          placeholder="Behance, Instagram, Drive"
-          inputClass={inputClass}
-          optional
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Field
+            label="Portfolio Link"
+            name="portfolioUrl"
+            type="url"
+            placeholder="Behance, Instagram, Drive"
+            inputClass={inputClass}
+            optional
+          />
+          <Field
+            label="Resume Link"
+            name="resumeUrl"
+            type="url"
+            placeholder="Drive, Dropbox, anywhere it's public"
+            inputClass={inputClass}
+            optional
+          />
+        </div>
 
         <Field
           label="Task Submission Link"
@@ -142,6 +153,7 @@ export function CareerApplicationForm({ role }: Props) {
           placeholder="Link to the image you generated for the task above"
           required
           inputClass={inputClass}
+          hint="Make sure the link is set to public, we won't be able to view it otherwise."
         />
 
         <Field
@@ -183,10 +195,10 @@ export function CareerApplicationForm({ role }: Props) {
 }
 
 function Field({
-  label, name, type, placeholder, required, optional, inputClass,
+  label, name, type, placeholder, required, optional, inputClass, hint,
 }: {
   label: string; name: string; type: string; placeholder: string
-  required?: boolean; optional?: boolean; inputClass: string
+  required?: boolean; optional?: boolean; inputClass: string; hint?: string
 }) {
   return (
     <div>
@@ -202,6 +214,9 @@ function Field({
         required={required}
         className={inputClass}
       />
+      {hint && (
+        <p className="font-body text-[0.72rem] text-lp-muted mt-1">{hint}</p>
+      )}
     </div>
   )
 }

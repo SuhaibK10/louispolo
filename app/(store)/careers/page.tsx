@@ -142,7 +142,7 @@ export default function CareersPage() {
               </ul>
 
               <p className="font-body text-[0.85rem] text-lp-muted leading-relaxed">
-                Expect a reply within 3-4 days, we are moving fast. Selection is on a rolling basis.
+                Expect a reply within 3-4 days, we are moving fast.
               </p>
             </div>
 

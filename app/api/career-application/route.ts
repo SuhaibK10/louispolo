@@ -5,7 +5,7 @@ import { BRAND }            from '@/lib/constants'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
-  const { role, name, email, portfolioUrl, taskUrl, tools, message } = await request.json()
+  const { role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message } = await request.json()
 
   if (!role || !name || !email || !taskUrl) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
       name,
       email,
       portfolio_url: portfolioUrl || null,
+      resume_url: resumeUrl || null,
       task_url: taskUrl,
       tools:   tools   || null,
       message: message || null,
@@ -51,6 +52,7 @@ export async function POST(request: NextRequest) {
           <tr><td style="padding: 6px 0; color: #888;">Name</td><td style="padding: 6px 0;">${name}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Email</td><td style="padding: 6px 0;"><a href="mailto:${email}" style="color: #C9A96E;">${email}</a></td></tr>
           ${portfolioUrl ? `<tr><td style="padding: 6px 0; color: #888;">Portfolio</td><td style="padding: 6px 0;"><a href="${portfolioUrl}" style="color: #C9A96E;">${portfolioUrl}</a></td></tr>` : ''}
+          ${resumeUrl ? `<tr><td style="padding: 6px 0; color: #888;">Resume</td><td style="padding: 6px 0;"><a href="${resumeUrl}" style="color: #C9A96E;">${resumeUrl}</a></td></tr>` : ''}
           <tr><td style="padding: 6px 0; color: #888;">Task submission</td><td style="padding: 6px 0;"><a href="${taskUrl}" style="color: #C9A96E;">${taskUrl}</a></td></tr>
           ${tools ? `<tr><td style="padding: 6px 0; color: #888;">Tools</td><td style="padding: 6px 0;">${tools}</td></tr>` : ''}
         </table>
@@ -79,7 +81,7 @@ export async function POST(request: NextRequest) {
       await fetch(sheetWebhook, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ role, name, email, portfolioUrl, taskUrl, tools, message }),
+        body:    JSON.stringify({ role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message }),
       })
     } catch (e) {
       console.error('Failed to log career application to Google Sheet:', e)
