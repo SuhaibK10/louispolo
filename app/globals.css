@@ -385,7 +385,7 @@
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 28s linear infinite;
+  animation: marquee 80s linear infinite;
   display: flex;
   white-space: nowrap;
 }
@@ -394,6 +394,19 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
+}
+
+/* ─── Ticker cloud icon: small droplets actually falling from it ─────────── */
+@keyframes cloud-drip {
+  0%   { transform: translateY(-1px); opacity: 0; }
+  30%  { opacity: 0.7; }
+  100% { transform: translateY(6px); opacity: 0; }
+}
+.cloud-drip {
+  animation: cloud-drip 1.5s ease-in infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cloud-drip { animation: none; opacity: 0; }
 }
 
 /* ─── Android Chrome: promote navbar to its own compositor layer ─────────── */

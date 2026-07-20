@@ -23,6 +23,7 @@ export const ROUTES = {
   about:    '/about',
   contact:  '/contact',
   careers:  '/careers',
+  corporateGifting: '/corporate-gifting',
 } as const
 
 export const NAV_ITEMS = [
@@ -42,6 +43,19 @@ export const NAV_ITEMS = [
 export const CART_CONFIG = {
   freeShipping:   true,
   maxQtyPerItem:  10,
+} as const
+
+// Checkout-only sale — applied automatically, no code needed. Shop, PDP,
+// cart, and wishlist all still show normal prices; the discount only shows
+// up on the checkout page (app/(store)/checkout/page.tsx) and is actually
+// charged by app/api/checkout/route.ts, which is the sole source of truth
+// for the amount Razorpay collects. Doesn't apply to Myntra-listed products
+// — those sell through Myntra's own checkout, not ours.
+// Advertised in the Navbar ticker ("Monsoon Sale: Flat 25% Off at Checkout").
+export const SALE_CONFIG = {
+  enabled:         true,
+  discountPercent: 0.25,
+  label:           'Monsoon Sale',
 } as const
 
 // SEO defaults

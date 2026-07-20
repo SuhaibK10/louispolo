@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <FactoryGallery />
       <FactoryStats />
       <BrandStory />

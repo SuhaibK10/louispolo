@@ -30,7 +30,7 @@ export default async function AccountPage() {
     : email[0]?.toUpperCase() ?? 'U'
 
   return (
-    <div className="pt-16 md:pt-[4.5rem] min-h-screen">
+    <div className="pt-16 md:pt-20 min-h-screen">
       <div className="container-lp section-pad max-w-152 pt-8! md:pt-10!">
 
         {/* Header */}

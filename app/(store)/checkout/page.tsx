@@ -18,7 +18,7 @@ import { useCartStore }             from '@/store/cartStore'
 import { createClient }             from '@/lib/supabase/client'
 import { thumbUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { formatPrice }              from '@/lib/utils'
-import { ROUTES }                   from '@/lib/constants'
+import { ROUTES, SALE_CONFIG }      from '@/lib/constants'
 import { AddressForm, EMPTY_ADDRESS, type ShippingAddress } from '@/components/checkout/AddressForm'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
@@ -128,7 +128,10 @@ export default function CheckoutPage() {
   }, [])
 
   const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0)
-  const total = subtotal // shipping is free — see CART_CONFIG
+  // Matches app/api/checkout/route.ts exactly — that route is the actual
+  // source of truth for what gets charged, this just mirrors it for display.
+  const discount = SALE_CONFIG.enabled ? Math.round(subtotal * SALE_CONFIG.discountPercent) : 0
+  const total = subtotal - discount // shipping is free — see CART_CONFIG
 
   const goToStep = useCallback((next: Step) => {
     const currentIdx = STEP_ORDER.indexOf(step)
@@ -255,7 +258,7 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="pt-16 md:pt-[4.5rem] min-h-[70vh] flex items-center justify-center">
+      <div className="pt-16 md:pt-20 min-h-[70vh] flex items-center justify-center">
         <div className="text-center space-y-4">
           <h1 className="font-display text-2xl text-[var(--color-lp-ink)]">Your cart is empty</h1>
           <Link href={ROUTES.shop} className="btn-primary inline-flex mt-2">
@@ -274,7 +277,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <div className="container-lp section-pad pt-6! md:pt-8! max-w-[42rem]">
         <Link
           href={ROUTES.cart}
@@ -399,9 +402,21 @@ export default function CheckoutPage() {
                 </div>
               )}
 
-              <div className="flex justify-between items-center mb-6 pt-4 border-t border-[var(--color-lp-border)]">
-                <span className="font-display text-[1.1rem]">Total</span>
-                <span className="font-display text-[1.4rem]">{formatPrice(total)}</span>
+              <div className="pt-4 border-t border-lp-border mb-6">
+                <div className="flex justify-between items-center mb-1.5">
+                  <span className="font-body text-[0.85rem] text-lp-muted">Subtotal</span>
+                  <span className="font-body text-[0.85rem] text-lp-ink">{formatPrice(subtotal)}</span>
+                </div>
+                {discount > 0 && (
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span className="font-body text-[0.85rem] text-lp-gold">Monsoon Sale ({Math.round(SALE_CONFIG.discountPercent * 100)}% off)</span>
+                    <span className="font-body text-[0.85rem] text-lp-gold">-{formatPrice(discount)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center pt-1.5">
+                  <span className="font-display text-[1.1rem]">Total</span>
+                  <span className="font-display text-[1.4rem]">{formatPrice(total)}</span>
+                </div>
               </div>
 
               <button
@@ -472,9 +487,21 @@ export default function CheckoutPage() {
                 </p>
               </div>
 
-              <div className="flex justify-between items-center mb-6 pb-4 border-b border-[var(--color-lp-border)]">
-                <span className="font-display text-[1.1rem]">Total</span>
-                <span className="font-display text-[1.4rem]">{formatPrice(total)}</span>
+              <div className="pb-4 border-b border-lp-border mb-6">
+                <div className="flex justify-between items-center mb-1.5">
+                  <span className="font-body text-[0.85rem] text-lp-muted">Subtotal</span>
+                  <span className="font-body text-[0.85rem] text-lp-ink">{formatPrice(subtotal)}</span>
+                </div>
+                {discount > 0 && (
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span className="font-body text-[0.85rem] text-lp-gold">Monsoon Sale ({Math.round(SALE_CONFIG.discountPercent * 100)}% off)</span>
+                    <span className="font-body text-[0.85rem] text-lp-gold">-{formatPrice(discount)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center pt-1.5">
+                  <span className="font-display text-[1.1rem]">Total</span>
+                  <span className="font-display text-[1.4rem]">{formatPrice(total)}</span>
+                </div>
               </div>
 
               <AnimatePresence>

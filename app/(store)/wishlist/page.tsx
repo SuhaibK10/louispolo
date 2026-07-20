@@ -26,7 +26,7 @@ export default function WishlistPage() {
 
   if (products.length === 0) {
     return (
-      <div className="pt-16 md:pt-[4.5rem] min-h-[80vh] flex items-center justify-center">
+      <div className="pt-16 md:pt-20 min-h-[80vh] flex items-center justify-center">
         <div className="text-center space-y-4">
           <Heart size={48} strokeWidth={1} className="text-[var(--color-lp-border)] mx-auto" />
           <h1 className="font-display text-3xl text-[var(--color-lp-ink)]">Your wishlist is empty</h1>
@@ -43,7 +43,7 @@ export default function WishlistPage() {
   }
 
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <div className="container-lp section-pad" style={{ paddingTop: '1.5rem' }}>
 
         {/* Header */}

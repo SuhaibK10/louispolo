@@ -89,7 +89,7 @@ function CheckoutSuccessContent() {
 
 export default function CheckoutSuccessPage() {
   return (
-    <div className="pt-16 md:pt-[4.5rem] min-h-[80vh] flex items-center justify-center px-6">
+    <div className="pt-16 md:pt-20 min-h-[80vh] flex items-center justify-center px-6">
       <div className="text-center max-w-[28rem]">
         <Suspense fallback={
           <p className="font-body text-[var(--color-lp-muted)]">Loading order details...</p>

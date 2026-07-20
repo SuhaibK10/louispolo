@@ -6,6 +6,7 @@
 
 import { HeroSection }         from './sections/HeroSection'
 import { BestSellersCarousel } from './sections/BestSellersCarousel'
+import { PromoBanner }         from './sections/PromoBanner'
 import { CategoryGrid }        from './sections/CategoryGrid'
 import { ProductSpotlight }    from './sections/ProductSpotlight'
 import { ReviewsSection }      from './sections/ReviewsSection'
@@ -17,6 +18,7 @@ export function HomeEditorial() {
     <main>
       <HeroSection />
       <BestSellersCarousel />
+      <PromoBanner />
       <CategoryGrid />
       <ProductSpotlight />
       <ExhibitionGallery />

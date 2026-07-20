@@ -125,7 +125,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="pt-16 md:pt-[4.5rem] min-h-[80vh] flex items-center justify-center">
+      <div className="pt-16 md:pt-20 min-h-[80vh] flex items-center justify-center">
         <div className="text-center space-y-4">
           <ShoppingBag size={48} strokeWidth={1} className="text-[var(--color-lp-border)] mx-auto" />
           <h1 className="font-display text-3xl text-[var(--color-lp-ink)]">Your cart is empty</h1>
@@ -142,7 +142,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <div className="container-lp section-pad pt-8! md:pt-10! pb-24! md:pb-32!">
         <h1 className="lp-heading-lg mb-8 md:mb-10">Your Cart</h1>
 

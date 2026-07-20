@@ -18,6 +18,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import Razorpay from 'razorpay'
 import { createClient, createServiceRoleClient } from '@/lib/supabase/server'
 import { getProductBySlug } from '@/config/products'
+import { SALE_CONFIG }      from '@/lib/constants'
 import type { ProductSize } from '@/types'
 
 const razorpay = new Razorpay({
@@ -171,7 +172,15 @@ const supabase = await createClient()
 
   // Shipping is free on all orders right now — see CART_CONFIG.
   const shippingCost = 0
-  const total = subtotal + shippingCost
+
+  // Site-wide checkout discount (see SALE_CONFIG) — applied here, and only
+  // here, since this route is the sole source of truth for what Razorpay
+  // actually charges. subtotal stays the pre-discount sum so order records
+  // reflect real MRP; the discount only shows up in `total`.
+  const discount = SALE_CONFIG.enabled
+    ? Math.round(subtotal * SALE_CONFIG.discountPercent)
+    : 0
+  const total = subtotal - discount + shippingCost
 
   // ── Create the order row ─────────────────────────────────────────────────
   // Branches on whether a session exists. The DB check constraint

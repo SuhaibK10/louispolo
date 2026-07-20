@@ -42,7 +42,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
   if (!product) notFound()
 
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <div className="container-lp section-pad pt-6! md:pt-8!">
 
         {/* Breadcrumb */}

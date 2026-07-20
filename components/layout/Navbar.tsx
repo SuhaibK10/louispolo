@@ -14,12 +14,12 @@ import Link                  from 'next/link'
 import Image                 from 'next/image'
 import { usePathname }       from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
-import { ShoppingBag, Menu, X, Search, Heart, User } from 'lucide-react'
+import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion'
+import { ShoppingBag, Menu, X, Search, Heart, User, SlidersHorizontal } from 'lucide-react'
 import { NAV_ITEMS, ROUTES, BRAND }    from '@/lib/constants'
 import { cn }                          from '@/lib/utils'
 import { SearchOverlay }               from '@/components/search/SearchOverlay'
-import { CorporateEnquiryModal }       from '@/components/ui/CorporateEnquiryModal'
+import { useShopFilterStore }          from '@/store/shopFilterStore'
 
 // ─── Hook: wishlist count ─────────────────────────────────────────────────────
 function useWishlistCount() {
@@ -61,7 +61,13 @@ export function Navbar() {
   const wishlistCount = useWishlistCount()
   const [menuOpen,     setMenuOpen]     = useState(false)
   const [searchOpen,   setSearchOpen]   = useState(false)
-  const [corpOpen,     setCorpOpen]     = useState(false)
+
+  // Docked filter icon — only relevant on /shop, and only once the in-page
+  // Filters button has scrolled out of view (tracked by ProductGrid).
+  const isShopPage             = pathname === ROUTES.shop
+  const inPageButtonVisible    = useShopFilterStore(s => s.inPageButtonVisible)
+  const setShopDrawerOpen      = useShopFilterStore(s => s.setDrawerOpen)
+  const showDockedFilterIcon   = isShopPage && !inPageButtonVisible
 
   // Scroll progress bar
   const { scrollYProgress } = useScroll({
@@ -72,6 +78,16 @@ export function Navbar() {
     damping:   30,
     restDelta: 0.001,
   })
+
+  // The sale ticker sits in normal document flow (scrolls away), but the
+  // navbar below it is fixed at a constant offset — so once the ticker
+  // scrolls out, the navbar would be left floating with a permanent gap
+  // above it where the ticker used to be. Closing that gap by animating the
+  // navbar's own top offset down (36px → 0) over the same distance the
+  // ticker is tall, so it "catches up" to sit flush against the viewport
+  // top once the ticker's gone, same as a normal sticky nav would.
+  const { scrollY } = useScroll()
+  const headerTop = useTransform(scrollY, [0, 36], ['2.25rem', '0rem'], { clamp: true })
 
   // Fix Android Chrome dynamic toolbar
   useEffect(() => {
@@ -120,18 +136,51 @@ export function Navbar() {
 
   return (
     <>
-      <header
+      {/* ── Sale ticker — in normal document flow, scrolls away with the
+          page. The fixed navbar below stays pinned at a constant offset
+          regardless, so it doesn't move once the ticker scrolls out. ── */}
+      <div className="h-9 bg-lp-ink overflow-hidden flex items-center">
+        <div className="animate-marquee">
+          {[0, 1].map((rep) => (
+            <div key={rep} className="flex items-center shrink-0">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="flex items-center gap-2 px-6 font-body text-[0.68rem] tracking-[0.14em] uppercase text-lp-porcelain whitespace-nowrap"
+                >
+                  <span className="relative inline-flex items-center justify-center w-5 h-4 shrink-0" aria-hidden="true">
+                    <span className="text-[1.05rem] leading-none" style={{ filter: 'brightness(0.7) saturate(1.15)' }}>🌧️</span>
+                    {/* Sparse and slow on purpose — a quiet detail, not a
+                        showpiece. Irregular delay/duration per drop so they
+                        never fall into a synchronised "pulse". */}
+                    <span className="cloud-drip absolute left-0.5  top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '0s',    animationDuration: '3.2s' }} />
+                    <span className="cloud-drip absolute left-1.75 top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '1.3s',  animationDuration: '3.8s' }} />
+                    <span className="cloud-drip absolute left-3    top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '0.6s',  animationDuration: '3.5s' }} />
+                  </span>
+                  Forecast: Heavy Rain, Heavier Savings
+                  <span className="text-lp-gold">·</span>
+                  Monsoon Sale: Flat 25% Off at Checkout
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <motion.header
         className={cn(
           pathname.startsWith('/careers') ? 'absolute' : 'fixed',
-          'top-1 left-1/2 -translate-x-1/2 z-50 transition-all duration-500',
+          'left-0 right-0 z-50',
           'bg-lp-porcelain/95 backdrop-blur-md',
-          'border border-lp-border',
-          'rounded-full shadow-lg shadow-black/8',
-          'w-[calc(100%-2rem)] max-w-5xl overflow-hidden',
+          'border-b border-lp-border shadow-sm',
+          'w-full overflow-hidden',
         )}
-        style={{ isolation: 'isolate' }}
+        style={{
+          isolation: 'isolate',
+          top: pathname.startsWith('/careers') ? '2.25rem' : headerTop,
+        }}
       >
-        {/* ── Scroll progress bar (clips to pill shape via overflow-hidden) ── */}
+        {/* ── Scroll progress bar ── */}
         {!pathname.startsWith('/account') && (
           <motion.div
             className="absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-lp-ink/45"
@@ -143,7 +192,7 @@ export function Navbar() {
         )}
 
         <div className="px-5 md:px-8">
-          <div className="flex items-center justify-between h-12.5 md:h-15">
+          <div className="flex items-center justify-between h-12.5 md:h-20">
 
             {/* ── Left: Hamburger (mobile) / Nav links (desktop) ─────────── */}
             <div className="flex items-center gap-8 flex-1">
@@ -199,12 +248,32 @@ export function Navbar() {
             <div className="flex items-center gap-4 flex-1 justify-end">
 
               {/* Corporate Enquiry — desktop only */}
-              <button
-                onClick={() => setCorpOpen(true)}
+              <Link
+                href={ROUTES.corporateGifting}
                 className="hidden lg:block relative font-body text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-[var(--color-lp-ink)] hover:text-lp-ink/45"
               >
-                B2B Corporate Enquiry
-              </button>
+                Corporate Gifting
+              </Link>
+
+              {/* Docked filter icon — fades in once the in-page Filters
+                  button (on /shop) has scrolled out of view, so it reads
+                  as that same button seamlessly relocating into the navbar
+                  rather than a new element appearing. */}
+              <AnimatePresence>
+                {showDockedFilterIcon && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={() => setShopDrawerOpen(true)}
+                    className="-m-2 p-2 text-lp-ink hover:text-lp-gold transition-colors duration-200"
+                    aria-label="Open filters"
+                  >
+                    <SlidersHorizontal size={19} strokeWidth={1.5} />
+                  </motion.button>
+                )}
+              </AnimatePresence>
 
               {/* Search */}
               <button
@@ -265,7 +334,7 @@ export function Navbar() {
 
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* ── Mobile menu ──────────────────────────────────────────────────────── */}
       <AnimatePresence>
@@ -306,14 +375,15 @@ export function Navbar() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ delay: 0.08 + NAV_ITEMS.length * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <button
-                  onClick={() => { setMenuOpen(false); setCorpOpen(true) }}
+                <Link
+                  href={ROUTES.corporateGifting}
+                  onClick={() => setMenuOpen(false)}
                   className="block w-full text-left py-4 border-b border-[var(--color-lp-border)]"
                 >
                   <span className="font-display text-[1.5rem] text-[var(--color-lp-ink)] hover:text-[var(--color-lp-gold)] transition-colors duration-200">
-                    B2B Corporate Enquiry
+                    Corporate Gifting
                   </span>
-                </button>
+                </Link>
               </motion.div>
             </nav>
 
@@ -330,7 +400,6 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold w-full justify-center"
-                style={{ backgroundColor: '#25D366', borderColor: '#25D366', color: '#fff' }}
                 onClick={() => setMenuOpen(false)}
               >
                 <svg width={16} height={16} viewBox="0 0 24 24" fill="currentColor">
@@ -348,7 +417,6 @@ export function Navbar() {
       </AnimatePresence>
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
-      <CorporateEnquiryModal open={corpOpen} onClose={() => setCorpOpen(false)} />
     </>
   )
 }

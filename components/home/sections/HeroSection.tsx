@@ -84,7 +84,7 @@ export function HeroSection() {
   return (
     <section
       id="hero-section"
-      className="relative h-[82svh] md:h-[90vh] md:min-h-150 md:max-h-240 overflow-hidden"
+      className="relative h-[calc(82svh-1.75rem)] md:h-[calc(90vh-1.75rem)] md:min-h-150 md:max-h-240 overflow-hidden"
       onClick={() => setIsPlaying(p => !p)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}

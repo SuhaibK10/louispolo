@@ -22,7 +22,7 @@ export default async function ComparePage({ searchParams }: Props) {
   const initialSlugs = p?.split(',').map(s => s.trim()).filter(Boolean)
 
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <div className="container-lp section-pad pt-8! md:pt-12!">
 
         <div className="text-center mb-10 md:mb-14">

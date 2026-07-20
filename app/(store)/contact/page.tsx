@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-16 md:pt-[4.5rem]">
+    <div className="pt-16 md:pt-20">
       <div className="section-pad" style={{ paddingTop: '1.5rem' }}>
         <div className="container-lp">
           <span className="lp-eyebrow">Get in touch</span>
