@@ -119,9 +119,9 @@ export function CareerApplicationForm({ role }: Props) {
         </p>
         <ol className="space-y-2.5 mb-4">
           {[
-            'Pick at least three different product photos below and download them',
-            'Generate one hero, lifestyle or ad image of those three products using any AI tool',
-            'Share one link with all your results in the Task Submission field below',
+            'Choose the product images from below and download them',
+            'Generate hero, lifestyle or ad images of the products using any AI tool',
+            'Share one link with all your results in the Task Submission Field',
           ].map((step, i) => (
             <li key={step} className="flex gap-3">
               <span className="font-display text-[0.9rem] text-lp-ink shrink-0 w-4">{i + 1}.</span>

@@ -10,20 +10,18 @@ import { PromoBanner }         from './sections/PromoBanner'
 import { CategoryGrid }        from './sections/CategoryGrid'
 import { ProductSpotlight }    from './sections/ProductSpotlight'
 import { ReviewsSection }      from './sections/ReviewsSection'
-import { BrandStory }          from './sections/BrandStory'
 import { ExhibitionGallery }   from './sections/ExhibitionGallery'
 
 export function HomeEditorial() {
   return (
     <main>
       <HeroSection />
+      <CategoryGrid />
       <BestSellersCarousel />
       <PromoBanner />
-      <CategoryGrid />
       <ProductSpotlight />
       <ExhibitionGallery />
       <ReviewsSection />
-      <BrandStory />
     </main>
   )
 }

@@ -6,10 +6,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React                                      from 'react'
-import Link                                      from 'next/link'
 import { motion }                                from 'framer-motion'
-import { ArrowRight }                            from 'lucide-react'
-import { ROUTES }                                from '@/lib/constants'
 import { slideFromLeft, slideFromRight, staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 
 const PILLARS = [
@@ -66,11 +63,6 @@ export function BrandStory() {
             <p className="font-body text-white/60 text-base leading-relaxed mb-8">
               Louis Polo started as an OEM manufacturer, making luggage for brands you have carried through airports all over the world. In 2025, we decided to put our name on it. Same factory, same materials, same quality control. Your price just removed the middleman.
             </p>
-            <Link href={ROUTES.about} className="btn-dove inline-flex">
-              Read our story
-              <ArrowRight size={15} strokeWidth={1.5} />
-            </Link>
-
           </motion.div>
 
           {/* Right — pillars */}

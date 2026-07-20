@@ -151,7 +151,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 py-12 md:py-14 border-b border-[#C9A96E]/15">
 
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="order-1 col-span-2 md:col-span-1 md:order-1">
             <Image
               src="/logo.svg"
               alt="Louis Polo"
@@ -195,7 +195,7 @@ export function Footer() {
           </div>
 
           {/* Shop */}
-          <div>
+          <div className="order-3 md:order-2">
             <p className="lp-eyebrow mb-4">Shop</p>
             <ul className="space-y-2.5">
               {SHOP_LINKS.map(({ label, href }) => (
@@ -207,7 +207,7 @@ export function Footer() {
           </div>
 
           {/* Company */}
-          <div>
+          <div className="order-2 md:order-3">
             <p className="lp-eyebrow mb-4">Company</p>
             <ul className="space-y-2.5">
               {COMPANY_LINKS.map(({ label, href }) => (
@@ -222,7 +222,7 @@ export function Footer() {
           </div>
 
           {/* Support */}
-          <div>
+          <div className="order-4">
             <p className="lp-eyebrow mb-4">Support</p>
             <ul className="space-y-2.5">
               <li>

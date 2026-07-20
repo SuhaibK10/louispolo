@@ -2,7 +2,6 @@ import { NextResponse }  from 'next/server'
 import { type NextRequest } from 'next/server'
 import { resend, EMAIL_FROM } from '@/lib/resend'
 import { BRAND }            from '@/lib/constants'
-import { createServiceRoleClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   const { role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message } = await request.json()
@@ -13,28 +12,22 @@ export async function POST(request: NextRequest) {
 
   // Record the application first — email delivery can fail (Resend outage,
   // unverified domain), and an application is too valuable to lose.
-  // Service-role client: the table has RLS on with no policies, so only the
-  // server can touch it.
-  let savedToDb = false
-  try {
-    const supabase = createServiceRoleClient()
-    const { error: dbError } = await supabase.from('career_applications').insert({
-      role,
-      name,
-      email,
-      portfolio_url: portfolioUrl || null,
-      resume_url: resumeUrl || null,
-      task_url: taskUrl,
-      tools:   tools   || null,
-      message: message || null,
-    })
-    if (dbError) {
-      console.error('Failed to save career application:', dbError)
-    } else {
-      savedToDb = true
+  let savedToSheet = false
+  const sheetWebhook = process.env.CAREER_APPLICATIONS_SHEET_WEBHOOK
+  if (sheetWebhook) {
+    try {
+      const sheetRes = await fetch(sheetWebhook, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message }),
+      })
+      savedToSheet = sheetRes.ok
+      if (!savedToSheet) {
+        console.error('Failed to log career application to Google Sheet:', sheetRes.status)
+      }
+    } catch (e) {
+      console.error('Failed to log career application to Google Sheet:', e)
     }
-  } catch (e) {
-    console.error('Failed to save career application:', e)
   }
 
   const { error } = await resend.emails.send({
@@ -64,28 +57,13 @@ export async function POST(request: NextRequest) {
     `,
   })
 
-  // Fail the request only if BOTH channels failed — if the application is in
-  // the database, it is not lost even when the email bounces.
-  if (error && !savedToDb) {
+  // Fail the request only if BOTH channels failed — if the application made
+  // it into the sheet, it is not lost even when the email bounces.
+  if (error && !savedToSheet) {
     return NextResponse.json({ error: 'Failed to submit application' }, { status: 500 })
   }
   if (error) {
-    console.error('Career application email failed (saved to DB):', error)
-  }
-
-  // Best-effort log to the team's Google Sheet — never blocks the response,
-  // this is a convenience mirror of what's already saved above.
-  const sheetWebhook = process.env.CAREER_APPLICATIONS_SHEET_WEBHOOK
-  if (sheetWebhook) {
-    try {
-      await fetch(sheetWebhook, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message }),
-      })
-    } catch (e) {
-      console.error('Failed to log career application to Google Sheet:', e)
-    }
+    console.error('Career application email failed (saved to sheet):', error)
   }
 
   return NextResponse.json({ success: true })

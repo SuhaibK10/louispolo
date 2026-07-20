@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/home/sections/PromoBanner.tsx
-// Small static promo strip — sits above "Shop by Category" on the homepage.
+// Small static promo strip on the homepage.
 // Deliberately static (no marquee, no motion) and a muted red, not an alarm
 // red — a quiet aside, not a second version of the top sale ticker.
 // ─────────────────────────────────────────────────────────────────────────────
