@@ -23,7 +23,6 @@ const CATEGORY_CARDS = [
   {
     label:    'Trolley Bags',
     value:    'trolley',
-    mood:     'For every journey',
     image:    'Generated_Image_June_21_2026_-_2_58AM_xtfwjz.jpg',
     span:     '',
     textPos:  'bottom',
@@ -32,7 +31,6 @@ const CATEGORY_CARDS = [
   {
     label:    'Sets',
     value:    'set',
-    mood:     'The complete setup',
     image:    'Generated_Image_June_21_2026_-_3_01AM_no4abz.jpg',
     span:     '',
     textPos:  'bottom',
@@ -41,7 +39,6 @@ const CATEGORY_CARDS = [
   {
     label:    'Backpacks',
     value:    'backpack',
-    mood:     'Carry it all',
     image:    'Generated_Image_June_18_2026_-_2_00AM_jssdry.jpg',
     span:     '',
     textPos:  'bottom',
@@ -50,7 +47,6 @@ const CATEGORY_CARDS = [
   {
     label:    'Office Bags',
     value:    'office-bag',
-    mood:     'Sharp every day',
     image:    'Generated_Image_June_18_2026_-_2_56AM_fubmpz.jpg',
     span:     '',
     textPos:  'bottom',
@@ -59,7 +55,6 @@ const CATEGORY_CARDS = [
   {
     label:    'Duffle Bags',
     value:    'duffle',
-    mood:     'Light, fast, flexible',
     image:    'Generated_Image_June_18_2026_-_1_53AM_jpxswo.jpg',
     span:     '',
     textPos:  'bottom',
@@ -68,7 +63,6 @@ const CATEGORY_CARDS = [
   {
     label:    'Vanity Cases',
     value:    'vanity',
-    mood:     'Small bag, big difference',
     image:    'Screenshot_2026-06-18_at_3.35.17_AM_cu1ffy.png',
     span:     '',
     textPos:  'bottom',
@@ -78,9 +72,33 @@ const CATEGORY_CARDS = [
 
 export function CategoryGrid() {
   return (
-    <section className="section-pad bg-[var(--color-lp-cream)]" style={{ paddingTop: '1.5rem' }}>
+    <section className="section-pad bg-[var(--color-lp-cream)]" style={{ paddingTop: '0.25rem' }}>
       <div className="container-lp">
 
+        {/* Scroll indicator */}
+        <div className="flex flex-col items-center gap-1" style={{ marginTop: '0', marginBottom: '4.5rem' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center gap-1"
+          >
+            <div
+              className="w-5 h-8 rounded-full flex items-start justify-center pt-1.5"
+              style={{ border: '1.5px solid var(--color-lp-ink)' }}
+            >
+              <motion.div
+                animate={{ y: [0, 14, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-1 h-1.5 rounded-full bg-lp-ink"
+              />
+            </div>
+            <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-lp-ink">
+              Swipe down to Begin the Journey
+            </span>
+          </motion.div>
+        </div>
 
         {/* Header */}
         <motion.div
@@ -102,7 +120,7 @@ export function CategoryGrid() {
           viewport={VIEWPORT}
           className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
         >
-          {CATEGORY_CARDS.map(({ label, value, mood, image, span, imgClass }) => (
+          {CATEGORY_CARDS.map(({ label, value, image, span, imgClass }) => (
             <motion.div
               key={value}
               variants={scaleUp}
@@ -131,9 +149,6 @@ export function CategoryGrid() {
 
                 {/* Text */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
-                  <p className="font-body text-[0.6rem] tracking-[0.15em] uppercase text-[var(--color-lp-gold)] mb-1">
-                    {mood}
-                  </p>
                   <div className="flex items-end justify-between">
                     <h3 className="font-display text-[1.25rem] md:text-[1.5rem] text-[var(--color-lp-porcelain)] leading-none">
                       {label}

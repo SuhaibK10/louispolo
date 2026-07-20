@@ -17,8 +17,8 @@ export function HomeEditorial() {
     <main>
       <HeroSection />
       <CategoryGrid />
-      <BestSellersCarousel />
       <PromoBanner />
+      <BestSellersCarousel />
       <ProductSpotlight />
       <ExhibitionGallery />
       <ReviewsSection />

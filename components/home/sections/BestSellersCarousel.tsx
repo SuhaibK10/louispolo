@@ -362,31 +362,6 @@ export function BestSellersCarousel() {
   return (
     <section className="pt-0.5 md:pt-4 pb-20 md:pb-28 xl:pb-36 overflow-hidden">
 
-      {/* Scroll indicator */}
-      <div className="container-lp flex flex-col items-center gap-1" style={{ marginTop: '0.75rem', marginBottom: '4.5rem' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-1"
-        >
-          <div
-            className="w-5 h-8 rounded-full flex items-start justify-center pt-1.5"
-            style={{ border: '1.5px solid var(--color-lp-ink)' }}
-          >
-            <motion.div
-              animate={{ y: [0, 14, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-1 h-1.5 rounded-full bg-lp-ink"
-            />
-          </div>
-          <span className="font-body text-[0.6rem] tracking-[0.16em] uppercase text-lp-ink">
-            Swipe down to Begin the Journey
-          </span>
-        </motion.div>
-      </div>
-
       {/* Tabs */}
       <div className="container-lp flex items-center justify-center gap-5" style={{ marginBottom: '1.5rem' }}>
         <button
@@ -398,7 +373,7 @@ export function BestSellersCarousel() {
               : 'font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-transparent pb-1.5 transition-colors duration-200'
           }
         >
-          Our Best Sellers
+          Best Sellers
         </button>
         <span className="text-lp-border">|</span>
         <button
@@ -428,7 +403,7 @@ export function BestSellersCarousel() {
             {tab === 'myntra' ? 'Available exclusively on' : 'What India is carrying'}
           </motion.span>
           <motion.h2 variants={fadeUp} className="lp-heading-lg">
-            {tab === 'myntra' ? 'Myntra Exclusives' : 'Our Best Sellers'}
+            {tab === 'myntra' ? 'Myntra Exclusives' : 'Best Sellers'}
           </motion.h2>
         </motion.div>
 

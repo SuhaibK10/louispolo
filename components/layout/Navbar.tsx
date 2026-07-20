@@ -64,6 +64,7 @@ export function Navbar() {
 
   // Docked filter icon — only relevant on /shop, and only once the in-page
   // Filters button has scrolled out of view (tracked by ProductGrid).
+  const isHome                 = pathname === ROUTES.home
   const isShopPage             = pathname === ROUTES.shop
   const inPageButtonVisible    = useShopFilterStore(s => s.inPageButtonVisible)
   const setShopDrawerOpen      = useShopFilterStore(s => s.setDrawerOpen)
@@ -136,36 +137,38 @@ export function Navbar() {
 
   return (
     <>
-      {/* ── Sale ticker — in normal document flow, scrolls away with the
-          page. The fixed navbar below stays pinned at a constant offset
-          regardless, so it doesn't move once the ticker scrolls out. ── */}
-      <div className="h-9 bg-lp-ink overflow-hidden flex items-center">
-        <div className="animate-marquee">
-          {[0, 1].map((rep) => (
-            <div key={rep} className="flex items-center shrink-0">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="flex items-center gap-2 px-6 font-body text-[0.68rem] tracking-[0.14em] uppercase text-lp-porcelain whitespace-nowrap"
-                >
-                  <span className="relative inline-flex items-center justify-center w-5 h-4 shrink-0" aria-hidden="true">
-                    <span className="text-[1.05rem] leading-none" style={{ filter: 'brightness(0.7) saturate(1.15)' }}>🌧️</span>
-                    {/* Sparse and slow on purpose — a quiet detail, not a
-                        showpiece. Irregular delay/duration per drop so they
-                        never fall into a synchronised "pulse". */}
-                    <span className="cloud-drip absolute left-0.5  top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '0s',    animationDuration: '3.2s' }} />
-                    <span className="cloud-drip absolute left-1.75 top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '1.3s',  animationDuration: '3.8s' }} />
-                    <span className="cloud-drip absolute left-3    top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '0.6s',  animationDuration: '3.5s' }} />
+      {/* ── Sale ticker — home only. In normal document flow, scrolls away
+          with the page. The fixed navbar below stays pinned at a constant
+          offset regardless, so it doesn't move once the ticker scrolls out. ── */}
+      {isHome && (
+        <div className="h-9 bg-lp-ink overflow-hidden flex items-center">
+          <div className="animate-marquee">
+            {[0, 1].map((rep) => (
+              <div key={rep} className="flex items-center shrink-0">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <span
+                    key={i}
+                    className="flex items-center gap-2 px-6 font-body text-[0.68rem] tracking-[0.14em] uppercase text-lp-porcelain whitespace-nowrap"
+                  >
+                    <span className="relative inline-flex items-center justify-center w-5 h-4 shrink-0" aria-hidden="true">
+                      <span className="text-[1.05rem] leading-none" style={{ filter: 'brightness(0.7) saturate(1.15)' }}>🌧️</span>
+                      {/* Sparse and slow on purpose — a quiet detail, not a
+                          showpiece. Irregular delay/duration per drop so they
+                          never fall into a synchronised "pulse". */}
+                      <span className="cloud-drip absolute left-0.5  top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '0s',    animationDuration: '3.2s' }} />
+                      <span className="cloud-drip absolute left-1.75 top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '1.3s',  animationDuration: '3.8s' }} />
+                      <span className="cloud-drip absolute left-3    top-3 w-px h-1 rounded-full bg-[#6EB4E0]/60" style={{ animationDelay: '0.6s',  animationDuration: '3.5s' }} />
+                    </span>
+                    Forecast: Heavy Rain, Heavier Savings
+                    <span className="text-lp-gold">·</span>
+                    Monsoon Sale: Flat 25% Off at Checkout
                   </span>
-                  Forecast: Heavy Rain, Heavier Savings
-                  <span className="text-lp-gold">·</span>
-                  Monsoon Sale: Flat 25% Off at Checkout
-                </span>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <motion.header
         className={cn(
@@ -177,7 +180,7 @@ export function Navbar() {
         )}
         style={{
           isolation: 'isolate',
-          top: pathname.startsWith('/careers') ? '2.25rem' : headerTop,
+          top: !isHome ? '0rem' : (pathname.startsWith('/careers') ? '2.25rem' : headerTop),
         }}
       >
         {/* ── Scroll progress bar ── */}
@@ -192,7 +195,7 @@ export function Navbar() {
         )}
 
         <div className="px-5 md:px-8">
-          <div className="flex items-center justify-between h-12.5 md:h-20">
+          <div className="flex items-center justify-between h-12.5 md:h-18">
 
             {/* ── Left: Hamburger (mobile) / Nav links (desktop) ─────────── */}
             <div className="flex items-center gap-8 flex-1">
