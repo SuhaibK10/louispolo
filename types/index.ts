@@ -60,6 +60,7 @@ export interface ColorVariant {
   accentColor?: string  // accent / zipper color name (shown alongside color)
   sizes: SizeOption[]
   lowStock?: boolean
+  images?: string[]     // per-color gallery — overrides Product.images[index] when set
 }
 
 export interface Product {
@@ -70,6 +71,8 @@ export interface Product {
   tag?: ProductTag
   isFeatured?: boolean
   saleExclusive?: boolean
+  mrp?: number  // strike-through "original" price, shown alongside the current price when set
+  hideSizeSelector?: boolean  // skip the size-chip row entirely — auto-selects the product's only size
   description: string
   // Cloudinary public_ids — transform on the fly via URL
   // e.g. "louispolo/products/aerosmart/aerosmart-red-1"

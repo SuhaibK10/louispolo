@@ -6,7 +6,7 @@
 // Each card is a destination mood that makes you want to travel.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState }                          from 'react'
+import { useState, useRef, useEffect }       from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
@@ -78,8 +78,28 @@ type Tab = 'category' | 'sale'
 export function CategoryGrid() {
   const [tab, setTab] = useState<Tab>('category')
 
+  const saleTrackRef     = useRef<HTMLDivElement>(null)
+  const saleContainerRef = useRef<HTMLDivElement>(null)
+  const [saleDragWidth, setSaleDragWidth] = useState(0)
+
+  useEffect(() => {
+    if (tab !== 'sale' || !saleTrackRef.current || !saleContainerRef.current) return
+    const calculate = () => {
+      if (saleTrackRef.current && saleContainerRef.current) {
+        setSaleDragWidth(saleTrackRef.current.scrollWidth - saleContainerRef.current.offsetWidth)
+      }
+    }
+    calculate()
+    const ro = new ResizeObserver(calculate)
+    ro.observe(saleTrackRef.current)
+    return () => ro.disconnect()
+  }, [tab])
+
   return (
-    <section className="section-pad bg-[var(--color-lp-cream)]" style={{ paddingTop: '0.25rem' }}>
+    <section
+      className={tab === 'sale' ? 'section-pad bg-[var(--color-lp-porcelain)]' : 'section-pad bg-[var(--color-lp-cream)]'}
+      style={{ paddingTop: '0.25rem' }}
+    >
       <div className="container-lp">
 
         {/* Scroll indicator */}
@@ -152,10 +172,10 @@ export function CategoryGrid() {
           className="mb-8 md:mb-10"
         >
           <span className="lp-eyebrow">{tab === 'sale' ? 'Limited time only' : 'Find your bag'}</span>
-          <h2 className="lp-heading-lg whitespace-nowrap text-[1.6rem] md:text-[2.25rem]">{tab === 'sale' ? 'Sale' : 'Something for Everyone'}</h2>
+          <h2 className="lp-heading-lg whitespace-nowrap text-[1.6rem] md:text-[2.25rem]">{tab === 'sale' ? 'Lowest Price Ever' : 'Something for Everyone'}</h2>
         </motion.div>
 
-        {tab === 'category' ? (
+        {tab === 'category' && (
           /* Category grid */
           <motion.div
             key="grid-category"
@@ -209,24 +229,31 @@ export function CategoryGrid() {
               </motion.div>
             ))}
           </motion.div>
-        ) : (
-          /* Sale-exclusive products grid */
-          <motion.div
-            key="grid-sale"
-            variants={staggerChildren}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT}
-            className="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-10 md:gap-x-6 md:gap-y-14"
-          >
-            {SALE_PRODUCTS.map((product) => (
-              <motion.div key={product.id} variants={scaleUp}>
-                <ProductCard product={product} />
-              </motion.div>
-            ))}
-          </motion.div>
         )}
       </div>
+
+      {tab === 'sale' && (
+        /* Sale-exclusive products — full-bleed drag-to-scroll carousel, same as Best Sellers */
+        <div ref={saleContainerRef} className="overflow-hidden w-full">
+          <motion.div
+            key="grid-sale"
+            ref={saleTrackRef}
+            drag="x"
+            dragConstraints={{ left: -saleDragWidth, right: 0 }}
+            dragElastic={0.05}
+            dragMomentum={true}
+            className="flex gap-4 md:gap-6 pl-[max(1.25rem,calc((100vw-88rem)/2+4rem))] pr-6 cursor-grab active:cursor-grabbing select-none"
+            style={{ WebkitUserSelect: 'none' }}
+            whileTap={{ cursor: 'grabbing' }}
+          >
+            {SALE_PRODUCTS.map((product) => (
+              <div key={product.id} className="flex-shrink-0 w-[68vw] sm:w-[40vw] md:w-[30vw] lg:w-[22rem]">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      )}
     </section>
   )
 }

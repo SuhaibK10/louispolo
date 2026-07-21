@@ -46,7 +46,9 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
   useEffect(() => { setWished(has(product.id)) }, [has, product.id])
 
   const [colorIndex,    setColorIndex]    = useState(Math.max(0, defaultVariantIndex))
-  const [selectedSize,  setSelectedSize]  = useState<ProductSize | null>(null)
+  const [selectedSize,  setSelectedSize]  = useState<ProductSize | null>(
+    product.hideSizeSelector ? product.variants[Math.max(0, defaultVariantIndex)].sizes[0].size : null
+  )
   const [addedToCart,   setAddedToCart]   = useState(false)
   const [quantity,      setQuantity]      = useState(1)
 
@@ -65,7 +67,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
 
   function handleColorChange(i: number) {
     setColorIndex(i)
-    setSelectedSize(null)
+    setSelectedSize(product.hideSizeSelector ? product.variants[i].sizes[0].size : null)
     setQuantity(1)
     onColorChange?.(i)
   }
@@ -78,7 +80,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       productId:   product.id,
       productName: product.name,
       productSlug: product.slug,
-      image:       product.images[colorIndex] ?? product.images[0],
+      image:       variant.images?.[0] ?? product.images[colorIndex] ?? product.images[0],
       color:       variant.color,
       colorHex:    variant.colorHex,
       size:        selectedSize,
@@ -191,6 +193,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
       </div>
 
       {/* ── Size selector ──────────────────────────────────────────────── */}
+      {!product.hideSizeSelector && (
       <div>
         <div className="flex items-center justify-between mb-3">
           <p className="font-body text-[0.7rem] tracking-[0.1em] uppercase text-[var(--color-lp-muted)]">
@@ -237,6 +240,7 @@ export function ProductInfo({ product, defaultColor, onColorChange }: Props) {
           })}
         </div>
       </div>
+      )}
 
       {/* ── Quantity stepper (hidden when purchase happens on Myntra) ──── */}
       {!myntra && (

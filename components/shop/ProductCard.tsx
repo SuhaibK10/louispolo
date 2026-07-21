@@ -48,13 +48,15 @@ export function ProductCard({ product }: ProductCardProps) {
   }
 
   const [activeVariant,   setActiveVariant]   = useState(0)
-  const [activeSize,      setActiveSize]      = useState<ProductSize | null>(null)
+  const [activeSize,      setActiveSize]      = useState<ProductSize | null>(
+    product.hideSizeSelector ? product.variants[0].sizes[0].size : null
+  )
   const [addedToCart,     setAddedToCart]     = useState(false)
   const [sizeGuideOpen,   setSizeGuideOpen]   = useState(false)
 
   const variant      = product.variants[activeVariant]
   const lowestPrice  = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
-  const displayImage = product.images[activeVariant] ?? product.images[0]
+  const displayImage = variant.images?.[0] ?? product.images[activeVariant] ?? product.images[0]
   const sizeObj       = variant.sizes.find(s => s.size === activeSize)
   const price         = sizeObj?.price ?? lowestPrice
   const inStock       = sizeObj ? sizeObj.stock > 0 : true
@@ -67,7 +69,7 @@ export function ProductCard({ product }: ProductCardProps) {
   function handleColorChange(e: React.MouseEvent, i: number) {
     e.stopPropagation()
     setActiveVariant(i)
-    setActiveSize(null)  // reset size when colour changes
+    setActiveSize(product.hideSizeSelector ? product.variants[i].sizes[0].size : null)
   }
 
   function handleAddToCart(e: React.MouseEvent) {
@@ -196,7 +198,7 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Size chips */}
         <div className="flex items-center justify-between gap-1 pt-0.5">
           <div className="flex flex-wrap gap-1">
-          {variant.sizes.map(({ size, stock }) => {
+          {!product.hideSizeSelector && variant.sizes.map(({ size, stock }) => {
             const outOfStock = stock === 0
             const isSelected = activeSize === size
             return (
@@ -281,6 +283,16 @@ export function ProductCard({ product }: ProductCardProps) {
             </span>
             <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
               ({Math.round((1 - myntraTarget.price / (activeSize ? price : lowestPrice)) * 100)}% off)
+            </span>
+          </p>
+        ) : product.mrp ? (
+          <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)] whitespace-nowrap">
+            {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
+            <span className="hidden sm:inline ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
+              {formatPrice(product.mrp)}
+            </span>
+            <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
+              ({Math.round((1 - (activeSize ? price : lowestPrice) / product.mrp) * 100)}% off)
             </span>
           </p>
         ) : (
