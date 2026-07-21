@@ -161,7 +161,7 @@ export function Navbar() {
                     </span>
                     Forecast: Heavy Rain, Heavier Savings
                     <span className="text-lp-gold">·</span>
-                    Monsoon Sale: Flat 25% Off at Checkout
+                    Monsoon Sale: Flat 15% Off at Checkout
                   </span>
                 ))}
               </div>

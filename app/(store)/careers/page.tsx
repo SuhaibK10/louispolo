@@ -150,6 +150,15 @@ export default function CareersPage() {
                 so it starts level with "Open position" itself */}
             <div className="md:w-1/2">
               <CareerApplicationForm role="Creative Intern (Gen AI)" />
+              <p className="font-body text-[0.8rem] text-lp-muted leading-relaxed mt-4 text-center">
+                Have a question? Write to us at{' '}
+                <a
+                  href="mailto:careers@louispolo.in"
+                  className="text-lp-ink underline underline-offset-2 hover:text-lp-gold transition-colors"
+                >
+                  careers@louispolo.in
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -178,10 +187,10 @@ export default function CareersPage() {
           <p className="font-body text-[0.85rem] text-lp-muted leading-relaxed mt-8">
             For any other department, email your resume to{' '}
             <a
-              href={`mailto:socials@louispolo.in?subject=${encodeURIComponent('Career application, Louis Polo')}`}
+              href={`mailto:careers@louispolo.in?subject=${encodeURIComponent('Career application, Louis Polo')}`}
               className="text-lp-ink underline underline-offset-2 hover:text-lp-gold transition-colors"
             >
-              socials@louispolo.in
+              careers@louispolo.in
             </a>.
           </p>
         </div>

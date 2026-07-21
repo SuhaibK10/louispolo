@@ -11,7 +11,7 @@ export function FooterCorporateLink() {
   return (
     <Link
       href={ROUTES.corporateGifting}
-      className="font-body text-[0.8rem] text-white/50 hover:text-lp-gold transition-colors duration-200"
+      className="font-body text-[0.8rem] text-white/65 hover:text-lp-gold transition-colors duration-200"
     >
       Corporate Gifting
     </Link>

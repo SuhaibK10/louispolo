@@ -51,10 +51,10 @@ export const CART_CONFIG = {
 // charged by app/api/checkout/route.ts, which is the sole source of truth
 // for the amount Razorpay collects. Doesn't apply to Myntra-listed products
 // — those sell through Myntra's own checkout, not ours.
-// Advertised in the Navbar ticker ("Monsoon Sale: Flat 25% Off at Checkout").
+// Advertised in the Navbar ticker ("Monsoon Sale: Flat 15% Off at Checkout").
 export const SALE_CONFIG = {
   enabled:         true,
-  discountPercent: 0.25,
+  discountPercent: 0.15,
   label:           'Monsoon Sale',
 } as const
 
