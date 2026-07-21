@@ -117,7 +117,8 @@ export function HeroSection() {
                 fill
                 priority={current === 0}
                 loading={current === 0 ? 'eager' : 'lazy'}
-                className="object-cover object-center block lg:hidden"
+                className="object-cover block lg:hidden"
+                style={{ objectPosition: slide.mobileObjectPosition ?? 'center' }}
                 sizes="(max-width: 1023px) 100vw, 1px"
               />
               {/* Desktop: separate 16:9 image if provided, else same image with landscape crop */}
@@ -126,7 +127,8 @@ export function HeroSection() {
                 alt={slide.headline ?? 'Louis Polo luggage'}
                 fill
                 priority={current === 0}
-                className="object-cover object-center hidden lg:block"
+                className="object-cover hidden lg:block"
+                style={{ objectPosition: slide.desktopObjectPosition ?? 'center' }}
                 sizes="(max-width: 1023px) 1px, 100vw"
               />
             </>

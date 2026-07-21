@@ -127,6 +127,8 @@ export interface HeroSlide {
   textSize?:     'xl' | 'lg' | 'md'
   textPosition?: 'top' | 'center' | 'bottom'
   textOffset?:   number
+  mobileObjectPosition?:  string  // CSS object-position for the mobile image, e.g. '30% center'
+  desktopObjectPosition?: string  // CSS object-position for the desktop image, e.g. '30% center'
 }
 
 // ─── API ──────────────────────────────────────────────────────────────────────

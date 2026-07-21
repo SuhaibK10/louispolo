@@ -21,10 +21,12 @@ import type { Product, HeroSlide } from '@/types'
 export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'Hero_Image_p51olm.png',
-    headline:  'New Arrivals',
+    headline:  '',
     desktopImage: 'Hero_Image_Desktop_mkckrp.png',
     textStyle: 'shadow',
     textSize:  'lg',
+    mobileObjectPosition:  '100% center',
+    desktopObjectPosition: '100% center',
   },
   {
     image:     'heroLast_dkzwim.jpg',
