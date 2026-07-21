@@ -6,13 +6,16 @@
 // Each card is a destination mood that makes you want to travel.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { useState }                          from 'react'
 import Image                                 from 'next/image'
 import Link                                  from 'next/link'
 import { motion }                            from 'framer-motion'
-import { ArrowUpRight }                      from 'lucide-react'
+import { ArrowUpRight, LayoutGrid, BadgePercent } from 'lucide-react'
 import { ROUTES }                            from '@/lib/constants'
+import { SALE_PRODUCTS }                     from '@/config/products'
 import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
 import { staggerChildren, scaleUp, VIEWPORT } from '@/lib/animations'
+import { ProductCard }                       from '@/components/shop/ProductCard'
 
 
 
@@ -70,13 +73,17 @@ const CATEGORY_CARDS = [
   },
 ] as const
 
+type Tab = 'category' | 'sale'
+
 export function CategoryGrid() {
+  const [tab, setTab] = useState<Tab>('category')
+
   return (
     <section className="section-pad bg-[var(--color-lp-cream)]" style={{ paddingTop: '0.25rem' }}>
       <div className="container-lp">
 
         {/* Scroll indicator */}
-        <div className="flex flex-col items-center gap-1" style={{ marginTop: '0', marginBottom: '4.5rem' }}>
+        <div className="flex flex-col items-center gap-1" style={{ marginTop: '0.75rem', marginBottom: '4.5rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -100,70 +107,125 @@ export function CategoryGrid() {
           </motion.div>
         </div>
 
+        {/* Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.6 }}
+          className="flex items-center justify-center gap-5 mb-6 md:mb-8"
+        >
+          <button
+            type="button"
+            onClick={() => setTab('category')}
+            className={
+              tab === 'category'
+                ? 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-lp-ink pb-1.5 transition-colors duration-200'
+                : 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-muted border-b-2 border-transparent pb-1.5 transition-colors duration-200 hover:text-lp-ink'
+            }
+          >
+            <LayoutGrid size={13} strokeWidth={1.5} />
+            Shop by Category
+          </button>
+          <span className="text-lp-border">|</span>
+          <button
+            type="button"
+            onClick={() => setTab('sale')}
+            className={
+              tab === 'sale'
+                ? 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-ink border-b-2 border-lp-ink pb-1.5 transition-colors duration-200'
+                : 'flex items-center gap-1.5 font-body text-[0.75rem] tracking-widest uppercase text-lp-muted border-b-2 border-transparent pb-1.5 transition-colors duration-200 hover:text-lp-ink'
+            }
+          >
+            <BadgePercent size={13} strokeWidth={1.5} />
+            Sale
+          </button>
+        </motion.div>
+
         {/* Header */}
         <motion.div
+          key={`header-${tab}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT}
           transition={{ duration: 0.6 }}
           className="mb-8 md:mb-10"
         >
-          <span className="lp-eyebrow">Find your bag</span>
-          <h2 className="lp-heading-lg">Shop by Category</h2>
+          <span className="lp-eyebrow">{tab === 'sale' ? 'Limited time only' : 'Find your bag'}</span>
+          <h2 className="lp-heading-lg whitespace-nowrap text-[1.6rem] md:text-[2.25rem]">{tab === 'sale' ? 'Sale' : 'Something for Everyone'}</h2>
         </motion.div>
 
-        {/* Grid */}
-        <motion.div
-          variants={staggerChildren}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT}
-          className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
-        >
-          {CATEGORY_CARDS.map(({ label, value, image, span, imgClass }) => (
-            <motion.div
-              key={value}
-              variants={scaleUp}
-              className={span}
-            >
-              <Link
-                href={`${ROUTES.shop}?category=${value}`}
-                className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-lp-ink/15 active:scale-[0.985]"
+        {tab === 'category' ? (
+          /* Category grid */
+          <motion.div
+            key="grid-category"
+            variants={staggerChildren}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+            className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
+          >
+            {CATEGORY_CARDS.map(({ label, value, image, span, imgClass }) => (
+              <motion.div
+                key={value}
+                variants={scaleUp}
+                className={span}
               >
-                {/* Hover frame — ink border draws in */}
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 z-10 rounded-xl border-[1.5px] border-lp-ink opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out pointer-events-none"
-                />
-                {/* Image */}
-                <Image
-                  src={cardUrl(image) || PLACEHOLDER_URL}
-                  alt={label}
-                  fill
-                  className={`object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 ${imgClass}`}
-                  sizes="(max-width:768px) 50vw, (max-width:1280px) 25vw, 22rem"
-                />
+                <Link
+                  href={`${ROUTES.shop}?category=${value}`}
+                  className="group relative block aspect-[4/5] md:aspect-square overflow-hidden bg-lp-border rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-lp-ink/15 active:scale-[0.985]"
+                >
+                  {/* Hover frame — ink border draws in */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 z-10 rounded-xl border-[1.5px] border-lp-ink opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out pointer-events-none"
+                  />
+                  {/* Image */}
+                  <Image
+                    src={cardUrl(image) || PLACEHOLDER_URL}
+                    alt={label}
+                    fill
+                    className={`object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 ${imgClass}`}
+                    sizes="(max-width:768px) 50vw, (max-width:1280px) 25vw, 22rem"
+                  />
 
-                {/* Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-lp-ink/90 via-lp-ink/30 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-lp-ink/90 via-lp-ink/30 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
 
-                {/* Text */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
-                  <div className="flex items-end justify-between">
-                    <h3 className="font-display text-[1.25rem] md:text-[1.5rem] text-[var(--color-lp-porcelain)] leading-none">
-                      {label}
-                    </h3>
-                    <ArrowUpRight
-                      size={18}
-                      strokeWidth={1.5}
-                      className="text-[var(--color-lp-porcelain)]/50 group-hover:text-[var(--color-lp-gold)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0"
-                    />
+                  {/* Text */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                    <div className="flex items-end justify-between">
+                      <h3 className="font-display text-[1.25rem] md:text-[1.5rem] text-[var(--color-lp-porcelain)] leading-none">
+                        {label}
+                      </h3>
+                      <ArrowUpRight
+                        size={18}
+                        strokeWidth={1.5}
+                        className="text-[var(--color-lp-porcelain)]/50 group-hover:text-[var(--color-lp-gold)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0"
+                      />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          /* Sale-exclusive products grid */
+          <motion.div
+            key="grid-sale"
+            variants={staggerChildren}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+            className="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-10 md:gap-x-6 md:gap-y-14"
+          >
+            {SALE_PRODUCTS.map((product) => (
+              <motion.div key={product.id} variants={scaleUp}>
+                <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   )

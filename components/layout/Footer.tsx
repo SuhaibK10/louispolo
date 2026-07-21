@@ -33,6 +33,7 @@ const COMPANY_LINKS = [
 const LEGAL_LINKS = [
   { label: 'Privacy',       href: '/privacy' },
   { label: 'Terms',         href: '/terms' },
+  { label: 'Shipping Policy', href: '/shipping' },
   { label: 'Refund Policy', href: '/refund-policy' },
   { label: 'Cancellation Policy', href: '/cancellation-policy' },
 ]

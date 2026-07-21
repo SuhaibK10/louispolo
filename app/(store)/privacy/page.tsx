@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title:       'Privacy Policy',
@@ -14,7 +15,7 @@ export default function PrivacyPage() {
         <span className="lp-eyebrow">Legal</span>
         <h1 className="lp-heading-lg mb-2">Privacy Policy</h1>
         <p className="font-body text-[var(--color-lp-muted)] text-sm mb-10">
-          Last updated: June 2025
+          Last updated: July 2026
         </p>
 
         <div className="prose-lp">
@@ -22,7 +23,10 @@ export default function PrivacyPage() {
           <section>
             <h2>1. Information We Collect</h2>
             <p>
-              When you place an order or create an account, we collect your name, email address,
+              This Privacy Policy applies to louispolo.in, owned and operated by{' '}
+              <strong>{BRAND.legalName}</strong> (&quot;Louis Polo&quot;, &quot;we&quot;,
+              &quot;us&quot;, or &quot;our&quot;). When you place an order or create an account,
+              we collect your name, email address,
               phone number, and shipping address. We also collect payment information, which is
               processed securely by Razorpay and never stored on our servers.
             </p>
@@ -109,8 +113,11 @@ export default function PrivacyPage() {
             <h2>8. Contact</h2>
             <p>
               For any privacy-related questions, contact us at{' '}
-              <a href="mailto:support@louispolo.in">support@louispolo.in</a> or write to:<br />
-              Louis Polo, Mumbai, Maharashtra, India.
+              <a href="mailto:support@louispolo.in">support@louispolo.in</a> or{' '}
+              <a href={`tel:${BRAND.phone.replace(/[\s-]/g, '')}`}>{BRAND.phone}</a>, or write
+              to:<br />
+              {BRAND.legalName}<br />
+              {BRAND.address}
             </p>
           </section>
 

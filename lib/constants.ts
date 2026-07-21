@@ -12,6 +12,10 @@ export const BRAND = {
   whatsapp:  'https://wa.me/918928789287',
   instagram: 'https://instagram.com/louispololuggage',
   linkedin:  'https://linkedin.com/company/louis-polo',
+  // Registered entity — as per Certificate of Incorporation
+  legalName: 'Louispolo Fashion India Private Limited',
+  cin:       'U19120MH2021PTC373857',
+  address:   '4, Floor 1, 11 Roosevelt House, Annexe Tulloch Road, Regal Cinema, Colaba, Mumbai, Maharashtra 400001, India',
 } as const
 
 export const ROUTES = {

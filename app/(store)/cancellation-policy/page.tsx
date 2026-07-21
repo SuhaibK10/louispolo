@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title:       'Cancellation Policy',
@@ -14,7 +15,7 @@ export default function CancellationPolicyPage() {
         <span className="lp-eyebrow">Legal</span>
         <h1 className="lp-heading-lg mb-2">Cancellation Policy</h1>
         <p className="font-body text-[var(--color-lp-muted)] text-sm mb-10">
-          Last updated: June 2025
+          Last updated: July 2026
         </p>
 
         <div className="prose-lp">
@@ -22,7 +23,8 @@ export default function CancellationPolicyPage() {
           <section>
             <h2>1. Cancelling Before Dispatch</h2>
             <p>
-              You can cancel an order any time before it has been shipped. Email{' '}
+              You can cancel an order any time before it has been shipped, free of charge — we
+              do not deduct any cancellation fee. Email{' '}
               <a href="mailto:support@louispolo.in">support@louispolo.in</a> with your order number
               and we will cancel it and issue a full refund to your original payment method within{' '}
               <strong>5–7 business days</strong>.
@@ -60,8 +62,13 @@ export default function CancellationPolicyPage() {
             <h2>5. Contact</h2>
             <p>
               For any questions about cancelling an order, email{' '}
-              <a href="mailto:support@louispolo.in">support@louispolo.in</a>. We aim to respond
-              within 2 business days.
+              <a href="mailto:support@louispolo.in">support@louispolo.in</a> or call{' '}
+              <a href={`tel:${BRAND.phone.replace(/[\s-]/g, '')}`}>{BRAND.phone}</a>. We aim to
+              respond within 2 business days.
+            </p>
+            <p>
+              {BRAND.legalName}<br />
+              {BRAND.address}
             </p>
           </section>
 

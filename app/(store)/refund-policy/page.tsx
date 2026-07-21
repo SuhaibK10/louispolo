@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title:       'Refund Policy',
@@ -14,7 +15,7 @@ export default function RefundPolicyPage() {
         <span className="lp-eyebrow">Legal</span>
         <h1 className="lp-heading-lg mb-2">Refund Policy</h1>
         <p className="font-body text-[var(--color-lp-muted)] text-sm mb-10">
-          Last updated: June 2025
+          Last updated: July 2026
         </p>
 
         <div className="prose-lp">
@@ -96,8 +97,13 @@ export default function RefundPolicyPage() {
             <h2>8. Contact</h2>
             <p>
               For any questions about returns or refunds, email{' '}
-              <a href="mailto:support@louispolo.in">support@louispolo.in</a>. We aim to respond
-              within 2 business days.
+              <a href="mailto:support@louispolo.in">support@louispolo.in</a> or call{' '}
+              <a href={`tel:${BRAND.phone.replace(/[\s-]/g, '')}`}>{BRAND.phone}</a>. We aim to
+              respond within 2 business days.
+            </p>
+            <p>
+              {BRAND.legalName}<br />
+              {BRAND.address}
             </p>
           </section>
 

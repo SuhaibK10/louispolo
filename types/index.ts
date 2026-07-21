@@ -69,6 +69,7 @@ export interface Product {
   category: ProductCategory
   tag?: ProductTag
   isFeatured?: boolean
+  saleExclusive?: boolean
   description: string
   // Cloudinary public_ids — transform on the fly via URL
   // e.g. "louispolo/products/aerosmart/aerosmart-red-1"

@@ -20,13 +20,11 @@ import type { Product, HeroSlide } from '@/types'
 // Replace public_ids with your Cloudinary uploads.
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    image:     'Hero_Image_p51olm.png',
+    image:     'fnl_zlkyo5.png',
     headline:  '',
     desktopImage: 'Hero_Image_Desktop_mkckrp.png',
     textStyle: 'shadow',
     textSize:  'lg',
-    mobileObjectPosition:  '100% center',
-    desktopObjectPosition: '100% center',
   },
   {
     image:     'heroLast_dkzwim.jpg',
@@ -77,6 +75,7 @@ export const PRODUCTS: Product[] = [
     slug: 'aerosmart-3in1',
     category: 'trolley',
     isFeatured: true,
+    saleExclusive: true,
     description:
       'Our most innovative design, front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     story: [
@@ -273,6 +272,7 @@ export const PRODUCTS: Product[] = [
     slug: 'veezoom',
     category: 'trolley',
     isFeatured: true,
+    saleExclusive: true,
     description:
       'Bold V-pattern design that stands out on every conveyor belt. Hard shell ABS with ultra-smooth spinner wheels, because your luggage should be as ambitious as you are.',
     story: [
@@ -869,6 +869,7 @@ export const PRODUCTS: Product[] = [
     slug: 'armorpack',
     category: 'backpack',
     isFeatured: true,
+    saleExclusive: true,
     description:
       'Hard shell protection in a backpack form. ArmorPack keeps your laptop, camera, and essentials safe without adding bulk. Adjustable straps, rigid outer shell, secure zip.',
     story: [
@@ -946,6 +947,7 @@ export const PRODUCTS: Product[] = [
     slug: 'hexcore',
     category: 'office-bag',
     isFeatured: true,
+    saleExclusive: true,
     description:
       'Rigid hard shell office bag built for daily professional use. Documents stay flat, tech stays safe, and you arrive looking sharp. The briefcase for people who hate briefcases.',
     story: [
@@ -1096,6 +1098,7 @@ export const PRODUCTS: Product[] = [
     slug: 'matrix-set',
     category: 'set',
     isFeatured: true,
+    saleExclusive: true,
     description:
       'Premium hard-shell spinner luggage in three nesting sizes: 20", 24", and 28". Engineered for business travellers, vacationers, and frequent flyers who demand lightweight durability, secure locking, and smooth mobility in one complete collection.',
     story: [
@@ -1239,6 +1242,7 @@ export const PRODUCTS: Product[] = [
     slug: 'gemtote-duffle-bag',
     category: 'duffle',
     isFeatured: true,
+    saleExclusive: true,
     description:
       'A hard-shell duffle built for short trips and quick getaways, structured enough to hold its shape, light enough to grab and go. Available in five colors.',
     story: [
@@ -1817,6 +1821,9 @@ export const PRODUCTS: Product[] = [
 
 // ─── Helper: get all featured products ───────────────────────────────────────
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.isFeatured)
+
+// ─── Helper: get all sale-exclusive products ─────────────────────────────────
+export const SALE_PRODUCTS = PRODUCTS.filter((p) => p.saleExclusive)
 
 // ─── Helper: get product by slug ─────────────────────────────────────────────
 export const getProductBySlug = (slug: string): Product | undefined =>

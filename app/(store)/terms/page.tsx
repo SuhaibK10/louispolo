@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title:       'Terms of Use',
@@ -14,7 +15,7 @@ export default function TermsPage() {
         <span className="lp-eyebrow">Legal</span>
         <h1 className="lp-heading-lg mb-2">Terms of Use</h1>
         <p className="font-body text-[var(--color-lp-muted)] text-sm mb-10">
-          Last updated: June 2025
+          Last updated: July 2026
         </p>
 
         <div className="prose-lp">
@@ -22,9 +23,13 @@ export default function TermsPage() {
           <section>
             <h2>1. Acceptance of Terms</h2>
             <p>
-              By accessing or using the Louis Polo website (louispolo.in) and placing orders, you
-              agree to be bound by these Terms of Use. If you do not agree, please do not use our
-              website.
+              This website (louispolo.in) is owned and operated by{' '}
+              <strong>{BRAND.legalName}</strong> (CIN: {BRAND.cin}), a company incorporated under
+              the Companies Act, 2013, with its registered office at {BRAND.address} (&quot;Louis
+              Polo&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). We sell luggage,
+              backpacks, wallets, and travel accessories through this website. By accessing or
+              using the site and placing orders, you agree to be bound by these Terms of Use. If
+              you do not agree, please do not use our website.
             </p>
           </section>
 
@@ -79,7 +84,19 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2>7. Intellectual Property</h2>
+            <h2>7. Warranty</h2>
+            <p>
+              Select products carry a manufacturer&apos;s warranty (typically 1–3 years,
+              depending on the product) against manufacturing defects in materials and
+              workmanship, as specified on the individual product page. The warranty does not
+              cover damage from misuse, accidental damage, normal wear and tear, or unauthorised
+              repairs. To make a claim, keep your invoice and email{' '}
+              <a href="mailto:support@louispolo.in">support@louispolo.in</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Intellectual Property</h2>
             <p>
               All content on this website, including text, images, logos, and design, is owned
               by or licensed to Louis Polo. You may not reproduce, distribute, or create
@@ -88,7 +105,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2>8. Limitation of Liability</h2>
+            <h2>9. Limitation of Liability</h2>
             <p>
               To the maximum extent permitted by law, Louis Polo shall not be liable for any
               indirect, incidental, or consequential damages arising from your use of the website
@@ -98,7 +115,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2>9. Governing Law</h2>
+            <h2>10. Governing Law</h2>
             <p>
               These Terms are governed by the laws of India. Any disputes shall be subject to the
               exclusive jurisdiction of the courts in Mumbai, Maharashtra.
@@ -106,7 +123,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2>10. Changes to These Terms</h2>
+            <h2>11. Changes to These Terms</h2>
             <p>
               We may revise these Terms at any time. Changes take effect immediately upon posting.
               Your continued use of the website constitutes acceptance of the revised Terms.
@@ -114,10 +131,12 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2>11. Contact</h2>
+            <h2>12. Contact</h2>
             <p>
-              For any questions regarding these Terms, contact us at{' '}
-              <a href="mailto:support@louispolo.in">support@louispolo.in</a>.
+              For any questions regarding these Terms, contact {BRAND.legalName} at{' '}
+              <a href="mailto:support@louispolo.in">support@louispolo.in</a> or{' '}
+              <a href={`tel:${BRAND.phone.replace(/[\s-]/g, '')}`}>{BRAND.phone}</a>, or write to
+              us at {BRAND.address}.
             </p>
           </section>
 

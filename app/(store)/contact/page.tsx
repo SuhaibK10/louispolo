@@ -59,9 +59,11 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <p className="font-body text-sm text-[var(--color-lp-muted)] mb-1">Offices</p>
+                <p className="font-body text-sm text-[var(--color-lp-muted)] mb-1">Registered Office</p>
                 <p className="font-body text-[var(--color-lp-ink)]">
-                  Mumbai · London · Hong Kong
+                  {BRAND.legalName}
+                  <br />
+                  {BRAND.address}
                 </p>
               </div>
             </div>
