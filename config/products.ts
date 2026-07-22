@@ -1813,24 +1813,24 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  // ── Vertex Pro Backpack ──────────────────────────────────────────────────
+  // ── Vertex Ergonomic BackPack ────────────────────────────────────────────
   {
-    id: 'vertex-pro-backpack',
-    metaTitle: 'Louis Polo Vertex Pro Backpack with Laptop Compartment & USB Port',
-    metaDescription: 'Stay organized wherever life takes you with the Louis Polo Vertex Pro Backpack. Featuring a dedicated laptop compartment, USB charging port, trolley sleeve, ergonomic padded straps, hidden security pocket, and spacious multi-compartment storage, it\'s the perfect backpack for office, college, business travel, and everyday commuting.',
+    id: 'vertex-ergonomic-backpack',
+    metaTitle: 'Louis Polo Vertex Ergonomic BackPack with Laptop Compartment & USB Port',
+    metaDescription: 'Stay organized wherever life takes you with the Louis Polo Vertex Ergonomic BackPack. Featuring a dedicated laptop compartment, USB charging port, trolley sleeve, ergonomic padded straps, hidden security pocket, and spacious multi-compartment storage, it\'s the perfect backpack for office, college, business travel, and everyday commuting.',
     keywords: ['business travel backpack', 'laptop backpack with usb charging port', 'backpack with trolley sleeve', 'water resistant laptop backpack', 'office commute backpack'],
-    name: 'Vertex Pro Backpack',
-    slug: 'vertex-pro-backpack',
+    name: 'Vertex Ergonomic BackPack',
+    slug: 'vertex-ergonomic-backpack',
     category: 'backpack',
     isFeatured: true,
     hideSizeSelector: true,
     saleExclusive: true,
     mrp: 4999,
     description:
-      'Louis Polo Vertex Pro Backpack is a premium business and travel backpack featuring a dedicated laptop compartment, USB charging port, trolley sleeve, multiple organizer pockets, ergonomic comfort, and spacious storage for everyday professionals and travelers.',
+      'Louis Polo Vertex Ergonomic BackPack is a premium business and travel backpack featuring a dedicated laptop compartment, USB charging port, trolley sleeve, multiple organizer pockets, ergonomic comfort, and spacious storage for everyday professionals and travelers.',
     story: [
-      'Designed with intelligently organized compartments, a dedicated padded laptop sleeve, spacious storage, and quick-access pockets, Vertex Pro keeps your essentials secure and within reach. Premium water-resistant fabric, ergonomic padded shoulder straps, breathable back support, USB charging port, luggage trolley sleeve, and durable branded hardware make it the perfect companion for work, travel, college, and daily commuting.',
-      'Whether you\'re heading to the office, boarding a flight, or navigating your daily routine, the Vertex Pro delivers comfort, organization, and timeless Louis Polo style.',
+      'Designed with intelligently organized compartments, a dedicated padded laptop sleeve, spacious storage, and quick-access pockets, Vertex Ergonomic keeps your essentials secure and within reach. Premium water-resistant fabric, ergonomic padded shoulder straps, breathable back support, USB charging port, luggage trolley sleeve, and durable branded hardware make it the perfect companion for work, travel, college, and daily commuting.',
+      'Whether you\'re heading to the office, boarding a flight, or navigating your daily routine, the Vertex Ergonomic delivers comfort, organization, and timeless Louis Polo style.',
     ],
     highlights: [
       {

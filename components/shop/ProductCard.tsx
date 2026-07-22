@@ -278,7 +278,7 @@ export function ProductCard({ product }: ProductCardProps) {
         {myntra && myntraTarget ? (
           <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)] whitespace-nowrap">
             {activeSize ? formatPrice(myntraTarget.price) : `From ${formatPrice(myntraTarget.price)}`}
-            <span className="hidden sm:inline ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
+            <span className="hidden sm:inline ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through decoration-1 decoration-lp-border-strong">
               {activeSize ? formatPrice(price) : formatPrice(lowestPrice)}
             </span>
             <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
@@ -288,7 +288,7 @@ export function ProductCard({ product }: ProductCardProps) {
         ) : product.mrp ? (
           <p className="font-body text-[0.85rem] font-medium text-[var(--color-lp-ink)] whitespace-nowrap">
             {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
-            <span className="hidden sm:inline ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through">
+            <span className="hidden sm:inline ml-2 font-normal text-[0.72rem] text-[var(--color-lp-faint)] line-through decoration-1 decoration-lp-border-strong">
               {formatPrice(product.mrp)}
             </span>
             <span className="ml-1.5 font-medium text-[0.72rem] text-[#5B6670]">
