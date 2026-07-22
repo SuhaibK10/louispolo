@@ -13,7 +13,7 @@ import { motion }                            from 'framer-motion'
 import { ArrowUpRight, LayoutGrid, BadgePercent } from 'lucide-react'
 import { ROUTES }                            from '@/lib/constants'
 import { SALE_PRODUCTS }                     from '@/config/products'
-import { cardUrl, PLACEHOLDER_URL }          from '@/lib/cloudinary'
+import { categoryUrl, PLACEHOLDER_URL }      from '@/lib/cloudinary'
 import { staggerChildren, scaleUp, VIEWPORT } from '@/lib/animations'
 import { ProductCard }                       from '@/components/shop/ProductCard'
 
@@ -202,7 +202,7 @@ export function CategoryGrid() {
                   />
                   {/* Image */}
                   <Image
-                    src={cardUrl(image) || PLACEHOLDER_URL}
+                    src={categoryUrl(image) || PLACEHOLDER_URL}
                     alt={label}
                     fill
                     className={`object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 ${imgClass}`}

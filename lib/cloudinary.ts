@@ -65,6 +65,11 @@ export const thumbUrl = (id: string) =>
 export const mobileCardUrl = (id: string) =>
   cld(id, 'f_auto,q_75,w_400,h_533,c_fill,g_auto')
 
+// Category/mood tile — full lifestyle photo, fills the frame.
+// No background removal: unlike product cutouts, these keep their real backdrop.
+export const categoryUrl = (id: string) =>
+  cld(id, 'f_auto,q_80,w_800,h_800,c_fill,g_auto')
+
 // Exhibition / trade show gallery — content-aware crop, wide enough for retina desktop
 export const expoUrl = (id: string) =>
    cld(id, 'f_auto,q_auto,w_1600,h_2133,c_fill,g_auto')
