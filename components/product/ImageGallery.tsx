@@ -8,7 +8,7 @@
 
 import { useState, useEffect }       from 'react'
 import Image                        from 'next/image'
-import { motion, AnimatePresence }  from 'framer-motion'
+import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
 import { pdpUrl, thumbUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 
 interface Props {
@@ -29,10 +29,25 @@ export function ImageGallery({ images, productName, activeColorIndex }: Props) {
     setImageLoaded(false)
   }, [active])
 
+  function handleDragEnd(_: unknown, info: PanInfo) {
+    const { offset, velocity } = info
+    if (offset.x < -50 || velocity.x < -400) {
+      setActive((a) => Math.min(a + 1, images.length - 1))
+    } else if (offset.x > 50 || velocity.x > 400) {
+      setActive((a) => Math.max(a - 1, 0))
+    }
+  }
+
   return (
     <div className="flex flex-col gap-3">
-      {/* Main image */}
-      <div className="relative aspect-3/4 bg-lp-cream overflow-hidden">
+      {/* Main image — drag left/right to slide between images */}
+      <motion.div
+        className="relative aspect-3/4 bg-lp-cream overflow-hidden touch-pan-y select-none"
+        drag={images.length > 1 ? 'x' : false}
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.6}
+        onDragEnd={handleDragEnd}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -47,13 +62,14 @@ export function ImageGallery({ images, productName, activeColorIndex }: Props) {
               alt={`${productName}, view ${active + 1}`}
               fill
               priority
+              draggable={false}
               onLoad={() => setImageLoaded(true)}
               className="object-cover object-center"
               sizes="(max-width:768px) 100vw, 50vw"
             />
           </motion.div>
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       {/* Thumbnails */}
       {images.length > 1 && (

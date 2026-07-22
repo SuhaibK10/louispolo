@@ -75,6 +75,9 @@ export const PRODUCTS: Product[] = [
     slug: 'aerosmart-3in1',
     category: 'trolley',
     isFeatured: true,
+    hideSizeSelector: true,
+    saleExclusive: true,
+    mrp: 9990,
     description:
       'Our most innovative design, front laptop pocket, side multipurpose pocket, and main cabin. Three-way access so you never dig through your bag at security again.',
     story: [
@@ -135,18 +138,30 @@ export const PRODUCTS: Product[] = [
         colorHex: '#A6B21A',
         bodyHex: '#4A4945',
         lowStock: true,
+        images: [
+          '1C6A9455_Large_Background_Removed_xydl9r',
+          'louis-polo-aerosmart-grey-01-1782298690605-1782298690605_Background_Removed_e9vnew.png',
+          'louis-polo-aerosmart-grey-02-1782298691894-1782298691894_Background_Removed_pyx3pk.png',
+          'louis-polo-aerosmart-grey-04-1782298694121-1782298694121_Background_Removed_svihmw.png',
+          'louis-polo-aerosmart-grey-03-1782298692939-1782298692939_Background_Removed_lzdcwx.png',
+        ],
         sizes: [
-          { size: 'Cabin', price: 8500, stock: 25, sku: '8906206840001-Y-20' },
+          { size: 'Cabin', price: 3990, stock: 25, sku: '8906206840001-Y-20' },
         ],
       },
       {
         color: 'Black',
         colorHex: '#C0392B',
         bodyHex: '#3E3E3E',
+        images: [
+          '1C6A9495_Background_Removed_czmfug',
+          'louis-polo-aerosmart-metallic-black-01-1782296233192-1782296233192_Background_Removed_czuh6q.png',
+          'louis-polo-aerosmart-metallic-black-02-1782296234066-1782296234066_Background_Removed_lgeuvl.png',
+          'louis-polo-aerosmart-metallic-black-04-1782296235914-1782296235914_Background_Removed_ikb6py.png',
+          'louis-polo-aerosmart-metallic-black-03-1782296235017-1782296235017_Background_Removed_gqhd4h.png',
+        ],
         sizes: [
-          { size: 'Cabin', price: 8500, stock: 40, sku: '8906206840001-R-20' },
-          { size: 'Medium', price: 9500, stock: 30, sku: '8906206840001-R-24' },
-          { size: 'Large', price: 10500, stock: 20, sku: '8906206840001-R-28' },
+          { size: 'Cabin', price: 3990, stock: 40, sku: '8906206840001-R-20' },
         ],
       },
       {
@@ -154,13 +169,18 @@ export const PRODUCTS: Product[] = [
         colorHex: '#3A5F97',
         bodyHex: '#BDBDB6',
         lowStock: true,
+        images: [
+          'IMG_2420_Large_Background_Removed_ed2pt3.png',
+          'louis-polo-aerosmart-silver-grey-10-1782298610328-1782298610328_Background_Removed_i7catb.png',
+          'louis-polo-aerosmart-silver-grey-01-1782298602289-1782298602289-2_Background_Removed_egycpu.png',
+          'louis-polo-aerosmart-silver-grey-04-1782298607083-1782298607083_Background_Removed_hgybgk.png',
+          'louis-polo-aerosmart-silver-grey-08-1782298609272-1782298609272-2_Background_Removed_tyjqzw.png',
+        ],
         sizes: [
-          { size: 'Cabin', price: 8500, stock: 35, sku: '8906206840001-T-20' },
-          { size: 'Medium', price: 9500, stock: 25, sku: '8906206840001-T-24' },
-          { size: 'Large', price: 10500, stock: 15, sku: '8906206840001-T-28' },
+          { size: 'Cabin', price: 3990, stock: 35, sku: '8906206840001-T-20' },
         ],
       },
-      
+
     ],
   },
 
@@ -1284,15 +1304,21 @@ export const PRODUCTS: Product[] = [
       {
         color: 'White',
         colorHex: '#FAFAFA',
+        // First pic is the current shared image; append real per-color shots after it
+        images: [
+          'Generated_Image_June_18_2026_-_1_53AM_Background_Removed_cblbni.png',
+        ],
         sizes: [
           { size: 'One Size', price: 4000, stock: 30 },
         ],
       },
-      
-      
       {
         color: 'Grey',
         colorHex: '#9E9E9E',
+        // First pic is the current shared image; append real per-color shots after it
+        images: [
+          '1C6A9677_Large_Background_Removed_w6duba.png',
+        ],
         sizes: [
           { size: 'One Size', price: 4000, stock: 30 },
         ],
@@ -1300,6 +1326,10 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Pink',
         colorHex: '#EC407A',
+        // First pic is the current shared image; append real per-color shots after it
+        images: [
+          '1C6A9697_Background_Removed_Large_Background_Removed_fc0j9n.png',
+        ],
         sizes: [
           { size: 'One Size', price: 4000, stock: 30 },
         ],
@@ -1307,6 +1337,10 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Green',
         colorHex: '#43A047',
+        // First pic is the current shared image; append real per-color shots after it
+        images: [
+          '1C6A9716_Background_Removed_r9rkn4.png',
+        ],
         sizes: [
           { size: 'One Size', price: 4000, stock: 30 },
         ],
