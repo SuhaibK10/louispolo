@@ -25,6 +25,9 @@ export default async function AccountPage() {
 
   const name  = user.user_metadata?.full_name ?? user.user_metadata?.name ?? null
   const email = user.email ?? ''
+  const memberSince = new Date(user.created_at).toLocaleDateString('en-IN', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  })
   const initials = name
     ? name.split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase()
     : email[0]?.toUpperCase() ?? 'U'
@@ -98,6 +101,10 @@ export default async function AccountPage() {
               <span className="font-body text-[0.8rem] text-[var(--color-lp-ink)] capitalize">
                 {user.app_metadata?.provider ?? 'email'}
               </span>
+            </div>
+            <div className="px-5 py-3.5 flex justify-between">
+              <span className="font-body text-[0.75rem] text-[var(--color-lp-muted)]">Member since</span>
+              <span className="font-body text-[0.8rem] text-[var(--color-lp-ink)]">{memberSince}</span>
             </div>
           </div>
         </div>
