@@ -146,7 +146,7 @@ export const PRODUCTS: Product[] = [
           'louis-polo-aerosmart-grey-03-1782298692939-1782298692939_Background_Removed_lzdcwx.png',
         ],
         sizes: [
-          { size: 'Cabin', price: 3990, stock: 25, sku: '8906206840001-Y-20' },
+          { size: 'Cabin', price: 5990, stock: 25, sku: '8906206840001-Y-20' },
         ],
       },
       {
@@ -161,7 +161,7 @@ export const PRODUCTS: Product[] = [
           'louis-polo-aerosmart-metallic-black-03-1782296235017-1782296235017_Background_Removed_gqhd4h.png',
         ],
         sizes: [
-          { size: 'Cabin', price: 3990, stock: 40, sku: '8906206840001-R-20' },
+          { size: 'Cabin', price: 5990, stock: 40, sku: '8906206840001-R-20' },
         ],
       },
       {
@@ -177,7 +177,7 @@ export const PRODUCTS: Product[] = [
           'louis-polo-aerosmart-silver-grey-08-1782298609272-1782298609272-2_Background_Removed_tyjqzw.png',
         ],
         sizes: [
-          { size: 'Cabin', price: 3990, stock: 35, sku: '8906206840001-T-20' },
+          { size: 'Cabin', price: 5990, stock: 35, sku: '8906206840001-T-20' },
         ],
       },
 
