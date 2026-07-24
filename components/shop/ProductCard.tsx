@@ -9,8 +9,8 @@
 import { useState, useEffect } from 'react'
 import Image                        from 'next/image'
 import Link                         from 'next/link'
-import { motion }                   from 'framer-motion'
-import { ArrowRight, ShoppingBag, Check, Heart, Ruler, Star } from 'lucide-react'
+import { motion, AnimatePresence }  from 'framer-motion'
+import { ArrowRight, ShoppingBag, Check, Heart, Ruler, Star, ChevronDown } from 'lucide-react'
 import type { Product, ProductSize } from '@/types'
 import { cardUrl, PLACEHOLDER_URL } from '@/lib/cloudinary'
 import { formatPrice }              from '@/lib/utils'
@@ -53,6 +53,7 @@ export function ProductCard({ product }: ProductCardProps) {
   )
   const [addedToCart,     setAddedToCart]     = useState(false)
   const [sizeGuideOpen,   setSizeGuideOpen]   = useState(false)
+  const [detailsOpen,     setDetailsOpen]     = useState(false)
 
   const variant      = product.variants[activeVariant]
   const lowestPrice  = Math.min(...product.variants.flatMap(v => v.sizes.map(s => s.price)))
@@ -272,6 +273,40 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           )
         })()}
+
+        {/* View details — reveals the short product description inline */}
+        {product.description && (
+          <div className="pt-0.5">
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); setDetailsOpen((o) => !o) }}
+              className="flex items-center gap-1 font-body text-[0.55rem] tracking-[0.08em] uppercase text-[var(--color-lp-faint)] hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+              aria-expanded={detailsOpen}
+            >
+              View details
+              <ChevronDown
+                size={11}
+                strokeWidth={1.5}
+                className={`transition-transform duration-200 ${detailsOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+            <AnimatePresence initial={false}>
+              {detailsOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="overflow-hidden"
+                >
+                  <p className="font-body text-[0.72rem] leading-relaxed text-[var(--color-lp-muted)] pt-1.5">
+                    {product.description}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
 
         {/* Price — single line in both branches so Myntra and
             non-Myntra cards keep identical height and buttons align */}

@@ -22,7 +22,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     image:     'fnl_zlkyo5.png',
     headline:  '',
-    desktopImage: 'Hero_Image_Desktop_mkckrp.png',
+    desktopImage: 'desktopfnl_nxmol9.png',
     textStyle: 'shadow',
     textSize:  'lg',
   },
