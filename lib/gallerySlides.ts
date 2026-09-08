@@ -8,12 +8,21 @@
 
 export type GallerySlide =
   | { type: 'image'; src: string }
-  | { type: 'video'; youtubeId: string }
+  | { type: 'video'; source: 'youtube'; youtubeId: string }
+  | { type: 'video'; source: 'stream'; videoId: string }
 
-export function buildGallerySlides(images: string[], videoYoutubeId?: string): GallerySlide[] {
+interface DemoVideo {
+  youtubeId?:     string  // trial alternative — see Product.demoVideoYoutubeId
+  streamVideoId?: string  // Cloudflare Stream UID — see Product.demoVideoId
+}
+
+export function buildGallerySlides(images: string[], video?: DemoVideo): GallerySlide[] {
   const slides: GallerySlide[] = images.map((src) => ({ type: 'image', src }))
-  if (videoYoutubeId && slides.length > 0) {
-    slides.splice(1, 0, { type: 'video', youtubeId: videoYoutubeId })
+  if (slides.length === 0) return slides
+  if (video?.youtubeId) {
+    slides.splice(1, 0, { type: 'video', source: 'youtube', youtubeId: video.youtubeId })
+  } else if (video?.streamVideoId) {
+    slides.splice(1, 0, { type: 'video', source: 'stream', videoId: video.streamVideoId })
   }
   return slides
 }

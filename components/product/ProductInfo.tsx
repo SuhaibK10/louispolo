@@ -21,7 +21,7 @@ import { ROUTES, SEO }           from '@/lib/constants'
 import { ShareButton }           from '@/components/ui/ShareButton'
 import { useCartStore }          from '@/store/cartStore'
 import { thumbUrl, pdpUrl, PLACEHOLDER_URL } from '@/lib/cloudflareImages'
-import { cfVideo }               from '@/lib/cloudflareStream'
+import { cfVideo, cfVideoPoster } from '@/lib/cloudflareStream'
 import { buildGallerySlides, youtubeThumbnail } from '@/lib/gallerySlides'
 import { useWishlistStore }      from '@/store/wishlistStore'
 import { SizeGuideModal }        from '@/components/ui/SizeGuideModal'
@@ -270,7 +270,10 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
           cosmetic sync that self-corrects the moment the hover ends. ──── */}
       {(() => {
         const galleryImages = variant.images?.length ? variant.images : product.images
-        const slides = buildGallerySlides(galleryImages, variant.demoVideoYoutubeId ?? product.demoVideoYoutubeId)
+        const slides = buildGallerySlides(galleryImages, {
+          youtubeId:     variant.demoVideoYoutubeId ?? product.demoVideoYoutubeId,
+          streamVideoId: product.demoVideoId,
+        })
         if (slides.length <= 1) return null
         return (
           <div className="hidden md:flex gap-2 overflow-x-auto scrollbar-hide">
@@ -286,12 +289,25 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
                 aria-label={slide.type === 'video' ? `${product.name} video` : `View image ${i + 1}`}
                 aria-pressed={i === galleryActiveAngle}
               >
-                {slide.type === 'video' ? (
+                {slide.type === 'video' && slide.source === 'youtube' ? (
                   <>
                     <img
                       src={youtubeThumbnail(slide.youtubeId)}
                       alt={`${product.name} video thumbnail`}
                       className="absolute inset-0 w-full h-full object-cover object-center"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+                      <Play size={16} strokeWidth={0} fill="white" className="ml-0.5" />
+                    </span>
+                  </>
+                ) : slide.type === 'video' && slide.source === 'stream' ? (
+                  <>
+                    <Image
+                      src={cfVideoPoster(slide.videoId)}
+                      alt={`${product.name} video thumbnail`}
+                      fill
+                      className="object-cover object-center"
+                      sizes="64px"
                     />
                     <span className="absolute inset-0 flex items-center justify-center bg-black/25">
                       <Play size={16} strokeWidth={0} fill="white" className="ml-0.5" />

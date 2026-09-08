@@ -67,6 +67,20 @@ export const PRODUCT_REVIEWS: Record<string, Review[]> = {
     { name: 'Sanya Kapoor',    rating: 4, date: '21 Aug 2026', text: "Works well, just make sure you don't overpack the small case — the zipper gets tight." },
     { name: 'Abhishek Nanda',  rating: 5, date: '23 Aug 2026', text: "My go-to bag now for every short trip. Sturdy handle, smooth wheels, no issues so far." },
   ],
+  'aerosmart-pro': [
+    {
+      name:   'Aparna',
+      rating: 5,
+      date:   '9 Sep 2026',
+      text:   "Looks even better in hand than in the pictures, the glossy finish catches light and doesn't look cheap at all. Gets compliments every time I use it. Shows fingerprints more than a matte one would, but worth it for how attractive it looks.",
+      images: [
+        '4007c0ae-a07b-4aea-a1e6-06920e0ee100',
+        '6f248c1a-47a2-4a89-257a-a20aec996800',
+        'b749d1ab-f4ab-4308-1f31-12f961be5100',
+        'd7af4aa0-7a32-4d33-caba-db6a45d9d700',
+      ],
+    },
+  ],
 }
 
 export function getReviewsForProduct(slug: string): Review[] {

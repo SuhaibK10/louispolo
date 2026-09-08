@@ -11,6 +11,7 @@ import Image                        from 'next/image'
 import { Flame, ZoomIn, Play }      from 'lucide-react'
 import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
 import { pdpUrl, pdpZoomUrl, thumbUrl, PLACEHOLDER_URL, type ImageFit } from '@/lib/cloudflareImages'
+import { cfVideo, cfVideoPoster }   from '@/lib/cloudflareStream'
 import { buildGallerySlides, youtubeThumbnail } from '@/lib/gallerySlides'
 
 const LONG_PRESS_MS      = 350  // hold duration before zoom kicks in
@@ -24,13 +25,14 @@ interface Props {
   recentPurchases?: number
   imageFit?: ImageFit
   videoYoutubeId?: string
+  videoStreamId?: string
 }
 
-export function ImageGallery({ images, productName, active, onActiveChange, recentPurchases, imageFit, videoYoutubeId }: Props) {
+export function ImageGallery({ images, productName, active, onActiveChange, recentPurchases, imageFit, videoYoutubeId, videoStreamId }: Props) {
   // Photos plus, when the product has one, a video slide spliced in right
   // after the first photo — see lib/gallerySlides. `active`/`displayed`
   // index into this list, not the raw `images` array.
-  const slides = buildGallerySlides(images, videoYoutubeId)
+  const slides = buildGallerySlides(images, { youtubeId: videoYoutubeId, streamVideoId: videoStreamId })
   const currentSlide = slides[active]
   const isVideoSlide = currentSlide?.type === 'video'
 
@@ -77,7 +79,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
     if (preload.complete) swap()
     return () => { cancelled = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, displayed, images, imageFit, videoYoutubeId])
+  }, [active, displayed, images, imageFit, videoYoutubeId, videoStreamId])
 
   function handleDragEnd(_: unknown, info: PanInfo) {
     const { offset, velocity } = info
@@ -235,13 +237,21 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
             transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="absolute inset-0"
           >
-            {displayedSlide.type === 'video' ? (
+            {displayedSlide.type === 'video' && displayedSlide.source === 'youtube' ? (
               <iframe
                 src={`https://www.youtube.com/embed/${displayedSlide.youtubeId}?rel=0&modestbranding=1`}
                 title={`${productName} video`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="w-full h-full"
+              />
+            ) : displayedSlide.type === 'video' && displayedSlide.source === 'stream' ? (
+              <video
+                key={displayedSlide.videoId}
+                src={cfVideo(displayedSlide.videoId)}
+                controls
+                playsInline
+                className="w-full h-full object-contain bg-black"
               />
             ) : (
               <Image
@@ -285,7 +295,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
               aria-label={slide.type === 'video' ? `${productName} video` : `View image ${i + 1}`}
               aria-pressed={i === active}
             >
-              {slide.type === 'video' ? (
+              {slide.type === 'video' && slide.source === 'youtube' ? (
                 <>
                   {/* Plain <img>, not next/image — img.youtube.com isn't in
                       next.config.ts's remotePatterns and doesn't need the
@@ -294,6 +304,19 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
                     src={youtubeThumbnail(slide.youtubeId)}
                     alt={`${productName} video thumbnail`}
                     className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+                    <Play size={16} strokeWidth={0} fill="white" className="ml-0.5" />
+                  </span>
+                </>
+              ) : slide.type === 'video' && slide.source === 'stream' ? (
+                <>
+                  <Image
+                    src={cfVideoPoster(slide.videoId)}
+                    alt={`${productName} video thumbnail`}
+                    fill
+                    className="object-cover object-center"
+                    sizes="64px"
                   />
                   <span className="absolute inset-0 flex items-center justify-center bg-black/25">
                     <Play size={16} strokeWidth={0} fill="white" className="ml-0.5" />

@@ -108,6 +108,7 @@ export function ProductPageClient({ product, defaultColor }: Props) {
           recentPurchases={product.recentPurchases}
           imageFit={product.imageFit}
           videoYoutubeId={product.variants[previewColorIndex]?.demoVideoYoutubeId ?? product.demoVideoYoutubeId}
+          videoStreamId={product.demoVideoId}
         />
       </div>
       <div>

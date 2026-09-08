@@ -33,6 +33,15 @@ const nextConfig = {
         hostname: 'assets.louispoloworld.com',
         pathname: '/**',
       },
+      {
+        // Cloudflare Stream video posters/thumbnails (see lib/cloudflareStream.ts).
+        // The custom loader above passes these straight through untouched
+        // (it only rewrites imagedelivery.net URLs), so this is just the
+        // remote-image allowlist entry next/image needs to render them.
+        protocol: 'https',
+        hostname: 'customer-*.cloudflarestream.com',
+        pathname: '/**',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },

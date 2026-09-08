@@ -328,7 +328,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
-      '5418ffdf-afa1-456e-690a-aaeb1f147b00',
+      '4cfa6152-3a1d-41d4-8ada-13909179f400',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -597,7 +597,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
-      '74345c2c-f998-4a4b-7340-c166a761bb00',
+      'ba87f0fa-65d2-4122-1eaf-24c054580d00',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -704,7 +704,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
-      '3358f3b8-1304-4617-c99c-23bc85a8e800',
+      '073b0be0-5336-4699-84d2-125330dd1f00',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -1383,7 +1383,7 @@ export const PRODUCTS: Product[] = [
       '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
       // 'f14c65cb-42c9-4a16-f53e-72b9d334d000',
-      'daa285c7-588a-4af9-bb72-6a6a39656c00',
+      '080cfa7e-5210-4ec9-62da-d1dea1d5eb00',
       '36351ce5-e009-4f94-0847-b4cd6ed3fd00',
     ],
     features: [
@@ -1521,7 +1521,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['81dfb62c-c97a-4318-5225-9a8348f8a000'],
+    images: ['6ca3a2fc-b4ee-421c-0035-b96b396d1800'],
     features: [
       { label: 'Smooth rolling spinner wheels' },
       { label: 'Strong bearing capacity' },
@@ -1541,7 +1541,7 @@ export const PRODUCTS: Product[] = [
         images: [
           // 'c319e66f-b873-43f4-182b-e42f28195100',
           // 'd8c8d4ca-72d4-4e8e-5472-69750f93ae00',
-          '81dfb62c-c97a-4318-5225-9a8348f8a000',
+          '6ca3a2fc-b4ee-421c-0035-b96b396d1800',
           '75d1a61d-78a9-49da-94a3-37eeb31da400',
           '8ab788d9-c71b-41b9-fc57-8e4b95559a00',
           'a2c0f7e8-56ff-4508-d581-7331f5110d00',
@@ -1613,7 +1613,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['b3231914-8363-41d9-bf8b-a126a7e40800'],
+    images: ['78438fac-0c21-410a-cad5-bd1137c68300'],
     features: [
       { label: '360° silent spinner wheels' },
       { label: 'Combination lock' },
@@ -1633,7 +1633,7 @@ export const PRODUCTS: Product[] = [
         images: [
           // 'c2cb6254-efef-4044-4848-636e2adaeb00',
           // '0cd7a434-6f5e-4109-9e4f-68c6cb868a00',
-          'b3231914-8363-41d9-bf8b-a126a7e40800',
+          '78438fac-0c21-410a-cad5-bd1137c68300',
           '11656b9a-b790-43e6-fa42-ca6d7142bf00',
         ],
         sizes: [
@@ -1710,7 +1710,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['8f00eedc-747a-4f86-37ce-caa373873200','3051c79d-1359-4f89-66d2-e446d95a4b00'],
+    images: ['9f4f68bf-df82-42c5-c84e-2a5a702eea00','3051c79d-1359-4f89-66d2-e446d95a4b00'],
     features: [
       { label: 'Secure combination lock' },
       { label: 'Hard shell construction' },
@@ -1782,7 +1782,7 @@ export const PRODUCTS: Product[] = [
     // account's credit limit is exhausted.
     images: [
       // '97c1e757-4391-4b32-9741-527e449e8300',
-      'db472c90-8b0f-4066-b4d3-2c80ca653900',
+      'd64eb0a1-4df9-4f58-4b10-85b646e7e300',
       'bf5245a9-9816-4d9c-434c-87b7307bb300',
       '221575ce-07d4-47d1-20cf-70c5df26d300',
       '65e0463f-3965-484a-1414-0708842ef200',
@@ -1854,7 +1854,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
-      '3c0ed2b3-53d5-470b-9f6a-2752ad26d800',
+      'd257a691-5a96-4159-8bf5-c70ab4c89300',
     ],
     features: [
       { label: '360° spinner wheels' },
@@ -2044,7 +2044,7 @@ export const PRODUCTS: Product[] = [
     images:      [
       // '0c421c25-1388-4c8a-53b2-31cd936eae00',
       // 'c9c1474d-8c7c-4bfd-84a0-9e2beb99b300',
-      '2f030631-195c-4803-a297-c6f157b07000',
+      '8ba2c2b3-207d-412a-3f5e-bac9584f5800',
       '6b6b0465-9b1a-4817-baa6-a859f69f2800'
     ],
     features: [
@@ -2146,6 +2146,17 @@ export const PRODUCTS: Product[] = [
           '45ee8cdb-6279-4f5a-68b6-10d0a4904f00',
           '0b1c579c-1b69-4904-c1b7-03567c581400',
           '8410c476-2a8a-4d3c-bb8a-fd11b32f7a00',
+        ],
+        sizes: [{ size: '17 Inch', price: 3490, stock: 30 }],
+      },
+      {
+        color:    'Grey',
+        colorHex: '#757575',
+        images: [
+          '6526d846-7cac-4730-cbc7-a93433b20100',
+          '86a94ae0-649a-4bf6-a96e-f7dc9fb10500',
+          '27d9e514-e08d-4dae-9493-5170593d8a00',
+          '206a787f-3964-4989-1dc6-70df995f4600',
         ],
         sizes: [{ size: '17 Inch', price: 3490, stock: 30 }],
       },
@@ -2967,7 +2978,7 @@ export const PRODUCTS: Product[] = [
         color:    'Silver',
         colorHex: '#BDBDBD',
         images: [
-          'cb615656-2342-4da2-eef6-f95291954400',
+          '222ec415-deef-4346-7172-cee9bf128f00',
           '586a020d-f156-43e7-d82a-8b6724b0b000',
           'bd124541-7c3d-4290-7242-891f9b00ca00',
           '59fa23d6-d2e8-4454-f571-2c025ea07200',
@@ -3711,7 +3722,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
-      '2c9be321-b43c-44b2-4426-9083481f8500',
+      'b9b632fa-8ce6-4e2a-9fa4-7fb7db706c00',
       '8c372b35-7aee-4187-695e-fd75b4ad6400',
       '60336999-7579-4108-2a90-0192b95fa100',
       'c9739b19-8151-4a79-e06a-cd5b16407e00',
@@ -3734,7 +3745,7 @@ export const PRODUCTS: Product[] = [
         color: 'Pink',
         colorHex: '#D8556F',
         images: [
-          '2c9be321-b43c-44b2-4426-9083481f8500',
+          'b9b632fa-8ce6-4e2a-9fa4-7fb7db706c00',
           'ae66ca43-d1c9-4fe6-adea-ae8f5d247400',
           'cce8cb26-3b5b-49be-de9c-d123c86a4200',
           'f4826864-394a-4cb2-e8fd-098829bf4200',
@@ -3875,7 +3886,7 @@ export const PRODUCTS: Product[] = [
     images:      [
       // '0caedf5f-e860-40a0-815d-948cb8b39200',
       // '84b25074-a05f-4498-c0bd-d4d058ed7500',
-      'f62f9a94-6062-40a0-3e94-8bddd84b7c00',
+      '9d54ae56-6970-4a7c-a1cf-4d9bbf94de00',
       '958743a7-4632-403a-6049-7e32ad208900',
       '2dd3b666-1262-4a75-9c70-95563114ee00',
       '7618886c-ef64-4409-1de0-0b3ba8b27f00',
@@ -3895,7 +3906,7 @@ export const PRODUCTS: Product[] = [
         color:    'Black',
         colorHex: '#222221',
         images: [
-          'f62f9a94-6062-40a0-3e94-8bddd84b7c00',
+          '9d54ae56-6970-4a7c-a1cf-4d9bbf94de00',
           '958743a7-4632-403a-6049-7e32ad208900',
           '2dd3b666-1262-4a75-9c70-95563114ee00',
           '7618886c-ef64-4409-1de0-0b3ba8b27f00',
@@ -4006,7 +4017,7 @@ export const PRODUCTS: Product[] = [
         a: 'Yes. Each DiamondLux size is available on its own. The set simply prices the three together and guarantees a matched batch and finish.',
       },
     ],
-    images: ['31497826-4729-4374-769c-679b65837d00'],
+    images: ['af139242-7fd6-4c93-a3d6-45137d042300'],
     features: [
       { label: 'Smooth rolling spinner wheels' },
       { label: 'Combination lock' },
@@ -4024,7 +4035,7 @@ export const PRODUCTS: Product[] = [
         // account's credit limit is exhausted.
         images: [
           // '0269dd46-6db0-4865-1cd2-d2a28bea9800',
-          '31497826-4729-4374-769c-679b65837d00',
+          'af139242-7fd6-4c93-a3d6-45137d042300',
         ],
         sizes: [
           { size: 'Set of 3', price: 11499, stock: 15 },
@@ -4514,7 +4525,7 @@ export const PRODUCTS: Product[] = [
     images: [
       // 'e41e9ccf-2de0-4ae9-0f2f-85359636c400',
       // '578abe9b-91f6-4a83-e684-bdd4cdc54100',
-      '3a57ef31-7bff-4e6d-480a-35c45acd8800',
+      'd6bf7315-a72e-4a67-ed20-8db078e68800',
     ],
     features: [
       { label: '20", 24" & 28" included' },
@@ -4558,7 +4569,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty on all three cases, covering manufacturing defects in the shell, wheels, telescopic handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
-      '96da18fe-8ba7-4bb5-15ec-efc5e5275500',
+      'c2476eff-510c-4177-08cc-6d415d400e00',
     ],
     features: [
       { label: '20", 24" & 28" included' },
@@ -5000,7 +5011,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['45dac148-397f-4e0b-583b-029371ac9f00', 'c13c42ca-6431-427f-a092-43171750fb00'],
+    images: ['d3659973-2731-47d5-8a96-876e018e8f00', 'c13c42ca-6431-427f-a092-43171750fb00'],
     features: [
       { label: 'Structured hard-shell body' },
       { label: 'Vertical rib detailing' },
@@ -5011,7 +5022,7 @@ export const PRODUCTS: Product[] = [
     variants: [
       {
         color: 'Silver', colorHex: '#BDBDBD',
-        images: ['45dac148-397f-4e0b-583b-029371ac9f00', 'c13c42ca-6431-427f-a092-43171750fb00', '47687b74-6a30-4524-59d0-03a7f1f66600', '7debe021-dd88-48f1-5e93-3b84d4a3f600', 'd3ef9cf7-f1d7-40c8-3522-cba88014dc00', '64351003-1376-410c-a59e-5f6156151d00'],
+        images: ['d3659973-2731-47d5-8a96-876e018e8f00', 'c13c42ca-6431-427f-a092-43171750fb00', '47687b74-6a30-4524-59d0-03a7f1f66600', '7debe021-dd88-48f1-5e93-3b84d4a3f600', 'd3ef9cf7-f1d7-40c8-3522-cba88014dc00', '64351003-1376-410c-a59e-5f6156151d00'],
         sizes: [{ size: 'One Size', price: 3800, stock: 15 }],
       },
     ],
