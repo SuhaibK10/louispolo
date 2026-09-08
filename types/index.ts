@@ -68,6 +68,7 @@ export interface ColorVariant {
   sizes: SizeOption[]
   lowStock?: boolean
   images?: string[]     // per-color gallery — overrides Product.images[index] when set
+  demoVideoYoutubeId?: string  // per-color video — overrides Product.demoVideoYoutubeId when set
 }
 
 export interface Product {

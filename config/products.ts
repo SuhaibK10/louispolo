@@ -4445,6 +4445,7 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Black',
         colorHex: '#212121',
+        demoVideoYoutubeId: 'yKVksJCo1R4',
         images: [
           'f18adae4-1c3e-46d4-dfb2-66c1c31aad00',
           '45538b81-1170-40a2-cbc5-8f0cee2c3200',

@@ -259,7 +259,7 @@ export function ProductCard({ product, initialColor }: ProductCardProps) {
             A Cloudflare-hosted video swaps inline into the card frame; a
             YouTube trial video (no demoVideoId) opens the fullscreen modal
             instead, since an iframe can't do the same inline loop/crop. */}
-        {(product.demoVideoId || product.demoVideoYoutubeId) && (
+        {(product.demoVideoId || variant.demoVideoYoutubeId || product.demoVideoYoutubeId) && (
           <motion.button
             type="button"
             onClick={(e) => {
@@ -590,11 +590,11 @@ export function ProductCard({ product, initialColor }: ProductCardProps) {
         </div>
       </div>
 
-      {product.demoVideoYoutubeId && (
+      {(variant.demoVideoYoutubeId ?? product.demoVideoYoutubeId) && (
         <DemoVideoModal
           open={youtubeOpen}
           onClose={() => setYoutubeOpen(false)}
-          youtubeId={product.demoVideoYoutubeId}
+          youtubeId={variant.demoVideoYoutubeId ?? product.demoVideoYoutubeId}
         />
       )}
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />

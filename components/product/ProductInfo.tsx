@@ -270,7 +270,7 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
           cosmetic sync that self-corrects the moment the hover ends. ──── */}
       {(() => {
         const galleryImages = variant.images?.length ? variant.images : product.images
-        const slides = buildGallerySlides(galleryImages, product.demoVideoYoutubeId)
+        const slides = buildGallerySlides(galleryImages, variant.demoVideoYoutubeId ?? product.demoVideoYoutubeId)
         if (slides.length <= 1) return null
         return (
           <div className="hidden md:flex gap-2 overflow-x-auto scrollbar-hide">
@@ -434,7 +434,7 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
         )}
 
         {/* Play — product demo video, only shown when the product has one */}
-        {(product.demoVideoId || product.demoVideoYoutubeId) && (
+        {(product.demoVideoId || variant.demoVideoYoutubeId || product.demoVideoYoutubeId) && (
           <motion.button
             type="button"
             onClick={() => setVideoOpen(true)}
@@ -547,12 +547,12 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
 
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
       <ReviewsModal open={reviewsOpen} onClose={() => setReviewsOpen(false)} productName={product.name} reviews={reviews} />
-      {(product.demoVideoId || product.demoVideoYoutubeId) && (
+      {(product.demoVideoId || variant.demoVideoYoutubeId || product.demoVideoYoutubeId) && (
         <DemoVideoModal
           open={videoOpen}
           onClose={() => setVideoOpen(false)}
           videoId={product.demoVideoId}
-          youtubeId={product.demoVideoYoutubeId}
+          youtubeId={variant.demoVideoYoutubeId ?? product.demoVideoYoutubeId}
         />
       )}
     </div>
