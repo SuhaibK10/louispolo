@@ -8,12 +8,34 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence, useMotionValue, useMotionValueEvent, animate } from 'framer-motion'
-import { Star, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Star, X, ChevronLeft, ChevronRight, Play } from 'lucide-react'
 import Image                                 from 'next/image'
 import { staggerChildren, fadeUp, VIEWPORT } from '@/lib/animations'
 import { cld }                               from '@/lib/cloudflareImages'
+import { cfVideoPoster }                     from '@/lib/cloudflareStream'
+import { DemoVideoModal }                    from '@/components/product/DemoVideoModal'
 
 const REVIEWS = [
+  {
+    name:    'Nikhil',
+    city:    '',
+    trip:    '',
+    product: 'AeroSmart 3-in-1',
+    rating:  5,
+    text:    "The side pouch is the real hero here, I keep my water bottle and umbrella in it and never have to open the main case for small stuff. Didn't expect to use the hook as much as I do, hung a small tote on it while my hands were full at the airport and it held up fine.",
+    photos:  ['b4fdabce-620c-4c0c-e314-886eb0debc00', '8887f692-93fd-412e-0dd8-d8e8ad51aa00', 'afd95dad-92c1-469e-ee8a-35f97904a400'] as string[],
+    videos:  [] as string[],
+  },
+  {
+    name:    'Aparna',
+    city:    '',
+    trip:    '',
+    product: 'AeroSmart Pro',
+    rating:  5,
+    text:    "Looks even better in hand than in the pictures, the glossy finish catches light and doesn't look cheap at all. Gets compliments every time I use it. Shows fingerprints more than a matte one would, but worth it for how attractive it looks.",
+    photos:  ['4007c0ae-a07b-4aea-a1e6-06920e0ee100', '6f248c1a-47a2-4a89-257a-a20aec996800', 'b749d1ab-f4ab-4308-1f31-12f961be5100', 'd7af4aa0-7a32-4d33-caba-db6a45d9d700'] as string[],
+    videos:  [] as string[],
+  },
   {
     name:    'Adnan Wahab',
     city:    'Delhi',
@@ -87,6 +109,16 @@ const REVIEWS = [
     text:    'Ordered this Gym Bag, its quite fine in this price',
     photos:  ['e15d1c2d-0d4d-4cad-60ea-2601e8d0ce00'] as string[],
     videos:  [] as string[],
+  },
+  {
+    name:    'Arjun R.',
+    city:    '',
+    trip:    '',
+    product: 'AeroSmart 3-in-1',
+    rating:  5,
+    text:    'The finish is stunning in person looks elegant, highly premium.',
+    photos:  [] as string[],
+    videos:  ['0efce2ec96bce0c80eca870babf6a851'] as string[],
   },
 ]
 
@@ -211,6 +243,7 @@ type ReviewFilter = typeof REVIEW_FILTERS[number]['id']
 
 export function ReviewsSection() {
   const [lightbox, setLightbox] = useState<{ photos: string[]; index: number; reviewName: string } | null>(null)
+  const [videoLightbox, setVideoLightbox] = useState<string | null>(null)
   const [filter, setFilter] = useState<ReviewFilter>('all')
 
   const filtered = REVIEWS.filter((r) =>
@@ -312,7 +345,7 @@ export function ReviewsSection() {
         {filtered.length === 0 ? (
           <div className="container-lp py-10">
             <p className="font-body text-[0.85rem] text-lp-muted text-center">
-              No video reviews yet,  check back soon.
+              {filter === 'videos' ? 'No video reviews yet, check back soon.' : 'No reviews yet, check back soon.'}
             </p>
           </div>
         ) : (
@@ -348,9 +381,28 @@ export function ReviewsSection() {
                   {review.text}
                 </p>
 
-                {/* Customer photos */}
-                {review.photos.length > 0 && (
+                {/* Customer photos + video */}
+                {(review.photos.length > 0 || review.videos.length > 0) && (
                   <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-none">
+                    {review.videos.map((vid, i) => (
+                      <button
+                        key={`v${i}`}
+                        onClick={() => setVideoLightbox(vid)}
+                        className="relative shrink-0 w-24 h-24 overflow-hidden bg-lp-porcelain border border-lp-border cursor-pointer hover:opacity-90 transition-opacity"
+                      >
+                        <Image
+                          src={cfVideoPoster(vid)}
+                          alt={`${review.name} video`}
+                          fill
+                          className="object-cover"
+                          sizes="96px"
+                          draggable="false"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+                          <Play size={20} strokeWidth={0} fill="white" className="ml-0.5" />
+                        </span>
+                      </button>
+                    ))}
                     {review.photos.map((pid, i) => (
                       <button
                         key={i}
@@ -375,9 +427,11 @@ export function ReviewsSection() {
                   <p className="font-body text-[0.72rem] tracking-[0.12em] uppercase font-medium text-lp-porcelain">
                     {review.name}
                   </p>
-                  <p className="font-body text-[0.7rem] text-lp-porcelain/60 mt-0.5">
-                    {review.city}
-                  </p>
+                  {review.city && (
+                    <p className="font-body text-[0.7rem] text-lp-porcelain/60 mt-0.5">
+                      {review.city}
+                    </p>
+                  )}
                 </div>
               </article>
             ))}
@@ -421,6 +475,12 @@ export function ReviewsSection() {
           onNext={handleNext}
         />
       )}
+
+      <DemoVideoModal
+        open={!!videoLightbox}
+        onClose={() => setVideoLightbox(null)}
+        videoId={videoLightbox ?? undefined}
+      />
     </>
   )
 }
