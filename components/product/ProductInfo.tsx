@@ -22,6 +22,7 @@ import { ShareButton }           from '@/components/ui/ShareButton'
 import { useCartStore }          from '@/store/cartStore'
 import { thumbUrl, pdpUrl, PLACEHOLDER_URL } from '@/lib/cloudflareImages'
 import { cfVideo }               from '@/lib/cloudflareStream'
+import { buildGallerySlides, youtubeThumbnail } from '@/lib/gallerySlides'
 import { useWishlistStore }      from '@/store/wishlistStore'
 import { SizeGuideModal }        from '@/components/ui/SizeGuideModal'
 import { ReviewsModal }          from '@/components/ui/ReviewsModal'
@@ -269,10 +270,11 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
           cosmetic sync that self-corrects the moment the hover ends. ──── */}
       {(() => {
         const galleryImages = variant.images?.length ? variant.images : product.images
-        if (galleryImages.length <= 1) return null
+        const slides = buildGallerySlides(galleryImages, product.demoVideoYoutubeId)
+        if (slides.length <= 1) return null
         return (
           <div className="hidden md:flex gap-2 overflow-x-auto scrollbar-hide">
-            {galleryImages.map((img, i) => (
+            {slides.map((slide, i) => (
               <button
                 key={i}
                 onClick={() => onGalleryAngleChange(i)}
@@ -281,16 +283,29 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
                     ? 'border-lp-gold shadow-[inset_0_0_0_1px_var(--color-lp-gold)]'
                     : 'border-lp-border hover:border-lp-border-strong'
                 }`}
-                aria-label={`View image ${i + 1}`}
+                aria-label={slide.type === 'video' ? `${product.name} video` : `View image ${i + 1}`}
                 aria-pressed={i === galleryActiveAngle}
               >
-                <Image
-                  src={thumbUrl(img, i === 0 ? product.imageFit : undefined)}
-                  alt={`${product.name} thumbnail ${i + 1}`}
-                  fill
-                  className="object-cover object-center"
-                  sizes="64px"
-                />
+                {slide.type === 'video' ? (
+                  <>
+                    <img
+                      src={youtubeThumbnail(slide.youtubeId)}
+                      alt={`${product.name} video thumbnail`}
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+                      <Play size={16} strokeWidth={0} fill="white" className="ml-0.5" />
+                    </span>
+                  </>
+                ) : (
+                  <Image
+                    src={thumbUrl(slide.src, i === 0 ? product.imageFit : undefined)}
+                    alt={`${product.name} thumbnail ${i + 1}`}
+                    fill
+                    className="object-cover object-center"
+                    sizes="64px"
+                  />
+                )}
               </button>
             ))}
           </div>

@@ -8,9 +8,10 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image                        from 'next/image'
-import { Flame, ZoomIn }            from 'lucide-react'
+import { Flame, ZoomIn, Play }      from 'lucide-react'
 import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
 import { pdpUrl, pdpZoomUrl, thumbUrl, PLACEHOLDER_URL, type ImageFit } from '@/lib/cloudflareImages'
+import { buildGallerySlides, youtubeThumbnail } from '@/lib/gallerySlides'
 
 const LONG_PRESS_MS      = 350  // hold duration before zoom kicks in
 const LONG_PRESS_SLOP_PX = 8    // movement past this before the timer fires reads as a swipe, not a hold
@@ -22,9 +23,17 @@ interface Props {
   onActiveChange: (index: number) => void
   recentPurchases?: number
   imageFit?: ImageFit
+  videoYoutubeId?: string
 }
 
-export function ImageGallery({ images, productName, active, onActiveChange, recentPurchases, imageFit }: Props) {
+export function ImageGallery({ images, productName, active, onActiveChange, recentPurchases, imageFit, videoYoutubeId }: Props) {
+  // Photos plus, when the product has one, a video slide spliced in right
+  // after the first photo — see lib/gallerySlides. `active`/`displayed`
+  // index into this list, not the raw `images` array.
+  const slides = buildGallerySlides(images, videoYoutubeId)
+  const currentSlide = slides[active]
+  const isVideoSlide = currentSlide?.type === 'video'
+
   // The lifestyle/cover treatment only ever applies to the first photo in
   // the array — every other angle is still a background-removed cutout
   // meant for the pad-on-flat-color default, so forcing cover-fit on those
@@ -34,6 +43,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
   // photo never disappears behind a blank frame while the next one is
   // still downloading — see the preload effect below.
   const [displayed, setDisplayed] = useState(active)
+  const displayedSlide = slides[displayed] ?? currentSlide
   // `priority` should only ever apply to the very first image painted (it's
   // the page's LCP candidate) — not to every color swap afterwards, which
   // would otherwise mark each swapped-in image as high-priority too.
@@ -45,6 +55,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
   // angle) and a color swatch swap (a whole new `images` array arrives,
   // firing this effect again). By the time someone actually clicks, the
   // full-size image is usually already cached instead of a cold fetch.
+  // The video slide has no bytes to warm — iframes load on their own.
   useEffect(() => {
     images.forEach((img, i) => {
       const preload = new window.Image()
@@ -55,21 +66,23 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
 
   useEffect(() => {
     if (active === displayed) return
+    // Video slide — nothing to preload, swap straight over.
+    if (slides[active]?.type === 'video') { setDisplayed(active); return }
     let cancelled = false
     const preload = new window.Image()
     const swap = () => { if (!cancelled) setDisplayed(active) }
     preload.onload  = swap
     preload.onerror = swap
-    preload.src = pdpUrl(images[active], fitFor(active)) || PLACEHOLDER_URL
+    preload.src = pdpUrl(slides[active].src, fitFor(active)) || PLACEHOLDER_URL
     if (preload.complete) swap()
     return () => { cancelled = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, displayed, images, imageFit])
+  }, [active, displayed, images, imageFit, videoYoutubeId])
 
   function handleDragEnd(_: unknown, info: PanInfo) {
     const { offset, velocity } = info
     if (offset.x < -50 || velocity.x < -400) {
-      onActiveChange(Math.min(active + 1, images.length - 1))
+      onActiveChange(Math.min(active + 1, slides.length - 1))
     } else if (offset.x > 50 || velocity.x > 400) {
       onActiveChange(Math.max(active - 1, 0))
     }
@@ -90,7 +103,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
   // Touch/pen only — mouse uses hover instead (below), so a click-and-hold
   // doesn't also fire this and fight with the hover state.
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    if (e.pointerType === 'mouse') return
+    if (e.pointerType === 'mouse' || isVideoSlide) return
     const rect = e.currentTarget.getBoundingClientRect()
     const originX = ((e.clientX - rect.left) / rect.width) * 100
     const originY = ((e.clientY - rect.top) / rect.height) * 100
@@ -101,7 +114,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
     // mouseenter prefetch for desktop hover, just started earlier here
     // since a touch hold is shorter than typical hover-then-move timing).
     const preload = new window.Image()
-    preload.src = pdpZoomUrl(images[displayed], fitFor(displayed)) || PLACEHOLDER_URL
+    preload.src = displayedSlide.type === 'image' ? (pdpZoomUrl(displayedSlide.src, fitFor(displayed)) || PLACEHOLDER_URL) : PLACEHOLDER_URL
     longPressTimer.current = setTimeout(() => {
       setZoomOrigin({ x: originX, y: originY })
       setZoomed(true)
@@ -139,11 +152,13 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
   // then pans it under the cursor. Preload the high-res source on hover so
   // it's usually already cached by the time the click actually lands.
   function handleMouseEnter() {
+    if (isVideoSlide || displayedSlide.type !== 'image') return
     const preload = new window.Image()
-    preload.src = pdpZoomUrl(images[displayed], fitFor(displayed)) || PLACEHOLDER_URL
+    preload.src = pdpZoomUrl(displayedSlide.src, fitFor(displayed)) || PLACEHOLDER_URL
   }
 
   function handleMouseClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (isVideoSlide) return
     // Guard against the synthetic click a touch tap also fires — touch
     // devices already zoom via long-press and shouldn't double-trigger here.
     if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
@@ -173,8 +188,8 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
       {/* Main image — drag left/right to slide between images, click (or press and hold on touch) to zoom */}
       <motion.div
         className="relative aspect-3/4 bg-lp-image-bg overflow-hidden touch-pan-y select-none"
-        style={{ WebkitTouchCallout: 'none', cursor: zoomed ? 'crosshair' : 'zoom-in' }}
-        drag={images.length > 1 && !zoomed ? 'x' : false}
+        style={{ WebkitTouchCallout: 'none', cursor: isVideoSlide ? 'default' : zoomed ? 'crosshair' : 'zoom-in' }}
+        drag={slides.length > 1 && !zoomed ? 'x' : false}
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.6}
         onDragEnd={handleDragEnd}
@@ -199,7 +214,7 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
         )}
 
         {/* Desktop-only hint — touch devices already discover zoom via long-press */}
-        {!zoomed && (
+        {!zoomed && !isVideoSlide && (
           <div className="absolute top-3 right-3 z-10 hidden pointer-fine:flex items-center gap-1.5 rounded-full bg-lp-porcelain/90 backdrop-blur-sm px-2.5 py-1 pointer-events-none">
             <ZoomIn size={12} strokeWidth={1.75} className="text-lp-ink shrink-0" />
             <span className="font-body text-[0.7rem] text-lp-ink">Click to zoom</span>
@@ -220,25 +235,35 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
             transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="absolute inset-0"
           >
-            <Image
-              // Zoomed uses a distinct, higher-resolution source (and skips
-              // the responsive loader via `unoptimized`, which would
-              // otherwise downscale it back to a normal-display size) so
-              // magnifying reveals real detail instead of stretched pixels.
-              src={(zoomed ? pdpZoomUrl(images[displayed], fitFor(displayed)) : pdpUrl(images[displayed], fitFor(displayed))) || PLACEHOLDER_URL}
-              unoptimized={zoomed}
-              alt={`${productName}, view ${displayed + 1}`}
-              fill
-              priority={isFirstLoad.current}
-              draggable={false}
-              className="object-cover object-center"
-              style={{
-                transform:       zoomed ? 'scale(2)' : 'scale(1)',
-                transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
-                transition:      zoomed ? 'transform 0.2s ease-out' : 'transform 0.25s ease-in',
-              }}
-              sizes="(max-width:768px) 100vw, 50vw"
-            />
+            {displayedSlide.type === 'video' ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${displayedSlide.youtubeId}?rel=0&modestbranding=1`}
+                title={`${productName} video`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            ) : (
+              <Image
+                // Zoomed uses a distinct, higher-resolution source (and skips
+                // the responsive loader via `unoptimized`, which would
+                // otherwise downscale it back to a normal-display size) so
+                // magnifying reveals real detail instead of stretched pixels.
+                src={(zoomed ? pdpZoomUrl(displayedSlide.src, fitFor(displayed)) : pdpUrl(displayedSlide.src, fitFor(displayed))) || PLACEHOLDER_URL}
+                unoptimized={zoomed}
+                alt={`${productName}, view ${displayed + 1}`}
+                fill
+                priority={isFirstLoad.current}
+                draggable={false}
+                className="object-cover object-center"
+                style={{
+                  transform:       zoomed ? 'scale(2)' : 'scale(1)',
+                  transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
+                  transition:      zoomed ? 'transform 0.2s ease-out' : 'transform 0.25s ease-in',
+                }}
+                sizes="(max-width:768px) 100vw, 50vw"
+              />
+            )}
           </motion.div>
         </AnimatePresence>
       </motion.div>
@@ -246,9 +271,9 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
       {/* Thumbnails — mobile only. On desktop this same strip renders inside
           ProductInfo instead, below the colour swatches, driven by the same
           `active`/`onActiveChange` pair passed in from ProductPageClient. */}
-      {images.length > 1 && (
+      {slides.length > 1 && (
         <div className="flex gap-2 overflow-x-auto scrollbar-hide md:hidden">
-          {images.map((img, i) => (
+          {slides.map((slide, i) => (
             <button
               key={i}
               onClick={() => onActiveChange(i)}
@@ -257,16 +282,32 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
                   ? 'border-lp-gold shadow-[inset_0_0_0_1px_var(--color-lp-gold)]'
                   : 'border-lp-border hover:border-lp-border-strong'
               }`}
-              aria-label={`View image ${i + 1}`}
+              aria-label={slide.type === 'video' ? `${productName} video` : `View image ${i + 1}`}
               aria-pressed={i === active}
             >
-              <Image
-                src={thumbUrl(img, fitFor(i)) || PLACEHOLDER_URL}
-                alt={`${productName} thumbnail ${i + 1}`}
-                fill
-                className="object-cover object-center"
-                sizes="64px"
-              />
+              {slide.type === 'video' ? (
+                <>
+                  {/* Plain <img>, not next/image — img.youtube.com isn't in
+                      next.config.ts's remotePatterns and doesn't need the
+                      optimization pipeline for a 64px thumbnail anyway. */}
+                  <img
+                    src={youtubeThumbnail(slide.youtubeId)}
+                    alt={`${productName} video thumbnail`}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+                    <Play size={16} strokeWidth={0} fill="white" className="ml-0.5" />
+                  </span>
+                </>
+              ) : (
+                <Image
+                  src={thumbUrl(slide.src, fitFor(i)) || PLACEHOLDER_URL}
+                  alt={`${productName} thumbnail ${i + 1}`}
+                  fill
+                  className="object-cover object-center"
+                  sizes="64px"
+                />
+              )}
             </button>
           ))}
         </div>

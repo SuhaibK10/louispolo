@@ -17,9 +17,22 @@ import { Plus }                   from 'lucide-react'
 import type { Product }           from '@/types'
 import { pdpUrl, PLACEHOLDER_URL } from '@/lib/cloudflareImages'
 
-// Care guidance is the same for every hard-shell product — written once here.
-const CARE_COPY =
+// Care guidance is the same across the range, except the wheels/telescopic
+// handle clause — only true for products that actually have them. Whether a
+// given product does isn't reliable from `category` alone (some 'vanity'
+// cases have spinner wheels, most don't), so it's read off the product's own
+// specs/features instead of hardcoded per category.
+const CARE_COPY_WHEELED =
   'Wipe the shell with a soft, damp cloth, without solvents or abrasives. Clean wheels and the telescopic handle track occasionally to keep them running smoothly, and store your luggage dry, away from direct sunlight.'
+const CARE_COPY_BAG =
+  'Wipe the shell with a soft, damp cloth, without solvents or abrasives, and store it dry, away from direct sunlight.'
+
+function hasWheels(product: Product): boolean {
+  return (
+    !!product.specs?.some((s) => /wheel/i.test(s.label) || /wheel/i.test(s.value)) ||
+    !!product.features?.some((f) => /wheel/i.test(f.label))
+  )
+}
 
 const SHIPPING_COPY =
   'Shipping is free on every order, anywhere in India. Items are non-returnable. We offer a free replacement only if the product arrives damaged (write to us within 48 hours with photos) or develops a manufacturing defect while still within its warranty period.'
@@ -108,7 +121,7 @@ export function ProductAccordions({ product }: { product: Product }) {
             {product.warranty}
           </p>
           <p className="font-body text-[0.95rem] font-medium text-[var(--color-lp-body)] leading-[1.65]">
-            {CARE_COPY}
+            {hasWheels(product) ? CARE_COPY_WHEELED : CARE_COPY_BAG}
           </p>
         </div>
       ),

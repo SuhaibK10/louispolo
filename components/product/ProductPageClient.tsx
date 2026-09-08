@@ -107,6 +107,7 @@ export function ProductPageClient({ product, defaultColor }: Props) {
           onActiveChange={setActiveAngle}
           recentPurchases={product.recentPurchases}
           imageFit={product.imageFit}
+          videoYoutubeId={product.demoVideoYoutubeId}
         />
       </div>
       <div>

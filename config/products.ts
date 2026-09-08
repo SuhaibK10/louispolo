@@ -4426,6 +4426,18 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Yellow',
         colorHex: '#FDD835',
+        images: [
+          'ce748139-00e8-4338-c685-87ba23cd8100',
+          '3d8c2c89-dcfc-44ec-b258-5c05a6801900',
+          'faafbd3c-c8c7-472b-e034-a5f36fd4f500',
+          '41e62ea0-505e-4fc6-ece9-100440fe5100',
+          '565a8567-852e-4a8f-0835-56521ce4bf00',
+          '8b342fc7-1ecb-41c0-ea60-5b746d1e9500',
+          'e1ec33fa-818c-4ba2-4516-a0251cdafe00',
+          '246d4850-f190-4f61-3e56-9b2804612a00',
+          '3aa99ef7-5a74-44db-252f-822bb84ea400',
+          '59c2da2d-5339-4a17-e78f-9a12409fd000',
+        ],
         sizes: [
           { size: 'Set of 3', price: 7749, stock: 15, sku: '8906206840094' },
         ],
@@ -4433,6 +4445,18 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Black',
         colorHex: '#212121',
+        images: [
+          'f18adae4-1c3e-46d4-dfb2-66c1c31aad00',
+          '45538b81-1170-40a2-cbc5-8f0cee2c3200',
+          'bdd03a7f-4425-4f23-a33e-910cd6f7a100',
+          '09840d2c-9678-46cb-9e79-f94466424700',
+          '1c03983f-51c6-4e34-139c-b0b858dfe800',
+          'b048cc04-40a6-4192-c8c8-b694a6aa4900',
+          'ea4de809-7259-449e-0f7d-26a8fe5b4500',
+          '06f00cc5-cc3e-47f7-7c8c-bcdd125cf200',
+          'edb96e19-dbce-4aab-ca5e-b4dc52f29100',
+          '59c2da2d-5339-4a17-e78f-9a12409fd000',
+        ],
         sizes: [
           { size: 'Set of 3', price: 7749, stock: 15, sku: '8906206840070' },
         ],
