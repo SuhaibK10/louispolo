@@ -313,7 +313,7 @@ export function ProductCard({ product, initialColor }: ProductCardProps) {
                 size={16}
                 strokeWidth={1.5}
                 className="transition-colors duration-200"
-                style={{ color: wished ? '#C0392B' : 'var(--color-lp-muted)', fill: wished ? '#C0392B' : 'none' }}
+                style={{ color: wished ? '#C0392B' : 'var(--color-lp-ink)', fill: wished ? '#C0392B' : 'none' }}
               />
             </motion.span>
             {burst && (

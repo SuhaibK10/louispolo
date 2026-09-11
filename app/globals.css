@@ -59,13 +59,12 @@
     overflow-x: hidden;
   }
 
-  /* Desktop browser chrome (Chrome's tab bar, etc.) eats into the visible
-     viewport height more than Safari's — nudge the root font-size down very
-     slightly on desktop only so rem-based type/spacing across the site scales
-     down with it, fitting a touch more above the fold. Mobile is untouched. */
+  /* Desktop-only: nudge root font-size down slightly so rem-based
+     type/spacing across the site scales down with it, for a touch more
+     density above the fold. Mobile is untouched. */
   @media (min-width: 768px) {
     html {
-      font-size: 15.9px;
+      font-size: 15.7px;
     }
   }
 

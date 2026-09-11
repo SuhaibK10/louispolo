@@ -260,17 +260,17 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
           className="absolute top-3 right-3 z-10 w-7 h-7 flex items-center justify-center"
           aria-label={wished ? 'Remove from wishlist' : 'Save to wishlist'}
         >
-          <span className="relative block">
+          <span className="relative w-full h-full block">
             <motion.span
-              className="block"
+              className="w-full h-full rounded-full flex items-center justify-center bg-lp-porcelain/90 backdrop-blur-sm border border-[var(--color-lp-border)]"
               animate={burst ? { scale: [1, 1.28, 1, 1.32, 1] } : { scale: 1 }}
               transition={{ duration: 1, ease: 'easeInOut', times: [0, 0.25, 0.5, 0.75, 1] }}
             >
               <Heart
-                size={19}
+                size={16}
                 strokeWidth={1.5}
                 className="transition-colors duration-200"
-                style={{ color: wished ? '#C0392B' : 'var(--color-lp-muted)', fill: wished ? '#C0392B' : 'none' }}
+                style={{ color: wished ? '#C0392B' : 'var(--color-lp-ink)', fill: wished ? '#C0392B' : 'none' }}
               />
             </motion.span>
             {burst && (
