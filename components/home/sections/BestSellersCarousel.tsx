@@ -267,7 +267,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
               transition={{ duration: 1, ease: 'easeInOut', times: [0, 0.25, 0.5, 0.75, 1] }}
             >
               <Heart
-                size={16}
+                size={15}
                 strokeWidth={1.5}
                 className="transition-colors duration-200"
                 style={{ color: wished ? '#C0392B' : 'var(--color-lp-ink)', fill: wished ? '#C0392B' : 'none' }}

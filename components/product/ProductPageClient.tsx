@@ -85,16 +85,18 @@ export function ProductPageClient({ product, defaultColor }: Props) {
   // indexed by color — unchanged behavior for every existing product.
   const variantImages = product.variants[previewColorIndex]?.images
   const galleryImages       = variantImages && variantImages.length > 0 ? variantImages : product.images
-  const galleryActiveIndex  = variantImages && variantImages.length > 0 ? 0 : previewColorIndex
+  const galleryActiveIndex  = variantImages && variantImages.length > 0
+    ? Math.min(activeAngle, variantImages.length - 1)
+    : previewColorIndex
 
-  // Keep `activeAngle` in sync with `galleryActiveIndex` exactly the way
-  // ImageGallery used to do internally: for a product with its own
-  // per-variant images, this is a constant 0, so it only fires on mount —
-  // switching color does NOT reset which angle is showing. For a legacy
-  // product sharing one flat `product.images` array indexed by color, this
-  // fires on every hover/click, since colour and photo are the same index
-  // there. Reproducing this exactly (rather than always resetting to 0)
-  // avoids changing gallery behavior as a side effect of this split.
+  // Keep `activeAngle` in sync with `galleryActiveIndex`: for a product with
+  // its own per-variant images, switching color does NOT reset which angle
+  // is showing — but it IS clamped to the new color's own photo count,
+  // since colors can have different numbers of angles (e.g. one color with
+  // 4 photos, another with 3) and an unclamped index would point past the
+  // end of the shorter gallery, crashing ImageGallery. For a legacy product
+  // sharing one flat `product.images` array indexed by color, this fires on
+  // every hover/click, since colour and photo are the same index there.
   useEffect(() => { setActiveAngle(galleryActiveIndex) }, [galleryActiveIndex])
 
   return (
