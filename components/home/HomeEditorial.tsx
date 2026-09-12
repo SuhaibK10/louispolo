@@ -23,6 +23,7 @@ import { CommunityShowcase }   from './sections/CommunityShowcase'
 import { COMMUNITY_SHOWCASE_HOME_ENABLED } from '@/config/communityShowcase'
 
 const INDEPENDENCE_DAY_BANNER_ENABLED = false
+const PROMO_BANNER_ENABLED = true
 
 export function HomeEditorial() {
   return (
@@ -39,8 +40,7 @@ export function HomeEditorial() {
       )}
       {INDEPENDENCE_DAY_BANNER_ENABLED && <IndependenceDayBanner />}
       <CategoryGrid />
-      {/* Temporarily disabled — "First-Time Buyers" promo turned off. */}
-      {false && <PromoBanner />}
+      {PROMO_BANNER_ENABLED && <PromoBanner />}
       <BestSellersCarousel />
       {COMMUNITY_SHOWCASE_HOME_ENABLED && <CommunityShowcase />}
       {SHOP_BY_COLOR_PRICE_HOME_ENABLED && <ShopByColorPrice />}
