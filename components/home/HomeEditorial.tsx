@@ -19,6 +19,8 @@ import { ScrollShowcase }      from './sections/ScrollShowcase'
 import { VERTEX_SHOWCASE_HOME_ENABLED, VERTEX_SHOWCASE_HEADER, VERTEX_SHOWCASE_STOPS } from '@/config/vertexShowcase'
 import { ShopByColorPrice }    from './sections/ShopByColorPrice'
 import { SHOP_BY_COLOR_PRICE_HOME_ENABLED } from '@/config/shopByColorPrice'
+import { CommunityShowcase }   from './sections/CommunityShowcase'
+import { COMMUNITY_SHOWCASE_HOME_ENABLED } from '@/config/communityShowcase'
 
 const INDEPENDENCE_DAY_BANNER_ENABLED = false
 
@@ -40,6 +42,7 @@ export function HomeEditorial() {
       {/* Temporarily disabled — "First-Time Buyers" promo turned off. */}
       {false && <PromoBanner />}
       <BestSellersCarousel />
+      {COMMUNITY_SHOWCASE_HOME_ENABLED && <CommunityShowcase />}
       {SHOP_BY_COLOR_PRICE_HOME_ENABLED && <ShopByColorPrice />}
       {/* Temporarily disabled — "See it the way you will use it" spotlight turned off. */}
       {false && <ProductSpotlight />}

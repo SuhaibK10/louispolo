@@ -70,11 +70,15 @@ export async function POST(request: NextRequest) {
   // ── Signature is valid — mark the order paid ────────────────────────────
   const serviceClient = createServiceRoleClient()
 
-  // If a session exists, scope the update to that user's own order as an
-  // extra check (belt-and-suspenders, same as before). If there's no
-  // session (guest checkout), we can't scope by user_id since there isn't
-  // one — the signature check above is what actually secures this either way.
-  let query = serviceClient
+  // Scoped by orderId + razorpay_order_id only — NOT by the current
+  // session's user_id. Auth state can legitimately change between order
+  // creation and payment verification (e.g. a guest who signs up/logs in
+  // in a parallel tab while Razorpay's checkout is open), which would
+  // otherwise make a real, cryptographically-verified payment fail to
+  // save here. The razorpay_order_id match is what actually matters: it
+  // confirms this signature belongs to *this* order, not just any order
+  // the caller happens to name.
+  const { data: order, error: updateError } = await serviceClient
     .from('orders')
     .update({
       status:              'paid',
@@ -82,12 +86,9 @@ export async function POST(request: NextRequest) {
       updated_at:          new Date().toISOString(),
     })
     .eq('id', orderId)
-
-  if (user) {
-    query = query.eq('user_id', user.id)
-  }
-
-  const { data: order, error: updateError } = await query.select().single()
+    .eq('razorpay_order_id', razorpay_order_id)
+    .select()
+    .single()
 
   if (updateError || !order) {
     console.error('Failed to mark order as paid:', updateError)
