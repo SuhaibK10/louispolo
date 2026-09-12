@@ -322,7 +322,7 @@ export function ReviewsSection() {
           </motion.div>
 
           {/* Filter tabs */}
-          <div className="flex flex-nowrap justify-between gap-1.5 md:gap-2 -mt-4 mb-8 md:-mt-6 md:mb-10">
+          <div className="flex flex-nowrap justify-start gap-1.5 md:gap-2 -mt-4 mb-8 md:-mt-6 md:mb-10">
             {REVIEW_FILTERS.map(({ id, label }) => (
               <button
                 key={id}

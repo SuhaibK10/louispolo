@@ -2,12 +2,15 @@
 
 // ─────────────────────────────────────────────────────────────────────────────
 // components/home/sections/CommunityShowcase.tsx
-// "By Our Community" — a UGC video carousel, styled after the reference
-// (center clip enlarged and fully opaque, neighbors scaled down and dimmed).
-// Native scroll-snap drives it (touch swipe works for free); the arrow
-// buttons and active-state styling ride on top via IntersectionObserver,
-// which is what keeps `active` correct even when someone swipes by hand
-// instead of clicking an arrow.
+// "By Our Community" — a UGC video carousel. On mobile the center clip is
+// enlarged and fully opaque while neighbors are scaled down and dimmed
+// (coverflow peek); on desktop every card sits flat at the same scale,
+// opacity, and z-index. With more than 2 clips, native scroll-snap drives
+// it (touch swipe works for free) and the arrow buttons and active-state
+// styling ride on top via IntersectionObserver, which is what keeps
+// `active` correct even when someone swipes by hand instead of clicking
+// an arrow. With 2 or fewer clips, the carousel machinery is skipped
+// entirely and they're laid out as a plain centered row.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useRef, useEffect } from 'react'
@@ -21,6 +24,13 @@ import { tapPunch } from '@/lib/animations'
 
 export function CommunityShowcase() {
   const middleIndex = Math.floor((COMMUNITY_CLIPS.length - 1) / 2)
+  // The peek-both-sides scroll carousel (and its wide side padding meant to
+  // let a single card reach dead center) only makes sense once there are
+  // enough clips that they can't all just sit centered on screen already.
+  // With 2 or fewer, that padding just overflows the row and leaves one
+  // card pushed off-screen — so below that count, skip the carousel
+  // machinery and lay the clips out as a plain centered row instead.
+  const isCarousel = COMMUNITY_CLIPS.length > 2
   const trackRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [active, setActive] = useState(middleIndex)
@@ -32,6 +42,7 @@ export function CommunityShowcase() {
   // scroll-into-place) so the carousel opens on the "peek both sides" look
   // from the start, instead of starting scrolled all the way to card 0.
   useEffect(() => {
+    if (!isCarousel) return
     cardRefs.current[middleIndex]?.scrollIntoView({ behavior: 'instant', inline: 'center', block: 'nearest' })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -59,7 +70,7 @@ export function CommunityShowcase() {
   }
 
   return (
-    <section className="section-pad bg-[var(--color-lp-cream)] overflow-hidden">
+    <section className="section-pad bg-[var(--color-lp-cream)] overflow-hidden" style={{ paddingTop: '1.5rem' }}>
       {/* Hidden gradient def — Lucide's Instagram icon is plain line art with
           no color of its own, so its brand gradient is defined once here and
           referenced via stroke="url(#...)" below. */}
@@ -75,20 +86,17 @@ export function CommunityShowcase() {
         </defs>
       </svg>
 
-      <div className="container-lp text-center mb-12 md:mb-16">
+      <div className="container-lp text-center mb-16 md:mb-20">
+        <h2 className="lp-heading-lg">By Our Community</h2>
         <a
           href={BRAND.instagram}
           target="_blank"
           rel="noreferrer"
-          className="lp-eyebrow inline-flex items-center gap-1.5 hover:text-[var(--color-lp-gold)] transition-colors duration-200"
+          className="inline-flex items-center gap-1.5 font-body text-[0.85rem] text-[var(--color-lp-muted)] mt-2 hover:text-[var(--color-lp-gold)] transition-colors duration-200"
         >
           <Instagram size={13} strokeWidth={1.75} stroke="url(#instagram-gradient)" />
-          @{handle}
-        </a>
-        <h2 className="lp-heading-lg mt-1">By Our Community</h2>
-        <p className="font-body text-[0.85rem] text-[var(--color-lp-muted)] mt-2">
           Tag us at @{handle} and get featured in this gallery!
-        </p>
+        </a>
       </div>
 
       <div className="relative">
@@ -115,7 +123,11 @@ export function CommunityShowcase() {
 
         <div
           ref={trackRef}
-          className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-[calc(50%-8.5rem)] md:px-[calc(50%-10rem)]"
+          className={`flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide ${
+            isCarousel
+              ? 'snap-x snap-mandatory px-[calc(50%-8.5rem)] md:px-[calc(50%-10rem)]'
+              : 'justify-center px-4'
+          }`}
         >
           {COMMUNITY_CLIPS.map((clip, i) => {
             const isActive = i === active
@@ -128,8 +140,7 @@ export function CommunityShowcase() {
                   if (!isActive) { scrollToIndex(i); return }
                   setPlaying(isPlaying ? null : i)
                 }}
-                className="relative shrink-0 snap-center w-68 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden bg-lp-image-bg cursor-pointer transition-[transform,opacity] duration-300 ease-out"
-                style={{ transform: isActive ? 'scale(1)' : 'scale(0.88)', opacity: isActive ? 1 : 0.45 }}
+                className={`relative z-0 shrink-0 snap-center w-68 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden bg-lp-image-bg cursor-pointer transition-[transform,opacity] duration-300 ease-out md:scale-100 md:opacity-100 ${isActive ? 'scale-100 opacity-100' : 'scale-[0.88] opacity-45'}`}
               >
                 {isPlaying ? (
                   <video

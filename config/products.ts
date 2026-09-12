@@ -1105,6 +1105,7 @@ export const PRODUCTS: Product[] = [
     images: [
       // 'acbb1811-cbd1-4496-9e85-cad771ad4d00',
       // '2746633d-7f90-44eb-961f-aecc37f59e00',
+      '51d21bd2-93f0-40b8-858e-3f2c75d9dd00',
       '3d8c2c89-dcfc-44ec-b258-5c05a6801900',
       '45538b81-1170-40a2-cbc5-8f0cee2c3200',
       'faafbd3c-c8c7-472b-e034-a5f36fd4f500',
@@ -2112,6 +2113,7 @@ export const PRODUCTS: Product[] = [
     isFeatured:  false,
     images:      [
       // '55a02349-ecaa-4128-be29-4d6c23fa5300',
+      '1c6cc536-dec2-42d8-7189-8a61d6b95b00',
       '55d2b221-09fb-49e5-2b19-849358b13100','7cc12e6c-b3a5-4f40-304b-11b86b5b4900',],
     features: [
       { label: 'Front-access laptop compartment' },
@@ -2603,7 +2605,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['75fb21d6-0bb3-43d8-d8ac-1847058e1000'],
+    images: ['eddf6cee-3316-49a0-4d31-28cb6c821400', '75fb21d6-0bb3-43d8-d8ac-1847058e1000'],
     features: [
       { label: 'Comfortable fabric lining' },
       { label: 'Lightweight build' },
@@ -3067,6 +3069,7 @@ export const PRODUCTS: Product[] = [
     images:      [
       // '59c762ab-3279-42b4-06f2-3da24c835000',
       // '71f6c275-b8dc-4bfa-e029-a02d7526df00',
+      'be4a4a98-8c21-4be6-6110-ae25f0f25b00',
       '1b6dbfbf-7c30-4541-d3d0-d1a89096c700',
       '27ef456d-7db1-4739-f5e8-37d041ba2b00',
       'af2eb3af-bcd8-4c1a-17fd-9a39ccbf9d00',
@@ -4421,6 +4424,7 @@ export const PRODUCTS: Product[] = [
     images: [
       // '69f2e18a-3e6f-49cc-a4d8-603445faf800',
       // '15eeffee-0747-4449-9479-658e51bc8e00',
+      'f53b9200-ce3f-4b5d-8fb8-a756a5ab9f00',
       'ce748139-00e8-4338-c685-87ba23cd8100',
       'f18adae4-1c3e-46d4-dfb2-66c1c31aad00',
     ],
@@ -4857,7 +4861,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['eac1e53c-b7e7-42ad-ff4c-4dc3d4257900'],
+    images: ['43f4e5a6-29c0-49e3-b0f5-4f1096d39f00', 'eac1e53c-b7e7-42ad-ff4c-4dc3d4257900'],
     features: [
       { label: 'Industrial-inspired hard shell' },
       { label: 'Reinforced corner guards' },
