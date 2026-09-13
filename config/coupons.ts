@@ -73,6 +73,16 @@ export function couponEligibleSubtotal(coupon: Coupon, items: CouponLineItem[]):
 
 export const COUPONS: Coupon[] = [
   {
+    code:            'FTB10',
+    label:           '10% off your order',
+    // Advertised as a "first-time buyer" code in the homepage promo ticker,
+    // but there's no order-history check here (or anywhere else in the
+    // codebase) to enforce that — it's site-wide and works for anyone,
+    // repeat customers included.
+    discountPercent: 0.1,
+    enabled:         true,
+  },
+  {
     code:            'DIAMOND40',
     label:           '40% off DiamondLux Set of 3',
     discountPercent: 0.4,
