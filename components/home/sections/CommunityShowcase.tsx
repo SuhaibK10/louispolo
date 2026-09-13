@@ -90,7 +90,7 @@ export function CommunityShowcase() {
         </defs>
       </svg>
 
-      <div className="container-lp text-center mb-16 md:mb-20">
+      <div className="container-lp text-center pb-16 md:pb-20">
         <h2 className="lp-heading-lg">By Our Community</h2>
         <a
           href={BRAND.instagram}

@@ -18,10 +18,11 @@ import { ROUTES }                            from '@/lib/constants'
 
 const SLIDE_DURATION = 3500  // ms between auto-advances
 
-// Temporary, per Suhaib's request — locks the hero to just the first slide
-// (no auto-advance, no swipe/dot navigation to the rest) until he asks to
-// turn rotation back on. Flip back to true then; nothing else needs to change.
-const HERO_ROTATION_ENABLED = false
+// Rotation is back on, but per Suhaib's request only the first 2 slides in
+// HERO_SLIDES are live for now — the rest of the array stays put, ready to
+// go live again by raising this back to HERO_SLIDES.length (or removing
+// the slice below entirely).
+const HERO_SLIDE_LIMIT = 2
 
 // ─── FlapText: splits each word into characters that flip like departure boards
 function FlapText({ text }: { text: string }) {
@@ -55,7 +56,7 @@ function FlapText({ text }: { text: string }) {
 
 export function HeroSection() {
   const router = useRouter()
-  const slides = HERO_ROTATION_ENABLED ? HERO_SLIDES : HERO_SLIDES.slice(0, 1)
+  const slides = HERO_SLIDES.slice(0, HERO_SLIDE_LIMIT)
   const [current, setCurrent] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
   const [isVisible, setIsVisible] = useState(true)
