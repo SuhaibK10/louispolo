@@ -13,7 +13,7 @@ export function PromoBanner() {
       {/* Faster than the shared 80s default (see .animate-marquee in
           globals.css) — a promo ticker should feel brisk, not ambient, so
           the duration is overridden here rather than on the shared class. */}
-      <div className="animate-marquee" style={{ animationDuration: '14s' }}>
+      <div className="animate-marquee" style={{ animationDuration: '16s' }}>
         {[0, 1].map((rep) => (
           <div key={rep} className="flex items-center shrink-0">
             {Array.from({ length: 8 }).map((_, i) => (
