@@ -2760,7 +2760,7 @@ export const PRODUCTS: Product[] = [
     name: 'Urban Pro Ergonomic BackPack',
     slug: 'urban-pro-backpack',
     category: 'backpack',
-    mrp: 5490,
+    mrp: 4149,
     hideSizeSelector: true,
     description:
       'A sleek, structured backpack designed for modern workdays, travel, and everyday carry. The Urban Pro Backpack combines a clean minimalist profile with practical organization, featuring a spacious main compartment, dedicated laptop storage, front quick-access pocket, side pockets, and padded ergonomic shoulder straps.',
