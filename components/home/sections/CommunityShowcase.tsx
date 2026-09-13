@@ -29,7 +29,11 @@ export function CommunityShowcase() {
   // enough clips that they can't all just sit centered on screen already.
   // With 2 or fewer, that padding just overflows the row and leaves one
   // card pushed off-screen — so below that count, skip the carousel
-  // machinery and lay the clips out as a plain centered row instead.
+  // machinery and lay the clips out as a plain row instead (centered on
+  // desktop, where they fit side by side; left-aligned on mobile, where
+  // 2 cards are wider than the viewport — centering an overflowing flex
+  // row clips the start/end and traps scroll at 0, so mobile stays
+  // left-aligned and swipeable instead).
   const isCarousel = COMMUNITY_CLIPS.length > 2
   const trackRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -123,10 +127,10 @@ export function CommunityShowcase() {
 
         <div
           ref={trackRef}
-          className={`flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide ${
+          className={`flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory ${
             isCarousel
-              ? 'snap-x snap-mandatory px-[calc(50%-8.5rem)] md:px-[calc(50%-10rem)]'
-              : 'justify-center px-4'
+              ? 'px-[calc(50%-8.5rem)] md:px-[calc(50%-10rem)]'
+              : 'px-4 justify-start md:justify-center'
           }`}
         >
           {COMMUNITY_CLIPS.map((clip, i) => {
