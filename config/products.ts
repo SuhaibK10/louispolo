@@ -20,7 +20,7 @@ import type { Product, HeroSlide } from '@/types'
 // Replace public_ids with your Cloudinary uploads.
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    image:        '0a4ce65b-96ef-44d8-db4a-797ad2b08100',
+    image:        '9f589238-580b-4d11-46d5-ad24e1d98a00',
     desktopImage: 'd6b3ce13-d7ce-417a-af6d-7ebba3bab300',
     headline:  '',
     textStyle: 'shadow',
