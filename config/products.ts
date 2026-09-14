@@ -3552,7 +3552,7 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Blue',
         colorHex: '#28384A',
-        images: ['fd94f510-9d8c-478e-a43b-ffacd9ae5700', 'cb7ad1dd-9b74-42aa-4bc5-d8e245af7300', '65177a6c-0917-4214-d399-e9a9578c9a00'],
+        images: ['fd94f510-9d8c-478e-a43b-ffacd9ae5700', 'cb7ad1dd-9b74-42aa-4bc5-d8e245af7300', '65177a6c-0917-4214-d399-e9a9578c9a00', '4856ede8-f069-4e56-33cf-9e8fbfd9b700'],
         sizes: [
           { size: 'One Size', price: 3800, stock: 25 },
         ],
@@ -3560,7 +3560,7 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Black',
         colorHex: '#212121',
-        images: ['8cea762b-2a75-40b0-65e5-c469504fd800', '4f591c22-e747-4098-46d6-1b0f611caf00', '3ded24cd-708f-4bf9-c922-54db2082dc00', 'b48bab33-8de8-4915-913a-7c44edc2c100', '7deeb938-a625-419b-2a27-9ba56995a000', '48a8b8b8-0816-4015-2ce9-45bdec3d8600', '0899cd7c-da93-4966-4333-c1459bdbf700', 'ca6b3065-bda2-4f3e-f8a9-c4fad39c5500', 'b659eb2a-0185-43c2-7730-b7e9922f7300', '9575f0bc-28de-41cf-5c09-5c85d16db300'],
+        images: ['8cea762b-2a75-40b0-65e5-c469504fd800', '4f591c22-e747-4098-46d6-1b0f611caf00', '3ded24cd-708f-4bf9-c922-54db2082dc00', 'b48bab33-8de8-4915-913a-7c44edc2c100', '7deeb938-a625-419b-2a27-9ba56995a000', '48a8b8b8-0816-4015-2ce9-45bdec3d8600', '0899cd7c-da93-4966-4333-c1459bdbf700', 'ca6b3065-bda2-4f3e-f8a9-c4fad39c5500', 'b659eb2a-0185-43c2-7730-b7e9922f7300', '9575f0bc-28de-41cf-5c09-5c85d16db300', '4856ede8-f069-4e56-33cf-9e8fbfd9b700'],
         sizes: [
           { size: 'One Size', price: 3800, stock: 25 },
         ],
@@ -3568,7 +3568,7 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Grey',
         colorHex: '#5A5A5C',
-        images: ['a956e617-cd2d-4f88-7600-9376fe61f900', '593c763c-7103-4c24-3fc4-db2c7b9d2d00', 'a6af0a3c-1000-4ade-acb9-be579aa7d200', 'fc3f4071-963a-4096-1049-094f6f848800', '35a1234a-3bbb-4a41-e73e-31dedb17af00'],
+        images: ['a956e617-cd2d-4f88-7600-9376fe61f900', '593c763c-7103-4c24-3fc4-db2c7b9d2d00', 'a6af0a3c-1000-4ade-acb9-be579aa7d200', 'fc3f4071-963a-4096-1049-094f6f848800', '35a1234a-3bbb-4a41-e73e-31dedb17af00', '4856ede8-f069-4e56-33cf-9e8fbfd9b700'],
         sizes: [
           { size: 'One Size', price: 3800, stock: 25 },
         ],

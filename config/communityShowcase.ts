@@ -20,4 +20,5 @@ export interface CommunityClip {
 export const COMMUNITY_CLIPS: CommunityClip[] = [
   { videoId: 'd7a97bbee4bddeaee0b222272c81c78e', caption: 'Louis Polo customer video — Dr Vishva' },
   { videoId: 'd77f79073e54f95ec8ecc24857e02fc1', caption: 'Louis Polo customer video' },
+  { videoId: 'a4b18148954cffc451e295d8624a3609', caption: 'Louis Polo customer video — Sheena Sukeja' },
 ]
