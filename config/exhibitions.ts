@@ -4,8 +4,8 @@
 // page. Add a new object to EXHIBITIONS for a new show. Add to its `photos`
 // array for more images from that show.
 //
-// IMAGES: Cloudinary public_ids only (see lib/cloudinary.ts expoUrl()).
-// Upload to folder: louispolo/exhibitions/{exhibition-id}/
+// IMAGES: Cloudflare Images IDs only (see lib/cloudflareImages.ts expoUrl()/cld()).
+// Upload via /admin/media or the Cloudflare dashboard.
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Homepage-only switch — flip to false to pull "Where we show up" off the
@@ -33,12 +33,10 @@ export const EXHIBITIONS: Exhibition[] = [
     venue: 'Gifts World Expo',
     date: '26-28 Feb 2026',
     photos: [
-      { publicId: '1773867226962_loaw14.jpg', alt: 'Louis Polo ' },
-      { publicId: '1773867223468_i9huwp', alt: 'Louis Polo ' },
-      { publicId: '1773867223830_wat8zn', alt: 'Louis Polo ' },
-      { publicId: '1773867223503_w6jupo', alt: 'Louis Polo ' },
-      { publicId: '1773867224138_ydjr3w.jpg', alt: 'Louis Polo ' },
-      { publicId: '1773867224138_ydjr3w.jpg', alt: 'Louis Polo ' },
+      { publicId: 'c9af59ec-d694-4a36-471f-5904b112b300', alt: 'Louis Polo ' },
+      { publicId: 'f5c6b51d-c49a-4020-8648-ca7f18352800', alt: 'Louis Polo ' },
+      { publicId: '46d0a1de-1fca-4dc6-c9c8-8daba9abf800', alt: 'Louis Polo ' },
+      { publicId: '718563ab-8f09-4f9f-7f10-7456ffb45d00', alt: 'Louis Polo ' },
     ],
   },
   {
@@ -47,12 +45,9 @@ export const EXHIBITIONS: Exhibition[] = [
     venue: 'Tripura Vasini',
     date: '11-13 Sep 2025',
     photos: [
-      { publicId: 'WhatsApp_Image_2026-06-20_at_21.28.02_wzghgv.jpg', alt: 'Louis Polo ', fit: 'pad' },
-      { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.58_2_o9nek0.jpg', alt: 'Louis Polo ' },
-       { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.58_pe0rvj.jpg', alt: 'Louis Polo ' },
-       { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.59_eyfgiy.jpg', alt: 'Louis Polo ' },
-       { publicId: 'WhatsApp_Image_2026-06-20_at_21.05.59_1_vg3ts9.jpg', alt: 'Louis Polo ' },
-      
+      { publicId: '7d17cd05-53ba-4900-636c-6757d2182500', alt: 'Louis Polo ' },
+      { publicId: '60cace24-544a-4f7b-8a3b-12d95a35ac00', alt: 'Louis Polo ' },
+      { publicId: 'c280f058-5ec3-4c54-073d-288b44e58300', alt: 'Louis Polo ' },
     ],
   },
   {
@@ -61,9 +56,9 @@ export const EXHIBITIONS: Exhibition[] = [
 venue: 'Bharat Mandapam',
     date: '24-26 July 2025',
     photos: [
-      { publicId: 'WhatsApp_Image_2026-06-20_at_21.28.23_ivxion.jpg', alt: 'Louis Polo booth front entrance', fit: 'pad' },
-      { publicId: 'WhatsApp_Image_2026-06-20_at_21.23.19_ldrbvf.jpg', alt: 'Louis Polo product display' },
-      { publicId: 'WhatsApp_Image_2026-06-20_at_21.23.18_1_i9gzff.jpg', alt: 'Louis Polo trolley bag lineup' },
+      { publicId: '0a324d6f-a868-454b-6f15-b11be5735000', alt: 'Louis Polo ' },
+      { publicId: '04588056-0be4-4ee0-788b-efba13e9e500', alt: 'Louis Polo ' },
+      { publicId: 'ae163e6b-da8d-43d1-d5e9-d9a8eb07f600', alt: 'Louis Polo ' },
     ],
   },
 ]
