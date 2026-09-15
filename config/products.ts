@@ -2923,14 +2923,14 @@ export const PRODUCTS: Product[] = [
         color: 'Silver Brush',
         colorHex: '#C0C0C0',
         sizes: [
-          { size: 'One Size', price: 3800, stock: 30, sku: '8906206840193' },
+          { size: 'One Size', price: 5490, stock: 30, sku: '8906206840193' },
         ],
       },
       {
         color: 'Carbon Fiber',
         colorHex: '#2C2C2C',
         sizes: [
-          { size: 'One Size', price: 3800, stock: 30, sku: '8906206840209' },
+          { size: 'One Size', price: 5490, stock: 30, sku: '8906206840209' },
         ],
       },
       
