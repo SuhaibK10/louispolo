@@ -2905,9 +2905,15 @@ export const PRODUCTS: Product[] = [
       },
     ],
     images: [
-      // '543255a6-680c-415c-4362-50cd1864d900',
-      '16e56d78-9af6-4679-951c-6df9bd6f4900',
-      '5abd5975-806b-41d5-7d24-9e02251e0300',
+      '530e61b2-6626-457b-5519-0076a8a83700',
+      '264e1cae-b5dd-4a84-b1a2-76aa2f69d200',
+      '94d044b9-732e-4cf6-2a03-25f047544800',
+      '2a1f0ffa-07a1-4e44-5e58-3b04b0b00900',
+      'ba45d8f8-ace0-4696-9601-7f87955dbc00',
+      '4fa42310-69bb-4fb5-615b-ccf09781a300',
+      '65986911-c7c0-43c2-bb83-3438bcf8da00',
+      '46eb882b-fbb7-4b6e-1777-6133795a9700',
+      'b4021837-5a6d-4fc5-a60a-1b180c5cbe00',
     ],
     features: [
       { label: 'Hard shell protection' },
@@ -2922,18 +2928,39 @@ export const PRODUCTS: Product[] = [
       {
         color: 'Silver Brush',
         colorHex: '#C0C0C0',
+        images: [
+          '530e61b2-6626-457b-5519-0076a8a83700',
+          '264e1cae-b5dd-4a84-b1a2-76aa2f69d200',
+          '94d044b9-732e-4cf6-2a03-25f047544800',
+          '2a1f0ffa-07a1-4e44-5e58-3b04b0b00900',
+          'ba45d8f8-ace0-4696-9601-7f87955dbc00',
+          '4fa42310-69bb-4fb5-615b-ccf09781a300',
+          '65986911-c7c0-43c2-bb83-3438bcf8da00',
+          '46eb882b-fbb7-4b6e-1777-6133795a9700',
+          'b4021837-5a6d-4fc5-a60a-1b180c5cbe00',
+        ],
         sizes: [
-          { size: 'One Size', price: 5490, stock: 30, sku: '8906206840193' },
+          { size: 'One Size', price: 4118, stock: 30, sku: '8906206840193' },
         ],
       },
       {
         color: 'Carbon Fiber',
         colorHex: '#2C2C2C',
+        images: [
+          '306b54cc-bfc1-4d71-23e6-e3189731cb00',
+          'bb7d15bc-7fbe-4fca-49ee-828f779a1400',
+          '51941e4c-fb6b-4476-ce6a-6dfed3f51400',
+          '84d27bd2-ea3d-4f8c-ef4d-facd1e6efa00',
+          '36916d5d-a092-4105-f097-807dd415f700',
+          '9803d96d-1481-4199-436c-4619e3592000',
+          'ad6cd7fa-e829-4beb-c1bf-4029c8e40900',
+          'dadf70d3-f043-41cd-d8b4-bacdbf306400',
+          '192608cb-98d5-4103-20a8-356ec64ad300',
+        ],
         sizes: [
-          { size: 'One Size', price: 5490, stock: 30, sku: '8906206840209' },
+          { size: 'One Size', price: 4118, stock: 30, sku: '8906206840209' },
         ],
       },
-      
     ],
   },
 
