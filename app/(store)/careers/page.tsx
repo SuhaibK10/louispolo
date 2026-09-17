@@ -103,29 +103,6 @@ const POSITIONS: OpenPosition[] = [
     ],
     showTask: false,
   },
-  {
-    role: 'E-commerce & Marketplace Manager',
-    tags: 'Full-Time · Remote · Compensation as per market standards',
-    description:
-      'Own our presence across every marketplace we sell on, Myntra, Amazon, Flipkart and beyond, plus the Meta Ads driving traffic to them. This is a hands-on, own-the-numbers role: listings, campaigns, ACoS, and the day-to-day of keeping every storefront healthy.',
-    whatYoullDo: [
-      'Manage and grow our presence across Myntra, Amazon, Flipkart and other marketplaces as we expand',
-      'Own listing optimization across every platform: titles, keywords, images, descriptions',
-      'Plan and run marketplace ad campaigns (PPC) and Meta Ads, from setup to audience targeting',
-      'Track ROAS and ACoS, and adjust pricing, promotions and keyword strategy to improve them',
-      'Manage seller account health, catalog setup and compliance across every platform',
-      'Coordinate inventory and order fulfilment with the warehouse and operations team',
-      'Analyse multi-platform sales data to find and act on growth opportunities',
-    ],
-    whatWereLookingFor: [
-      'Real experience managing marketplace operations (Myntra, Amazon, Flipkart or similar)',
-      'Working knowledge of Meta Ads: campaign setup and audience targeting',
-      'Comfortable with PPC advertising and ROAS/ACoS optimization',
-      'A sharp eye for listing and catalog quality across platforms',
-      'Organised and detail-oriented, comfortable owning day-to-day marketplace operations independently',
-    ],
-    showTask: false,
-  },
 ]
 
 export default function CareersPage() {
