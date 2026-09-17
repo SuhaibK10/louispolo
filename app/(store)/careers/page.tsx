@@ -62,7 +62,6 @@ const POSITIONS: OpenPosition[] = [
     description:
       "Own the look and feel of everything Louis Polo customers touch, the website, the app, every PDP and campaign page. We are obsessive about not looking like every other AI-templated D2C brand out there, and we need someone with the taste to keep it that way. High design quotient is non-negotiable here, you notice the details most people scroll past.",
     jdHref: '/documents/louis-polo-uiux-designer-jd.pdf',
-    applyByEmail: true,
     whatYoullDo: [
       'Design and evolve the visual language across the website, app, and every customer touchpoint',
       'Own new product pages, landing pages, and campaign creatives end to end, from concept to dev handoff',
@@ -83,7 +82,7 @@ const POSITIONS: OpenPosition[] = [
   },
   {
     role: 'Growth Creative Intern (Gen AI)',
-    tags: 'Internship · Remote · 2 Months · ₹15,000-20,000/month · API cost on us',
+    tags: 'Internship · Remote · 2 Months · ₹10,000/month · API cost on us',
     description:
       "Own creative that doesn't just look beautiful, it sells. Hero visuals, Meta ad creatives, product videos, competitor research and campaign ideas for a growing premium travel brand. Small, fast-moving team, we experiment aggressively and ship even faster.",
     jdHref: '/documents/louis-polo-creative-intern-jd.pdf',
@@ -102,7 +101,7 @@ const POSITIONS: OpenPosition[] = [
       'Basic understanding of Meta Ads and branding vs. conversion creative',
       'Comfortable editing short-form video: CapCut, Premiere Pro, DaVinci Resolve or After Effects',
     ],
-    showTask: true,
+    showTask: false,
   },
   {
     role: 'E-commerce & Marketplace Manager',
