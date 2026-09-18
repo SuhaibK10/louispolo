@@ -251,9 +251,9 @@ export default function CareersPage() {
           </p>
           <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl mb-8">
             Our team is based across{' '}
-            <span className="font-semibold text-lp-ink">Mumbai</span>,{' '}
-            <span className="font-semibold text-lp-ink">London</span> and{' '}
-            <span className="font-semibold text-lp-ink">Hong Kong</span>.
+            <span className="font-semibold text-lp-ink">🇮🇳 Mumbai</span>,{' '}
+            <span className="font-semibold text-lp-ink">🇬🇧 London</span> and{' '}
+            <span className="font-semibold text-lp-ink">🇭🇰 Hong Kong</span>.
           </p>
           <div className="flex flex-wrap gap-3">
             {DEPARTMENTS.map(dept => (
