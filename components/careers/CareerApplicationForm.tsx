@@ -72,6 +72,7 @@ export function CareerApplicationForm({ role, showTask = true }: Props) {
       role,
       name:         fd.get('name')         as string,
       email:        fd.get('email')        as string,
+      phone:        fd.get('phone')        as string,
       portfolioUrl: fd.get('portfolioUrl') as string,
       resumeUrl:    fd.get('resumeUrl')    as string,
       tools:        fd.get('tools')        as string,
@@ -166,6 +167,14 @@ export function CareerApplicationForm({ role, showTask = true }: Props) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field
+            label="Phone Number"
+            name="phone"
+            type="tel"
+            placeholder="Your phone number"
+            inputClass={inputClass}
+            optional
+          />
+          <Field
             label="Portfolio / LinkedIn Link"
             name="portfolioUrl"
             type="url"
@@ -173,16 +182,17 @@ export function CareerApplicationForm({ role, showTask = true }: Props) {
             inputClass={inputClass}
             optional
           />
-          <Field
-            label="Resume Link"
-            name="resumeUrl"
-            type="url"
-            placeholder="Drive, Dropbox, anywhere it's public"
-            inputClass={inputClass}
-            required={!showTask}
-            optional={showTask}
-          />
         </div>
+
+        <Field
+          label="Resume Link"
+          name="resumeUrl"
+          type="url"
+          placeholder="Drive, Dropbox, anywhere it's public"
+          inputClass={inputClass}
+          required={!showTask}
+          optional={showTask}
+        />
 
         {showTask && (
           <Field

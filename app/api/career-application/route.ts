@@ -4,7 +4,7 @@ import { resend, EMAIL_FROM } from '@/lib/resend'
 import { BRAND }            from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
-  const { role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message } = await request.json()
+  const { role, name, email, phone, portfolioUrl, resumeUrl, taskUrl, tools, message } = await request.json()
 
   // taskUrl is only collected on roles with the AI-creative task (showTask);
   // other roles collect resumeUrl instead — so either one satisfies this,
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       const sheetRes = await fetch(sheetWebhook, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ role, name, email, portfolioUrl, resumeUrl, taskUrl, tools, message }),
+        body:    JSON.stringify({ role, name, email, phone, portfolioUrl, resumeUrl, taskUrl, tools, message }),
       })
       savedToSheet = sheetRes.ok
       if (!savedToSheet) {
@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
           <tr><td style="padding: 6px 0; color: #888; width: 140px;">Role</td><td style="padding: 6px 0; font-weight: 600;">${role}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Name</td><td style="padding: 6px 0;">${name}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Email</td><td style="padding: 6px 0;"><a href="mailto:${email}" style="color: #B99A62;">${email}</a></td></tr>
+          ${phone ? `<tr><td style="padding: 6px 0; color: #888;">Phone</td><td style="padding: 6px 0;"><a href="tel:${phone}" style="color: #B99A62;">${phone}</a></td></tr>` : ''}
           ${portfolioUrl ? `<tr><td style="padding: 6px 0; color: #888;">Portfolio</td><td style="padding: 6px 0;"><a href="${portfolioUrl}" style="color: #B99A62;">${portfolioUrl}</a></td></tr>` : ''}
           ${resumeUrl ? `<tr><td style="padding: 6px 0; color: #888;">Resume</td><td style="padding: 6px 0;"><a href="${resumeUrl}" style="color: #B99A62;">${resumeUrl}</a></td></tr>` : ''}
           ${taskUrl ? `<tr><td style="padding: 6px 0; color: #888;">Task submission</td><td style="padding: 6px 0;"><a href="${taskUrl}" style="color: #B99A62;">${taskUrl}</a></td></tr>` : ''}

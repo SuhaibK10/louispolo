@@ -250,7 +250,10 @@ export default function CareersPage() {
             file and reach out when the right one comes up.
           </p>
           <p className="font-body text-[0.9rem] text-lp-muted leading-relaxed max-w-xl mb-8">
-            Our team is based across Mumbai, London and Hong Kong.
+            Our team is based across{' '}
+            <span className="font-semibold text-lp-ink">Mumbai</span>,{' '}
+            <span className="font-semibold text-lp-ink">London</span> and{' '}
+            <span className="font-semibold text-lp-ink">Hong Kong</span>.
           </p>
           <div className="flex flex-wrap gap-3">
             {DEPARTMENTS.map(dept => (
