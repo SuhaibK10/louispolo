@@ -81,6 +81,12 @@ export const metadata: Metadata = {
   },
   manifest:    '/site.webmanifest',
   appleWebApp: { title: 'Louis Polo' },
+  // Pinterest domain-claim verification (Business account → Claim your website).
+  verification: {
+    other: {
+      'p:domain_verify': '765212c1814b74eed68526dc31ff6c06',
+    },
+  },
 }
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
