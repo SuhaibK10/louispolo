@@ -128,6 +128,26 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Google Analytics 4 — property "Louis Polo", measurement ID
+            G-WZV0X0MVK2. Standard gtag.js loader, split into two Scripts
+            (the library, then the init call) since it needs to run after
+            gtag.js has actually loaded. */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WZV0X0MVK2"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WZV0X0MVK2');
+            `,
+          }}
+        />
         <Analytics />
       </body>
     </html>
