@@ -37,6 +37,7 @@ export function CommunityShowcase() {
   const isCarousel = COMMUNITY_CLIPS.length > 2
   const trackRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [active, setActive] = useState(middleIndex)
   const [playing, setPlaying] = useState<number | null>(null)
 
@@ -67,6 +68,24 @@ export function CommunityShowcase() {
     cardRefs.current.forEach((el) => el && observer.observe(el))
     return () => observer.disconnect()
   }, [])
+
+  // Drives actual playback. The <video> for a clip mounts (with
+  // preload="metadata") the moment it becomes the active card — well before
+  // any tap — so the connection is already open and the file's metadata
+  // already fetched by the time someone presses play. This effect just
+  // starts/stops it; the warm-up already happened passively above.
+  useEffect(() => {
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return
+      if (i === playing) {
+        video.muted = false
+        video.play().catch(() => {})
+      } else {
+        video.pause()
+        video.currentTime = 0
+      }
+    })
+  }, [playing])
 
   function scrollToIndex(i: number) {
     const clamped = Math.max(0, Math.min(COMMUNITY_CLIPS.length - 1, i))
@@ -146,15 +165,23 @@ export function CommunityShowcase() {
                 }}
                 className={`relative z-0 shrink-0 snap-center w-68 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden bg-lp-image-bg cursor-pointer transition-[transform,opacity] duration-300 ease-out md:scale-100 md:opacity-100 ${isActive ? 'scale-100 opacity-100' : 'scale-[0.88] opacity-45'}`}
               >
-                {isPlaying ? (
+                {/* Mounted as soon as this card is active (not only on tap)
+                    so preload="metadata" can open the connection and read
+                    the file's metadata ahead of time — see the effect above.
+                    Stays mounted while playing even if the user scrolls to
+                    another card, so playback isn't cut off mid-clip. */}
+                {(isActive || isPlaying) && (
                   <video
+                    ref={(el) => { videoRefs.current[i] = el }}
                     src={cfVideo(clip.videoId)}
-                    autoPlay
-                    controls
+                    preload="metadata"
+                    muted
+                    controls={isPlaying}
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className={`absolute inset-0 w-full h-full object-cover ${isPlaying ? '' : 'opacity-0 pointer-events-none'}`}
                   />
-                ) : (
+                )}
+                {!isPlaying && (
                   <>
                     <Image
                       src={cfVideoPoster(clip.videoId)}

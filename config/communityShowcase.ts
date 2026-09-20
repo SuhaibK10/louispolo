@@ -19,6 +19,9 @@ export interface CommunityClip {
 
 export const COMMUNITY_CLIPS: CommunityClip[] = [
   { videoId: 'd7a97bbee4bddeaee0b222272c81c78e', caption: 'Louis Polo customer video — Dr Vishva' },
-  { videoId: 'd77f79073e54f95ec8ecc24857e02fc1', caption: 'Louis Polo customer video' },
-  { videoId: 'a4b18148954cffc451e295d8624a3609', caption: 'Louis Polo customer video — Sheena Sukeja' },
+  // Re-encoded down from 19.5MB (1920p) to 7.7MB — same clip, see CommunityShowcase.tsx
+  // for why the original file size was making tap-to-play feel slow.
+  { videoId: '481b3c87b9c97480266e7ccb9fa8f5ac', caption: 'Louis Polo customer video' },
+  // Re-encoded down from 18.1MB (1920p) to 7.19MB — same clip as above.
+  { videoId: 'b8cfb74cfc722f6c6fa6ade4647c06c8', caption: 'Louis Polo customer video — Sheena Sukeja' },
 ]
