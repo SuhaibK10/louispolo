@@ -2905,7 +2905,7 @@ export const PRODUCTS: Product[] = [
       },
     ],
     images: [
-      '530e61b2-6626-457b-5519-0076a8a83700',
+      '824f0600-2edd-411a-1e6f-7882bcc81300',
       '264e1cae-b5dd-4a84-b1a2-76aa2f69d200',
       '94d044b9-732e-4cf6-2a03-25f047544800',
       '2a1f0ffa-07a1-4e44-5e58-3b04b0b00900',
@@ -2929,7 +2929,7 @@ export const PRODUCTS: Product[] = [
         color: 'Silver Brush',
         colorHex: '#C0C0C0',
         images: [
-          '530e61b2-6626-457b-5519-0076a8a83700',
+          '824f0600-2edd-411a-1e6f-7882bcc81300',
           '264e1cae-b5dd-4a84-b1a2-76aa2f69d200',
           '94d044b9-732e-4cf6-2a03-25f047544800',
           '2a1f0ffa-07a1-4e44-5e58-3b04b0b00900',
