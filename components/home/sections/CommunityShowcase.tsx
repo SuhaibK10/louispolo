@@ -160,8 +160,21 @@ export function CommunityShowcase() {
                 key={clip.videoId}
                 ref={(el) => { cardRefs.current[i] = el }}
                 onClick={() => {
-                  if (!isActive) { scrollToIndex(i); return }
-                  setPlaying(isPlaying ? null : i)
+                  if (isActive) { setPlaying(isPlaying ? null : i); return }
+                  // A peeking side card gets started in the same click that
+                  // selects it — set active optimistically rather than
+                  // waiting on the IntersectionObserver to catch up. Only
+                  // scroll it to center on mobile, where the coverflow peek
+                  // (dimmed/scaled neighbors) makes an off-center card hard
+                  // to watch — desktop shows every card at full size/opacity
+                  // regardless of which is "active" (see md:scale-100
+                  // md:opacity-100 below), so there's nothing to gain by
+                  // sliding it into place there; it just plays where it is.
+                  if (!window.matchMedia('(min-width: 768px)').matches) {
+                    scrollToIndex(i)
+                  }
+                  setActive(i)
+                  setPlaying(i)
                 }}
                 className={`relative z-0 shrink-0 snap-center w-68 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden bg-lp-image-bg cursor-pointer transition-[transform,opacity] duration-300 ease-out md:scale-100 md:opacity-100 ${isActive ? 'scale-100 opacity-100' : 'scale-[0.88] opacity-45'}`}
               >
@@ -169,7 +182,13 @@ export function CommunityShowcase() {
                     so preload="metadata" can open the connection and read
                     the file's metadata ahead of time — see the effect above.
                     Stays mounted while playing even if the user scrolls to
-                    another card, so playback isn't cut off mid-clip. */}
+                    another card, so playback isn't cut off mid-clip.
+                    z-0 + inert while hidden: on desktop, a mouse click can
+                    still land ON the <video> element itself even through
+                    pointer-events-none in some browsers (video elements are
+                    replaced content with their own default handling) — inert
+                    is the belt-and-suspenders that guarantees it can never
+                    swallow the click the poster layer above it should get. */}
                 {(isActive || isPlaying) && (
                   <video
                     ref={(el) => { videoRefs.current[i] = el }}
@@ -178,7 +197,8 @@ export function CommunityShowcase() {
                     muted
                     controls={isPlaying}
                     playsInline
-                    className={`absolute inset-0 w-full h-full object-cover ${isPlaying ? '' : 'opacity-0 pointer-events-none'}`}
+                    inert={!isPlaying}
+                    className={`absolute inset-0 z-0 w-full h-full object-cover ${isPlaying ? '' : 'opacity-0 pointer-events-none'}`}
                   />
                 )}
                 {!isPlaying && (
@@ -187,17 +207,17 @@ export function CommunityShowcase() {
                       src={cfVideoPoster(clip.videoId)}
                       alt={clip.caption}
                       fill
-                      className="object-cover object-center"
+                      className="relative z-10 object-cover object-center"
                       sizes="(max-width:768px) 70vw, 320px"
                     />
-                    <div className="absolute inset-0 bg-[var(--color-lp-ink)]/20" />
-                    <span className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 z-10 bg-[var(--color-lp-ink)]/20" />
+                    <span className="absolute inset-0 z-10 flex items-center justify-center">
                       <span className="w-12 h-12 rounded-full bg-[var(--color-lp-porcelain)]/90 backdrop-blur-sm flex items-center justify-center">
                         <Play size={18} strokeWidth={0} fill="currentColor" className="text-[var(--color-lp-ink)] ml-0.5" />
                       </span>
                     </span>
                     {clip.duration && (
-                      <span className="absolute bottom-2.5 right-2.5 font-body text-[0.65rem] text-white/90 tabular-nums">
+                      <span className="absolute bottom-2.5 right-2.5 z-10 font-body text-[0.65rem] text-white/90 tabular-nums">
                         {clip.duration}
                       </span>
                     )}
