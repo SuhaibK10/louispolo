@@ -16,7 +16,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Play, Instagram } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Play, Instagram, Loader2 } from 'lucide-react'
 import { BRAND } from '@/lib/constants'
 import { cfVideo, cfVideoPoster } from '@/lib/cloudflareStream'
 import { COMMUNITY_CLIPS } from '@/config/communityShowcase'
@@ -40,6 +40,16 @@ export function CommunityShowcase() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [active, setActive] = useState(middleIndex)
   const [playing, setPlaying] = useState<number | null>(null)
+  // Separate from `playing`: `playing` is "which clip should be playing"
+  // (drives the play()/pause() effect below); this is "which clip has
+  // actually started rendering frames" (the video's own native 'playing'
+  // event). Swapping the poster out the instant `playing` changes — before
+  // the browser has buffered anything — is what made a cold, unpreloaded
+  // card (any side card clicked directly, no scroll-animation head start)
+  // show a blank frozen video for the whole buffering time. Waiting for
+  // this instead keeps the poster (with a spinner) up until there's
+  // actually something to show.
+  const [readyToShow, setReadyToShow] = useState<number | null>(null)
 
   const handle = BRAND.instagram.split('/').filter(Boolean).pop()
 
@@ -75,6 +85,10 @@ export function CommunityShowcase() {
   // already fetched by the time someone presses play. This effect just
   // starts/stops it; the warm-up already happened passively above.
   useEffect(() => {
+    // Whichever clip is now the target has to prove it's actually playing
+    // again via onPlaying below — don't carry over readiness from whatever
+    // was showing before.
+    setReadyToShow(null)
     videoRefs.current.forEach((video, i) => {
       if (!video) return
       if (i === playing) {
@@ -155,6 +169,12 @@ export function CommunityShowcase() {
           {COMMUNITY_CLIPS.map((clip, i) => {
             const isActive = i === active
             const isPlaying = playing === i
+            // `isPlaying` = the user asked for this clip to play. `isVisiblyPlaying`
+            // = it's actually rendering frames, so it's safe to hide the poster
+            // and hand over the click target to the <video> itself. Between
+            // the two (isPlaying but not yet visible), the poster stays up
+            // with a spinner instead of the play icon.
+            const isVisiblyPlaying = isPlaying && readyToShow === i
             return (
               <div
                 key={clip.videoId}
@@ -195,13 +215,14 @@ export function CommunityShowcase() {
                     src={cfVideo(clip.videoId)}
                     preload="metadata"
                     muted
-                    controls={isPlaying}
+                    controls={isVisiblyPlaying}
                     playsInline
-                    inert={!isPlaying}
-                    className={`absolute inset-0 z-0 w-full h-full object-cover ${isPlaying ? '' : 'opacity-0 pointer-events-none'}`}
+                    inert={!isVisiblyPlaying}
+                    onPlaying={() => setReadyToShow(i)}
+                    className={`absolute inset-0 z-0 w-full h-full object-cover ${isVisiblyPlaying ? '' : 'opacity-0 pointer-events-none'}`}
                   />
                 )}
-                {!isPlaying && (
+                {!isVisiblyPlaying && (
                   <>
                     <Image
                       src={cfVideoPoster(clip.videoId)}
@@ -213,10 +234,14 @@ export function CommunityShowcase() {
                     <div className="absolute inset-0 z-10 bg-[var(--color-lp-ink)]/20" />
                     <span className="absolute inset-0 z-10 flex items-center justify-center">
                       <span className="w-12 h-12 rounded-full bg-[var(--color-lp-porcelain)]/90 backdrop-blur-sm flex items-center justify-center">
-                        <Play size={18} strokeWidth={0} fill="currentColor" className="text-[var(--color-lp-ink)] ml-0.5" />
+                        {isPlaying ? (
+                          <Loader2 size={18} strokeWidth={2} className="text-[var(--color-lp-ink)] animate-spin" />
+                        ) : (
+                          <Play size={18} strokeWidth={0} fill="currentColor" className="text-[var(--color-lp-ink)] ml-0.5" />
+                        )}
                       </span>
                     </span>
-                    {clip.duration && (
+                    {clip.duration && !isPlaying && (
                       <span className="absolute bottom-2.5 right-2.5 z-10 font-body text-[0.65rem] text-white/90 tabular-nums">
                         {clip.duration}
                       </span>
