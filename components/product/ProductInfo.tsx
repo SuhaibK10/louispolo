@@ -76,6 +76,9 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
   const variant  = product.variants[colorIndex]
   const sizeObj  = variant.sizes.find(s => s.size === selectedSize)
   const price    = sizeObj?.price ?? Math.min(...variant.sizes.map(s => s.price))
+  // A size's own mrp overrides the product-level one when set — lets one
+  // size (e.g. a larger one) carry a different "was" price than the rest.
+  const mrp      = sizeObj?.mrp ?? product.mrp
   const inStock  = sizeObj ? sizeObj.stock > 0 : true
   const canAdd   = selectedSize !== null && inStock
 
@@ -194,13 +197,13 @@ export function ProductInfo({ product, defaultColor, onColorChange, onColorHover
       <div className="space-y-2">
         <p className="font-body text-[1.35rem] font-semibold leading-none text-[var(--color-lp-ink)]">
           {selectedSize ? formatPrice(price) : `From ${formatPrice(price)}`}
-          {product.mrp && (
+          {mrp && (
             <>
               <span className="ml-3 font-body text-[0.95rem] font-normal text-[var(--color-lp-muted)] line-through decoration-1 decoration-[var(--color-lp-muted)] align-middle">
-                {formatPrice(product.mrp)}
+                {formatPrice(mrp)}
               </span>
               <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 font-body font-semibold text-[0.8rem] bg-lp-success/10 text-lp-success align-middle">
-                ({Math.round((1 - price / product.mrp) * 100)}% off)
+                ({Math.round((1 - price / mrp) * 100)}% off)
               </span>
             </>
           )}

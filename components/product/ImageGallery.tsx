@@ -204,7 +204,6 @@ export function ImageGallery({ images, productName, active, onActiveChange, rece
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={handleMouseClick}
-        onContextMenu={(e) => e.preventDefault()}
       >
         {recentPurchases && (
           <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full bg-lp-porcelain/90 backdrop-blur-sm px-2.5 py-1">

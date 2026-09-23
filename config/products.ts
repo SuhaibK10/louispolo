@@ -913,7 +913,7 @@ export const PRODUCTS: Product[] = [
         sizes: [
           { size: 'Cabin', price: 2749, stock: 50, sku: '8906206840292' },
           { size: 'Medium', price: 3099, stock: 40, sku: '8906206840308' },
-          { size: 'Large', price: 3449, stock: 30, sku: '8906206840315' },
+          { size: 'Large', price: 3449, stock: 30, sku: '8906206840315', mrp: 12490 },
         ],
       },
       {
@@ -922,7 +922,7 @@ export const PRODUCTS: Product[] = [
         sizes: [
           { size: 'Cabin', price: 2749, stock: 50, sku: '8906206840346' },
           { size: 'Medium', price: 3099, stock: 40, sku: '8906206840339' },
-          { size: 'Large', price: 3449, stock: 30, sku: '8906206840322' },
+          { size: 'Large', price: 3449, stock: 30, sku: '8906206840322', mrp: 12490 },
         ],
       },
       {
@@ -931,7 +931,7 @@ export const PRODUCTS: Product[] = [
         sizes: [
           { size: 'Cabin', price: 2749, stock: 50 },
           { size: 'Medium', price: 3099, stock: 40 },
-          { size: 'Large', price: 3449, stock: 30 },
+          { size: 'Large', price: 3449, stock: 30, mrp: 12490 },
         ],
       },
     ],
@@ -2866,7 +2866,7 @@ export const PRODUCTS: Product[] = [
     name: 'ArmorPack',
     slug: 'armorpack',
     category: 'backpack',
-    mrp: 5490,
+    mrp: 4118,
     isFeatured: true,
     hideSizeSelector: true,
     description:
@@ -4421,7 +4421,7 @@ export const PRODUCTS: Product[] = [
     name: 'VeeZoom Set of 3',
     slug: 'veezoom-set',
     category: 'set',
-    mrp: 15498,
+    mrp: 31699,
     isFeatured: true,
     description:
       'The full VeeZoom family: 20", 24", and 28" in matching bold design. Nesting format for home storage. Everything you need for a week, a month, or forever.',

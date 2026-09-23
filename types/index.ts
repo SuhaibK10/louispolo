@@ -58,6 +58,9 @@ export interface SizeOption {
   price: number
   stock: number
   sku?: string
+  mrp?: number  // strike-through "original" price for this size specifically —
+                // overrides Product.mrp when set (e.g. a multi-size product
+                // where only one size's MRP differs from the rest)
 }
 
 export interface ColorVariant {

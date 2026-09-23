@@ -24,6 +24,7 @@ interface Props {
   onSizeChange:   (size: ProductSize) => void
   displayImage:   string
   price:          number
+  mrp?:           number  // resolved by the caller — the active size's own mrp if set, else product.mrp
   canAdd:         boolean
   addedToCart:    boolean
   onAddToCart:    (e: React.MouseEvent) => void
@@ -33,7 +34,7 @@ interface Props {
 
 export function QuickViewModal({
   open, onClose, product, activeVariant, activeSize, onColorChange, onSizeChange,
-  displayImage, price, canAdd, addedToCart, onAddToCart, manualRating, reviews = [],
+  displayImage, price, mrp, canAdd, addedToCart, onAddToCart, manualRating, reviews = [],
 }: Props) {
   const [reviewsOpen, setReviewsOpen] = useState(false)
   useEffect(() => {
@@ -151,13 +152,13 @@ export function QuickViewModal({
 
                 <p className="font-body text-[1.35rem] font-semibold leading-none text-[var(--color-lp-ink)] mt-1">
                   {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
-                  {product.mrp && (
+                  {mrp && (
                     <>
                       <span className="ml-3 font-body text-[0.95rem] font-normal text-[var(--color-lp-muted)] line-through decoration-1 decoration-[var(--color-lp-muted)] align-middle">
-                        {formatPrice(product.mrp)}
+                        {formatPrice(mrp)}
                       </span>
                       <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 font-body font-semibold text-[0.8rem] bg-lp-success/10 text-lp-success align-middle">
-                        ({Math.round((1 - price / product.mrp) * 100)}% off)
+                        ({Math.round((1 - price / mrp) * 100)}% off)
                       </span>
                     </>
                   )}

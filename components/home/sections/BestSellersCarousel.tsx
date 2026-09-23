@@ -96,6 +96,8 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
     : displayImage
   const sizeObj       = variant.sizes.find(s => s.size === activeSize)
   const price         = sizeObj?.price ?? lowestPrice
+  // A size's own mrp overrides the product-level one when set.
+  const mrp           = sizeObj?.mrp ?? product.mrp
   const inStock       = sizeObj ? sizeObj.stock > 0 : true
   const canAdd        = activeSize !== null && inStock
 
@@ -488,14 +490,14 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
               ({Math.round((1 - myntraTarget.price / (activeSize ? price : lowestPrice)) * 100)}% off)
             </span>
           </p>
-        ) : product.mrp ? (
+        ) : mrp ? (
           <p className="font-body text-[1rem] md:text-[1.125rem] font-medium leading-[1.2] tracking-[-0.015em] text-[#1C1B19] whitespace-nowrap">
             {activeSize ? formatPrice(price) : `From ${formatPrice(price)}`}
             <span className="hidden sm:inline ml-2 font-normal text-[0.875rem] text-[var(--color-lp-muted)] line-through decoration-1 decoration-[var(--color-lp-muted)]">
-              {formatPrice(product.mrp)}
+              {formatPrice(mrp)}
             </span>
             <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 font-semibold text-[0.78rem] bg-lp-success/10 text-lp-success">
-              ({Math.round((1 - (activeSize ? price : lowestPrice) / product.mrp) * 100)}% off)
+              ({Math.round((1 - (activeSize ? price : lowestPrice) / mrp) * 100)}% off)
             </span>
           </p>
         ) : (
@@ -565,6 +567,7 @@ function ProductCard({ product }: { product: typeof FEATURED_PRODUCTS[0] }) {
           onSizeChange={setActiveSize}
           displayImage={displayImage}
           price={price}
+          mrp={mrp}
           canAdd={canAdd}
           addedToCart={addedToCart}
           onAddToCart={handleAddToCart}
