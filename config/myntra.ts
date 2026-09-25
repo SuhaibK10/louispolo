@@ -103,6 +103,16 @@ export const MYNTRA_LISTINGS: Record<string, MyntraListing> = {
       'Set of 3': { url: `${M}/trolley-bag/louis+polo/louis-polo-veezoom-set-of-3-textured-trolley-suitcase---cabin--medium--large/40284516/buy`, price: 6949 },
     },
   },
+  // No ratings yet on Myntra. One listing per colour there (Black 41349186,
+  // Maroon 41349173, Blue 41349179); all colours link to the Black page,
+  // which carries the colour switcher.
+  'travex-backpack': {
+    url: `${M}/backpacks/louis+polo/louis-polo-unisex-travex-backpack-with-compression-straps/41349186/buy`,
+    fromPrice: 1699,
+    sizes: {
+      'One Size': { url: `${M}/backpacks/louis+polo/louis-polo-unisex-travex-backpack-with-compression-straps/41349186/buy`, price: 1699 },
+    },
+  },
 }
 
 export function getMyntraListing(slug: string): MyntraListing | undefined {

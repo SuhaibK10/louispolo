@@ -4886,6 +4886,103 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
+  // ── Travex Backpack ──────────────────────────────────────────────────────
+  {
+    id: 'travex-backpack',
+    imageFit: 'cover',
+    metaTitle: 'Travex Backpack with Compression Straps and Trolley Sleeve',
+    metaDescription: 'A 24 to 30 litre backpack with a padded laptop compartment (up to 15 inch), trolley sleeve, side compression straps, and water resistant polyester.',
+    keywords: ['backpack with trolley sleeve', '15 inch laptop backpack', 'travel backpack with compression straps', 'water resistant backpack', 'casual travel backpack'],
+    name: 'Travex',
+    slug: 'travex-backpack',
+    category: 'backpack',
+    mrp: 4999,
+    hideSizeSelector: true,
+    description:
+      'A 24 to 30 litre backpack with a padded laptop compartment, a trolley sleeve that slides over a suitcase handle, and side compression straps that keep it slim when full.',
+    story: [
+      'Travex is built for the days that start on a train platform and end in a hotel lobby. Two main compartments keep work and the rest of your things apart, a padded sleeve takes a laptop up to 15 inch, and a diagonal front pocket holds keys, a wallet, and travel documents within one hand’s reach.',
+      'The trolley sleeve slides over the handle of a suitcase, so the backpack rides along instead of weighing on your shoulders through the terminal. Adjustable side compression buckles pull the load in tight, and a D-ring at the base takes a carabiner when the day’s list grows.',
+    ],
+    highlights: [
+      {
+        heading: 'Rides on your suitcase',
+        body: 'A trolley sleeve slides over a suitcase handle, so the backpack rolls through the airport with the rest of your luggage and your shoulders get the walk off.',
+      },
+      {
+        heading: 'Quick reach, tight pack',
+        body: 'The diagonal front pocket keeps the things you check most within reach, and the side compression buckles hold the profile slim even when the bag is packed to its 30 litres.',
+      },
+    ],
+    specs: [
+      { label: 'Capacity', value: '24 to 30 litres' },
+      { label: 'Size',     value: '47 × 32 × 20 cm (H × L × W)' },
+      { label: 'Material', value: 'Polyester · water resistant' },
+      { label: 'Interior', value: '2 main compartments with zip closure · padded laptop compartment (up to 15 inch)' },
+      { label: 'Pockets',  value: '3 external pockets · 2 stash pockets' },
+      { label: 'Carry',    value: 'Padded back panel · padded shoulder straps · padded haul loop · trolley sleeve' },
+      { label: 'Care',     value: 'Wipe with a clean, dry cloth to remove dust. Can be washed when needed.' },
+    ],
+    warranty:
+      '1-year warranty covering manufacturing defects in the fabric, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
+    images: ['13959cdd-fb5c-423c-67b7-8a922befb800', 'ef64aeb3-6c72-4c65-dbf9-c55dfa5b7600'],
+    features: [
+      { label: 'Padded laptop compartment (up to 15 inch)' },
+      { label: 'Trolley sleeve' },
+      { label: 'Side compression straps' },
+      { label: 'Water resistant polyester' },
+      { label: 'Padded back and shoulder straps' },
+      { label: '24 to 30 litre capacity' },
+    ],
+    variants: [
+      {
+        color: 'Black', colorHex: '#212121',
+        images: [
+          '13959cdd-fb5c-423c-67b7-8a922befb800',
+          'ef64aeb3-6c72-4c65-dbf9-c55dfa5b7600',
+          'd3ef1249-18e1-4d71-72e2-05e49c730100',
+          '958cc11e-49b0-41c4-0e70-9307b27b0a00',
+          'a49a551c-2b65-4e94-e9aa-1cca26873d00',
+          'a93fd6a6-3afa-4567-3c37-9b7f67f0bb00',
+          '568bbbec-09ce-442d-3ab4-284211e6ff00',
+          '8d0b5752-a9bf-4a05-3a40-f8797ea54600',
+          '5ab4769d-f376-4b39-aef3-319eb21e3700',
+        ],
+        sizes: [{ size: 'One Size', price: 4999, stock: 50 }],
+      },
+      {
+        color: 'Maroon', colorHex: '#8B2635',
+        images: [
+          'c9eaf965-c1d9-47af-d603-6d798a2e8400',
+          '3b77429f-0f10-404b-0256-f746807dc900',
+          '341e1c68-c9cd-49e2-b69b-9274060d7f00',
+          'd204956b-7193-4523-e361-409c17582e00',
+          '4ab85e69-8408-4ebc-19f4-c2a1d08d3d00',
+          'ac88cabe-6cb9-4668-972a-9a6a1249f200',
+          '0286c95e-f124-422a-0fa0-29913a480200',
+          '58b68a8c-0c13-48eb-1c92-77f419f13700',
+        ],
+        sizes: [{ size: 'One Size', price: 4999, stock: 50 }],
+      },
+      {
+        color: 'Blue', colorHex: '#3F5E94',
+        images: [
+          'f1b2fbd9-c629-4b07-0e2a-c64e32c78200',
+          'fee30f4b-0a57-4c19-0657-3972afc97c00',
+          'd3406b32-1257-4cd9-fb25-180059fd5a00',
+          'faa01037-9d8e-4ee1-7809-79d5d23a5f00',
+          '380a9016-f6a3-4758-08f7-34816d365a00',
+          '5f311861-7b87-413f-a960-34a04643f900',
+          'a7e22633-cb6a-499c-453f-de71b95d0100',
+          '389b3d0d-663e-480b-2c3e-3c2e3f958100',
+          'a03ebd1f-e7e9-4af8-78e2-c757069ca200',
+          'a2feda48-70e1-451c-d94b-7c81e5e80300',
+        ],
+        sizes: [{ size: 'One Size', price: 4999, stock: 50 }],
+      },
+    ],
+  },
+
   // ── TitanVault ───────────────────────────────────────────────────────────
   {
     id: 'titanvault',
