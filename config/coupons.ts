@@ -158,6 +158,21 @@ export const COUPONS: Coupon[] = [
     ],
     enabled:         true,
   },
+  {
+    code:            'SKYTRAILDUO3990',
+    label:           'SkyTrail Cabin + Medium bundle — ₹3,990',
+    // Requires both below in the cart (any color, bundle scoping is by
+    // product+size only) — won't fire for any other cart. Discounts only
+    // these 2 line items; anything else in the cart stays full price.
+    // Exact for one of each: SkyTrail Cabin (₹2,290) + Medium (₹2,590)
+    // = ₹4,880 → ₹3,990.
+    discountPercent: 0.18237704918032788,
+    bundle: [
+      { productSlug: 'skytrail', size: 'Cabin' },
+      { productSlug: 'skytrail', size: 'Medium' },
+    ],
+    enabled:         true,
+  },
 ]
 
 export function getCoupon(code: string): Coupon | undefined {
