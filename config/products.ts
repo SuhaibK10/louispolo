@@ -918,8 +918,8 @@ export const PRODUCTS: Product[] = [
         ],
         sizes: [
           { size: 'Cabin', price: 2290, stock: 50, sku: '8906206840346' },
-          { size: 'Medium', price: 2590, stock: 40, sku: '8906206840339' },
-          { size: 'Large', price: 2990, stock: 30, sku: '8906206840322', mrp: 12490 },
+          { size: 'Medium', price: 2590, stock: 0, sku: '8906206840339' },
+          { size: 'Large', price: 2990, stock: 0, sku: '8906206840322', mrp: 12490 },
         ],
       },
       {
