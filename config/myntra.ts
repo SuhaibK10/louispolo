@@ -38,17 +38,6 @@ export const MYNTRA_EXCLUSIVES_ENABLED = true
 const M = 'https://www.myntra.com'
 
 export const MYNTRA_LISTINGS: Record<string, MyntraListing> = {
-  skytrail: {
-    url: `${M}/trolley-bag/louis+polo/louis-polo-skytrail-textured-hard-sided-cabin-trolley-suitcase--volume-48l/40284512/buy`,
-    fromPrice: 1949,
-    rating: 4.29,
-    ratingCount: 143,
-    sizes: {
-      'Cabin':  { url: `${M}/trolley-bag/louis+polo/louis-polo-skytrail-textured-hard-sided-cabin-trolley-suitcase--volume-48l/40284512/buy`,        price: 1949, rating: 4.29, ratingCount: 143 },
-      'Medium': { url: `${M}/trolley-bag/louis+polo/louis-polo-skytrail-textured-hard-sided-medium-trolley-suitcase--volume-782-l/40284520/buy`,     price: 2299, rating: 4.29, ratingCount: 143 },
-      'Large':  { url: `${M}/trolley-bag/louis+polo/louis-polo-skytrail-textured-hard-sided-large-trolley-suitcase--volume-117-l/40284525/buy`,      price: 2649, rating: 4.29, ratingCount: 143 },
-    },
-  },
   veezoom: {
     url: `${M}/trolley-bag/louis+polo/louis-polo-veezoom-textured-hard-sided-cabin-trolley-suitcase--volume-47-l/40284514/buy`,
     fromPrice: 1999,

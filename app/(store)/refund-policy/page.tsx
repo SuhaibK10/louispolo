@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { BRAND } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title:       'Replacement Policy',
-  description: 'Louis Polo\'s replacement policy for luggage and travel accessories — replacement only for items damaged on delivery or with an in-warranty manufacturing defect.',
+  title:       'Warranty, Returns & Exchange Policy',
+  description: 'Louis Polo\'s warranty coverage and 7-day return/exchange policy for luggage and travel accessories purchased on louispolo.in.',
   alternates:  { canonical: '/refund-policy' },
 }
 
@@ -13,82 +13,114 @@ export default function RefundPolicyPage() {
       <div className="container-lp section-pad max-w-[52rem]">
 
         <span className="lp-eyebrow">Legal</span>
-        <h1 className="lp-heading-lg mb-2">Replacement Policy</h1>
+        <h1 className="lp-heading-lg mb-2">Warranty, Returns &amp; Exchange Policy</h1>
         <p className="font-body text-[var(--color-lp-muted)] text-sm mb-10">
-          Last updated: August 2026
+          Last updated: September 2026
         </p>
 
         <div className="prose-lp">
 
           <section>
-            <h2>1. Our Approach to Returns</h2>
             <p>
-              We recommend reviewing the size guide and product details carefully before placing
-              your order, since we're unable to offer a return, refund, or exchange outside of the
-              two cases below.
+              At Louis Polo, we are committed to delivering premium travel luggage and accessories
+              with exceptional quality. Below are our complete guidelines regarding warranties,
+              returns, exchanges, and refunds for purchases made on louispolo.in.
             </p>
           </section>
 
           <section>
-            <h2>2. When a Replacement Is Offered</h2>
-            <p>We replace a product, free of charge, only in these two cases:</p>
+            <h2>Part 1 — Warranty Policy</h2>
+            <p>
+              Our warranty is designed to give you peace of mind against manufacturing anomalies.
+              Warranty durations vary by product model and are specified on the warranty card or
+              product tag included with your purchase.
+            </p>
+          </section>
+
+          <section>
+            <h2>1. What Is Covered</h2>
+            <ul>
+              <li>Structural manufacturing defects.</li>
+              <li>Defective materials and substandard workmanship under normal travel usage.</li>
+              <li>Premature failure of essential components (e.g. wheels, handles, locks) due strictly to manufacturing faults.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>2. What Is Not Covered (Exclusions)</h2>
             <ul>
               <li>
-                <strong>Damaged on delivery</strong> — the product arrives visibly damaged, or
-                damaged in transit, when you open it.
+                <strong>Normal Wear &amp; Tear</strong> — cosmetic blemishes, scratches, dents,
+                scuffs, soil marks, and the natural degradation of fabric, zippers, handles, or
+                wheels over time.
               </li>
               <li>
-                <strong>Manufacturing defect within warranty</strong> — the product develops a
-                genuine manufacturing fault (not damage from misuse, an accident, or normal wear)
-                while still within the warranty period stated on its product page.
+                <strong>Transit Damage</strong> — structural breaks, cracks, or zip bursts caused
+                by airline baggage handling, rough transport, or courier mishandling during your
+                own travel. Claims for this must be filed directly with the airline or transit
+                carrier before leaving the terminal.
+              </li>
+              <li>
+                <strong>Misuse &amp; Neglect</strong> — damage from overpacking beyond capacity,
+                accidents, or exposure to extreme temperatures, solvents, acids, or water.
+              </li>
+              <li>
+                <strong>Unauthorized Repairs</strong> — any alterations, tampering, or servicing
+                performed by non-authorized repair centers.
+              </li>
+              <li>
+                <strong>Finishes</strong> — degradation or discoloration of powder coatings,
+                leather trims, or lock finishes.
               </li>
             </ul>
+          </section>
+
+          <section>
+            <h2>3. How to Initiate a Warranty Claim</h2>
+            <ol>
+              <li>
+                Email our support team at <a href="mailto:happytohelp@louispolo.in">happytohelp@louispolo.in</a>{' '}
+                with the subject line <strong>&quot;Warranty Claim – [Your Order/Invoice Number]&quot;</strong>.
+              </li>
+              <li>Attach a copy of your original purchase invoice and the stamped warranty card.</li>
+              <li>
+                Attach clear, high-resolution photos and videos demonstrating the defect, along
+                with a full front-view photo of the product.
+              </li>
+              <li>
+                Our quality control team will assess the claim. If approved, we will provide
+                instructions for repairing the product, replacing it, or issuing a store credit at
+                our discretion.
+              </li>
+            </ol>
+          </section>
+
+          <section>
+            <h2>Part 2 — Returns &amp; Exchanges</h2>
             <p>
-              Outside of these two cases, we are unable to offer a return, refund, or exchange.
+              We offer a <strong>7-day return window</strong> from the date of delivery for items
+              purchased directly on louispolo.in.
             </p>
           </section>
 
           <section>
-            <h2>3. Damaged on Delivery</h2>
+            <h2>4. Conditions for Return Eligibility</h2>
+            <ul>
+              <li>The request must be initiated within 7 days of the delivery date.</li>
+              <li>The product must be completely unused, unwashed, and in its original delivered condition.</li>
+              <li>All original box packaging, price tags, brand tags, accessories, and warranty cards must be fully intact and attached.</li>
+            </ul>
             <p>
-              Contact us within <strong>48 hours</strong> of delivery at{' '}
-              <a href="mailto:support@louispolo.in">support@louispolo.in</a> with your order
-              number and clear photos of the damage. Once verified, we will arrange a replacement
-              at no additional cost, including pickup and reshipping.
+              Note: Items marked as &quot;Final Sale&quot; or &quot;Clearance&quot; are
+              non-returnable unless defective upon arrival.
             </p>
           </section>
 
           <section>
-            <h2>4. Manufacturing Defect Within Warranty</h2>
+            <h2>5. Contact</h2>
             <p>
-              Email <a href="mailto:support@louispolo.in">support@louispolo.in</a> with your order
-              number or invoice, and photos of the defect. Our team will confirm whether it
-              qualifies as a manufacturing defect under warranty (see the Warranty section on the
-              product's page for coverage and duration) and, if approved, arrange a replacement at
-              no additional cost. Keep your invoice — it's required to process any warranty claim.
-            </p>
-            <p>
-              Warranty does not cover damage from misuse, accidents, unauthorised repairs, or
-              normal wear and tear (scuffs, fading, worn wheels or zippers over time).
-            </p>
-          </section>
-
-          <section>
-            <h2>5. How Replacement Works</h2>
-            <p>
-              Once a claim is approved, we arrange pickup of the original product (where
-              applicable) and ship the replacement to the same address. There is no charge to you
-              for either. If the exact product/colour/size is no longer available, we will offer
-              the closest equivalent or, only in that case, a refund to your original payment
-              method.
-            </p>
-          </section>
-
-          <section>
-            <h2>6. Contact</h2>
-            <p>
-              For any questions about a replacement claim, email{' '}
-              <a href="mailto:support@louispolo.in">support@louispolo.in</a> or call{' '}
+              For any questions about a warranty, return, or exchange, email{' '}
+              <a href="mailto:happytohelp@louispolo.in">happytohelp@louispolo.in</a> or call{' '}
               <a href={`tel:${BRAND.phone.replace(/[\s-]/g, '')}`}>{BRAND.phone}</a>. We aim to
               respond within 2 business days.
             </p>

@@ -56,12 +56,16 @@ export const CART_CONFIG = {
 // charged by app/api/checkout/route.ts, which is the sole source of truth
 // for the amount Razorpay collects. Doesn't apply to Myntra-listed products
 // — those sell through Myntra's own checkout, not ours.
-// Advertised in the Navbar ticker ("Monsoon Sale: Flat 15% Off at Checkout").
+//
+// `enabled: false` here deliberately keeps the countdown running with no
+// real discount behind it — SaleCountdown.tsx only reads `endDate`, never
+// `enabled`, so the timer on the homepage still ticks down to endDate; only
+// the checkout-page/API discount logic (which does gate on `enabled`) is off.
 export const SALE_CONFIG = {
   enabled:         false,
   discountPercent: 0.15,
   label:           'Monsoon Sale',
-  endDate:         '2026-09-21T23:59:59+05:30', // IST, end of day — 10 days out
+  endDate:         '2026-10-02T23:59:59+05:30', // IST, end of day — 7 days out
 } as const
 
 // SEO defaults
