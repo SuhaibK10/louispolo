@@ -234,6 +234,14 @@ const supabase = await createClient()
   // All fields were validated above before reaching this point.
   const insertClient = user ? supabase : createServiceRoleClient()
 
+  // Every UPDATE after the insert (saving razorpay_order_id, marking the order
+  // failed) is server-side bookkeeping and MUST use the service-role client.
+  // A logged-in user's own client has no UPDATE policy on `orders`, so its
+  // updates match zero rows and fail silently — no error, nothing saved. That
+  // left razorpay_order_id empty on every logged-in order, and verify (which
+  // looks the order up by it) then rejected the customer's real payment.
+  const serviceClient = createServiceRoleClient()
+
   console.log('ORDER PAYLOAD:', JSON.stringify(orderPayload, null, 2))
   const { data: orderRow, error: insertError } = await insertClient
     .from('orders')
@@ -256,7 +264,7 @@ const supabase = await createClient()
 
   if (itemsError) {
     console.error('Failed to insert order items:', itemsError)
-    const { error: failedUpdateError } = await insertClient
+    const { error: failedUpdateError } = await serviceClient
       .from('orders')
       .update({ status: 'failed' })
       .eq('id', orderRow.id)
@@ -281,13 +289,19 @@ const supabase = await createClient()
       },
     })
 
-    const { error: razorpayIdUpdateError } = await insertClient
+    const { data: savedRows, error: razorpayIdUpdateError } = await serviceClient
       .from('orders')
       .update({ razorpay_order_id: razorpayOrder.id })
       .eq('id', orderRow.id)
+      .select('id')
 
-    if (razorpayIdUpdateError) {
-      console.error('Failed to save razorpay_order_id on order:', razorpayIdUpdateError)
+    // Don't let the customer pay for an order that verify can't find again.
+    // Checking the returned rows matters: an update blocked by RLS reports no
+    // error at all, it just touches nothing.
+    if (razorpayIdUpdateError || !savedRows?.length) {
+      throw new Error(
+        `Failed to save razorpay_order_id on order ${orderRow.id}: ${razorpayIdUpdateError?.message ?? 'no row updated'}`
+      )
     }
 
     return NextResponse.json({
@@ -298,7 +312,7 @@ const supabase = await createClient()
     })
   } catch (razorpayError) {
     console.error('Razorpay order creation failed:', razorpayError)
-    const { error: failedUpdateError } = await insertClient
+    const { error: failedUpdateError } = await serviceClient
       .from('orders')
       .update({ status: 'failed' })
       .eq('id', orderRow.id)
