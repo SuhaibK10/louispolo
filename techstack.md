@@ -54,7 +54,7 @@ migrated.
 
 ## Email
 
-Resend -- order confirmation (customer) and order notification (internal) emails.
+Google Workspace SMTP (via nodemailer, `lib/email.ts`) -- order confirmation (customer) and order notification (internal) emails, plus the contact, newsletter, corporate and career forms.
 
 ## Package manager
 

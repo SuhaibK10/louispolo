@@ -754,6 +754,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
+      '2a41851a-4074-4697-d7e2-85ce257f9a00',
       'c60a22e0-ca0b-434a-05db-42e14b160e00',
     ],
     features: [
@@ -911,6 +912,7 @@ export const PRODUCTS: Product[] = [
         color: 'Silver',
         colorHex: '#9E9E9E',
         images: [
+          '41ffcede-9bf0-4eb5-9c47-fd8b5361f800',
           'd2363c3a-6888-4fac-64a7-dc9c9842af00',
           '95b90eae-e774-404d-5895-d6745b858800',
           '167023d7-6a38-4358-4208-d131c2b76300',
@@ -1933,6 +1935,7 @@ export const PRODUCTS: Product[] = [
     warranty:
       '3-year warranty covering manufacturing defects in the shell, wheels, telescopic handle, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
     images: [
+      'd0d43fc6-dba5-4004-853a-6cb7dac02100',
       'd9be184e-613e-4435-87fb-2f6a534f5a00',
     ],
     features: [
@@ -4925,7 +4928,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the fabric, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['13959cdd-fb5c-423c-67b7-8a922befb800', 'ef64aeb3-6c72-4c65-dbf9-c55dfa5b7600'],
+    images: ['f1b2fbd9-c629-4b07-0e2a-c64e32c78200', 'fee30f4b-0a57-4c19-0657-3972afc97c00'],
     features: [
       { label: 'Padded laptop compartment (up to 15 inch)' },
       { label: 'Trolley sleeve' },
@@ -4935,6 +4938,22 @@ export const PRODUCTS: Product[] = [
       { label: '24 to 30 litre capacity' },
     ],
     variants: [
+      {
+        color: 'Blue', colorHex: '#3F5E94',
+        images: [
+          'f1b2fbd9-c629-4b07-0e2a-c64e32c78200',
+          'fee30f4b-0a57-4c19-0657-3972afc97c00',
+          'd3406b32-1257-4cd9-fb25-180059fd5a00',
+          'faa01037-9d8e-4ee1-7809-79d5d23a5f00',
+          '380a9016-f6a3-4758-08f7-34816d365a00',
+          '5f311861-7b87-413f-a960-34a04643f900',
+          'a7e22633-cb6a-499c-453f-de71b95d0100',
+          '389b3d0d-663e-480b-2c3e-3c2e3f958100',
+          'a03ebd1f-e7e9-4af8-78e2-c757069ca200',
+          'a2feda48-70e1-451c-d94b-7c81e5e80300',
+        ],
+        sizes: [{ size: 'One Size', price: 4999, stock: 50 }],
+      },
       {
         color: 'Black', colorHex: '#212121',
         images: [
@@ -4961,22 +4980,6 @@ export const PRODUCTS: Product[] = [
           'ac88cabe-6cb9-4668-972a-9a6a1249f200',
           '0286c95e-f124-422a-0fa0-29913a480200',
           '58b68a8c-0c13-48eb-1c92-77f419f13700',
-        ],
-        sizes: [{ size: 'One Size', price: 4999, stock: 50 }],
-      },
-      {
-        color: 'Blue', colorHex: '#3F5E94',
-        images: [
-          'f1b2fbd9-c629-4b07-0e2a-c64e32c78200',
-          'fee30f4b-0a57-4c19-0657-3972afc97c00',
-          'd3406b32-1257-4cd9-fb25-180059fd5a00',
-          'faa01037-9d8e-4ee1-7809-79d5d23a5f00',
-          '380a9016-f6a3-4758-08f7-34816d365a00',
-          '5f311861-7b87-413f-a960-34a04643f900',
-          'a7e22633-cb6a-499c-453f-de71b95d0100',
-          '389b3d0d-663e-480b-2c3e-3c2e3f958100',
-          'a03ebd1f-e7e9-4af8-78e2-c757069ca200',
-          'a2feda48-70e1-451c-d94b-7c81e5e80300',
         ],
         sizes: [{ size: 'One Size', price: 4999, stock: 50 }],
       },
@@ -5071,7 +5074,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the shell, handles, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['6cf3ba78-e6d8-4183-dc8c-f8a0d255f000', '2325ea79-53e1-4df1-b066-a9c9b08a3a00'],
+    images: ['5220a434-fe07-415c-f18a-889fbac7eb00', '6cf3ba78-e6d8-4183-dc8c-f8a0d255f000', '2325ea79-53e1-4df1-b066-a9c9b08a3a00'],
     features: [
       { label: 'Diagonal ribbed metallic finish' },
       { label: 'Impact-resistant hard shell' },
@@ -5082,7 +5085,7 @@ export const PRODUCTS: Product[] = [
     variants: [
       {
         color: 'Silver', colorHex: '#BDBDBD',
-        images: ['6cf3ba78-e6d8-4183-dc8c-f8a0d255f000', '2325ea79-53e1-4df1-b066-a9c9b08a3a00', 'b306ec65-0681-4e40-5666-87a14a71ca00', '3a4caf97-0829-4c66-ffdd-41ad25c3a700', '8bf6d2fe-9619-4513-8938-68afd661e200', 'cbb79ef0-9c6c-422a-c1d7-e4b21a3e3500'],
+        images: ['5220a434-fe07-415c-f18a-889fbac7eb00', '6cf3ba78-e6d8-4183-dc8c-f8a0d255f000', '2325ea79-53e1-4df1-b066-a9c9b08a3a00', 'b306ec65-0681-4e40-5666-87a14a71ca00', '3a4caf97-0829-4c66-ffdd-41ad25c3a700', '8bf6d2fe-9619-4513-8938-68afd661e200', 'cbb79ef0-9c6c-422a-c1d7-e4b21a3e3500'],
         sizes: [{ size: 'One Size', price: 1999, stock: 10 }],
       },
     ],
@@ -5122,7 +5125,7 @@ export const PRODUCTS: Product[] = [
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['d47f241e-70b1-4c65-b29b-ae93be1c2500', '3d0c2378-d111-45d9-7fe9-47fda2df0b00'],
+    images: ['c7a1f6e4-40c9-4c6f-d159-9bdf2b988000', 'd47f241e-70b1-4c65-b29b-ae93be1c2500', '3d0c2378-d111-45d9-7fe9-47fda2df0b00'],
     features: [
       { label: 'Diagonal ribbed metallic finish' },
       { label: 'Impact-resistant hard shell' },
@@ -5133,7 +5136,7 @@ export const PRODUCTS: Product[] = [
     variants: [
       {
         color: 'Silver', colorHex: '#BDBDBD',
-        images: ['d47f241e-70b1-4c65-b29b-ae93be1c2500', '3d0c2378-d111-45d9-7fe9-47fda2df0b00', '7abfefa2-818e-4a8c-72b6-2c8ffb572f00', 'f1c7f7e1-f931-4054-de4f-c30e92a6c100', 'f0303fb0-bda6-4c9c-2895-926a24fd1a00', '0b0f78f4-3fa8-4bad-7909-e93acb10cc00', 'a83518f8-1147-483c-bc69-fae193493f00'],
+        images: ['c7a1f6e4-40c9-4c6f-d159-9bdf2b988000', 'd47f241e-70b1-4c65-b29b-ae93be1c2500', '3d0c2378-d111-45d9-7fe9-47fda2df0b00', '7abfefa2-818e-4a8c-72b6-2c8ffb572f00', 'f1c7f7e1-f931-4054-de4f-c30e92a6c100', 'f0303fb0-bda6-4c9c-2895-926a24fd1a00', '0b0f78f4-3fa8-4bad-7909-e93acb10cc00', 'a83518f8-1147-483c-bc69-fae193493f00'],
         sizes: [{ size: 'One Size', price: 3800, stock: 10 }],
       },
     ],

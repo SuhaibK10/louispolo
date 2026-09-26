@@ -4,7 +4,7 @@
 // got saved by app/api/checkout/verify/route.ts (see the 12 Sep 2026 checkout
 // verification incident — a since-fixed bug). Marks the order paid and sends
 // the exact same confirmation/notification emails a normal successful
-// checkout would, by calling lib/resend.ts directly — so the customer gets
+// checkout would, by calling lib/email.ts directly — so the customer gets
 // the real, correctly formatted email, not a manual one-off.
 //
 // Usage (dry run first — prints what it would do, changes nothing):
@@ -13,13 +13,13 @@
 //   npx tsx --env-file=.env.local scripts/reconcile-order.ts <orderId> <razorpayPaymentId> --confirm
 //
 // IMPORTANT: point this at PRODUCTION credentials — NEXT_PUBLIC_SUPABASE_URL,
-// SUPABASE_SERVICE_ROLE_KEY, and RESEND_API_KEY must be the live values, not
+// SUPABASE_SERVICE_ROLE_KEY, SMTP_USER and SMTP_APP_PASSWORD must be the live values, not
 // local/dev ones, or this will either fail to find the order or (worse)
 // silently do nothing against the wrong database.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { createClient } from '@supabase/supabase-js'
-import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from '../lib/resend'
+import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from '../lib/email'
 import { BRAND } from '../lib/constants'
 
 const [orderId, razorpayPaymentId, ...flags] = process.argv.slice(2)

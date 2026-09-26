@@ -20,7 +20,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import crypto from 'crypto'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 import { createClient } from '@/lib/supabase/server'
-import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from '@/lib/resend'
+import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from '@/lib/email'
 
 interface VerifyRequestBody {
   orderId:             string  // our internal order UUID

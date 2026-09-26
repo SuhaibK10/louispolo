@@ -1,7 +1,7 @@
 'use server'
 
-import { resend, EMAIL_FROM } from '@/lib/resend'
-import { BRAND }              from '@/lib/constants'
+import { sendMail } from '@/lib/email'
+import { BRAND }    from '@/lib/constants'
 
 export type ContactResult = { ok: true } | { ok: false; error: string }
 
@@ -12,10 +12,9 @@ export async function sendContactEnquiry(formData: FormData): Promise<ContactRes
 
   if (!email || !message) return { ok: false, error: 'Email and message are required.' }
 
-  const { error } = await resend.emails.send({
-    from:    EMAIL_FROM,
+  const { error } = await sendMail({
     to:      [BRAND.teamEmail, BRAND.email],
-    reply_to: email,
+    replyTo: email,
     subject: `Contact enquiry${name ? ` from ${name}` : ''} (louispolo.in)`,
     html: `
       <div style="font-family:sans-serif;max-width:480px;margin:0 auto;">

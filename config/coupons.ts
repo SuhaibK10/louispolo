@@ -3,8 +3,9 @@
 // One-off promo codes. Most are scoped to a single product + size (only those
 // line items get discounted, everything else in the cart stays full price);
 // a `bundle` coupon requires ALL listed product+size pairs to be present in
-// the cart and discounts only those matching line items; a coupon with none
-// of productSlug/size/bundle applies to the whole cart subtotal instead —
+// the cart and discounts only those matching line items; a `productSlugs`
+// coupon works on any one of a list of products (any size); a coupon with none
+// of productSlug/size/bundle/productSlugs applies to the whole cart subtotal instead —
 // the only difference from SALE_CONFIG is that this one needs a code typed
 // in rather than being automatic.
 //
@@ -30,6 +31,12 @@ export interface Coupon {
   // meant for one specific combination of products — a site-wide coupon has
   // no way to require specific cart contents, so it can be used on any cart.
   bundle?:         { productSlug: string; size: ProductSize }[]
+  // Product-family scope — the coupon works on ANY ONE of these products, in
+  // any size, and discounts only the matching line items (the rest of the cart
+  // stays full price). Use it for "all AeroSmart editions"-style codes, which
+  // productSlug (one product) and bundle (ALL products required) can't say.
+  // Takes priority over productSlug/size when present, after bundle.
+  productSlugs?:   string[]
   enabled:         boolean
 }
 
@@ -48,6 +55,9 @@ export function couponQualifies(coupon: Coupon, items: CouponLineItem[]): boolea
       items.some(i => i.productSlug === req.productSlug && i.size === req.size)
     )
   }
+  if (coupon.productSlugs) {
+    return items.some(i => coupon.productSlugs!.includes(i.productSlug))
+  }
   if (coupon.productSlug) {
     return items.some(i => i.productSlug === coupon.productSlug && i.size === coupon.size)
   }
@@ -61,6 +71,11 @@ export function couponEligibleSubtotal(coupon: Coupon, items: CouponLineItem[]):
   if (coupon.bundle) {
     return items
       .filter(i => coupon.bundle!.some(req => req.productSlug === i.productSlug && req.size === i.size))
+      .reduce((sum, i) => sum + i.price * i.quantity, 0)
+  }
+  if (coupon.productSlugs) {
+    return items
+      .filter(i => coupon.productSlugs!.includes(i.productSlug))
       .reduce((sum, i) => sum + i.price * i.quantity, 0)
   }
   if (coupon.productSlug) {
@@ -92,8 +107,11 @@ export const COUPONS: Coupon[] = [
   },
   {
     code:            'VISHVA30',
-    label:           '30% off your order',
+    label:           '30% off AeroSmart editions',
+    // Meant for the AeroSmart range only. It used to have no product scope, so
+    // it took 30% off any cart (a SkyTrail order went through on 26 Sep 2026).
     discountPercent: 0.3,
+    productSlugs:    ['aerosmart-3in1', 'aerosmart-pro', 'aerosmart-gloss'],
     enabled:         true,
   },
   {

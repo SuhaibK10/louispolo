@@ -1,6 +1,6 @@
 import { NextResponse }  from 'next/server'
 import { type NextRequest } from 'next/server'
-import { resend, EMAIL_FROM } from '@/lib/resend'
+import { sendMail }     from '@/lib/email'
 import { BRAND }            from '@/lib/constants'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 
@@ -11,8 +11,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
-  // Record the lead first — email delivery can fail (Resend outage, unverified
-  // domain), and a corporate lead is too valuable to lose. Service-role client:
+  // Record the lead first — email delivery can fail (SMTP outage, bad app
+  // password), and a corporate lead is too valuable to lose. Service-role client:
   // the table has RLS on with no policies, so only the server can touch it.
   let savedToDb = false
   try {
@@ -34,10 +34,9 @@ export async function POST(request: NextRequest) {
     console.error('Failed to save corporate enquiry:', e)
   }
 
-  const { error } = await resend.emails.send({
-    from:    EMAIL_FROM,
+  const { error } = await sendMail({
     to:      BRAND.teamEmail,
-    reply_to: email,
+    replyTo: email,
     subject: `Corporate Enquiry from ${company}`,
     html: `
       <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; color: #1a1714;">

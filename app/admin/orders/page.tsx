@@ -178,7 +178,7 @@ export default function AdminOrdersPage() {
                 </div>
 
                 {/* Items */}
-                <div className="space-y-2 mb-4 border-t border-gray-100 pt-3">
+                <div className="space-y-2 mb-3 border-t border-gray-100 pt-3">
                   {order.order_items.map((item) => (
                     <div key={item.id} className="flex items-center gap-3">
                       <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden bg-gray-100">
@@ -197,6 +197,12 @@ export default function AdminOrdersPage() {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Amount paid */}
+                <div className="flex items-center justify-between mb-4 text-sm">
+                  <span className="text-gray-500">Paid</span>
+                  <span className="font-semibold text-[#1C1B19]">₹{order.total.toLocaleString('en-IN')}</span>
                 </div>
 
                 {/* Shipped / delivered dates */}

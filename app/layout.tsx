@@ -154,6 +154,21 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* OpenAI Ads Manager pixel — data source "My first pixel". Loaded once
+            for the whole site, as their setup instructions require. Conversion
+            events (e.g. purchase) are not sent yet — that needs the event
+            created in Ads Manager first. debug:true logs to the console —
+            switch it off once the event stream shows events arriving. */}
+        <Script
+          id="openai-ads-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+              oaiq("init",{pixelId:"5GRhDQBL9L9KmxwLPgyzCz",debug:true});
+            `,
+          }}
+        />
         <Analytics />
       </body>
     </html>

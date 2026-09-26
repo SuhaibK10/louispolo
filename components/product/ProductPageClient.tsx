@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { ImageGallery } from './ImageGallery'
 import { ProductInfo }  from './ProductInfo'
 import { pdpUrl, PLACEHOLDER_URL } from '@/lib/cloudflareImages'
+import { oaiqMeasure } from '@/lib/oaiq'
 import type { Product } from '@/types'
 
 interface Props {
@@ -98,6 +99,11 @@ export function ProductPageClient({ product, defaultColor }: Props) {
   // sharing one flat `product.images` array indexed by color, this fires on
   // every hover/click, since colour and photo are the same index there.
   useEffect(() => { setActiveAngle(galleryActiveIndex) }, [galleryActiveIndex])
+
+  // OpenAI Ads Manager "Contents Viewed" conversion event. This component is
+  // keyed by product slug (see shop/[slug]/page.tsx), so it fires once per
+  // product page view, not on every colour change.
+  useEffect(() => oaiqMeasure('contents_viewed', { type: 'contents' }), [])
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 lg:gap-20">

@@ -3,12 +3,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/layout/actions.ts
 // Server actions used by footer client islands.
-// Newsletter signups are forwarded to the team inbox via Resend — same
-// pattern as the contact form (app/(store)/contact/actions.ts).
+// Newsletter signups are forwarded to the team inbox via Google Workspace SMTP
+// — same pattern as the contact form (app/(store)/contact/actions.ts).
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { resend, EMAIL_FROM } from '@/lib/resend'
-import { BRAND }              from '@/lib/constants'
+import { sendMail } from '@/lib/email'
+import { BRAND }    from '@/lib/constants'
 
 export type NewsletterResult = { ok: true } | { ok: false; error: string }
 
@@ -21,10 +21,9 @@ export async function subscribeNewsletter(email: string): Promise<NewsletterResu
     return { ok: false, error: 'Please enter a valid email address.' }
   }
 
-  const { error } = await resend.emails.send({
-    from:     EMAIL_FROM,
+  const { error } = await sendMail({
     to:       BRAND.teamEmail,
-    reply_to: value,
+    replyTo:  value,
     subject:  `Newsletter signup: ${value}`,
     html: `
       <div style="font-family:sans-serif;max-width:480px;margin:0 auto;">

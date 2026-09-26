@@ -1,6 +1,6 @@
 import { NextResponse }  from 'next/server'
 import { type NextRequest } from 'next/server'
-import { resend, EMAIL_FROM } from '@/lib/resend'
+import { sendMail }     from '@/lib/email'
 import { BRAND }            from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
-  // Record the application first — email delivery can fail (Resend outage,
-  // unverified domain), and an application is too valuable to lose.
+  // Record the application first — email delivery can fail (SMTP outage, bad
+  // app password), and an application is too valuable to lose.
   let savedToSheet = false
   const sheetWebhook = process.env.CAREER_APPLICATIONS_SHEET_WEBHOOK
   if (sheetWebhook) {
@@ -33,10 +33,9 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const { error } = await resend.emails.send({
-    from:    EMAIL_FROM,
+  const { error } = await sendMail({
     to:      BRAND.teamEmail,
-    reply_to: email,
+    replyTo: email,
     subject: `Career application: ${role} from ${name}`,
     html: `
       <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; color: #1a1714;">

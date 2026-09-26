@@ -1,7 +1,16 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// lib/resend.ts
-// Resend client + email senders. Server-side only — RESEND_API_KEY has no
-// NEXT_PUBLIC_ prefix, so it's never exposed to the browser.
+// lib/email.ts
+// Email sending through Google Workspace SMTP (smtp.gmail.com) + the order
+// email senders. Server-side only — SMTP_APP_PASSWORD has no NEXT_PUBLIC_
+// prefix, so it's never exposed to the browser.
+//
+// Env:
+//   SMTP_USER          the Workspace mailbox the site signs in as, e.g. support@louispolo.in
+//   SMTP_APP_PASSWORD  a Google app password for that mailbox (16 characters,
+//                      not the mailbox's normal login password)
+//   SMTP_FROM          optional — the address customers see, e.g. orders@louispolo.in.
+//                      Must be an alias of SMTP_USER (Admin console > Users >
+//                      Alternate email addresses). Defaults to SMTP_USER.
 //
 // Two emails go out per paid order:
 //   sendOrderConfirmationEmail — customer-facing, "thank you" tone
@@ -9,14 +18,50 @@
 //                                 the shipping address so the team can fulfill
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 import { BRAND } from '@/lib/constants'
 import { thumbUrl } from '@/lib/cloudflareImages'
 
-export const resend = new Resend(process.env.RESEND_API_KEY!)
+const SMTP_USER         = process.env.SMTP_USER
+const SMTP_APP_PASSWORD = process.env.SMTP_APP_PASSWORD
 
-// Update once your subdomain is verified in the Resend dashboard.
-export const EMAIL_FROM = 'Louis Polo <orders@mail.louispolo.in>'
+// Google only sends as the authenticated mailbox or one of its aliases — any
+// other From address gets silently rewritten to the mailbox. Replies to an
+// alias land in the mailbox's inbox, and every sent email shows in its Sent
+// folder.
+const EMAIL_FROM = `Louis Polo <${process.env.SMTP_FROM || SMTP_USER}>`
+
+const transporter = nodemailer.createTransport({
+  host:   'smtp.gmail.com',
+  port:   465,
+  secure: true,
+  auth:   { user: SMTP_USER, pass: SMTP_APP_PASSWORD },
+  // Fail fast — SMTP has no built-in timeout and checkout awaits these emails.
+  connectionTimeout: 8_000,
+  greetingTimeout:   8_000,
+  socketTimeout:     12_000,
+})
+
+interface SendMailParams {
+  to: string | string[]
+  subject: string
+  html: string
+  replyTo?: string
+}
+
+// Never throws — returns { error } so callers keep the existing "log it and
+// carry on" handling (an order must still complete when its email can't send).
+export async function sendMail({ to, subject, html, replyTo }: SendMailParams): Promise<{ error: Error | null }> {
+  if (!SMTP_USER || !SMTP_APP_PASSWORD) {
+    return { error: new Error('SMTP_USER / SMTP_APP_PASSWORD are not set') }
+  }
+  try {
+    await transporter.sendMail({ from: EMAIL_FROM, to, subject, html, replyTo })
+    return { error: null }
+  } catch (e) {
+    return { error: e instanceof Error ? e : new Error(String(e)) }
+  }
+}
 
 interface OrderConfirmationItem {
   product_name: string
@@ -57,8 +102,7 @@ export async function sendOrderConfirmationEmail({
 }: OrderConfirmationParams) {
   const itemRows = items.map(itemRow).join('')
 
-  const { error } = await resend.emails.send({
-    from: EMAIL_FROM,
+  const { error } = await sendMail({
     to,
     subject: `Your Louis Polo order is confirmed (#${orderId.slice(0, 8).toUpperCase()})`,
     html: `
@@ -103,8 +147,7 @@ export async function sendOrderNotificationEmail({
 }: OrderNotificationParams) {
   const itemRows = items.map(itemRow).join('')
 
-  const { error } = await resend.emails.send({
-    from: EMAIL_FROM,
+  const { error } = await sendMail({
     to: BRAND.teamEmail,
     subject: `New order #${orderId.slice(0, 8).toUpperCase()} · ₹${total.toLocaleString('en-IN')}`,
     html: `
