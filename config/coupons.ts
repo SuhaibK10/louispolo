@@ -115,12 +115,6 @@ export const COUPONS: Coupon[] = [
     enabled:         true,
   },
   {
-    code:            'NITIN15',
-    label:           '15% off your order',
-    discountPercent: 0.15,
-    enabled:         true,
-  },
-  {
     code:            'HERITAGE2099',
     label:           'Heritage for ₹2,099',
     discountPercent: 0.157028,
