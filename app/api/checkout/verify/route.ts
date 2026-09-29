@@ -21,6 +21,7 @@ import crypto from 'crypto'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 import { createClient } from '@/lib/supabase/server'
 import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from '@/lib/email'
+import { sendPurchaseEvent } from '@/lib/metaConversionsApi'
 
 interface VerifyRequestBody {
   orderId:             string  // our internal order UUID
@@ -98,6 +99,27 @@ export async function POST(request: NextRequest) {
     )
   }
 
+  // ── Meta Conversions API — server-side Purchase event ───────────────────
+  // The browser-side pixel (fired from the /checkout/success page) already
+  // sends this same event — this is the server-to-server backup that still
+  // gets counted when the browser one is blocked (Safari/iOS tracking
+  // protection, ad blockers). Same order.id as the client event's eventID,
+  // so Meta dedupes the two into one sale instead of double-counting.
+  // Fires unconditionally, not gated on having an email — the order ID alone
+  // is enough for Meta to count and dedupe it; email/phone just improve
+  // match quality when present.
+  const metaPurchaseEvent = sendPurchaseEvent({
+    eventId:        order.id,
+    value:          order.total,
+    email:          user?.email ?? order.guest_email,
+    phone:          order.phone,
+    clientIp:       request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null,
+    userAgent:      request.headers.get('user-agent'),
+    fbp:            request.cookies.get('_fbp')?.value ?? null,
+    fbc:            request.cookies.get('_fbc')?.value ?? null,
+    eventSourceUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success`,
+  }).catch((err) => console.error('Meta Conversions API purchase event failed:', err))
+
   // ── Send order emails ────────────────────────────────────────────────────
   // Best-effort and awaited (so they actually complete before this
   // serverless function exits), but a failure here never blocks the success
@@ -132,7 +154,11 @@ export async function POST(request: NextRequest) {
           pincode:      order.pincode,
         },
       }).catch((err) => console.error('Order notification email failed:', err)),
+
+      metaPurchaseEvent,
     ])
+  } else {
+    await metaPurchaseEvent
   }
 
   return NextResponse.json({ success: true, orderId: order.id, total: order.total })

@@ -7,18 +7,36 @@
 // so it works for both logged-in and guest users — no Supabase RLS needed.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { Suspense }            from 'react'
+import { Suspense, useEffect } from 'react'
 import { useSearchParams }     from 'next/navigation'
 import Link                    from 'next/link'
 import { motion }              from 'framer-motion'
 import { CheckCircle2, ArrowRight, Package } from 'lucide-react'
 import { formatPrice }         from '@/lib/utils'
 import { ROUTES }              from '@/lib/constants'
+import { metaTrack }           from '@/lib/metaPixel'
 
 function CheckoutSuccessContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId')
   const total   = searchParams.get('total')
+
+  // Fires once per order, not once per page load — a refresh or back/forward
+  // nav here would otherwise report the same order as a repeat purchase.
+  // eventID uses the order ID so a later Conversions API call for this same
+  // order can be deduplicated against this client-side event instead of
+  // double-counting the sale.
+  useEffect(() => {
+    if (!orderId) return
+    const key = `meta-purchase-tracked:${orderId}`
+    if (sessionStorage.getItem(key)) return
+    sessionStorage.setItem(key, '1')
+    return metaTrack('Purchase', {
+      value:    total ? Number(total) : undefined,
+      currency: 'INR',
+      content_type: 'product',
+    }, orderId)
+  }, [orderId, total])
 
   if (!orderId) {
     return (

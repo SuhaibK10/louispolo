@@ -10,6 +10,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
+import JSZip from 'jszip'
 import { adminThumbUrl, publicUrl } from '@/lib/cloudflareImages'
 import { adminLogout } from '@/app/admin/actions'
 
@@ -49,6 +50,8 @@ export default function AdminMediaPage() {
   const [copiedText, setCopiedText] = useState<string | null>(null)
   const [uploading, setUploading] = useState(false)
   const [uploadNote, setUploadNote] = useState<string | null>(null)
+  const [downloading, setDownloading] = useState(false)
+  const [downloadProgress, setDownloadProgress] = useState<{ done: number; total: number } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   function loadImages() {
@@ -131,6 +134,64 @@ export default function AdminMediaPage() {
   function copySelectedLinks() {
     const links = [...selected].map((id) => publicUrl(id)).join('\n')
     copyToClipboard(links)
+  }
+
+  // Pull the full-resolution "public" variant as a blob and save it — a plain
+  // <a href download> is ignored cross-origin by the browser (it would just
+  // open the image in a tab instead of saving it), so the file has to come
+  // down as a blob first.
+  async function fetchImageBlob(id: string): Promise<Blob> {
+    const res = await fetch(publicUrl(id))
+    if (!res.ok) throw new Error(`Failed to fetch ${id}`)
+    return res.blob()
+  }
+
+  function triggerBlobDownload(blob: Blob, filename: string) {
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  async function downloadSingle(img: AdminImage) {
+    try {
+      const blob = await fetchImageBlob(img.id)
+      triggerBlobDownload(blob, img.filename || img.id)
+    } catch {
+      setUploadNote(`Couldn't download ${img.filename || img.id}.`)
+    }
+  }
+
+  // Bulk download bundles everything selected into one .zip instead of
+  // firing off N separate downloads, which browsers throttle/block past a
+  // handful of simultaneous saves.
+  async function downloadSelected() {
+    const targets = filtered.filter((img) => selected.has(img.id))
+    if (targets.length === 0) return
+    setDownloading(true)
+    setDownloadProgress({ done: 0, total: targets.length })
+
+    try {
+      const zip = new JSZip()
+      const usedNames = new Set<string>()
+      for (const img of targets) {
+        const blob = await fetchImageBlob(img.id)
+        let name = img.filename || img.id
+        if (usedNames.has(name)) name = `${img.id}-${name}`
+        usedNames.add(name)
+        zip.file(name, blob)
+        setDownloadProgress((prev) => (prev ? { ...prev, done: prev.done + 1 } : prev))
+      }
+      const content = await zip.generateAsync({ type: 'blob' })
+      triggerBlobDownload(content, `louispolo-media-${targets.length}.zip`)
+    } catch {
+      setUploadNote('Some images failed to download — try again or download individually.')
+    } finally {
+      setDownloading(false)
+      setDownloadProgress(null)
+    }
   }
 
   async function handleUpload(fileList: FileList | null) {
@@ -241,6 +302,16 @@ export default function AdminMediaPage() {
               >
                 Copy {selected.size} link{selected.size === 1 ? '' : 's'}
               </button>
+              <button
+                type="button"
+                onClick={downloadSelected}
+                disabled={downloading}
+                className="bg-[#1C1B19] text-white rounded-md px-3 py-1 text-xs font-medium hover:opacity-90 disabled:opacity-50"
+              >
+                {downloading && downloadProgress
+                  ? `Zipping ${downloadProgress.done}/${downloadProgress.total}…`
+                  : `Download ${selected.size} as .zip`}
+              </button>
             </>
           )}
           {copied && <span className="text-xs text-green-600">Copied</span>}
@@ -288,13 +359,23 @@ export default function AdminMediaPage() {
                     onChange={() => toggleSelected(img.id)}
                     className="absolute top-2 left-2 w-4 h-4"
                   />
-                  <button
-                    type="button"
-                    onClick={() => copySingleLink(img.id)}
-                    className="absolute top-2 right-2 bg-white/90 rounded-md px-2 py-1 text-[0.62rem] font-medium text-[#1C1B19] border border-gray-200 hover:bg-white"
-                  >
-                    Copy link
-                  </button>
+                  <div className="absolute top-2 right-2 flex gap-1">
+                    <button
+                      type="button"
+                      onClick={() => downloadSingle(img)}
+                      title="Download full-resolution original"
+                      className="bg-white/90 rounded-md px-2 py-1 text-[0.62rem] font-medium text-[#1C1B19] border border-gray-200 hover:bg-white"
+                    >
+                      Download
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => copySingleLink(img.id)}
+                      className="bg-white/90 rounded-md px-2 py-1 text-[0.62rem] font-medium text-[#1C1B19] border border-gray-200 hover:bg-white"
+                    >
+                      Copy link
+                    </button>
+                  </div>
                 </div>
                 <div className="p-2 space-y-0.5">
                   {img.usedBy.length > 0 ? (
