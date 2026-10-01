@@ -5645,6 +5645,20 @@ export const PRODUCTS: Product[] = [
     ],
     variants: [
       {
+        color: 'Grey',
+        colorHex: '#4D4C4D',
+        images: [
+          'befb0f4b-d58a-45c0-f108-af1fb51ccd00',
+          '17a89fa9-c30f-4155-9f50-9c0893ab4e00',
+          'fad40a58-a4ae-471c-fcb6-663a05cdfc00',
+          '98f137ec-31a2-4c30-ce6a-89346dcb9c00',
+          'c3a76317-b407-4280-f0c8-b66de6f1e700',
+        ],
+        sizes: [
+          { size: 'One Size', price: 3800, stock: 30 },
+        ],
+      },
+      {
         color: 'Green',
         colorHex: '#485045',
         images: [
@@ -5683,20 +5697,6 @@ export const PRODUCTS: Product[] = [
           '7766dca9-4122-4031-8aac-2ef41b557a00',
           'da14c6f6-9950-4a8d-04c4-7a25db82f600',
           '09efaaf5-d96f-4093-5387-0044a4de4200',
-        ],
-        sizes: [
-          { size: 'One Size', price: 3800, stock: 30 },
-        ],
-      },
-      {
-        color: 'Grey',
-        colorHex: '#4D4C4D',
-        images: [
-          'befb0f4b-d58a-45c0-f108-af1fb51ccd00',
-          '17a89fa9-c30f-4155-9f50-9c0893ab4e00',
-          'fad40a58-a4ae-471c-fcb6-663a05cdfc00',
-          '98f137ec-31a2-4c30-ce6a-89346dcb9c00',
-          'c3a76317-b407-4280-f0c8-b66de6f1e700',
         ],
         sizes: [
           { size: 'One Size', price: 3800, stock: 30 },
