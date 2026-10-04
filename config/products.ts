@@ -2206,7 +2206,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'aerovault',
     imageFit: 'cover',
-    mrp: 5490,
+    mrp: 11499,
     demoVideoId: '48b8f7686d12130e84b9de78f34723ab',
     metaTitle: 'AeroVault USB Laptop Travel Backpack',
     metaDescription: 'AeroVault pairs a padded laptop compartment with an external USB charging port, breathable back panel, and luggage mounting sleeve. Built for work, commuting, and travel.',
@@ -2310,7 +2310,7 @@ export const PRODUCTS: Product[] = [
   // ── Apex ─────────────────────────────────────────────────────────────────
   {
     id: 'apex',
-    mrp: 5490,
+    mrp: 11499,
     demoVideoId: 'ac2c3cbed74ec63cd72630b8b4c9bf62',
     metaTitle: 'Apex Executive Backpack with USB Charging Port',
     metaDescription: 'Apex pairs a padded laptop compartment with an external USB charging port, a rear luggage trolley sleeve, and premium water-resistant fabric. Built for office, travel, and daily commute.',
@@ -2401,7 +2401,7 @@ export const PRODUCTS: Product[] = [
   // ── MetroGrid ────────────────────────────────────────────────────────────
   {
     id: 'metrogrid',
-    mrp: 4490,
+    mrp: 8599,
     imageFit: 'cover',
     demoVideoId: '1eb99e106f005a52d9972949e527de8b',
     metaTitle: 'MetroGrid Executive Laptop Backpack',
@@ -2504,7 +2504,7 @@ export const PRODUCTS: Product[] = [
   // ── WorkGrid ─────────────────────────────────────────────────────────────
   {
     id: 'workgrid',
-    mrp: 4490,
+    mrp: 8599,
     demoVideoId: '8f322ddea596b20c6d9b5028f768988f',
     metaTitle: 'WorkGrid Executive Laptop Backpack',
     metaDescription: 'WorkGrid is a structured laptop backpack for the commute and business travel: dedicated laptop and tablet compartments, quick-access storage, and a rear trolley sleeve.',
@@ -2610,7 +2610,7 @@ export const PRODUCTS: Product[] = [
     name: 'VelocityPro Ergonomic Backpack',
     slug: 'velocitypro',
     category: 'backpack',
-    mrp: 5490,
+    mrp: 11499,
     hideSizeSelector: true,
     description:
       'Built for a day that never really stops moving. VelocityPro carries a padded laptop and tablet compartment, an external USB charging port, a concealed pocket for valuables, and a rear trolley sleeve, on breathable straps tuned for the whole commute.',
@@ -2709,7 +2709,7 @@ export const PRODUCTS: Product[] = [
     name: 'TechTrek',
     slug: 'techtrek',
     category: 'backpack',
-    mrp: 5490,
+    mrp: 11499,
     hideSizeSelector: true,
     description:
       'A professional multi-compartment laptop and travel backpack designed for work, commuting, study, and short trips. TechTrek carries dedicated rear laptop storage, a spacious clamshell main compartment, and multiple organiser pockets, on padded straps built for the whole day.',
@@ -2790,7 +2790,7 @@ export const PRODUCTS: Product[] = [
     name: 'Urban Pro Ergonomic BackPack',
     slug: 'urban-pro-backpack',
     category: 'backpack',
-    mrp: 4149,
+    mrp: 6999,
     hideSizeSelector: true,
     description:
       'A sleek, structured backpack designed for modern workdays, travel, and everyday carry. The Urban Pro Backpack combines a clean minimalist profile with practical organization, featuring a spacious main compartment, dedicated laptop storage, front quick-access pocket, side pockets, and padded ergonomic shoulder straps.',
@@ -3562,7 +3562,7 @@ export const PRODUCTS: Product[] = [
     slug: 'aerotech',
     category: 'backpack',
     hideSizeSelector: true,
-    mrp: 5490,
+    mrp: 11499,
     description:
       'Built for modern movement, the AeroTech Backpack combines a clean, structured silhouette with smart everyday functionality, equally suited to office commutes, business travel, and everyday carry.',
     story: [
@@ -5365,7 +5365,7 @@ export const PRODUCTS: Product[] = [
     category: 'backpack',
     isFeatured: true,
     hideSizeSelector: true,
-    mrp: 5490,
+    mrp: 11499,
     description:
       'Smartly organized. Effortlessly sophisticated. The Sterling Backpack combines a sleek, contemporary design with practical everyday functionality, a spacious main compartment, multiple organised pockets, and a dedicated padded space for your laptop and essentials.',
     story: [
@@ -5479,7 +5479,7 @@ export const PRODUCTS: Product[] = [
     category: 'backpack',
     isFeatured: true,
     hideSizeSelector: true,
-    mrp: 5490,
+    mrp: 11499,
     description:
       'Designed for those who carry more, without carrying the bulk. The Twinford Backpack pairs a distinctive dual front-pocket design with a spacious main compartment, dedicated laptop storage, and a sleek, structured silhouette.',
     story: [
@@ -5589,7 +5589,7 @@ export const PRODUCTS: Product[] = [
     category: 'backpack',
     isFeatured: true,
     hideSizeSelector: true,
-    mrp: 5490,
+    mrp: 11499,
     description:
       'Refined design. Effortless organization. The Westbury Backpack brings together a sophisticated, structured flap-top silhouette with a spacious interior, a dedicated laptop compartment, and multiple pockets that keep documents, accessories, and smaller items neatly arranged.',
     story: [
