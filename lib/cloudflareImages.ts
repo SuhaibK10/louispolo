@@ -10,7 +10,7 @@ const HASH = process.env.NEXT_PUBLIC_CLOUDFLARE_IMAGES_HASH
 const BASE = `https://imagedelivery.net/${HASH}`
 
 // Build a Cloudflare Images delivery URL from an image ID + flexible-variant
-// param string (e.g. "w=600,h=800,fit=pad").
+// param string (e.g. "w=600,h=800,fit=pad").mm
 export function cfImg(imageId: string | undefined, params = ''): string {
   // No image assigned yet (e.g. a variant awaiting photography) — fall back
   // to the placeholder instead of throwing on `undefined.startsWith`.
@@ -80,11 +80,9 @@ export const thumbUrl = (id: string, fit: ImageFit = 'pad') =>
 export const adminThumbUrl = (id: string) =>
   cfImg(id, `w=300,h=300,fit=contain,${Q_ECO}`)
 
-// Full-resolution delivery URL, Cloudflare's default "public" variant — the
-// link the media library's copy button hands back, since that's what's
-// actually reusable elsewhere (Slack, a CMS, another tool), not a resized
-// admin thumbnail.
-export const publicUrl = (id: string) => `${BASE}/${id}/public`
+// Full-size original as JPEG. The "public" variant is capped and served as AVIF
+// to browsers that accept it, which Shopify can't upload.
+export const publicUrl = (id: string) => cfImg(id, 'format=jpeg')
 
 // Social share preview (WhatsApp/Twitter/Facebook link unfurl) — standard
 // 1200×630 OG card. Always cover+gravity=auto regardless of the product's own
