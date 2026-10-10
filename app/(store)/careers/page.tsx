@@ -53,6 +53,7 @@ interface OpenPosition {
   whatWereLookingFor:  string[]
   showTask:            boolean  // the AI-creative task only makes sense for creative roles
   applyByEmail?:       boolean  // skip the in-page form — direct straight to emailing a resume
+  applicationsClosed?: boolean  // deadline passed — role details stay up, form is replaced with a notice
 }
 
 const POSITIONS: OpenPosition[] = [
@@ -75,6 +76,7 @@ const POSITIONS: OpenPosition[] = [
       'Experience designing for e-commerce or D2C brands is a strong plus',
     ],
     showTask: false,
+    applicationsClosed: true,
   },
   {
     role: 'Growth Creative Intern (Gen AI)',
@@ -95,6 +97,7 @@ const POSITIONS: OpenPosition[] = [
       'Comfortable editing short-form video: CapCut, Premiere Pro or similar',
     ],
     showTask: false,
+    applicationsClosed: true,
   },
 ]
 
@@ -194,7 +197,24 @@ export default function CareersPage() {
               {/* RIGHT — application form, top-aligned with the left column
                   so it starts level with "Open position" itself */}
               <div className="md:w-1/2">
-                {position.applyByEmail ? (
+                {position.applicationsClosed ? (
+                  <div className="bg-lp-cream rounded-2xl p-6 md:p-8 text-center">
+                    <p className="font-display text-[1.1rem] text-lp-ink mb-2">
+                      Applications closed
+                    </p>
+                    <p className="font-body text-[0.9rem] text-lp-ink leading-relaxed">
+                      The application window for this role has closed. We keep every resume on
+                      file for the next opening, write to{' '}
+                      <a
+                        href="mailto:careers@louispolo.in"
+                        className="underline underline-offset-2 hover:text-lp-gold transition-colors"
+                      >
+                        careers@louispolo.in
+                      </a>
+                      {' '}if you&apos;d like to be considered for future roles.
+                    </p>
+                  </div>
+                ) : position.applyByEmail ? (
                   <div className="bg-lp-cream rounded-2xl p-6 md:p-8 text-center">
                     <p className="font-display text-[1.1rem] text-lp-ink mb-2">
                       Apply by email
