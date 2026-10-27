@@ -93,8 +93,26 @@ export const COUPONS: Coupon[] = [
     // Advertised as a "first-time buyer" code in the homepage promo ticker,
     // but there's no order-history check here (or anywhere else in the
     // codebase) to enforce that — it's site-wide and works for anyone,
-    // repeat customers included.
+    // repeat customers included. Also handed out by the spin-to-win wheel's
+    // "10% off" segments (config/spinWheel.ts) — same code, not a new one.
     discountPercent: 0.1,
+    enabled:         true,
+  },
+  {
+    code:            'SPIN5',
+    label:           '5% off your order',
+    // Spin-to-win wheel prize only (config/spinWheel.ts) — not advertised
+    // anywhere else. Like every coupon here, it's a shared code with no
+    // per-person redemption limit, not single-use.
+    discountPercent: 0.05,
+    enabled:         true,
+  },
+  {
+    code:            'SPIN15',
+    label:           '15% off your order',
+    // Spin-to-win wheel's top prize (config/spinWheel.ts), deliberately the
+    // rarest segment. Same shared-code caveat as SPIN5.
+    discountPercent: 0.15,
     enabled:         true,
   },
   {
