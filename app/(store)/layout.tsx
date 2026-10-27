@@ -8,7 +8,9 @@ import { Footer }          from '@/components/layout/Footer'
 import { MobileNav }       from '@/components/layout/MobileNav'
 import { WhatsAppButton }  from '@/components/ui/WhatsappButton'
 import { PageTransition }  from '@/components/layout/PageTransition'
-import { SpinToWinModal }  from '@/components/ui/SpinToWinModal'
+// Spin-to-win disabled for now — uncomment this import and <SpinToWinModal />
+// below to bring the wheel back.
+// import { SpinToWinModal }  from '@/components/ui/SpinToWinModal'
 
 
 export default function StoreLayout({ children }: { children: React.ReactNode }) {
@@ -24,7 +26,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
       <MobileNav />
       {/* Spacer so content isn't hidden behind mobile nav — matches nav height + safe area */}
       <WhatsAppButton />
-      <SpinToWinModal />
+      {/* <SpinToWinModal /> */}
       <div className="mobile-nav-spacer lg:hidden" aria-hidden="true" />
     </>
   )
