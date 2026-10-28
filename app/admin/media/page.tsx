@@ -208,11 +208,14 @@ export default function AdminMediaPage() {
       const res = await fetch('/api/admin/images/upload', { method: 'POST', body: formData })
       const data = await res.json()
       const succeeded: string[] = (data.results ?? []).filter((r: { id?: string }) => r.id).map((r: { id: string }) => r.id)
-      const failed = (data.results ?? []).filter((r: { error?: string }) => r.error)
+      const failed: { filename: string; error: string }[] = (data.results ?? []).filter((r: { error?: string }) => r.error)
 
+      // Name the first few failures with Cloudflare's own reason (too large,
+      // unsupported format, ...) instead of just a count.
+      const reasons = failed.slice(0, 3).map((r) => `${r.filename}: ${r.error}`).join('; ')
       setUploadNote(
         `Uploaded ${succeeded.length} of ${fileList.length}.` +
-        (failed.length ? ` ${failed.length} failed.` : '')
+        (failed.length ? ` ${failed.length} failed (${reasons}${failed.length > 3 ? '; ...' : ''}).` : '')
       )
       loadImages()
       // Auto-select the newly uploaded images so "Copy N links" is one click away.

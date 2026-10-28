@@ -95,6 +95,6 @@ export const COLOR_SWATCHES: ColorSwatch[] = [
   {
     label: 'Pink, Rose & Purple',
     hex: '#D8556F',
-    matches: ['Blossom Pink', 'Rose Gold', 'Rosegold', 'Pink', 'Purple'],
+    matches: ['Blossom Pink', 'Blush Pink', 'Rose Gold', 'Rosegold', 'Pink', 'Purple'],
   },
 ]

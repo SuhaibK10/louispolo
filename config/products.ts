@@ -2211,7 +2211,7 @@ export const PRODUCTS: Product[] = [
     metaTitle: 'AeroVault USB Laptop Travel Backpack',
     metaDescription: 'AeroVault pairs a padded laptop compartment with an external USB charging port, breathable back panel, and luggage mounting sleeve. Built for work, commuting, and travel.',
     keywords: ['usb laptop backpack', 'travel backpack with charging port', 'padded laptop compartment backpack', 'commuter backpack india', 'business travel backpack'],
-    name: 'AeroVault Ergonomic Backpack',
+    name: 'AeroVault Backpack',
     slug: 'aerovault',
     category: 'backpack',
     isFeatured: true,
@@ -2254,7 +2254,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Impact resistant' },
       { label: 'External USB charging port' },
       { label: 'Spacious compartments' },
-      { label: 'Ergonomic shoulder straps' },
+      { label: 'Shoulder straps' },
     ],
     variants: [
       {
@@ -2315,15 +2315,15 @@ export const PRODUCTS: Product[] = [
     metaTitle: 'Apex Executive Backpack with USB Charging Port',
     metaDescription: 'Apex pairs a padded laptop compartment with an external USB charging port, a rear luggage trolley sleeve, and premium water-resistant fabric. Built for office, travel, and daily commute.',
     keywords: ['executive backpack', 'usb laptop backpack', 'water resistant backpack', 'business travel backpack', 'college backpack india'],
-    name: 'Apex Ergonomic BackPack',
+    name: 'Apex BackPack',
     slug: 'apex',
     category: 'backpack',
     hideSizeSelector: true,
     description:
-      'Designed for professionals who move with purpose. Apex blends modern aesthetics with everyday functionality, a spacious multi-compartment build in premium water-resistant fabric, with a padded laptop sleeve, intelligent organisation pockets, and ergonomic shoulder straps for all-day comfort.',
+      'Designed for professionals who move with purpose. Apex blends modern aesthetics with everyday functionality, a spacious multi-compartment build in premium water-resistant fabric, with a padded laptop sleeve, intelligent organisation pockets, and shoulder straps for all-day comfort.',
     story: [
       'Apex is built for the version of a day that moves between an office, an airport, and everywhere in between. A dedicated padded laptop compartment keeps a 15.6″ machine safe, while a built-in USB charging port lets a power bank top up a phone without ever opening the main bag.',
-      'A rear luggage trolley sleeve lets Apex ride a suitcase handle on travel days, and ergonomic padded straps with a breathable back panel carry the load in comfort on every other day. Minimalist on the outside, deliberately organised on the inside.',
+      'A rear luggage trolley sleeve lets Apex ride a suitcase handle on travel days, and padded straps with a breathable back panel carry the load in comfort on every other day. Minimalist on the outside, deliberately organised on the inside.',
     ],
     highlights: [
       {
@@ -2359,7 +2359,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Dual side pockets' },
       { label: 'Smooth-glide zippers' },
       { label: 'Breathable back panel' },
-      { label: 'Ergonomic shoulder straps' },
+      { label: 'Shoulder straps' },
     ],
     variants: [
       {
@@ -2407,7 +2407,7 @@ export const PRODUCTS: Product[] = [
     metaTitle: 'MetroGrid Executive Laptop Backpack',
     metaDescription: 'MetroGrid pairs professional styling with practical organisation: dedicated laptop and tablet compartments, quick-access storage, and a rear trolley sleeve for business travel.',
     keywords: ['executive laptop backpack', 'business travel backpack', 'organizer backpack for laptop', 'professional backpack india', 'commuter backpack with trolley sleeve'],
-    name: 'MetroGrid Ergonomic BackPack',
+    name: 'MetroGrid BackPack',
     slug: 'metrogrid',
     category: 'backpack',
     hideSizeSelector: true,
@@ -2509,7 +2509,7 @@ export const PRODUCTS: Product[] = [
     metaTitle: 'WorkGrid Executive Laptop Backpack',
     metaDescription: 'WorkGrid is a structured laptop backpack for the commute and business travel: dedicated laptop and tablet compartments, quick-access storage, and a rear trolley sleeve.',
     keywords: ['laptop backpack for men', 'business travel backpack', 'office commute backpack', 'executive laptop bag', 'backpack with trolley sleeve'],
-    name: 'WorkGrid Ergonomic BackPack',
+    name: 'WorkGrid BackPack',
     slug: 'workgrid',
     category: 'backpack',
     hideSizeSelector: true,
@@ -2607,7 +2607,7 @@ export const PRODUCTS: Product[] = [
     metaTitle: 'VelocityPro USB Laptop Travel Backpack',
     metaDescription: 'VelocityPro pairs a padded laptop compartment with an external USB charging port, a concealed valuables pocket, and a rear luggage trolley sleeve. Built for commuting, business travel, and college.',
     keywords: ['usb laptop backpack', 'travel backpack with charging port', 'padded laptop compartment backpack', 'commuter backpack india', 'anti-theft backpack'],
-    name: 'VelocityPro Ergonomic Backpack',
+    name: 'VelocityPro Backpack',
     slug: 'velocitypro',
     category: 'backpack',
     mrp: 11499,
@@ -2785,15 +2785,15 @@ export const PRODUCTS: Product[] = [
   {
     id: 'urban-pro-backpack',
     metaTitle: 'Urban Pro Backpack — Minimal Design, Maximum Utility',
-    metaDescription: 'A sleek, structured backpack for modern workdays, travel, and everyday carry — dedicated laptop storage, front quick-access pocket, side pockets, and padded ergonomic straps.',
+    metaDescription: 'A sleek, structured backpack for modern workdays, travel, and everyday carry — dedicated laptop storage, front quick-access pocket, side pockets, and padded straps.',
     keywords: ['minimalist backpack for men', 'laptop backpack for daily use', 'travel backpack for work', 'unisex urban backpack', 'backpack for college and office'],
-    name: 'Urban Pro Ergonomic BackPack',
+    name: 'Urban Pro BackPack',
     slug: 'urban-pro-backpack',
     category: 'backpack',
     mrp: 6999,
     hideSizeSelector: true,
     description:
-      'A sleek, structured backpack designed for modern workdays, travel, and everyday carry. The Urban Pro Backpack combines a clean minimalist profile with practical organization, featuring a spacious main compartment, dedicated laptop storage, front quick-access pocket, side pockets, and padded ergonomic shoulder straps.',
+      'A sleek, structured backpack designed for modern workdays, travel, and everyday carry. The Urban Pro Backpack combines a clean minimalist profile with practical organization, featuring a spacious main compartment, dedicated laptop storage, front quick-access pocket, side pockets, and padded shoulder straps.',
     story: [
       'Built for the way you move. The Louis Polo Urban Pro Backpack brings together understated style and everyday functionality. Its streamlined silhouette keeps things refined, while the thoughtfully organized interior gives you room for your laptop, essentials, accessories, and daily carry.',
       'The spacious main compartment opens wide for easy packing, while the dedicated laptop section keeps your device securely separated. A front zip pocket provides quick access to smaller essentials, and the side pockets are ideal for a bottle or items you need within reach.',
@@ -2810,26 +2810,26 @@ export const PRODUCTS: Product[] = [
       },
       {
         heading: 'Comfortable for the whole day',
-        body: 'Padded ergonomic shoulder straps, a breathable back panel, and a reinforced top handle carry it from the commute to campus to the boarding gate.',
+        body: 'Padded shoulder straps, a breathable back panel, and a reinforced top handle carry it from the commute to campus to the boarding gate.',
       },
     ],
     specs: [
       { label: 'Interior',   value: 'Dedicated laptop compartment, spacious main compartment' },
       { label: 'Storage',    value: 'Front quick-access zip pocket, dual side pockets' },
-      { label: 'Carry',      value: 'Padded ergonomic shoulder straps, reinforced top handle' },
+      { label: 'Carry',      value: 'Padded shoulder straps, reinforced top handle' },
       { label: 'Back panel', value: 'Padded, breathable cushioning' },
       { label: 'Fit',        value: 'Unisex everyday styling' },
     ],
     warranty:
       '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
-    images: ['345f35b6-e5e0-4daf-f198-be669a233d00'],
+    images: ['ba01e7fc-07d2-4bfb-6f84-2749e9120700'],
     features: [
       { label: 'Dedicated laptop compartment' },
       { label: 'Spacious main compartment' },
       { label: 'Front quick-access zip pocket' },
       { label: 'Dual side pockets' },
       { label: 'Padded, breathable back panel' },
-      { label: 'Ergonomic padded shoulder straps' },
+      { label: 'Padded shoulder straps' },
       { label: 'Reinforced top carry handle' },
       { label: 'Premium minimalist design' },
       { label: 'Unisex everyday styling' },
@@ -2837,48 +2837,112 @@ export const PRODUCTS: Product[] = [
     ],
     variants: [
       {
-        color: 'Sage Mist',
-        colorHex: '#B4BCAC',
+        color: 'Ivory',
+        colorHex: '#E9E3D3',
         images: [
-          // '9e6f593b-a719-4c1a-4f1b-cb0c845ac500',
-          // 'fdda0c0f-00f4-4fc6-b658-febca194d000',
-          '345f35b6-e5e0-4daf-f198-be669a233d00',
-          '0c71e008-67e4-446b-6c99-a789ec0e0d00',
-          '16a52c46-dfac-4afd-3848-626cc29c0f00',
+          'ba01e7fc-07d2-4bfb-6f84-2749e9120700',
         ],
         sizes: [
           { size: 'One Size', price: 3800, stock: 30 },
         ],
       },
       {
-        color: 'Midnight Navy',
-        colorHex: '#363C4A',
+        color: 'Black',
+        colorHex: '#2D2D2D',
         images: [
-          '930faf10-9ed3-4967-0f36-e959d5fe0900',
+          '5ea44697-3de6-49fa-edb2-a5c266bfba00',
         ],
         sizes: [
           { size: 'One Size', price: 3800, stock: 30 },
         ],
       },
       {
-        color: 'Ice Blue',
-        colorHex: '#B7C4D1',
+        color: 'Blush Pink',
+        colorHex: '#E6CDCD',
         images: [
-          'f98a40ca-7119-4569-8f4a-fe5e63a45500',
-          'b763447d-9ff4-4463-79ab-cadb2d365500',
-          'd147656b-61bf-4af2-56ca-c8b28adc4a00',
+          '8be8fe29-b32c-4b83-d3e5-79e582fd1400',
         ],
         sizes: [
           { size: 'One Size', price: 3800, stock: 30 },
         ],
       },
       {
-        color: 'Stone Grey',
-        colorHex: '#C7C7C7',
+        color: 'Green',
+        colorHex: '#B9DDB0',
         images: [
-          'b202c4b8-73cb-4c30-3864-e9b6e8eb0000',
-          'd7b1c67c-0fb4-412a-06e2-b674aec4dd00',
-          '15687b51-37a0-418e-af35-42af06c73d00',
+          '5d9cc884-dacb-4b4c-b205-fc24e01b1200',
+        ],
+        sizes: [
+          { size: 'One Size', price: 3800, stock: 30 },
+        ],
+      },
+    ],
+  },
+
+  // ── UrbanLite Backpack ───────────────────────────────────────
+  {
+    id: 'urbanlite',
+    metaTitle: 'UrbanLite Backpack: Clean Design for Everyday Carry',
+    metaDescription: 'A clean, structured everyday backpack with a front zip pocket, side pocket, padded shoulder straps, and a top carry handle.',
+    keywords: ['everyday backpack', 'casual backpack for daily use', 'backpack for college and office', 'unisex backpack', 'stylish backpack for women'],
+    name: 'UrbanLite Backpack',
+    slug: 'urbanlite',
+    category: 'backpack',
+    mrp: 6999,
+    hideSizeSelector: true,
+    description:
+      'A clean, structured everyday backpack in four easy colours. UrbanLite pairs a front zip pocket and side pocket with a top carry handle and padded shoulder straps, for the commute, campus, and short trips.',
+    images: ['28af9f5c-e2d2-4e38-b668-1a431de15e00'],
+    features: [
+      { label: 'Front zip pocket' },
+      { label: 'Side pocket' },
+      { label: 'Padded shoulder straps' },
+      { label: 'Top carry handle' },
+      { label: 'Unisex everyday styling' },
+    ],
+    specs: [
+      { label: 'Storage', value: 'Front zip pocket, side pocket' },
+      { label: 'Carry',   value: 'Padded shoulder straps, top carry handle' },
+      { label: 'Fit',     value: 'Unisex everyday styling' },
+    ],
+    warranty:
+      '1-year warranty covering manufacturing defects in the shell, straps, and zippers. Keep your invoice. A mail to support@louispolo.in is all a claim takes.',
+    variants: [
+      {
+        color: 'Green',
+        colorHex: '#B9DDB0',
+        images: [
+          '28af9f5c-e2d2-4e38-b668-1a431de15e00',
+        ],
+        sizes: [
+          { size: 'One Size', price: 3800, stock: 30 },
+        ],
+      },
+      {
+        color: 'Black',
+        colorHex: '#2D2D2D',
+        images: [
+          'be588300-3b0c-4d94-d667-392ed2d6c200',
+        ],
+        sizes: [
+          { size: 'One Size', price: 3800, stock: 30 },
+        ],
+      },
+      {
+        color: 'Blush Pink',
+        colorHex: '#E6CDCD',
+        images: [
+          'f7167b76-ad0e-4e1d-f3d7-24e579979900',
+        ],
+        sizes: [
+          { size: 'One Size', price: 3800, stock: 30 },
+        ],
+      },
+      {
+        color: 'Ivory',
+        colorHex: '#E9E3D3',
+        images: [
+          'dc3dff1c-7ecf-4a37-7fad-db86f0019800',
         ],
         sizes: [
           { size: 'One Size', price: 3800, stock: 30 },
