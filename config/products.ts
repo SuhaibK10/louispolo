@@ -2781,23 +2781,23 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  // ── Urban Pro Backpack ───────────────────────────────────────────────────
+  // ── UrbanLite Backpack ───────────────────────────────────────────────────
   {
     id: 'urban-pro-backpack',
-    metaTitle: 'Urban Pro Backpack — Minimal Design, Maximum Utility',
+    metaTitle: 'UrbanLite Backpack — Minimal Design, Maximum Utility',
     metaDescription: 'A sleek, structured backpack for modern workdays, travel, and everyday carry — dedicated laptop storage, front quick-access pocket, side pockets, and padded straps.',
     keywords: ['minimalist backpack for men', 'laptop backpack for daily use', 'travel backpack for work', 'unisex urban backpack', 'backpack for college and office'],
-    name: 'Urban Pro BackPack',
+    name: 'UrbanLite Backpack',
     slug: 'urban-pro-backpack',
     category: 'backpack',
     mrp: 6999,
     hideSizeSelector: true,
     description:
-      'A sleek, structured backpack designed for modern workdays, travel, and everyday carry. The Urban Pro Backpack combines a clean minimalist profile with practical organization, featuring a spacious main compartment, dedicated laptop storage, front quick-access pocket, side pockets, and padded shoulder straps.',
+      'A sleek, structured backpack designed for modern workdays, travel, and everyday carry. The UrbanLite Backpack combines a clean minimalist profile with practical organization, featuring a spacious main compartment, dedicated laptop storage, front quick-access pocket, side pockets, and padded shoulder straps.',
     story: [
-      'Built for the way you move. The Louis Polo Urban Pro Backpack brings together understated style and everyday functionality. Its streamlined silhouette keeps things refined, while the thoughtfully organized interior gives you room for your laptop, essentials, accessories, and daily carry.',
+      'Built for the way you move. The Louis Polo UrbanLite Backpack brings together understated style and everyday functionality. Its streamlined silhouette keeps things refined, while the thoughtfully organized interior gives you room for your laptop, essentials, accessories, and daily carry.',
       'The spacious main compartment opens wide for easy packing, while the dedicated laptop section keeps your device securely separated. A front zip pocket provides quick access to smaller essentials, and the side pockets are ideal for a bottle or items you need within reach.',
-      'Finished with padded shoulder straps, breathable back cushioning, a structured top handle, and durable zippers, the Urban Pro is designed for commutes, campus, business travel, and everyday city life.',
+      'Finished with padded shoulder straps, breathable back cushioning, a structured top handle, and durable zippers, the UrbanLite is designed for commutes, campus, business travel, and everyday city life.',
     ],
     highlights: [
       {
@@ -2879,19 +2879,19 @@ export const PRODUCTS: Product[] = [
     ],
   },
 
-  // ── UrbanLite Backpack ───────────────────────────────────────
+  // ── Urban Pro Backpack ───────────────────────────────────────
   {
     id: 'urbanlite',
-    metaTitle: 'UrbanLite Backpack: Clean Design for Everyday Carry',
+    metaTitle: 'Urban Pro Backpack: Clean Design for Everyday Carry',
     metaDescription: 'A clean, structured everyday backpack with a front zip pocket, side pocket, padded shoulder straps, and a top carry handle.',
     keywords: ['everyday backpack', 'casual backpack for daily use', 'backpack for college and office', 'unisex backpack', 'stylish backpack for women'],
-    name: 'UrbanLite Backpack',
+    name: 'Urban Pro BackPack',
     slug: 'urbanlite',
     category: 'backpack',
     mrp: 6999,
     hideSizeSelector: true,
     description:
-      'A clean, structured everyday backpack in four easy colours. UrbanLite pairs a front zip pocket and side pocket with a top carry handle and padded shoulder straps, for the commute, campus, and short trips.',
+      'A clean, structured everyday backpack in four easy colours. Urban Pro pairs a front zip pocket and side pocket with a top carry handle and padded shoulder straps, for the commute, campus, and short trips.',
     images: ['28af9f5c-e2d2-4e38-b668-1a431de15e00'],
     features: [
       { label: 'Front zip pocket' },
