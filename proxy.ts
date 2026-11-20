@@ -88,7 +88,9 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - image files
+     * - api/shopify-assistant (called from the Shopify site: no session, so the
+     *   Supabase check would only add latency to every chat message)
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|api/shopify-assistant|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
