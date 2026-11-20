@@ -9,7 +9,18 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import crypto from 'crypto'
 
+// Public domain for the Shopify site's chat backend. It must serve ONLY
+// /api/shopify-assistant (excluded from this proxy by the matcher below), so
+// every other request on that host goes to the Shopify store: the old Next.js
+// storefront, checkout and admin are never reachable through it.
+const ASSISTANT_API_HOST = process.env.ASSISTANT_API_HOST || 'ai.louispoloworld.com'
+
 export async function proxy(request: NextRequest) {
+  const host = (request.headers.get('host') || '').split(':')[0].toLowerCase()
+  if (host === ASSISTANT_API_HOST) {
+    return NextResponse.redirect('https://louispoloworld.com/', 308)
+  }
+
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
