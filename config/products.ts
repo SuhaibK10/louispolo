@@ -2265,7 +2265,7 @@ export const PRODUCTS: Product[] = [
         images: [
           // 'ca24fd22-9f74-48a8-0746-303b00b57200',
           // '51fd24f1-7e9b-47ad-bb8c-4f7aa6c17000',
-          '91c5f518-d1ee-4757-f4c3-a27c02d7a600',
+          'df4df5bd-4442-4ef4-3a71-d45483b65a00',
           'ffb6ea27-cb53-4a4d-9d1a-df63f83e2800',
           '17cc8ba4-8012-4f87-3fe8-5b2d218cf800',
         ],

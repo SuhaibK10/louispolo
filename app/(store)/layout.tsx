@@ -8,6 +8,7 @@ import { Footer }          from '@/components/layout/Footer'
 import { MobileNav }       from '@/components/layout/MobileNav'
 import { WhatsAppButton }  from '@/components/ui/WhatsappButton'
 import { PageTransition }  from '@/components/layout/PageTransition'
+import { AssistantWidget } from '@/components/assistant/AssistantWidget'
 // Spin-to-win disabled for now — uncomment this import and <SpinToWinModal />
 // below to bring the wheel back.
 // import { SpinToWinModal }  from '@/components/ui/SpinToWinModal'
@@ -26,6 +27,9 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
       <MobileNav />
       {/* Spacer so content isn't hidden behind mobile nav — matches nav height + safe area */}
       <WhatsAppButton />
+      {/* Shopping assistant: stays off until ASSISTANT_ENABLED=true is set
+          (and GEMINI_API_KEY exists), so a deploy never shows a broken chat. */}
+      {process.env.ASSISTANT_ENABLED === 'true' && <AssistantWidget />}
       {/* <SpinToWinModal /> */}
       <div className="mobile-nav-spacer lg:hidden" aria-hidden="true" />
     </>
