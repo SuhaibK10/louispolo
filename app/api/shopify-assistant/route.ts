@@ -7,8 +7,12 @@
 //
 //   GET     warm-up: loads the catalog/policies cache, no model call
 //   POST    { messages: [{ role: 'user' | 'assistant', content }] }
-//           → newline-delimited JSON: {"t":"text","v":"..."} | {"t":"error","v":"..."} | {"t":"done"}
+//           → newline-delimited JSON: {"t":"text","v":"..."} | {"t":"suggest","v":["..."]}
+//             | {"t":"error","v":"..."} | {"t":"done"}
+//           "suggest" carries 2-3 follow-up questions for tap-to-ask buttons.
 //   OPTIONS CORS preflight
+//
+// 👍/👎 votes on answers go to ./feedback/route.ts.
 //
 // Only the Shopify storefront origins may call it (SHOPIFY_ASSISTANT_ORIGINS,
 // comma-separated, overrides the defaults; local theme preview is allowed in
@@ -26,6 +30,8 @@ import { getProducts, getPolicies } from '@/lib/shopify-assistant/store'
 import { getProductDetails } from '@/lib/shopify-assistant/catalog'
 import { getSystemPrompt } from '@/lib/shopify-assistant/prompt'
 import { createLinkGuard } from '@/lib/shopify-assistant/links'
+import { createSuggestionSplitter } from '@/lib/shopify-assistant/suggestions'
+import { cors, isAllowedOrigin, json } from '@/lib/shopify-assistant/cors'
 import { isBusyError, pickProvider, type ChatMessage } from '@/lib/shopify-assistant/providers'
 
 export const runtime     = 'nodejs'
@@ -39,39 +45,6 @@ const MAX_BODY_CHARS  = 20_000
 const MSG_BUSY     = `The assistant is very busy right now. Please try again in a minute, or message us on WhatsApp: ${BRAND.whatsapp}`
 const MSG_FAILED   = `Sorry, I could not answer that just now. Please try again, or reach us on WhatsApp: ${BRAND.whatsapp}`
 const MSG_NO_REPLY = `I could not put a good answer together for that. Please rephrase, or ask our team on WhatsApp: ${BRAND.whatsapp}`
-
-// ── CORS ──────────────────────────────────────────────────────────────────────
-
-const DEFAULT_ORIGINS = [
-  'https://louispoloworld.com',
-  'https://www.louispoloworld.com',
-  'https://cyqpsc-j0.myshopify.com',
-]
-const DEV_ORIGINS = ['http://127.0.0.1:9292', 'http://localhost:9292']
-
-function allowedOrigins(): Set<string> {
-  const env  = process.env.SHOPIFY_ASSISTANT_ORIGINS
-  const list = env ? env.split(',').map((s) => s.trim()).filter(Boolean) : DEFAULT_ORIGINS
-  return new Set(process.env.NODE_ENV === 'production' ? list : [...list, ...DEV_ORIGINS])
-}
-
-function cors(origin: string | null): Record<string, string> {
-  if (!origin || !allowedOrigins().has(origin)) return { Vary: 'Origin' }
-  return {
-    'Access-Control-Allow-Origin':  origin,
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Max-Age':       '86400',
-    Vary:                           'Origin',
-  }
-}
-
-function json(body: unknown, status: number, origin: string | null) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', ...cors(origin) },
-  })
-}
 
 // ── Request parsing (same rules as /api/assistant) ─────────────────────────────
 
@@ -115,7 +88,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   const origin = request.headers.get('origin')
-  if (!origin || !allowedOrigins().has(origin)) return json({ error: 'Forbidden' }, 403, origin)
+  if (!isAllowedOrigin(origin)) return json({ error: 'Forbidden' }, 403, origin)
 
   const provider = pickProvider()
   if (!provider) return json({ error: 'The assistant is not set up yet.' }, 503, origin)
@@ -149,11 +122,12 @@ export async function POST(request: Request) {
   const encoder = new TextEncoder()
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const send = (event: { t: 'text' | 'error'; v: string } | { t: 'done' }) =>
+      const send = (event: { t: 'text' | 'error'; v: string } | { t: 'suggest'; v: string[] } | { t: 'done' }) =>
         controller.enqueue(encoder.encode(JSON.stringify(event) + '\n'))
 
       let sentText = false
-      const guard = createLinkGuard(products)
+      const guard    = createLinkGuard(products)
+      const splitter = createSuggestionSplitter()
       const emit  = (text: string) => {
         if (!text) return
         sentText = true
@@ -165,19 +139,25 @@ export async function POST(request: Request) {
           systemPrompt,
           messages,
           signal:  request.signal,
-          onText:  (text) => emit(guard.push(text)),
+          onText:  (text) => emit(guard.push(splitter.push(text))),
           runTool: (name, args) =>
             name === 'get_product_details'
               ? getProductDetails(products, (args as { handles?: unknown } | undefined)?.handles)
               : { error: `Unknown tool ${name}` },
         })
 
+        emit(guard.push(splitter.flush()))
         emit(guard.flush())
         if (!sentText) send({ t: 'text', v: MSG_NO_REPLY })
+        else {
+          const suggestions = splitter.suggestions()
+          if (suggestions.length) send({ t: 'suggest', v: suggestions })
+        }
         send({ t: 'done' })
       } catch (e) {
         if (!request.signal.aborted) {
           console.error(`[shopify-assistant] ${provider.name} (${provider.model}) request failed:`, e instanceof Error ? e.message : e)
+          emit(guard.push(splitter.flush()))
           emit(guard.flush())
           send({ t: 'error', v: isBusyError(e) ? MSG_BUSY : MSG_FAILED })
           send({ t: 'done' })
