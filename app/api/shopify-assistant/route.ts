@@ -26,7 +26,7 @@
 
 import { BRAND } from '@/lib/constants'
 import { checkLimit } from '@/lib/assistant/rateLimit'
-import { getProducts, getPolicies } from '@/lib/shopify-assistant/store'
+import { getCollections, getProducts, getPolicies, type StoreCollection } from '@/lib/shopify-assistant/store'
 import { getProductDetails } from '@/lib/shopify-assistant/catalog'
 import { getSystemPrompt } from '@/lib/shopify-assistant/prompt'
 import { createLinkGuard } from '@/lib/shopify-assistant/links'
@@ -109,11 +109,21 @@ export async function POST(request: Request) {
   if (!checkLimit(visitor).ok) return json({ error: MSG_BUSY }, 429, origin)
 
   let products: Awaited<ReturnType<typeof getProducts>>
+  let collections: StoreCollection[]
   let systemPrompt: string
   try {
-    const [p, policies] = await Promise.all([getProducts(), getPolicies()])
+    // Collections are a nice-to-have: without them the chat still answers.
+    const [p, policies, c] = await Promise.all([
+      getProducts(),
+      getPolicies(),
+      getCollections().catch((e) => {
+        console.warn('[shopify-assistant] collections unavailable:', e instanceof Error ? e.message : e)
+        return [] as StoreCollection[]
+      }),
+    ])
     products = p
-    systemPrompt = getSystemPrompt(p, policies)
+    collections = c
+    systemPrompt = getSystemPrompt(p, policies, c)
   } catch (e) {
     console.error('[shopify-assistant] store data unavailable:', e instanceof Error ? e.message : e)
     return json({ error: MSG_FAILED }, 503, origin)
@@ -126,7 +136,7 @@ export async function POST(request: Request) {
         controller.enqueue(encoder.encode(JSON.stringify(event) + '\n'))
 
       let sentText = false
-      const guard    = createLinkGuard(products)
+      const guard    = createLinkGuard(products, collections)
       const splitter = createSuggestionSplitter()
       const emit  = (text: string) => {
         if (!text) return

@@ -8,9 +8,13 @@
 
 import { BRAND } from '@/lib/constants'
 import { buildCatalogIndex, buildTypeSummary } from './catalog'
-import type { StorePolicies, StoreProduct } from './store'
+import type { StoreCollection, StorePolicies, StoreProduct } from './store'
 
-export function getSystemPrompt(products: StoreProduct[], policies: StorePolicies): string {
+export function getSystemPrompt(products: StoreProduct[], policies: StorePolicies, collections: StoreCollection[] = []): string {
+  const collectionList = collections.length
+    ? collections.map((c) => `${c.title} | /collections/${c.handle} | ${c.count}`).join('\n')
+    : '(none)'
+
   const announcements = policies.announcements.length
     ? policies.announcements.map((a) => `- ${a}`).join('\n')
     : '- (none)'
@@ -26,7 +30,8 @@ HOW TO ANSWER
 - Usually 2 to 5 short sentences. Use a short list only when comparing.
 - Ask at most one clarifying question at a time, and only when it changes the recommendation (trip length, laptop size, budget, how many people).
 - Recommend at most 3 products. Say in one line why each fits. Prefer products that are in stock.
-- Link every product you mention using this exact format: [Product name](/products/handle), copying the path exactly as written in the catalog below. Mention each product once, with one link. Never link anywhere else, except the WhatsApp link below.
+- Link every product you mention using this exact format: [Product name](/products/handle), copying the path exactly as written in the catalog below. Mention each product once, with one link. Never link anywhere else, except collections from the COLLECTIONS list and the WhatsApp link below.
+- When the customer wants to browse or see everything of a kind (for example "show me backpacks", "all cabin trolleys", "show me more", "what else do you have"), reply in one or two sentences and link the single best matching collection from COLLECTIONS as [Collection name](/collections/handle), copying the path exactly. The website then shows every product in that collection as cards, so do not link or list individual products in that reply.
 - Reply in the customer's language and script: English in English; Hinglish (Hindi written in English letters, e.g. "milega kya") in Hinglish using English letters; Hindi in Devanagari only if the customer writes in Devanagari.
 - End every reply with one last line that starts with ">>" and gives 2 or 3 follow-up questions the customer might tap next, separated by " | ". Write them as the customer would ask, at most 6 words each, in the customer's language, and make them useful next steps for this conversation (see more options, compare, another category, a feature, delivery or warranty). No links in that line. Example: >> Show me more options | What about backpacks? | Compare the first two
   The website turns that line into buttons, so never mention it.
@@ -57,6 +62,9 @@ ${policyText}
 CONTACT (share when you cannot help, or the customer needs a person)
 - Use the email and phone from the contact information above.
 - WhatsApp: ${BRAND.whatsapp}
+
+COLLECTIONS (name | path | number of products)
+${collectionList}
 
 CATALOG (name | path | type | price | options | stock)
 Types: ${buildTypeSummary(products)}.

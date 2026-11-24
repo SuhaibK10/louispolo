@@ -5,6 +5,8 @@
 //
 //  - getProducts()  every published product, from /products.json (prices, MRP,
 //                   colours, availability, full description). Cached 10 min.
+//  - getCollections() every collection with products, from /collections.json, so
+//                   "show me all backpacks" can link the whole collection. Cached 10 min.
 //  - getPolicies()  the policy and help pages, plus the announcement bar
 //                   (e.g. the free-shipping threshold). Cached 1 hour.
 //
@@ -49,6 +51,12 @@ export type StoreProduct = {
   description: string
   options:     { name: string; values: string[] }[]
   variants:    StoreVariant[]
+}
+
+export type StoreCollection = {
+  handle: string
+  title:  string
+  count:  number
 }
 
 export type StorePolicies = {
@@ -179,6 +187,20 @@ export const getProducts = cached<StoreProduct[]>(PRODUCTS_TTL_MS, async () => {
   }
   if (all.length === 0) throw new Error('Shopify returned no products')
   return all
+})
+
+// ── Collections ───────────────────────────────────────────────────────────────
+
+// Store collections that are not a shopping category.
+const HIDDEN_COLLECTIONS = new Set(['frontpage'])
+
+export const getCollections = cached<StoreCollection[]>(PRODUCTS_TTL_MS, async () => {
+  const data = (await (await get('/collections.json?limit=250')).json()) as {
+    collections?: { handle?: string; title?: string; products_count?: number }[]
+  }
+  return (data.collections ?? [])
+    .filter((c) => c.handle && c.title && !HIDDEN_COLLECTIONS.has(c.handle) && (c.products_count ?? 0) > 0)
+    .map((c) => ({ handle: c.handle!, title: c.title!, count: c.products_count ?? 0 }))
 })
 
 // ── Policies ──────────────────────────────────────────────────────────────────

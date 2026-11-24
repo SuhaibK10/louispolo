@@ -4,9 +4,10 @@
 // The model is told to link products as [Name](/products/handle); a small model
 // can mangle or invent a handle, which would land a customer on a 404. Every
 // link in the streamed answer passes through this guard:
-//   - [label](/products/<real handle>)  kept
-//   - [label](<WhatsApp url>)           turned into the plain URL (the widget links it)
-//   - anything else                     reduced to its plain label text
+//   - [label](/products/<real handle>)     kept
+//   - [label](/collections/<real handle>)  kept (the widget shows the whole collection)
+//   - [label](<WhatsApp url>)              turned into the plain URL (the widget links it)
+//   - anything else                        reduced to its plain label text
 // Text arrives in arbitrary chunks, so a possibly-unfinished "[label](url" tail
 // is held back until it is complete.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -20,20 +21,32 @@ const MAX_HOLD     = 300
 const nameKey = (s: string) => s.toLowerCase().replace(/^louis polo\s+/, '').replace(/[^a-z0-9]+/g, ' ').trim()
 
 /**
- * @param products  every live product's handle and display name. When the model
- *                  mistypes a long handle but the link text is exactly a product's
- *                  name, the link is repaired to that product instead of dropped.
+ * @param products     every live product's handle and display name. When the model
+ *                     mistypes a long handle but the link text is exactly a product's
+ *                     name, the link is repaired to that product instead of dropped.
+ * @param collections  every live collection's handle and title, repaired the same way.
  */
-export function createLinkGuard(products: { handle: string; name: string }[]) {
+export function createLinkGuard(
+  products: { handle: string; name: string }[],
+  collections: { handle: string; title: string }[] = [],
+) {
   let buf = ''
-  const handles = new Set(products.map((p) => p.handle))
-  const byName  = new Map(products.map((p) => [nameKey(p.name), p.handle]))
+  const handles           = new Set(products.map((p) => p.handle))
+  const byName            = new Map(products.map((p) => [nameKey(p.name), p.handle]))
+  const collectionHandles = new Set(collections.map((c) => c.handle))
+  const collectionByTitle = new Map(collections.map((c) => [nameKey(c.title), c.handle]))
 
   function clean(text: string): string {
     return text.replace(LINK, (_m, label: string, url: string) => {
       const product = /^(?:https?:\/\/[^/]+)?\/products\/([a-z0-9-]+)\/?$/i.exec(url)
       if (product && handles.has(product[1].toLowerCase())) return `[${label}](/products/${product[1].toLowerCase()})`
+      const collection = /^(?:https?:\/\/[^/]+)?\/collections\/([a-z0-9-]+)\/?$/i.exec(url)
+      if (collection && collectionHandles.has(collection[1].toLowerCase())) return `[${label}](/collections/${collection[1].toLowerCase()})`
       if (url === BRAND.whatsapp) return url
+      if (collection) {
+        const repairedCollection = collectionByTitle.get(nameKey(label))
+        if (repairedCollection) return `[${label}](/collections/${repairedCollection})`
+      }
       const repaired = byName.get(nameKey(label))
       if (repaired) return `[${label}](/products/${repaired})`
       return label
