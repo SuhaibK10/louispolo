@@ -47,6 +47,18 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  // The live store is Shopify (louispoloworld.com). This app stays online
+  // only as a reference copy (lp-fnl-rho.vercel.app) and as the chat backend
+  // (ai.louispoloworld.com), so search engines are told not to list any of
+  // it. robots.txt must keep allowing crawling, or Google never sees this.
+  async headers() {
+    return [
+      {
+        source:  '/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+    ]
+  },
   // Pages used to live under /store/* — permanent redirects keep old
   // bookmarks and already-indexed Google results working.
   async redirects() {

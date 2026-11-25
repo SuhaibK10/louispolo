@@ -70,7 +70,8 @@ export const metadata: Metadata = {
     description: SEO.description,
     images:      [SEO.ogImage],
   },
-  robots: { index: true, follow: true },
+  // Reference copy only; the live store is Shopify. See headers() in next.config.ts.
+  robots: { index: false, follow: false },
   icons: {
     icon: [
       { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
