@@ -1,8 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // lib/shopify-assistant/cors.ts
 // Only the Shopify storefront may call the assistant routes. The origin list
-// can be replaced with SHOPIFY_ASSISTANT_ORIGINS (comma-separated); the local
-// theme preview is also allowed outside production.
+// can be replaced with SHOPIFY_ASSISTANT_ORIGINS (comma-separated). The local
+// theme preview (`shopify theme dev`) is always allowed too, so the chat works
+// at http://127.0.0.1:9292 against the live backend. CORS only limits browsers,
+// so this opens nothing a script couldn't already do by faking the Origin.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_ORIGINS = [
@@ -15,7 +17,7 @@ const DEV_ORIGINS = ['http://127.0.0.1:9292', 'http://localhost:9292']
 export function allowedOrigins(): Set<string> {
   const env  = process.env.SHOPIFY_ASSISTANT_ORIGINS
   const list = env ? env.split(',').map((s) => s.trim()).filter(Boolean) : DEFAULT_ORIGINS
-  return new Set(process.env.NODE_ENV === 'production' ? list : [...list, ...DEV_ORIGINS])
+  return new Set([...list, ...DEV_ORIGINS])
 }
 
 export function isAllowedOrigin(origin: string | null): origin is string {
