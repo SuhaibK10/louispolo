@@ -17,7 +17,8 @@ export type AnswerRequest = {
 }
 
 export type Provider = {
-  name:  'gemini' | 'openrouter'
+  /** "gemini" or "openrouter"; for a fallback chain, the names joined with " > ". */
+  name:  string
   model: string
   /** Streams one answer through onText; throws on API errors. */
   answer(request: AnswerRequest): Promise<void>
