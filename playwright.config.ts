@@ -22,6 +22,9 @@ export const E2E_ENV = {
   ADMIN_PASSWORD:                'e2e-admin-password',
   ASSISTANT_ENABLED:             'true',
   OPENROUTER_API_KEY:            'e2e-not-a-real-key',
+  // The checkout route creates its Razorpay client when it loads, so the build needs a key.
+  RAZORPAY_KEY_ID:               'rzp_test_e2e_placeholder',
+  RAZORPAY_KEY_SECRET:           'e2e-placeholder-secret',
 }
 
 export default defineConfig({
