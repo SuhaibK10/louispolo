@@ -45,3 +45,9 @@ yarn-error.log*
 *.pem
 .eslintcache
 
+
+# Test output (Playwright)
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
