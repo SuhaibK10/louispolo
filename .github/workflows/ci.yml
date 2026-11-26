@@ -1,0 +1,68 @@
+# Runs on every pull request (and on main after merging):
+#   1. TypeScript type-check + Vitest unit tests
+#   2. Production build + Playwright browser and HTTP tests
+# Merging to main deploys to Vercel, so open a pull request for each change
+# and merge once both checks are green.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+  # Placeholders, not secrets (same as E2E_ENV in playwright.config.ts). Tests
+  # block all outside requests, so nothing reaches Supabase or an AI provider.
+  NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: e2e-anon-key
+  SUPABASE_SERVICE_ROLE_KEY: e2e-service-role-key
+  ADMIN_PASSWORD: e2e-admin-password
+  ASSISTANT_ENABLED: 'true'
+  OPENROUTER_API_KEY: e2e-not-a-real-key
+
+jobs:
+  unit:
+    name: Type-check and unit tests (Vitest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run type-check
+      - run: npm test
+
+  e2e:
+    name: Browser tests (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium --only-shell
+      - run: npm run build
+      - run: npm run test:e2e
+      - name: Upload the Playwright report when a test fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
